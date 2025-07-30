@@ -9,7 +9,7 @@ def exists():
 
 
 @check50.check(exists)
-def testHello():
+def testWillkommen():
     """check output of willkommen.py"""
     output = "Willkommen, Welt!"
     check50.run("python3 willkommen.py").stdout("Willkommen, Welt!").exit()
