@@ -2,7 +2,7 @@ submit50:
   files: &submit50_files
     - !exclude "*"
     - !include "*.py"
-    - !require willkommen.py
+    - !require exercise.py
   
 check50:
   files: *submit50_files
