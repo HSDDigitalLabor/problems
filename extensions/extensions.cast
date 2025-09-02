@@ -1,4 +1,4 @@
-{"version": 2, "width": 133, "height": 35, "timestamp": 1649552502, "env": {"SHELL": null, "TERM": "xterm"}}
+{"version": 2, "width": 133, "height": 35, "timestamp": 1649552502, "env": {"SHELL":"/bin/bash", "TERM": "xterm-256color"}}
 [0.004029, "o", "$ "]
 [0.515966, "i", "python extensions.py"]
 [0.516375, "o", "python extensions.py"]
