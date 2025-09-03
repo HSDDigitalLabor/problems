@@ -1,0 +1,10 @@
+{"version": 2, "width": 159, "height": 11, "timestamp": 1756739604, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
+[0.021078, "o", "willkommen/ $ "]
+[0.515966, "i", "python willkommen.py"]
+[0.516375, "o", "python willkommen.py"]
+[0.960376, "i", "\r"]
+[0.960718, "o", "\r\n"]
+[0.961687, "o", "Willkommen, Welt!\r\n"]
+[0.962313, "o", "willkommen/ $ "]
+[1.652259, "i", "\u0004"]
+[1.652549, "o", "\r\n"]
