@@ -1,0 +1,179 @@
+<h1 id="tip">Tip Calculator</h1>
+<p>
+Durch die zunehmende Nutzung bargeldloser Zahlungen gibt es immer mehr digitale
+Terminals, die die Möglichkeit bieten, ein Trinkgeld
+direkt am Gerät auszuwählen.
+</p>
+<p>
+<img class="img-fluid"
+    style="display: block; margin-left: auto; margin-right: auto;"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/164158511/tipping_terminal_web_watermarked%20%281%29.png"
+    alt="TipTerminal" width="320" height="600">
+</p>
+<p>
+    Erstellen Sie eine Datei namens
+    <code class="text-danger border border-dark">tip.py</code> und schreiben Sie
+    ein Python-Programm, das für einen eingegebenen Rechnungsbetrag die
+    Trinkgeldbeträge für 5&nbsp;%, 10&nbsp;% und 15&nbsp;% berechnet und ausgibt.
+    Das Programm soll dabei das eingegebene Währungssymbol (z.&nbsp;B. $ oder €)
+    erkennen und dieses auch bei der Ausgabe der Trinkgeldbeträge verwenden.
+</p>
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Denken Sie daran, dass
+      <code class="text-danger border border-dark">input</code> einen
+      <code class="text-danger border border-dark">str</code> zurückgibt,
+      siehe <a href="https://docs.python.org/3/library/functions.html#input"
+      target="_blank">docs.python.org/3/library/functions.html#input</a>.
+    </li>
+    <li data-marker="*">Denken Sie daran, dass
+      <code class="text-danger border border-dark">float</code> einen
+      <code class="text-danger border border-dark">str</code> in einen
+      <code class="text-danger border border-dark">float</code> konvertieren kann, siehe
+      <a href="https://docs.python.org/3/library/functions.html#float"
+      target="_blank">docs.python.org/3/library/functions.html#float</a>.
+    </li>
+    <li>Denken Sie daran, dass ein
+        <code class="text-danger border border-dark">str</code> viele Methoden
+        besitzt, siehe
+        <a href="https://docs.python.org/3/library/stdtypes.html#string-methods"
+            target="_blank">
+            docs.python.org/3/library/stdtypes.html#string-methods
+        </a>.
+    </li>
+  </ul>
+</details>
+
+
+<h2 id="demo">Demo</h2>
+<p>
+  <script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
+    id="asciicast-7p3I0L9U0XPJXSfxBNYHOfO2q"
+    src="https://asciinema.org/a/7p3I0L9U0XPJXSfxBNYHOfO2q.js">
+  </script>
+</p>
+
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a>
+  an, klicken Sie auf Ihr Terminal und führen Sie <code
+    class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+    class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
+    tip</code></div>
+<p>aus, um einen Ordner namens <code
+    class="text-danger border border-dark">tip</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
+    tip</code></div>
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt ihres Terminals sollte
+  nun <code class="text-danger border border-dark">tip/$</code> anzeigen.
+  Jetzt können Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
+    tip.py</code></div>
+<p>ausführen, um eine Datei namens <code
+    class="text-danger">tip.py</code> zu erstellen, in der Sie Ihr
+  Programm schreiben. Der Anfang von dem Programm wurde bereits erstellt, kopieren Sie diesen Code in Ihre Datei <code
+    class="text-danger">tip.py</code> und vervollständigen Sie den Code.</p>
+
+<div class="alert alert-dark">
+    <pre><code>
+def main():
+    input_str = input("Rechnungsbetrag eingeben: ")
+    amount = currency_to_float(input_str)
+    currency_symbol = get_currency_symbol(input_str)
+    # TODO
+
+
+def currency_to_float(str):
+    # TODO
+
+
+def get_currency_symbol(str):
+    # TODO
+
+
+main()
+    </code></pre>
+</div>
+
+
+<h2 id="how-to-test">So testen Sie Ihr Programm</h2>
+<p>So können Sie Ihr Programm manuell testen:</p>
+<ul>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python tip.py</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Rechnungsbetrag eingeben: </code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">28.70€</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary">
+        <code class="text-dark font-weight-bold">Tip  5%: 1.44€</code><br />
+        <code class="text-dark font-weight-bold">Tip 10%: 2.87€</code><br />
+        <code class="text-dark font-weight-bold">Tip 15%: 4.30€</code><br />
+      </div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python tip.py</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Rechnungsbetrag eingeben: </code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">145.75$</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary">
+        <code class="text-dark font-weight-bold">Tip  5%: 7.29$</code><br />
+        <code class="text-dark font-weight-bold">Tip 10%: 14.57$</code><br />
+        <code class="text-dark font-weight-bold">Tip 15%: 21.86$</code><br />
+      </div>
+  </li>
+</ul>
+
+<p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
+    class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
+  der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
+  aber auch selbst!</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+    check50 HSDDigitalLabor/problems/git2025/tip
+  </code></div>
+<p>
+  Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
+  bedeuten, dass Ihr Programm einen Test bestanden hat! Rote
+  traurige Smileys <span style="font-family: monospace; color: red;">:( </span>
+  zeigen an, dass Ihr Programm etwas Unerwartetes ausgegeben
+  hat. Besuchen Sie die URL, die <code class="text-danger">check50</code>
+  ausgibt, um zu sehen, welche Eingabe <code class="text-danger">check50</code>
+  an Ihr Programm übergeben hat, welche Ausgabe erwartet wurde und welche
+  Ausgabe Ihr Programm tatsächlich geliefert hat.
+</p>
+
+<h2 id="how-to-submit">Abgabe</h2>
+<p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
+</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+    submit50 HSDDigitalLabor/problems/git2025/tip
+  </code></div>
+<p>
+  Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
+  nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
+  die zuletzt eingereichte Version vor dem Fälligkeitsdatum. Nach Ablauf der
+  Frist können Sie technisch zwar noch Abgaben tätigen, Ihre Lösung wird jedoch
+  nicht mehr gewertet. Das Ergebnis kann ausschließlich mit obigem Befehl abgegeben
+  werden, eine Abgabe in Moodle ist nicht möglich.
+</p>
+
+<h2 id="how-to-mark">Markierung der Aufgabe als erledigt</h2>
+<p>Um die Aufgabe in Moodle als erledigt zu markieren, klicken Sie auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_button1" disabled>
+  Aufgabenlösung hinzufügen</button>
+  weiter unten auf dieser Seite und tragen unter
+  "Texteingabe online" den folgenden Text ein:</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">Mit submit50 abgegeben.</code>
+</div>
+<p>Schließen Sie die Eingabe durch Klick auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_button2" disabled>
+  Änderungen speichern</button> unterhalb des Textfeldes ab.</p>
