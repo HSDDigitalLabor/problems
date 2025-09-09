@@ -13,14 +13,6 @@ render_params = {
     "title": "Willkommen",
     "foldername": "willkommen",
     "filename": "willkommen.py",
-    "exercises": "und implementieren Sie ein Python-Programm, das &quot;Willkommen, Welt!&quot; ausgibt",
-    "details": [
-        {'content': 'Verwenden Sie die Funktion\n'
-                    '<code class="text-danger border border-dark">print()</code>,\n'
-                    'um auf dem Terminal den Text auszugeben. Weitere Informationen finden Sie in der\n'
-                    '<a href="https://docs.python.org/3/library/functions.html#print" target="_blank">\n'
-                    'docs.python.org/3/library/functions.html#print </a>.'}
-    ],
     "asciicast_id": "zv3diegZOWpOAkMwz2AHYIPd1",
     "check50_path": "HSDDigitalLabor/problems/git2025/willkommen",
     "submit50_path": "HSDDigitalLabor/problems/git2025/willkommen",
