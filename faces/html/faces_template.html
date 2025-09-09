@@ -1,0 +1,102 @@
+{% include "header.html" %}
+
+<p>
+  Bevor es Emojis gab, wurden sogenannte 
+  <a href="https://en.wikipedia.org/wiki/List_of_emoticons" target="_blank">
+    Emoticons
+  </a> genutzt, also Zeichenfolgen wie <code>:)</code> für ein lachendes und 
+  <code>:(</code> für ein trauriges Gesicht. Heute werden solche Emoticons
+  von Programmen meist automatisch in Emojis umgewandelt.
+</p>
+
+<p>
+  {% include "file.html" %} 
+  schreiben Sie ein Python-Programm, das mithilfe der Funktion
+  <code>convert</code> die beschriebene Umwandlung implementiert. Diese
+  Funktion erhält einen <code>str</code> als Eingabe und gibt einen
+  konvertierten <code>str</code> zurück. Bei der Konvertierung wird jede
+  Zeichenfolge <code>&quot;:)&quot;</code> durch 🙂 und 
+  jede Zeichenfolge <code>&quot;:(&quot;</code>  durch 🙁 ersetzt,
+  alle anderen Zeichen bleiben unverändert.
+</p>
+
+{#
+<p>
+  Implementieren Sie anschließend in derselben Datei eine Funktion
+  <code>main</code>, die den Benutzer nach Eingabe fragt, diese an
+  <code>convert</code> übergibt und das Ergebnis ausgibt. Sie dürfen,
+  müssen aber nicht, den Benutzer explizit auffordern, indem Sie einen
+  eigenen <code>str</code> an <code>input</code> übergeben. Vergessen
+  Sie nicht, <code>main</code> am Ende der Datei aufzurufen.
+</p>
+#}
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Denken Sie daran, dass
+      <code class="text-danger border border-dark">input</code> einen
+      <code class="text-danger border border-dark">str</code> zurückgibt
+      <a href="https://docs.python.org/3/library/functions.html#input">docs.python.org/3/library/functions.html#input</a>.
+    </li>
+    <li>
+      Denken Sie daran, dass ein
+      <code class="text-danger border border-dark">str</code> mit einigen
+      Methoden ausgestattet ist, siehe
+      <a href="https://docs.python.org/3/library/stdtypes.html#string-methods" target="_blank">
+        docs.python.org/3/library/stdtypes.html#string-methods
+      </a>.
+    </li>
+    <li>
+      Ein Emoji ist tatsächlich nur ein Zeichen, Sie können es also wie
+      jeden <code class="text-danger border border-dark">str</code>
+      zitieren, z.&nbsp;B. <code>"😐"</code>. Sie können das Emoji von
+      dieser Seite kopieren und in Ihren eigenen Code einfügen.
+    </li>
+    <li>
+      Emojis sind Teil des Unicode-Standards. Weitere Informationen finden Sie unter
+      <a href="https://de.wikipedia.org/wiki/Unicodeblock_Smileys" target="_blank">
+        Unicode for Smileys
+      </a>.
+      In Python können Unicode-Zeichen mit folgender Notation verarbeitet werden:
+      <code class="text-danger border border-dark">"\U0001F600"</code> oder
+      <code class="text-danger border border-dark">"\u0394"</code>.
+      Mehr dazu unter
+      <a href="https://docs.python.org/3/howto/unicode.html" target="_blank">
+        docs.python.org/3/howto/unicode.html
+      </a>.
+    </li>
+  </ul>
+</details>
+
+{% include "demo.html" %}
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{filename}}</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Geben Sie einen Text mit Emoticons ein: </code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">Hallo :)</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">Hallo 🙂</code></div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{filename}}</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Geben Sie einen Text mit Emoticons ein: </code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">Tschüß :(</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">Tschüß 🙁</code></div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
