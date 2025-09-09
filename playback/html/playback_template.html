@@ -1,0 +1,69 @@
+{% include "header.html" %}
+<p>
+  Manche Menschen neigen dazu, beim Vortragen sehr schnell zu sprechen,
+  und es wäre schön, sie zu verlangsamen – ähnlich wie bei YouTubes
+  0,75-facher Wiedergabegeschwindigkeit oder indem sie zwischen den
+  Wörtern pausieren.
+</p>
+
+<p>
+  {% include "file.html" %} 
+  implementieren Sie ein Python-Programm, das den Benutzer nach einer Eingabe
+  fragt und anschließend genau diese Eingabe ausgibt, wobei jedes Leerzeichen
+  durch <code>...</code> (drei Punkte) ersetzt wird.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Denken Sie daran, dass Sie mit
+      <code class="text-danger border border-dark">input</code> einen
+      <code class="text-danger border border-dark">str</code> erhalten, siehe 
+      <a href="https://docs.python.org/3/library/functions.html#input" target="_blank">
+      docs.python.org/3/library/functions.html#input</a>. 
+    </li> 
+    <li>Denken Sie daran, dass Sie einen
+      <code class="text-danger border border-dark">str</code> mit
+      <code class="text-danger border border-dark">print</code> ausgeben
+      können, siehe 
+      <a href="https://docs.python.org/3/library/functions.html#print" target="_blank">
+      docs.python.org/3/library/functions.html#print</a>.
+    Recall that a str comes with quite a few methods, per docs.python.org/3/library/stdtypes.html#string-methods.
+  </ul>
+</details>
+
+{% include "demo.html" %}
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{filename}}</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Ihre Eingabe: </code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">Grundlagen der Informatik II</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary">
+        <code class="text-dark font-weight-bold">Grundlagen...der...Informatik...II</code>
+      </div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{filename}}</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Ihre Eingabe: </code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">Python ist einfach zu lernen und vielseitig einsetzbar.</code> 
+      ein und drücken Sie Enter. Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary">
+        <code class="text-dark font-weight-bold">Python...ist...einfach...zu...lernen...und...vielseitig...einsetzbar.</code>
+      </div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
