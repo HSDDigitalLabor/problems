@@ -1,0 +1,119 @@
+{% include "header.html" %}
+
+<p>
+  Auch wenn Windows und MacOS sie manchmal ausblenden, besitzen die meisten
+  Dateien sogenannte
+  <a href="https://en.wikipedia.org/wiki/Filename_extension" target="_blank">
+    Dateierweiterungen
+  </a>,
+  ein Suffix, das mit einem Punkt (<code class="text-danger">.</code>) am Ende
+  ihres Namens beginnt. Beispielsweise enden Dateinamen für
+  <a href="https://en.wikipedia.org/wiki/GIF" target="_blank">GIFs</a> mit
+  <code class="text-danger border border-dark">.gif</code>, und Dateinamen für
+  <a href="https://en.wikipedia.org/wiki/JPEG" target="_blank">JPEGs</a> mit
+  <code class="text-danger border border-dark">.jpg</code> oder
+  <code class="text-danger border border-dark">.jpeg</code>.
+  Wenn Sie auf eine Datei doppelklicken, verwendet Ihr Computer die
+  Dateierweiterung, um zu bestimmen, welches Programm zum Öffnen der Datei
+  gestartet werden soll.
+</p>
+<p>
+  Webbrowser hingegen verwenden
+  <a href="https://en.wikipedia.org/wiki/Media_type" target="_blank">Medientypen</a>, früher als
+  MIME-Typen bekannt, um zu bestimmen, wie Dateien im Web angezeigt werden.
+  Wenn Sie eine Datei von einem Webserver herunterladen, sendet dieser zusammen
+  mit der Datei einen
+  <a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields" target="_blank">
+    HTTP-Header
+  </a>, der den Medientyp der Datei angibt. Beispielsweise ist der Medientyp
+  für ein GIF
+  <code class="text-danger border border-dark">image/gif</code> und für ein
+  JPEG <code class="text-danger border border-dark">image/jpeg</code>. Um den
+  Medientyp einer Datei zu bestimmen, betrachtet ein Webserver in der Regel die
+  Dateierweiterung und ordnet diese einem entsprechenden Medientyp zu.
+</p>
+<p>
+  Siehe
+  <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types" target="_blank">
+    developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
+  </a>
+  für gängige Typen.
+</p>
+
+<p>
+  {% include "file.html" %} 
+  implementieren Sie ein Programm, das den Benutzer nach dem Namen einer Datei
+  fragt und anschließend den Medientyp der Datei ausgibt, sofern der Dateiname
+  (unabhängig von Groß- und Kleinschreibung) mit einem der folgenden Suffixe
+  endet:
+</p>
+
+<ul>
+  <li><code class="text-danger border border-dark">.gif</code></li>
+  <li><code class="text-danger border border-dark">.jpg</code></li>
+  <li><code class="text-danger border border-dark">.jpeg</code></li>
+  <li><code class="text-danger border border-dark">.png</code></li>
+  <li><code class="text-danger border border-dark">.pdf</code></li>
+  <li><code class="text-danger border border-dark">.txt</code></li>
+  <li><code class="text-danger border border-dark">.zip</code></li>
+</ul>
+<p>
+  Wenn der Dateiname mit einem anderen Suffix endet oder gar kein Suffix
+  besitzt, geben Sie stattdessen
+  <code class="text-danger border border-dark">application/octet-stream</code>
+  aus, was ein häufiger Standardwert ist.
+</p>
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Denken Sie daran, dass ein
+      <code class="text-danger border border-dark">str</code> mit einigen
+      Methoden ausgestattet ist, siehe
+      <a href="https://docs.python.org/3/library/stdtypes.html#string-methods" target="_blank">
+        docs.python.org/3/library/stdtypes.html#string-methods
+      </a>.
+    </li>
+  </ul>
+</details>
+
+{% include "demo.html" %}
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>
+    Führen Sie Ihr Programm mit
+    <code class="text-danger">python extensions.py</code> aus. Geben Sie
+    <code class="text-danger">happy.jpg</code> ein und drücken Sie Enter. Ihr
+    Programm sollte ausgeben:
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">image/jpeg</code>
+    </div>
+  </li>
+  <li>
+    Führen Sie Ihr Programm mit
+    <code class="text-danger">python extensions.py</code> aus. Geben Sie
+    <code class="text-danger">document.pdf</code> ein und drücken Sie Enter.
+    Ihr Programm sollte ausgeben:
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">application/pdf</code>
+    </div>
+  </li>
+</ul>
+<p>
+  Testen Sie unbedingt alle anderen Dateiformate, variieren Sie die Groß- und
+  Kleinschreibung Ihrer Eingabe und fügen Sie „versehentlich“ Leerzeichen auf
+  beiden Seiten Ihrer Eingabe hinzu, bevor Sie Enter drücken. Ihr Programm
+  sollte wie erwartet funktionieren, unabhängig von Groß-/Kleinschreibung und
+  Leerzeichen.
+</p>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
