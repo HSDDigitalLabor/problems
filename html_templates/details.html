@@ -1,0 +1,11 @@
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+{% for item in details %}
+    <li>
+      {{ item.content | safe }}
+    </li>
+{% endfor %}
+  </ul>
+</details>
+<p></p>
