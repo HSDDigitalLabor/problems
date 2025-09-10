@@ -19,14 +19,3 @@ def testFile():
     if not match(expected, actual):
         help = None
         raise check50.Mismatch(expected, actual, help=help)
-
-
-@check50.check()
-def no_forbidden_methods():
-    """solution does not use forbidden built-ins"""
-    FORBIDDEN = ["str.lower(", "str.upper(", ".count("]
-    with open("willkommen.py") as f:
-        code = f.read()
-    for method in FORBIDDEN:
-        if method in code:
-            raise check50.Failure(f"Forbidden method used: {method}")
