@@ -5,9 +5,9 @@ from jinja2 import Environment
 from jinja2 import FileSystemLoader
 
 
-TEMPLATE_NAME = 'faces_template.html'
-SHARED_TEMPLATE_FOLDER = '../../_html_templates'
-OUTPUT_FILE_NAME = 'faces.html'
+TEMPLATE_NAME = "faces_template.html"
+SHARED_TEMPLATE_FOLDER = "../../_html_templates"
+OUTPUT_FILE_NAME = "faces.html"
 
 render_params = {
     "id": "faces",
@@ -17,8 +17,9 @@ render_params = {
     "asciicast_id": "6czzIos2pDdpLNtkGYxuHVofv",
     "check50_path": "HSDDigitalLabor/problems/git2025/faces",
     "submit50_path": "HSDDigitalLabor/problems/git2025/faces",
-    "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
 }
+
 
 class HtmlGenerator(object):
     def __init__(self, template_name, shared_template_folder):
@@ -33,15 +34,17 @@ class HtmlGenerator(object):
     def generate(self):
         # Get Jinja template
         template_path = os.path.join(os.getcwd(), self.template_name)
-        with open(template_path, 'r', encoding='utf-8') as f:
+        with open(template_path, "r", encoding="utf-8") as f:
             template_source = f.read()
         template = self.env.from_string(template_source)
-        with open(self._build_path(OUTPUT_FILE_NAME), 'w', encoding='utf-8') as html_file:
+        with open(
+            self._build_path(OUTPUT_FILE_NAME), "w", encoding="utf-8"
+        ) as html_file:
             html = template.render(render_params)
             html_file.write(html)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print("Generating HTML...")
     html_generator = HtmlGenerator(TEMPLATE_NAME, SHARED_TEMPLATE_FOLDER)
     html_generator.generate()
