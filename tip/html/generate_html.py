@@ -6,6 +6,7 @@ from jinja2 import FileSystemLoader
 
 
 TEMPLATE_NAME = 'tip_template.html'
+SHARED_TEMPLATE_FOLDER = '../../_html_templates'
 OUTPUT_FILE_NAME = 'tip.html'
 
 render_params = {
@@ -20,9 +21,9 @@ render_params = {
 }
 
 class HtmlGenerator(object):
-    def __init__(self, template_name):
+    def __init__(self, template_name, shared_template_folder):
         self.template_name = template_name
-        self.env = Environment(loader=FileSystemLoader('../../html_templates'))
+        self.env = Environment(loader=FileSystemLoader(shared_template_folder))
 
     def _build_path(self, suffix):
         # Build the full file path based on our current directory
@@ -39,7 +40,8 @@ class HtmlGenerator(object):
             html = template.render(render_params)
             html_file.write(html)
 
+
 if __name__ == '__main__':
     print("Generating HTML...")
-    html_generator = HtmlGenerator(TEMPLATE_NAME)
+    html_generator = HtmlGenerator(TEMPLATE_NAME, SHARED_TEMPLATE_FOLDER)
     html_generator.generate()
