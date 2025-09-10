@@ -1,0 +1,9 @@
+submit50:
+  files: &submit50_files
+    - !exclude "*"
+    - !include "*.py"
+    - !require string.py
+
+check50:
+  files: *submit50_files
+  checks: checks/main.py

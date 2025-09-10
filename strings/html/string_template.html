@@ -1,0 +1,75 @@
+{% include "header.html" %}
+
+<p>
+  {% include "file.html" %} 
+  implementieren Sie ein Python-Programm, das den Benutzer nach einer
+  Zeichenkette fragt und prüft, ob diese mit dem String
+  <code>hello world</code> übereinstimmt. Beim Vergleich soll die
+  Groß- und Kleinschreibung ignoriert werden. Geben Sie aus, ob die
+  beiden Strings gleich sind oder nicht.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Denken Sie daran, dass
+      <code class="text-danger border border-dark">input</code> einen
+      <code class="text-danger border border-dark">str</code> zurückgibt,
+      siehe <a href="https://docs.python.org/3/library/functions.html#input"
+      target="_blank">docs.python.org/3/library/functions.html#input</a>.
+    </li>
+    <li>Denken Sie daran, dass Sie einen
+      <code class="text-danger border border-dark">str</code> mit
+      <code class="text-danger border border-dark">print</code> ausgeben
+      können.
+    </li>
+    <li>Denken Sie daran, dass ein
+        <code class="text-danger border border-dark">str</code> viele Methoden
+        besitzt, siehe
+        <a href="https://docs.python.org/3/library/stdtypes.html#string-methods"
+            target="_blank">
+            docs.python.org/3/library/stdtypes.html#string-methods
+        </a>.
+    </li>
+  </ul>
+</details>
+
+{% include "demo.html" %}
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{ filename }}</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Gebe einen String ein:</code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">HellO WORld</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">equal</code></div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{ filename }}</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Gebe einen String ein:</code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">heLLo worLD</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">equal</code></div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{ filename }}</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Gebe einen String ein:</code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">hello World!</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">unequal</code></div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
