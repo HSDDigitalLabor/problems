@@ -1,5 +1,6 @@
-import check50
 from re import escape
+
+import check50
 
 
 @check50.check()
@@ -100,7 +101,9 @@ def testpdf_capital():
 
 @check50.check(exists)
 def testpdf_spaces():
-    """input of document.PDF, with spaces on either side, yields output of application/pdf"""
+    """
+    input of document.PDF, with spaces on either side, yields output of application/pdf
+    """
     input = " document.PDF   "
     output = "application/pdf"
     check50.run("python3 extensions.py").stdin(input, prompt=True).stdout(
@@ -110,7 +113,9 @@ def testpdf_spaces():
 
 @check50.check(exists)
 def test_two():
-    """input of test.txt.pdf, with one extra extension, yields output of application/pdf"""
+    """
+    input of test.txt.pdf, with one extra extension, yields output of application/pdf
+    """
     input = "test.txt.pdf"
     output = "application/pdf"
     check50.run("python3 extensions.py").stdin(input, prompt=True).stdout(
