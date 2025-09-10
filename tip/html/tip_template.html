@@ -1,0 +1,111 @@
+{% include "header.html" %}
+
+<p>
+  Durch die zunehmende Nutzung bargeldloser Zahlungen gibt es immer mehr digitale
+  Terminals, die die Möglichkeit bieten, ein Trinkgeld direkt am Gerät auszuwählen.
+</p>
+<p>
+<img class="img-fluid"
+    style="display: block; margin-left: auto; margin-right: auto;"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/164158511/tipping_terminal_web_watermarked%20%281%29.png"
+    alt="TipTerminal" width="320" height="600">
+</p>
+
+<p>
+  {% include "file.html" %} schreiben Sie
+  ein Python-Programm, das für einen eingegebenen Rechnungsbetrag die
+  Trinkgeldbeträge für 5&nbsp;%, 10&nbsp;% und 15&nbsp;% berechnet und ausgibt.
+  Das Programm soll dabei das eingegebene Währungssymbol (z.&nbsp;B. $ oder €)
+  erkennen und dieses auch bei der Ausgabe der Trinkgeldbeträge verwenden.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Denken Sie daran, dass
+      <code class="text-danger border border-dark">input</code> einen
+      <code class="text-danger border border-dark">str</code> zurückgibt,
+      siehe <a href="https://docs.python.org/3/library/functions.html#input"
+      target="_blank">docs.python.org/3/library/functions.html#input</a>.
+    </li>
+    <li>Denken Sie daran, dass
+      <code class="text-danger border border-dark">float</code> einen
+      <code class="text-danger border border-dark">str</code> in einen
+      <code class="text-danger border border-dark">float</code> konvertieren kann, siehe
+      <a href="https://docs.python.org/3/library/functions.html#float"
+      target="_blank">docs.python.org/3/library/functions.html#float</a>.
+    </li>
+    <li>Denken Sie daran, dass ein
+        <code class="text-danger border border-dark">str</code> viele Methoden
+        besitzt, siehe
+        <a href="https://docs.python.org/3/library/stdtypes.html#string-methods"
+            target="_blank">
+            docs.python.org/3/library/stdtypes.html#string-methods
+        </a>.
+    </li>
+  </ul>
+</details>
+
+{% include "demo.html" %}
+
+{% include "before_you_begin.html" %}
+<p> Der Anfang des Programms wurde bereits erstellt, kopieren Sie diesen Code in Ihre Datei <code
+    class="text-danger">tip.py</code> und vervollständigen Sie den Code.
+</p>
+
+<div class="alert alert-dark">
+    <pre><code>
+def main():
+    input_str = input("Rechnungsbetrag eingeben: ")
+    amount = currency_to_float(input_str)
+    currency_symbol = get_currency_symbol(input_str)
+    # TODO
+
+
+def currency_to_float(str):
+    # TODO
+
+
+def get_currency_symbol(str):
+    # TODO
+
+
+main()
+    </code></pre>
+</div>
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python tip.py</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Rechnungsbetrag eingeben: </code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">28.70€</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary">
+        <code class="text-dark font-weight-bold">Tip  5%: 1.44€</code><br />
+        <code class="text-dark font-weight-bold">Tip 10%: 2.87€</code><br />
+        <code class="text-dark font-weight-bold">Tip 15%: 4.30€</code><br />
+      </div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python tip.py</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Rechnungsbetrag eingeben: </code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">145.75$</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary">
+        <code class="text-dark font-weight-bold">Tip  5%: 7.29$</code><br />
+        <code class="text-dark font-weight-bold">Tip 10%: 14.57$</code><br />
+        <code class="text-dark font-weight-bold">Tip 15%: 21.86$</code><br />
+      </div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}

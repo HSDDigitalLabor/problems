@@ -1,0 +1,45 @@
+{% include "header.html" %}
+
+<p>Ein <a href="https://de.wikipedia.org/wiki/Hallo-Welt-Programm" target="_blank">
+  Hallo-Welt-Programm </a> ist ein kleines Computerprogramm, das auf möglichst
+  einfache Weise zeigen soll, welche Anweisungen oder Bestandteile für ein
+  vollständiges Programm in einer Programmiersprache benötigt werden, und somit
+  einen ersten Einblick in die Syntax gibt. Das Programm gibt den Text Hallo
+  Welt! oder auf Englisch Hello World! aus.</p>
+
+<p>
+  {% include "file.html" %} implementieren Sie ein Python-Programm,
+  das &quot;Willkommen, Welt!&quot; ausgibt.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Verwenden Sie die Funktion
+      <code class="text-danger border border-dark">print()</code>, um auf dem
+      Terminal den Text auszugeben. Weitere Informationen finden Sie in der 
+      <a href="https://docs.python.org/3/library/functions.html#print" target="_blank">
+      docs.python.org/3/library/functions.html#print </a>.</li>
+  </ul>
+</details>
+
+{% include "demo.html" %}
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python
+    {{ filename }}</code> aus. Ihr Programm sollte ausgeben:
+  <div class="alert alert-primary"><code
+    class="text-dark font-weight-bold">Willkommen, Welt!</code></div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}

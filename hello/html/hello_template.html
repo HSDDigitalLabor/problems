@@ -1,0 +1,72 @@
+{% include "header.html" %}
+
+<p>
+  {% include "file.html" %} 
+  implementieren Sie ein Python-Programm, das den Benutzer nach seinem Namen
+  fragt und anschließend <code>Hallo, so-und-so</code> ausgibt, wobei
+  <code>so-und-so</code> durch den eingegebenen Namen ersetzt wird.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Denken Sie daran, dass Sie mit
+      <code class="text-danger border border-dark">get_string</code> aus der
+      <code class="text-danger border border-dark">cs50</code>-Bibliothek einen
+      <code class="text-danger border border-dark">str</code> vom Benutzer
+      abfragen können.</li>
+    <li>Denken Sie daran, dass Sie einen
+      <code class="text-danger border border-dark">str</code> mit
+      <code class="text-danger border border-dark">print</code> ausgeben
+      können.</li>
+    <li>Denken Sie daran, dass Sie in Python formatierte
+      Strings erstellen können, indem Sie dem String ein
+      <code class="text-danger border border-dark">f</code> voranstellen.
+      Zum Beispiel ersetzt
+      <code class="text-danger border border-dark">f"{name}"</code> den Wert
+      der Variablen <code class="text-danger border border-dark">name</code>
+      an der Stelle, an der Sie
+      <code class="text-danger border border-dark">{name}</code> geschrieben
+      haben.</li>
+  </ul>
+</details>
+
+{% include "demo.html" %}
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python hello.py</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Wie heißt du?</code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">Markus</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">Hallo, Markus</code></div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python hello.py</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Wie heißt du?</code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">Sophia</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">Hallo, Sophia</code></div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python hello.py</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Wie heißt du?</code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">Noah</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">Hallo, Noah</code></div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}

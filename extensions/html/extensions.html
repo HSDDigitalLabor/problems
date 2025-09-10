@@ -1,4 +1,5 @@
 <h1 id="file-extensions">Dateierweiterungen</h1>
+
 <p>
   Auch wenn Windows und MacOS sie manchmal ausblenden, besitzen die meisten
   Dateien sogenannte
@@ -38,14 +39,16 @@
   </a>
   für gängige Typen.
 </p>
+
 <p>
   Erstellen Sie eine Datei mit dem Namen
-  <code class="text-danger border border-dark">extensions.py</code> und
+  <code class="text-danger border border-dark">extensions.py</code> und 
   implementieren Sie ein Programm, das den Benutzer nach dem Namen einer Datei
   fragt und anschließend den Medientyp der Datei ausgibt, sofern der Dateiname
   (unabhängig von Groß- und Kleinschreibung) mit einem der folgenden Suffixe
   endet:
 </p>
+
 <ul>
   <li><code class="text-danger border border-dark">.gif</code></li>
   <li><code class="text-danger border border-dark">.jpg</code></li>
@@ -74,53 +77,41 @@
     </li>
   </ul>
 </details>
-<br/>
 
-
+<p></p>
 <h2 id="demo">Demo</h2>
-<script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
- id="asciicast-TzIkO4zM3XTEPsszr6PfEmCTN" 
- src="https://asciinema.org/a/TzIkO4zM3XTEPsszr6PfEmCTN.js"></script>
-
+<p>
+  <script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
+  id="asciicast-TzIkO4zM3XTEPsszr6PfEmCTN"
+  src="https://asciinema.org/a/TzIkO4zM3XTEPsszr6PfEmCTN.js">
+  </script>
+</p>
 
 <h2 id="before-you-begin">Bevor Sie beginnen</h2>
-<p>
-  Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
-  auf Ihr Terminal und führen Sie
-  <code class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
-  sollten feststellen, dass der Prompt Ihres Terminals wie
-  unten aussieht:
-</p>
-<div class="alert alert-primary">
-  <code class="text-dark font-weight-bold">$</code>
-</div>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
 <p>Als nächstes führen Sie</p>
-<div class="alert alert-primary">
-  <code class="text-dark font-weight-bold">mkdir extensions</code>
-</div>
-<p>
-  aus, um einen Ordner namens
-  <code class="text-danger border border-dark">extensions</code> in Ihrem
-  Codespace zu erstellen.
-</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
+  extensions</code></div>
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">extensions</code> in Ihrem Codespace
+  zu erstellen.</p>
 <p>Führen Sie anschließend</p>
-<div class="alert alert-primary">
-  <code class="text-dark font-weight-bold">cd extensions</code>
-</div>
-<p>
-  aus, um in dieses Verzeichnis zu wechseln. Der Prompt ihres Terminals sollte nun
-  <code class="text-danger border border-dark">extensions/$</code> anzeigen.
-  Jetzt können Sie
-</p>
-<div class="alert alert-primary">
-  <code class="text-dark font-weight-bold">code extensions.py</code>
-</div>
-<p>
-  ausführen, um eine Datei namens
-  <code class="text-danger">extensions.py</code> zu erstellen, in der Sie Ihr
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
+  extensions</code></div>
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt ihres Terminals sollte
+  nun <code class="text-danger border border-dark">extensions/$</code> anzeigen.
+  Jetzt können Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
+  extensions.py</code></div>
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">extensions.py</code> zu erstellen, in der Sie Ihr
   Programm schreiben.
 </p>
-
 
 <h2 id="how-to-test">So testen Sie Ihr Programm</h2>
 <p>So können Sie Ihr Programm manuell testen:</p>
@@ -151,17 +142,14 @@
   sollte wie erwartet funktionieren, unabhängig von Groß-/Kleinschreibung und
   Leerzeichen.
 </p>
-<p>
-  Sie können das folgende Kommando ausführen, um Ihren Code mit
-  <code class="text-danger">check50</code> zu überprüfen, einem Programm, das
-  bei der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr
-  Programm aber auch selbst!
-</p>
-<div class="alert alert-primary">
-  <code class="text-dark font-weight-bold">
-    check50 HSDDigitalLabor/problems/git2025/extensions
-  </code>
-</div>
+
+<p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
+  class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
+  der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
+  aber auch selbst!</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  check50 HSDDigitalLabor/problems/git2025/extensions
+  </code></div>
 <p>
   Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
   bedeuten, dass Ihr Programm einen Test bestanden hat! Rote
@@ -173,16 +161,12 @@
   Ausgabe Ihr Programm tatsächlich geliefert hat.
 </p>
 
-
 <h2 id="how-to-submit">Abgabe</h2>
-<p>
-  Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
+<p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
 </p>
-<div class="alert alert-primary">
-  <code class="text-dark font-weight-bold">
-    submit50 HSDDigitalLabor/problems/git2025/extensions
-  </code>
-</div>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  submit50 HSDDigitalLabor/problems/git2025/extensions
+  </code></div>
 <p>
   Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
   nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
@@ -191,15 +175,39 @@
   nicht mehr gewertet. Das Ergebnis kann ausschließlich mit obigem Befehl abgegeben
   werden, eine Abgabe in Moodle ist nicht möglich.
 </p>
+
 <h2 id="how-to-mark">Markierung der Aufgabe als erledigt</h2>
-<p>Um die Aufgabe in Moodle als erledigt zu markieren, klicken Sie auf den Button
-  <button type="submit" class="btn btn-primary" id="extensions-add-solution-button" disabled>
+<p>Nachdem Einreichen der Lösung mit <code class="text-danger">submit50</code>,
+  nehmen Sie eine Pseudolösung in Moodle vor, indem Sie auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_solution" disabled>
   Aufgabenlösung hinzufügen</button>
-  weiter unten auf dieser Seite und tragen unter
-  "Texteingabe online" den folgenden Text ein:</p>
+  weiter unten auf dieser Seite betätigen und in das sich öffnende Feld unter
+  "Texteingabe online" den folgenden Text ein:
+</p>
 <div class="alert alert-primary">
   <code class="text-dark font-weight-bold">Mit submit50 abgegeben.</code>
 </div>
 <p>Schließen Sie die Eingabe durch Klick auf den Button
-  <button type="submit" class="btn btn-primary" id="extensions-save-changes-button" disabled>
-  Änderungen speichern</button> unterhalb des Textfeldes ab.</p>
+  <button type="submit" class="btn btn-primary" id="sample_save" disabled>
+  Änderungen speichern</button> unterhalb des Textfeldes ab.
+</p>
+<p>
+  Zur besseren Übersicht markieren Sie das Problem extensions.py in Moodle als erledigt,
+  indem Sie ganz oben auf dieser Seite den Button
+</p>
+<p>
+  <button class="btn btn-outline-secondary btn-sm text-nowrap"
+    title="Problem: willkommen.py  als erledigt kennzeichnen"
+    aria-label="Problem: willkommen.py  als erledigt kennzeichnen"
+    disabled>
+    Als erledigt kennzeichnen
+  </button>
+  klicken. Daraufhin erscheint der Button 
+  <button class="btn btn-success btn-sm text-nowrap"
+    title="Problem: willkommen.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
+    aria-label="Problem: willkommen.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
+    <i class="fa fa-check" aria-hidden="true" ></i> Erledigt
+  </button>
+</p>
+
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-09-10 11:40:25</p>
