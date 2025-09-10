@@ -1,0 +1,10 @@
+submit50:
+  files: &submit50_files
+    - !exclude "*"
+    - !include "*.py"
+    - !require playback.py
+  
+check50:
+  files: *submit50_files
+  checks: checks/main.py
+    

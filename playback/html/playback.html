@@ -1,0 +1,162 @@
+<h1 id="playback">Wiedergabegeschwindigkeit</h1>
+<p>
+  Manche Menschen neigen dazu, beim Vortragen sehr schnell zu sprechen,
+  und es wäre schön, sie zu verlangsamen – ähnlich wie bei YouTubes
+  0,75-facher Wiedergabegeschwindigkeit oder indem sie zwischen den
+  Wörtern pausieren.
+</p>
+
+<p>
+  Erstellen Sie eine Datei mit dem Namen
+  <code class="text-danger border border-dark">playback.py</code> und 
+  implementieren Sie ein Python-Programm, das den Benutzer nach einer Eingabe
+  fragt und anschließend genau diese Eingabe ausgibt, wobei jedes Leerzeichen
+  durch <code>...</code> (drei Punkte) ersetzt wird.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Denken Sie daran, dass Sie mit
+      <code class="text-danger border border-dark">input</code> einen
+      <code class="text-danger border border-dark">str</code> erhalten, siehe 
+      <a href="https://docs.python.org/3/library/functions.html#input" target="_blank">
+      docs.python.org/3/library/functions.html#input</a>. 
+    </li> 
+    <li>Denken Sie daran, dass Sie einen
+      <code class="text-danger border border-dark">str</code> mit
+      <code class="text-danger border border-dark">print</code> ausgeben
+      können, siehe 
+      <a href="https://docs.python.org/3/library/functions.html#print" target="_blank">
+    <li>
+      Beachten Sie, dass ein <code>str</code> über zahlreiche Methoden verfügt, siehe .
+      <a href="docs.python.org/3/library/stdtypes.html#string-methods" target="_blank">docs.python.org/3/library/stdtypes.html#string-methods</a>
+    </li>
+  </ul>
+
+<p></p>
+<h2 id="demo">Demo</h2>
+<p>
+  <script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
+  id="asciicast-E5U5xKCKhdOd5xzydAgUf7IEJ"
+  src="https://asciinema.org/a/E5U5xKCKhdOd5xzydAgUf7IEJ.js">
+  </script>
+</p>
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
+  playback</code></div>
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">playback</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
+  playback</code></div>
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt ihres Terminals sollte
+  nun <code class="text-danger border border-dark">playback/$</code> anzeigen.
+  Jetzt können Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
+  playback.py</code></div>
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">playback.py</code> zu erstellen, in der Sie Ihr
+  Programm schreiben.
+</p>
+
+<h2 id="how-to-test">So testen Sie Ihr Programm</h2>
+<p>So können Sie Ihr Programm manuell testen:</p>
+<ul>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python playback.py</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Ihre Eingabe: </code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">Grundlagen der Informatik II</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary">
+        <code class="text-dark font-weight-bold">Grundlagen...der...Informatik...II</code>
+      </div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python playback.py</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Ihre Eingabe: </code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">Python ist einfach zu lernen und vielseitig einsetzbar.</code> 
+      ein und drücken Sie Enter. Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary">
+        <code class="text-dark font-weight-bold">Python...ist...einfach...zu...lernen...und...vielseitig...einsetzbar.</code>
+      </div>
+  </li>
+</ul>
+
+<p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
+  class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
+  der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
+  aber auch selbst!</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  check50 HSDDigitalLabor/problems/git2025/playback
+  </code></div>
+<p>
+  Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
+  bedeuten, dass Ihr Programm einen Test bestanden hat! Rote
+  traurige Smileys <span style="font-family: monospace; color: red;">:( </span>
+  zeigen an, dass Ihr Programm etwas Unerwartetes ausgegeben
+  hat. Besuchen Sie die URL, die <code class="text-danger">check50</code>
+  ausgibt, um zu sehen, welche Eingabe <code class="text-danger">check50</code>
+  an Ihr Programm übergeben hat, welche Ausgabe erwartet wurde und welche
+  Ausgabe Ihr Programm tatsächlich geliefert hat.
+</p>
+
+<h2 id="how-to-submit">Abgabe</h2>
+<p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
+</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  submit50 HSDDigitalLabor/problems/git2025/playback
+  </code></div>
+<p>
+  Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
+  nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
+  die zuletzt eingereichte Version vor dem Fälligkeitsdatum. Nach Ablauf der
+  Frist können Sie technisch zwar noch Abgaben tätigen, Ihre Lösung wird jedoch
+  nicht mehr gewertet. Das Ergebnis kann ausschließlich mit obigem Befehl abgegeben
+  werden, eine Abgabe in Moodle ist nicht möglich.
+</p>
+
+<h2 id="how-to-mark">Markierung der Aufgabe als erledigt</h2>
+<p>Nachdem Einreichen der Lösung mit <code class="text-danger">submit50</code>,
+  nehmen Sie eine Pseudolösung in Moodle vor, indem Sie auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_solution" disabled>
+    Aufgabenlösung hinzufügen</button>
+  weiter unten auf dieser Seite betätigen und in das sich öffnende Feld unter
+  "Texteingabe online" den folgenden Text ein:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">Mit submit50 abgegeben.</code>
+</div>
+<p>Schließen Sie die Eingabe durch Klick auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_save" disabled>
+    Änderungen speichern</button> unterhalb des Textfeldes ab.
+</p>
+<p>
+  Zur besseren Übersicht markieren Sie das Problem playback.py in Moodle als erledigt,
+  indem Sie ganz oben auf dieser Seite den Button
+</p>
+<p>
+  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: playback.py  als erledigt kennzeichnen"
+    aria-label="Problem: playback.py  als erledigt kennzeichnen" disabled>
+    Als erledigt kennzeichnen
+  </button>
+  klicken. Daraufhin erscheint der Button
+  <button class="btn btn-success btn-sm text-nowrap"
+    title="Problem: playback.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
+    aria-label="Problem: playback.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
+    <i class="fa fa-check" aria-hidden="true"></i> Erledigt
+  </button>
+</p>
+
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-09-10 13:50:07</p>
