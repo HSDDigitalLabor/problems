@@ -1,9 +1,6 @@
 name: Ruff Auto-Format
 
 on:
-  push:
-    paths:
-      - "**/*.py"
   pull_request:
     paths:
       - "**/*.py"
