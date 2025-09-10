@@ -25,7 +25,7 @@ def testFile():
 def no_forbidden_methods():
     """solution does not use forbidden built-ins"""
     FORBIDDEN = ["str.lower(", "str.upper(", ".count("]
-    with open("willkommen.py") as f:
+    with open(FILE_NAME) as f:
         code = f.read()
     for method in FORBIDDEN:
         if method in code:
