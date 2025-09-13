@@ -1,0 +1,89 @@
+{% include "header.html" %}
+
+<p>
+  Selbst wenn Sie keinen Physikleistungskurs in der Schule hatten, haben Sie
+  vielleicht schon einmal von der Gleichung
+  <strong>E = mc<sup>2</sup></strong> gehört. In dieser steht
+  <strong>E</strong> für Energie (gemessen in Joule),
+  <strong>m</strong> für Masse (gemessen in Kilogramm) und
+  <strong>c</strong> für die Lichtgeschwindigkeit (ungefähr
+  300.000.000 Meter pro Sekunde), laut
+  <a href="https://de.wikipedia.org/wiki/Albert_Einstein" target="_blank">
+    Albert Einstein
+  </a>
+  et al. Im Wesentlichen bedeutet die Formel, dass Masse und Energie
+  äquivalent sind.
+</p>
+
+
+<p>
+  {% include "file.html" %} 
+  schreiben Sie ein Programm in Python, das den Benutzer nach einer Masse als
+  Ganzzahl (in Kilogramm) fragt und dann die entsprechende Anzahl an Joule als
+  Ganzzahl ausgibt. Gehen Sie davon aus, dass der Benutzer eine Ganzzahl (Integer)
+  eingibt.
+</p>
+
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Denken Sie daran, dass
+      <code class="text-danger border border-dark">input</code> einen
+      <code class="text-danger border border-dark">str</code> zurückgibt
+      <a href="https://docs.python.org/3/library/functions.html#input">docs.python.org/3/library/functions.html#input</a>.
+    </li>
+    <li>
+      Denken Sie daran, dass die Funktion
+      <code class="text-danger border border-dark">int</code> einen
+      <code class="text-danger border border-dark">str</code> in eine 
+      <code class="text-danger border border-dark">int</code> umwandelt
+      <a href="https://docs.python.org/3/library/functions.html#int">docs.python.org/3/library/functions.html#int</a>.
+    </li>
+    <li>
+      Denken Sie daran, dass Python einige built-in Funktionen enthält, siehe
+      <a href="https://docs.python.org/3/library/functions.html">docs.python.org/3/library/functions.html</a>.
+    </li>
+  </ul>
+</details>
+
+{% include "demo.html" %}
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{ filename }}</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">m:</code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">1</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">90000000000000000</code></div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{ filename }}</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">m:</code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">14</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">1260000000000000000</code></div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{ filename }}</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">m:</code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">50</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">4500000000000000000</code></div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
