@@ -14,7 +14,7 @@ render_params = {
     "title": "Willkommen",
     "foldername": "willkommen",
     "filename": "willkommen.py",
-    "asciicast_id": "zv3diegZOWpOAkMwz2AHYIPd1",
+    "asciicast_id": "nEz8rpZFVqvW91IpvwQiLre0d",
     "check50_path": "HSDDigitalLabor/problems/git2025/willkommen",
     "submit50_path": "HSDDigitalLabor/problems/git2025/willkommen",
     "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
