@@ -10,23 +10,30 @@ def exists():
 
 
 @check50.check(exists)
-def testFile():
-    """check output of file"""
-    from re import match
+def testOnVideoExample():
+    """testing using the example in the video"""
 
-    expected = ""
-    actual = check50.run(f"python3 {FILE_NAME}").stdout()
-    if not match(expected, actual):
-        help = None
-        raise check50.Mismatch(expected, actual, help=help)
+    expected = "4500000000000000000"
+    actual = check50.run(f"python3 {FILE_NAME}").stdin("50").stdout()
+    if expected not in actual:
+        raise check50.Mismatch(expected, actual)
 
 
-@check50.check()
-def no_forbidden_methods():
-    """solution does not use forbidden built-ins"""
-    FORBIDDEN = ["str.lower(", "str.upper(", ".count("]
-    with open(FILE_NAME) as f:
-        code = f.read()
-    for method in FORBIDDEN:
-        if method in code:
-            raise check50.Failure(f"Forbidden method used: {method}")
+@check50.check(exists)
+def testExample1():
+    """testing using the first example"""
+
+    expected = "90000000000000000"
+    actual = check50.run(f"python3 {FILE_NAME}").stdin("1").stdout()
+    if expected not in actual:
+        raise check50.Mismatch(expected, actual)
+
+
+@check50.check(exists)
+def testExample2():
+    """testing using the second example"""
+
+    expected = "1260000000000000000"
+    actual = check50.run(f"python3 {FILE_NAME}").stdin("14").stdout()
+    if expected not in actual:
+        raise check50.Mismatch(expected, actual)
