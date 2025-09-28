@@ -1,36 +1,42 @@
-<h1 id="hello">Hallo</h1>
+<h1 id="file-emojize">Text in Emojis umwandeln</h1>
+
+<p>
+Da Emojis nicht so einfach zu tippen sind wie Text, zumindest auf Laptops und
+Desktops, unterstützen einige Programme „Codes“, sodass Sie zum Beispiel
+<code>:thumbs_up:</code> eingeben können, was automatisch in 👍 umgewandelt wird.
+Einige Programme unterstützen zusätzlich Aliase, sodass Sie zum Beispiel
+kürzer <code>:thumbsup:</code> eingeben können, was ebenfalls automatisch in 👍
+umgewandelt wird.
+<br>
+Siehe
+<a href="https://carpedm20.github.io/emoji/all.html?enableList=enable_list_alias"
+  target="_blank">
+  carpedm20.github.io/emoji/all.html?enableList=enable_list_alias
+</a>
+für eine Liste von Codes mit Aliassen.
+</p>
+
 
 <p>
   Erstellen Sie eine Datei mit dem Namen
-  <code class="text-danger border border-dark">hello.py</code> und 
-  implementieren Sie ein Python-Programm, das den Benutzer nach seinem Namen
-  fragt und anschließend <code>Hallo, so-und-so</code> ausgibt, wobei
-  <code>so-und-so</code> durch den eingegebenen Namen ersetzt wird.
+  <code class="text-danger border border-dark">emojize.py</code> und 
+  implementieren Sie ein Programm, das den Benutzer nach einem Text 
+  fragt und dann die „emojisierte“ Version dieser Zeichenkette ausgibt,
+  alle im Eingabetext enthaltenen Codes (oder Aliasse) werden in das
+  entsprechende Emoji umgewandelt.
 </p>
 
 <details>
   <summary>Hinweise</summary>
   <ul>
-    <li>Denken Sie daran, dass
-      <code class="text-danger border border-dark">input</code> einen
-      <code class="text-danger border border-dark">str</code> zurückgibt,
-      siehe <a href="https://docs.python.org/3/library/functions.html#input"
-      target="_blank">docs.python.org/3/library/functions.html#input</a>.
-    </li>
-    <li>Denken Sie daran, dass Sie einen
-      <code class="text-danger border border-dark">str</code> mit
-      <code class="text-danger border border-dark">print</code> ausgeben
-      können.
-    </li>
-    <li>Denken Sie daran, dass Sie in Python formatierte
-      Strings erstellen können, indem Sie dem String ein
-      <code class="text-danger border border-dark">f</code> voranstellen.
-      Zum Beispiel ersetzt
-      <code class="text-danger border border-dark">f"{name}"</code> den Wert
-      der Variablen <code class="text-danger border border-dark">name</code>
-      an der Stelle, an der Sie
-      <code class="text-danger border border-dark">{name}</code> geschrieben
-      haben.
+    <li>
+      Beachten Sie, dass das <code class="text-danger border border-dark">emoji</code> Modul laut 
+      <a href="https://pypi.org/project/emoji/">pypi.org/project/emoji</a> zwei Funktionen enthält, 
+      eine davon ist <code class="text-danger border border-dark">emojize</code>.
+      Diese Funktion akzeptiert einen optionalen, benannten Parameter 
+      namens <code class="text-danger border border-dark">language</code>.
+      Sie können das Modul mit folgendem Befehl installieren:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">pip install emoji</code></div>
     </li>
   </ul>
 </details>
@@ -39,8 +45,8 @@
 <h2 id="demo">Demo</h2>
 <p>
   <script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
-  id="asciicast-VInNbOcJHboAH2TH5j3P1U4Ia"
-  src="https://asciinema.org/a/VInNbOcJHboAH2TH5j3P1U4Ia.js">
+  id="asciicast-pNLj959rH9uaiAm83BegRM1cM"
+  src="https://asciinema.org/a/pNLj959rH9uaiAm83BegRM1cM.js">
   </script>
 </p>
 
@@ -53,49 +59,51 @@
   class="text-dark font-weight-bold">$</code></div>
 <p>Als nächstes führen Sie</p>
 <div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
-  hello</code></div>
+  emojize</code></div>
 <p>aus, um einen Ordner namens <code
-  class="text-danger border border-dark">hello</code> in Ihrem Codespace
+  class="text-danger border border-dark">emojize</code> in Ihrem Codespace
   zu erstellen.</p>
 <p>Führen Sie anschließend</p>
 <div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
-  hello</code></div>
+  emojize</code></div>
 <p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt ihres Terminals sollte
-  nun <code class="text-danger border border-dark">hello/$</code> anzeigen.
+  nun <code class="text-danger border border-dark">emojize/$</code> anzeigen.
   Jetzt können Sie</p>
 <div class="alert alert-primary"><code class="text-dark font-weight-bold">code
-  hello.py</code></div>
+  emojize.py</code></div>
 <p>ausführen, um eine Datei namens <code
-  class="text-danger">hello.py</code> zu erstellen, in der Sie Ihr
+  class="text-danger">emojize.py</code> zu erstellen, in der Sie Ihr
   Programm schreiben.
 </p>
 
 <h2 id="how-to-test">So testen Sie Ihr Programm</h2>
 <p>So können Sie Ihr Programm manuell testen:</p>
 <ul>
-  <li>Führen Sie Ihr Programm mit <code class="text-danger">python hello.py</code>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python emojize.py</code>
       aus. Ihr Programm sollte ausgeben:
-      <code class="text-dark font-weight-bold">Wie heißt du?</code></div>
+      <code class="text-dark font-weight-bold">Texteingabe:</code></div>
       und auf die Eingabe des Benutzers warten.
-      Geben Sie <code class="text-danger">Markus</code> ein und drücken Sie Enter.
+      Geben Sie <code class="text-danger">Der schnellste erhält die :1st_place_medal:</code> ein und drücken Sie Enter.
       Ihr Programm sollte ausgeben:
-      <div class="alert alert-primary"><code class="text-dark font-weight-bold">Hallo, Markus</code></div>
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">Ausgabe: Der schnellste erhält die 🥇</code></div>
   </li>
-  <li>Führen Sie Ihr Programm mit <code class="text-danger">python hello.py</code>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python emojize.py</code>
       aus. Ihr Programm sollte ausgeben:
-      <code class="text-dark font-weight-bold">Wie heißt du?</code></div>
+      <code class="text-dark font-weight-bold">Texteingabe:</code></div>
       und auf die Eingabe des Benutzers warten.
-      Geben Sie <code class="text-danger">Sophia</code> ein und drücken Sie Enter.
+      Geben Sie <code class="text-danger">:money_bag:</code> ein und drücken Sie Enter.
       Ihr Programm sollte ausgeben:
-      <div class="alert alert-primary"><code class="text-dark font-weight-bold">Hallo, Sophia</code></div>
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">Ausgabe: 💰</code></div>
   </li>
-  <li>Führen Sie Ihr Programm mit <code class="text-danger">python hello.py</code>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python emojize.py</code>
       aus. Ihr Programm sollte ausgeben:
-      <code class="text-dark font-weight-bold">Wie heißt du?</code></div>
+      <code class="text-dark font-weight-bold">Texteingabe:</code></div>
       und auf die Eingabe des Benutzers warten.
-      Geben Sie <code class="text-danger">Noah</code> ein und drücken Sie Enter.
+      Geben Sie <code class="text-danger">Miezel, eine schlaue :smile_cat:, Molly, ein begabter :dog_face:, Wohnhaft an demselben Platze,
+Haßten sich aus Herzensgrund.</code> ein und drücken Sie Enter.
       Ihr Programm sollte ausgeben:
-      <div class="alert alert-primary"><code class="text-dark font-weight-bold">Hallo, Noah</code></div>
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">Ausgabe: Miezel, eine schlaue 😸, Molly, ein begabter 🐶, Wohnhaft an demselben Platze,
+Haßten sich aus Herzensgrund.</code></div>
   </li>
 </ul>
 
@@ -104,7 +112,7 @@
   der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
   aber auch selbst!</p>
 <div class="alert alert-primary"><code class="text-dark font-weight-bold">
-  check50 HSDDigitalLabor/problems/git2025/hello
+  check50 HSDDigitalLabor/problems/git2025/emojize
   </code></div>
 <p>
   Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
@@ -121,7 +129,7 @@
 <p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
 </p>
 <div class="alert alert-primary"><code class="text-dark font-weight-bold">
-  submit50 HSDDigitalLabor/problems/git2025/hello
+  submit50 HSDDigitalLabor/problems/git2025/emojize
   </code></div>
 <p>
   Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
@@ -148,20 +156,20 @@
     Änderungen speichern</button> unterhalb des Textfeldes ab.
 </p>
 <p>
-  Zur besseren Übersicht markieren Sie das Problem hello.py in Moodle als erledigt,
+  Zur besseren Übersicht markieren Sie das Problem emojize.py in Moodle als erledigt,
   indem Sie ganz oben auf dieser Seite den Button
 </p>
 <p>
-  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: hello.py  als erledigt kennzeichnen"
-    aria-label="Problem: hello.py  als erledigt kennzeichnen" disabled>
+  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: emojize.py  als erledigt kennzeichnen"
+    aria-label="Problem: emojize.py  als erledigt kennzeichnen" disabled>
     Als erledigt kennzeichnen
   </button>
   klicken. Daraufhin erscheint der Button
   <button class="btn btn-success btn-sm text-nowrap"
-    title="Problem: hello.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
-    aria-label="Problem: hello.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
+    title="Problem: emojize.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
+    aria-label="Problem: emojize.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
     <i class="fa fa-check" aria-hidden="true"></i> Erledigt
   </button>
 </p>
 
-<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-09-10 14:20:18</p>
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-09-13 15:29:43</p>
