@@ -16,4 +16,5 @@ def testWillkommen():
     actual = check50.run("python3 willkommen.py").stdout()
     if not match(expected, actual):
         help = None
-        raise check50.Mismatch("Willkommen, welt!\n", actual, help=help)
+        msg = "Willkommen, welt!\n"
+        raise check50.Mismatch(msg, actual, help=help)
