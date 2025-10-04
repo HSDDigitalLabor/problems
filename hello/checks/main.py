@@ -1,3 +1,6 @@
+import random
+import string
+
 import check50
 
 
@@ -8,12 +11,38 @@ def exists():
 
 
 @check50.check(exists)
-def testHello():
+def testHelloEmma():
     """check output of hello.py"""
-    from re import match
 
     expected = "Hallo, Emma"
     actual = check50.run("python3 hello.py").stdin("Emma").stdout()
-    if not match(expected, actual):
+    if not actual.startswith(expected):
         help = None
-        raise check50.Mismatch(f"{expected}\n", actual, help=help)
+        msg = f"{expected}\n"
+        raise check50.Mismatch(msg, actual, help=help)
+
+
+@check50.check(exists)
+def testHelloTom():
+    """check output of hello.py"""
+
+    expected = "Hallo, Tom"
+    actual = check50.run("python3 hello.py").stdin("Tom").stdout()
+    if not actual.startswith(expected):
+        help = None
+        msg = f"{expected}\n"
+        raise check50.Mismatch(msg, actual, help=help)
+
+
+@check50.check(exists)
+def testHelloRandom():
+    """check output of hello.py with a random name"""
+
+    # generate a random name (5-8 letters)
+    name = "".join(random.choices(string.ascii_letters, k=random.randint(5, 8)))
+    expected = f"Hallo, {name}"
+    actual = check50.run("python3 hello.py").stdin(name).stdout()
+    if not actual.startswith(expected):
+        help = None
+        msg = f"{expected}\n"
+        raise check50.Mismatch(msg, actual, help=help)
