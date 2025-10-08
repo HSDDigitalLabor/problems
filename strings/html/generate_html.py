@@ -5,18 +5,18 @@ from jinja2 import Environment
 from jinja2 import FileSystemLoader
 
 
-TEMPLATE_NAME = "string_template.html"
+TEMPLATE_NAME = "strings_template.html"
 SHARED_TEMPLATE_FOLDER = "../../_html_templates"
-OUTPUT_FILE_NAME = "string.html"
+OUTPUT_FILE_NAME = "strings.html"
 
 render_params = {
-    "id": "string",
+    "id": "strings",
     "title": "Compare Strings",
-    "foldername": "string",
-    "filename": "string.py",
+    "foldername": "strings",
+    "filename": "strings.py",
     "asciicast_id": "WgynjgXGtgH59BJqE8Vj10Amt",
-    "check50_path": "HSDDigitalLabor/problems/git2025/string",
-    "submit50_path": "HSDDigitalLabor/problems/git2025/string",
+    "check50_path": "HSDDigitalLabor/problems/git2025/strings",
+    "submit50_path": "HSDDigitalLabor/problems/git2025/strings",
     "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
 }
 
