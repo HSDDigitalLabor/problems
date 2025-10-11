@@ -1,0 +1,81 @@
+{% include "header.html" %}
+
+<p>
+  {% include "file.html" %}
+  Implementieren Sie eine Python-Funktion <code>divide(dividend, divisor)</code>,
+  die zwei ganze Zahlen dividiert, <strong>ohne</strong> die Operatoren
+  <code class="text-danger border border-dark">/</code>,
+  <code class="text-danger border border-dark">*</code> oder
+  <code class="text-danger border border-dark">%</code> zu verwenden.
+  Verwenden Sie stattdessen <strong>wiederholte Subtraktion</strong>,
+  um die Division zu simulieren.
+  Das Ergebnis soll zur Null hin <strong>abgeschnitten</strong> werden
+  (d.h. 8.9 → 8 und -8.9 → -8).
+  Falls das Ergebnis außerhalb des Bereichs eines 32-Bit-Integer liegt
+  (-2<sup>31</sup> bis 2<sup>31</sup> - 1),
+  geben Sie den Grenzwert zurück.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Verwenden Sie <code class="text-danger border border-dark">while</code> Schleifen, um
+      das Dividieren durch wiederholtes Subtrahieren zu implementieren.</li>
+    <li>Denken Sie daran, auf das Vorzeichen zu achten
+      (positiv/negativ) und es auf das Ergebnis anzuwenden.</li>
+    <li>Der Wertebereich eines 32-Bit-Integers liegt zwischen
+      <code class="text-danger border border-dark">-2147483648</code> und
+      <code class="text-danger border border-dark">2147483647</code>.
+    </li>
+    <li>Denken Sie daran, Division durch Null zu vermeiden oder eine Ausnahme auszulösen.</li>
+  </ul>
+</details>
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>Rufen Sie Ihre Funktion in einer Python-Shell oder in Ihrem Programm auf:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">print(divide(10, 3))</code></div>
+    Das Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">3</code></div>
+  </li>
+
+  <li>Rufen Sie Ihre Funktion mit negativen Zahlen auf:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">print(divide(7, -3))</code></div>
+    Das Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">-2</code></div>
+  </li>
+
+  <li>Testen Sie die Trunkierung zur Null:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">print(divide(-7, 3))</code></div>
+    Das Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">-2</code></div>
+  </li>
+
+  <li>Testen Sie die Null-Division:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">divide(10, 0)</code></div>
+  </li>
+
+  <li>Testen Sie Grenzwerte:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">print(divide(2147483648, 1))</code></div>
+    Das Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">2147483647</code></div>
+  </li>
+
+  <li>Und für den kleinsten Wert:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">print(divide(-2147483649, 1))</code></div>
+    Das Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">-2147483648</code></div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
