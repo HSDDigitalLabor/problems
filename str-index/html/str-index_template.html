@@ -1,0 +1,78 @@
+{% include "header.html" %}
+
+<p>
+  {% include "file.html" %}
+  Implementieren Sie eine Python-Funktion <code>str_index(haystack, needle)</code>,
+  die den Index des <strong>ersten Vorkommens</strong> von
+  <code class="text-danger border border-dark">needle</code> in
+  <code class="text-danger border border-dark">haystack</code> zurückgibt.
+  Wenn <code>needle</code> nicht in <code>haystack</code> vorkommt,
+  soll die Funktion <code>-1</code> zurückgeben.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li><code>haystack</code> und <code>needle</code> sind beides Zeichenketten
+      (<code class="text-danger border border-dark">str</code>).</li>
+    <li>Verwenden Sie keine eingebauten Funktionen wie
+      <code class="text-danger border border-dark">str.find()</code> oder
+      den Operator <code class="text-danger border border-dark">in</code>.
+    </li>
+    <li>Nutzen Sie stattdessen Schleifen und String-Slicing, um zu prüfen,
+      ob <code>needle</code> ab einer bestimmten Position in
+      <code>haystack</code> vorkommt.
+    </li>
+    <li>Denken Sie daran, dass Sie die Schleife nur bis zu der Position
+      durchlaufen müssen, an der <code>needle</code> noch vollständig
+      in <code>haystack</code> passt.</li>
+    <li>Wenn <code>needle</code> leer ist, geben Sie <code>0</code> zurück.</li>
+  </ul>
+</details>
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>Testen Sie Ihre Funktion mit einer einfachen Übereinstimmung:
+    <div class="alert alert-primary"><code
+        class="text-dark font-weight-bold">print(str_index("sadbutsad", "sad"))</code></div>
+    Das Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">0</code></div>
+  </li>
+
+  <li>Wenn das gesuchte Wort nicht vorkommt:
+    <div class="alert alert-primary"><code
+        class="text-dark font-weight-bold">print(str_index("leetcode", "leeto"))</code></div>
+    Das Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">-1</code></div>
+  </li>
+
+  <li>Testen Sie ein Vorkommen in der Mitte:
+    <div class="alert alert-primary"><code
+        class="text-dark font-weight-bold">print(str_index("mississippi", "issip"))</code></div>
+    Das Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">4</code></div>
+  </li>
+
+  <li>Testen Sie den Fall, wenn <code>needle</code> leer ist:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">print(str_index("abc", ""))</code></div>
+    Das Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">0</code></div>
+  </li>
+
+  <li>Testen Sie, wenn <code>haystack</code> und <code>needle</code> gleich sind:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">print(str_index("abc", "abc"))</code>
+    </div>
+    Das Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">0</code></div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
