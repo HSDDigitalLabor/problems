@@ -12,8 +12,8 @@ def exists():
 
 
 @check50.check(exists)
-def testFile():
-    """check output of file"""
+def testUIC1():
+    """check valid UIC: 31 81 665 0 286-0"""
     from re import match
 
     expected = "Die UIC-Wagennummer ist gültig."
@@ -24,8 +24,8 @@ def testFile():
 
 
 @check50.check(exists)
-def testFile():
-    """check output of file"""
+def testUIC2():
+    """check valid UIC: 93 81 4 011 090-0"""
     from re import match
 
     expected = "Die UIC-Wagennummer ist gültig.\n"
@@ -36,8 +36,8 @@ def testFile():
 
 
 @check50.check(exists)
-def testFile():
-    """check output of file"""
+def testUIC3():
+    """check valid UIC: 93 81 4 011 091-8"""
     from re import match
 
     expected = "Die UIC-Wagennummer ist gültig.\n"
@@ -48,8 +48,8 @@ def testFile():
 
 
 @check50.check(exists)
-def testFile():
-    """check output of file"""
+def testUIC4():
+    """check invalid UIC: 93 81 4 011 090-6"""
     from re import match
 
     expected = "Die UIC-Wagennummer ist ungültig [Prüfziffer: 0].\n"
