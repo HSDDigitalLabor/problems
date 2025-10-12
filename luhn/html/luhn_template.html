@@ -1,0 +1,110 @@
+{% include "header.html" %}
+
+<p>
+Bei der Deutschen Bahn (DB) und anderen europäischen Eisenbahnverkehrsunternehmen
+werden Triebfahrzeuge (Lokomotiven, Triebwagen) und Wagen mit einer elfstelligen
+Fahrzeugnummer gekennzeichnet. Diese Nummer wird auch als UIC-Nummer bezeichnet.
+Siehe 
+<a href="https://de.wikipedia.org/wiki/UIC-Wagennummer"
+    target="_blank">Wikipedia-Artikel: UIC-Wagennummer</a>
+und
+<a href="https://de.wikipedia.org/wiki/UIC-Kennzeichnung_der_Triebfahrzeuge"
+    target="_blank">Wikipedia-Artikel: UIC-Kennzeichnung der Triebfahrzeuge</a>.
+Die letzten beiden Ziffern der Fahrzeugnummer sind eine Prüfziffer (Selbstkontrollziffer), 
+mit der fehlerhafte Fahrzeugnummer erkannt werden können.
+Diese Prüfziffer wird mit dem Luhn-Algorithmus berechnet.
+</p>
+
+<p>
+Zur Berechnung der Prüfziffer nach dem Luhn-Algorithmus werden
+die einzelnen Ziffern der Wagennummer von links nach rechts
+abwechselnd mit 2 und 1 multipliziert. Danach wird die Quersumme
+gebildet. Die Differenz der Quersumme zum nächsthöheren Vielfachen
+von Zehn ergibt die Selbstkontrollziffer. Die Selbstkontrollziffer
+wird mit einem Bindestrich an die elfstellige Fahrzeugnummer angefügt.
+</p>
+
+</p>
+<p>
+<img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/832839154/ICE_Wagon.jpg"
+    alt="ICE-Wagon" width="2614" height="2235">
+</p>
+
+<h2 id="aufg">Aufgabe</h2>
+<p>
+  {% include "file.html" %} schreiben Sie
+  ein Python-Programm, das eine 12-stellige UIC-Wagennummer entgegennimmt und mit Hilfe des Luhn-Algorithmus
+  die Prüfziffer berechnet und die UIC-Wagennummer auf Gültigkeit überprüft.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Denken Sie daran, dass
+      <code class="text-danger border border-dark">input</code> einen
+      <code class="text-danger border border-dark">str</code> zurückgibt,
+      siehe <a href="https://docs.python.org/3/library/functions.html#input"
+      target="_blank">docs.python.org/3/library/functions.html#input</a>.
+    </li>
+    <li>Denken Sie daran, dass
+      <code class="text-danger border border-dark">int</code> einen
+      <code class="text-danger border border-dark">str</code> in einen
+      <code class="text-danger border border-dark">int</code> konvertieren kann, siehe
+      <a href="https://docs.python.org/3/library/functions.html#int"
+      target="_blank">docs.python.org/3/library/functions.html#int</a>.
+    </li>
+    <li>Denken Sie daran, dass ein
+        <code class="text-danger border border-dark">str</code> viele Methoden
+        besitzt, siehe
+        <a href="https://docs.python.org/3/library/stdtypes.html#string-methods"
+            target="_blank">
+            docs.python.org/3/library/stdtypes.html#string-methods
+        </a>.
+    </li>
+    <li>Im Wikipedia-Artikel wird der Algorithmus anhand eines Beispiels
+        erläutert, siehe
+        <a href="https://de.wikipedia.org/wiki/UIC-Wagennummer#Selbstkontrollziffer"
+            target="_blank">
+            Berechnung der Selbstkontrollziffer
+        </a>.
+        Prüfen Sie Ihr Programm auch mit der dort angegebenen UIC-Wagennummer.
+    </li>
+  </ul>
+</details>
+
+{% include "demo.html" %}
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{filename}}</code>
+      aus. Ihr Programm sollte zur Eingabe einer UIC-Wagennummer auffordern:
+      <code class="text-dark font-weight-bold">UIC-Wagennummer eingeben: </code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">98 78 7 123 012-2</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary">
+        <code class="text-dark font-weight-bold">Die UIC-Wagennummer ist gültig.</code>
+      </div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{filename}}</code>
+      aus. Ihr Programm sollte zur Eingabe einer UIC-Wagennummer auffordern:
+      <code class="text-dark font-weight-bold">UIC-Wagennummer eingeben: </code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">98 78 7 456 012-2</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary">
+        <code class="text-dark font-weight-bold">Die UIC-Wagennummer ist ungültig.</code>
+      </div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
