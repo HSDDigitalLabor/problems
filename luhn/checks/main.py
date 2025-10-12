@@ -28,7 +28,7 @@ def testFile():
     """check output of file"""
     from re import match
 
-    expected = "Die UIC-Wagennummer ist gültig."
+    expected = "Die UIC-Wagennummer ist gültig.\n"
     actual = check50.run(f"python3 {FILE_NAME}").stdin("93 81 4 011 090-0").stdout()
     if not match(expected, actual):
         help = None
@@ -40,7 +40,7 @@ def testFile():
     """check output of file"""
     from re import match
 
-    expected = "Die UIC-Wagennummer ist gültig."
+    expected = "Die UIC-Wagennummer ist gültig.\n"
     actual = check50.run(f"python3 {FILE_NAME}").stdin("93 81 4 011 091-8").stdout()
     if not match(expected, actual):
         help = None
@@ -52,7 +52,7 @@ def testFile():
     """check output of file"""
     from re import match
 
-    expected = "Die UIC-Wagennummer ist ungültig [Prüfziffer: 0]."
+    expected = "Die UIC-Wagennummer ist ungültig [Prüfziffer: 0].\n"
     actual = check50.run(f"python3 {FILE_NAME}").stdin("93 81 4 011 090-6").stdout()
     if not match(expected, actual):
         help = None
