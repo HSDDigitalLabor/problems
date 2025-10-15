@@ -1,0 +1,24 @@
+name: CS50 CI
+
+on:
+  pull_request:
+
+jobs:
+  run-cs50-ci:
+    name: Run CS50 Continuous Integration
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run CS50 CI Action
+        uses: LeoKle/cs50-ci-action@main
+        with:
+          app-id: ${{ secrets.GH_APP_ID }}
+          install-id: ${{ secrets.GH_INSTALL_ID }}
+          private-key: ${{ secrets.GH_TOKEN_B64 }}
+          problems-repository: HSDDigitalLabor/problems
+          problems-branch: git2025
+          solutions-repository: HSDDigitalLabor/solutions
+          solutions-branch: main
