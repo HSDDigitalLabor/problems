@@ -2,7 +2,7 @@ submit50:
   files: &submit50_files
     - !exclude "*"
     - !include "*.py"
-    - !require str-index.py
+    - !require nadel.py
   
 check50:
   files: *submit50_files

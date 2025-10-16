@@ -1,33 +1,53 @@
-<h1 id="str-index">First str occurence</h1>
+<h1 id="nadel">Nadel im Heuhaufen</h1>
+
+<p>
+Die Redewendung <strong>"eine Nadel im Heuhaufen suchen"</strong> wird verwendet,
+um eine Aufgabe zu beschreiben, die extrem schwierig oder nahezu unmöglich zu lösen ist. 
+Es betont die Herausforderung, etwas sehr Kleines oder Unauffälliges in einer großen Menge zu finden.
+
+Zur Lösung dieser Aufgabe muss manchmal das ganze Dorf zusammenrücken
+</p>
+
+<p>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/8qVl4o3Yhb0?mute=1&cc_load_policy=1&cc_lang_pref=de"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+</p>
+
+<h2 id="before-you-begin">Aufgabe</h2>
 
 <p>
   Erstellen Sie eine Datei mit dem Namen
-  <code class="text-danger border border-dark">str-index.py</code> und
-  Implementieren Sie eine Python-Funktion <code>str_index(haystack, needle)</code>,
+  <code class="text-danger border border-dark">nadel.py</code> und
+  Implementieren Sie eine Python-Funktion <code>str_index(heuhaufen, nadel)</code>,
   die den Index des <strong>ersten Vorkommens</strong> von
-  <code class="text-danger border border-dark">needle</code> in
-  <code class="text-danger border border-dark">haystack</code> zurückgibt.
-  Wenn <code>needle</code> nicht in <code>haystack</code> vorkommt,
-  soll die Funktion <code>-1</code> zurückgeben.
+  <code class="text-danger border border-dark">nadel</code> in
+  <code class="text-danger border border-dark">heuhaufen</code> zurückgibt.
+  Wenn <code>nadel</code> nicht in <code>heuhaufen</code> vorkommt,
+  soll die Funktion <code>-1</code> zurückgeben. Verwenden Sie 
+  <strong>keine</strong> eingebauten Funktionen wie
+  <code class="text-danger border border-dark">str.find()</code> oder
+  den Operator <code class="text-danger border border-dark">in</code>.
 </p>
 
 <details>
   <summary>Hinweise</summary>
   <ul>
-    <li><code>haystack</code> und <code>needle</code> sind beides Zeichenketten
-      (<code class="text-danger border border-dark">str</code>).</li>
-    <li>Verwenden Sie keine eingebauten Funktionen wie
-      <code class="text-danger border border-dark">str.find()</code> oder
-      den Operator <code class="text-danger border border-dark">in</code>.
+    <li><code>heuhaufen</code> und <code>nadel</code> sind beides Zeichenketten
+      (<code class="text-danger border border-dark">str</code>).
     </li>
-    <li>Nutzen Sie stattdessen Schleifen und String-Slicing, um zu prüfen,
-      ob <code>needle</code> ab einer bestimmten Position in
-      <code>haystack</code> vorkommt.
+    <li>Nutzen Sie Schleifen und String-Slicing, um zu prüfen,
+      ob <code>nadel</code> ab einer bestimmten Position in
+      <code>heuhaufen</code> vorkommt.
     </li>
     <li>Denken Sie daran, dass Sie die Schleife nur bis zu der Position
-      durchlaufen müssen, an der <code>needle</code> noch vollständig
-      in <code>haystack</code> passt.</li>
-    <li>Wenn <code>needle</code> leer ist, geben Sie <code>0</code> zurück.</li>
+      durchlaufen müssen, an der <code>nadel</code> noch vollständig
+      in <code>heuhaufen</code> passt.</li>
+    <li>Wenn <code>nadel</code> leer ist, geben Sie <code>0</code> zurück.</li>
   </ul>
 </details>
 
@@ -40,20 +60,20 @@
   class="text-dark font-weight-bold">$</code></div>
 <p>Als nächstes führen Sie</p>
 <div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
-  str-index</code></div>
+  nadel</code></div>
 <p>aus, um einen Ordner namens <code
-  class="text-danger border border-dark">str-index</code> in Ihrem Codespace
+  class="text-danger border border-dark">nadel</code> in Ihrem Codespace
   zu erstellen.</p>
 <p>Führen Sie anschließend</p>
 <div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
-  str-index</code></div>
+  nadel</code></div>
 <p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt ihres Terminals sollte
-  nun <code class="text-danger border border-dark">str-index/$</code> anzeigen.
+  nun <code class="text-danger border border-dark">nadel/$</code> anzeigen.
   Jetzt können Sie</p>
 <div class="alert alert-primary"><code class="text-dark font-weight-bold">code
-  str-index.py</code></div>
+  nadel.py</code></div>
 <p>ausführen, um eine Datei namens <code
-  class="text-danger">str-index.py</code> zu erstellen, in der Sie Ihr
+  class="text-danger">nadel.py</code> zu erstellen, in der Sie Ihr
   Programm schreiben.
 </p>
 
@@ -81,13 +101,13 @@
     <div class="alert alert-primary"><code class="text-dark font-weight-bold">4</code></div>
   </li>
 
-  <li>Testen Sie den Fall, wenn <code>needle</code> leer ist:
+  <li>Testen Sie den Fall, wenn <code>nadel</code> leer ist:
     <div class="alert alert-primary"><code class="text-dark font-weight-bold">print(str_index("abc", ""))</code></div>
     Das Programm sollte ausgeben:
     <div class="alert alert-primary"><code class="text-dark font-weight-bold">0</code></div>
   </li>
 
-  <li>Testen Sie, wenn <code>haystack</code> und <code>needle</code> gleich sind:
+  <li>Testen Sie, wenn <code>heuhaufen</code> und <code>nadel</code> gleich sind:
     <div class="alert alert-primary"><code class="text-dark font-weight-bold">print(str_index("abc", "abc"))</code>
     </div>
     Das Programm sollte ausgeben:
@@ -100,7 +120,7 @@
   der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
   aber auch selbst!</p>
 <div class="alert alert-primary"><code class="text-dark font-weight-bold">
-  check50 HSDDigitalLabor/problems/git2025/str-index
+  check50 HSDDigitalLabor/problems/git2025/nadel
   </code></div>
 <p>
   Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
@@ -117,7 +137,7 @@
 <p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
 </p>
 <div class="alert alert-primary"><code class="text-dark font-weight-bold">
-  submit50 HSDDigitalLabor/problems/git2025/str-index
+  submit50 HSDDigitalLabor/problems/git2025/nadel
   </code></div>
 <p>
   Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
@@ -144,20 +164,20 @@
     Änderungen speichern</button> unterhalb des Textfeldes ab.
 </p>
 <p>
-  Zur besseren Übersicht markieren Sie das Problem str-index.py in Moodle als erledigt,
+  Zur besseren Übersicht markieren Sie das Problem nadel.py in Moodle als erledigt,
   indem Sie ganz oben auf dieser Seite den Button
 </p>
 <p>
-  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: str-index.py  als erledigt kennzeichnen"
-    aria-label="Problem: str-index.py  als erledigt kennzeichnen" disabled>
+  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: nadel.py  als erledigt kennzeichnen"
+    aria-label="Problem: nadel.py  als erledigt kennzeichnen" disabled>
     Als erledigt kennzeichnen
   </button>
   klicken. Daraufhin erscheint der Button
   <button class="btn btn-success btn-sm text-nowrap"
-    title="Problem: str-index.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
-    aria-label="Problem: str-index.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
+    title="Problem: nadel.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
+    aria-label="Problem: nadel.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
     <i class="fa fa-check" aria-hidden="true"></i> Erledigt
   </button>
 </p>
 
-<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-10-12 16:54:00</p>
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-10-16 10:21:04</p>

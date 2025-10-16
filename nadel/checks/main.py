@@ -1,18 +1,18 @@
 import check50
 import check50.py
 
-FILE_NAME = "str-index.py"
+FILE_NAME = "nadel.py"
 
 
 @check50.check()
 def exists():
-    """str-index.py exists"""
+    """nadel.py exists"""
     check50.exists(FILE_NAME)
 
 
 @check50.check(exists)
 def compiles():
-    """str-index.py compiles"""
+    """nadel.py compiles"""
     check50.py.compile(FILE_NAME)
 
 

@@ -5,18 +5,18 @@ from jinja2 import Environment
 from jinja2 import FileSystemLoader
 
 
-TEMPLATE_NAME = "str-index_template.html"
+TEMPLATE_NAME = "nadel_template.html"
 SHARED_TEMPLATE_FOLDER = "../../_html_templates"
-OUTPUT_FILE_NAME = "str-index.html"
+OUTPUT_FILE_NAME = "nadel.html"
 
 render_params = {
-    "id": "str-index",
-    "title": "First str occurence",
-    "foldername": "str-index",
-    "filename": "str-index.py",
+    "id": "nadel",
+    "title": "Nadel im Heuhaufen",
+    "foldername": "nadel",
+    "filename": "nadel.py",
     "asciicast_id": "",
-    "check50_path": "HSDDigitalLabor/problems/git2025/str-index",
-    "submit50_path": "HSDDigitalLabor/problems/git2025/str-index",
+    "check50_path": "HSDDigitalLabor/problems/git2025/nadel",
+    "submit50_path": "HSDDigitalLabor/problems/git2025/nadel",
     "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
 }
 
