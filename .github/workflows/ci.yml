@@ -17,6 +17,6 @@ jobs:
           install-id: ${{ secrets.GH_INSTALL_ID }}
           private-key: ${{ secrets.GH_TOKEN_B64 }}
           problems-repository: ${{ github.repository }}
-          problems-branch: ${{ github.event.pull_request.base.ref }}
+          problems-branch: ${{ github.event.pull_request.head.ref }}
           solutions-repository: HSDDigitalLabor/solutions
           solutions-branch: main
