@@ -2,8 +2,9 @@ submit50:
   files: &submit50_files
     - !exclude "*"
     - !include "*.py"
-    - !require strings.py
-
+    - !require luhn.py
+  
 check50:
   files: *submit50_files
   checks: checks/main.py
+    
