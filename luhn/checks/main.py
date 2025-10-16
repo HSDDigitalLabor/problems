@@ -57,3 +57,33 @@ def testUIC4():
     if not match(expected, actual):
         help = None
         raise check50.Mismatch(expected, actual, help=help)
+
+
+@check50.check(exists)
+def hidden_valid_random_uic():
+    """hidden test for Luhn validity"""
+    import random
+    from re import match
+
+    random.seed("git2025")
+    base_digits = [str(random.randint(0, 9)) for _ in range(11)]
+
+    # build Luhn check digit
+    digits = [int(d) for d in "".join(base_digits)]
+    for i in range(len(digits) - 1, -1, -2):
+        doubled = digits[i] * 2
+        digits[i] = doubled - 9 if doubled > 9 else doubled
+    checksum = (10 - sum(digits) % 10) % 10
+
+    uic_number = "".join(base_digits) + str(checksum)
+
+    # format
+    formatted = (
+        f"{uic_number[:2]} {uic_number[2:4]} {uic_number[4:5]} "
+        f"{uic_number[5:8]} {uic_number[8:11]}-{uic_number[-1]}"
+    )
+
+    expected = "Die UIC-Wagennummer ist gültig.\n"
+    actual = check50.run(f"python3 {FILE_NAME}").stdin(formatted).stdout()
+    if not match(expected, actual):
+        raise check50.Mismatch(expected, actual)
