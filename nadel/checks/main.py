@@ -38,7 +38,7 @@ def test_not_found():
 
 @check50.check(compiles)
 def test_needle_at_end():
-    """needle 'sad' occurs at the end of haystack"""
+    """first occurrence of 'sad' in 'butsadsad' is 3"""
     module = check50.py.import_(FILE_NAME)
     result = module.str_index("butsadsad", "sad")
     if result != 3:

@@ -5,18 +5,18 @@ from jinja2 import Environment
 from jinja2 import FileSystemLoader
 
 
-TEMPLATE_NAME = "strings_template.html"
+TEMPLATE_NAME = "luhn_template.html"
 SHARED_TEMPLATE_FOLDER = "../../_html_templates"
-OUTPUT_FILE_NAME = "strings.html"
+OUTPUT_FILE_NAME = "luhn.html"
 
 render_params = {
-    "id": "strings",
-    "title": "Compare Strings",
-    "foldername": "strings",
-    "filename": "strings.py",
-    "asciicast_id": "WgynjgXGtgH59BJqE8Vj10Amt",
-    "check50_path": "HSDDigitalLabor/problems/git2025/strings",
-    "submit50_path": "HSDDigitalLabor/problems/git2025/strings",
+    "id": "luhn",
+    "title": "Luhn Algorithm",
+    "foldername": "luhn",
+    "filename": "luhn.py",
+    "asciicast_id": "ih0xdZohUYql3SJJ6fnzrgMmd",
+    "check50_path": "HSDDigitalLabor/problems/git2025/luhn",
+    "submit50_path": "HSDDigitalLabor/problems/git2025/luhn",
     "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
 }
 

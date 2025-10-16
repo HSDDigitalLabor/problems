@@ -1,18 +1,20 @@
 import check50
 
+FILE_NAME = "strings.py"
+
 
 @check50.check()
 def exists():
-    """string.py exists"""
-    check50.exists("string.py")
+    """file exists"""
+    check50.exists(FILE_NAME)
 
 
 @check50.check(exists)
 def testString():
-    """check output of string.py"""
+    """check output of strings.py"""
 
     expected = "equal"
-    actual = check50.run("python3 string.py").stdin("HellO woRLd").stdout()
+    actual = check50.run(f"python3 {FILE_NAME}").stdin("HellO woRLd").stdout()
     if not actual.startswith(expected):
         help = None
         msg = f"{expected}\n"
@@ -21,10 +23,10 @@ def testString():
 
 @check50.check(exists)
 def testInvalidString():
-    """check output of string.py"""
+    """check output of strings.py"""
 
     expected = "unequal"
-    actual = check50.run("python3 string.py").stdin("HellO woRLd!").stdout()
+    actual = check50.run(f"python3 {FILE_NAME}").stdin("HellO woRLd!").stdout()
     if not actual.startswith(expected):
         help = None
         msg = f"{expected}\n"
