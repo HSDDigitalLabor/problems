@@ -1,0 +1,79 @@
+{% include "header.html" %}
+
+<p>
+  In dieser Aufgabe programmieren Sie einen simplen Math Interpreter, welcher es Nutzern ermöglicht mathematische
+  Ausdrücke auszurechnen.
+</p>
+
+<h2 id="before-you-begin">Aufgabe</h2>
+
+<p>
+  {% include "file.html" %}
+  Implementieren Sie in der Datei ein Programm, welches den Nutzer nach einem arithmetischen Ausdruck bittet, diesen
+  dann berechnet und das Ergebnis als <code class="text-danger border border-dark">float</code>-Zahl mit einer
+  Nachkommastelle ausgibt. Nehmen Sie an, dass die Eingabe des Nutzers wie folgt formatiert ist <code
+    class="text-danger border border-dark">x y z</code>, mit einem Leerzeichen zwischen <code
+    class="text-danger border border-dark">x</code> und <code class="text-danger border border-dark">y</code> und einem
+  Leerzeichen zwischen <code class="text-danger border border-dark">y</code> und <code
+    class="text-danger border border-dark">z</code>. Dabei ist:
+<ul>
+  <li> <code class="text-danger border border-dark">x</code> ist ein integer</li>
+  <li> <code class="text-danger border border-dark">y</code> ist <code class="text-danger border border-dark">+</code>,
+    <code class="text-danger border border-dark">-</code>,<code class="text-danger border border-dark">/</code> oder
+    <code class="text-danger border border-dark">*</code>
+  </li>
+  <li> <code class="text-danger border border-dark">z</code> ist ein integer</li>
+</ul>
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Denken Sie daran, dass ein
+      <code class="text-danger border border-dark">str</code> mit einigen
+      Methoden ausgestattet ist, siehe
+      <a href="https://docs.python.org/3/library/stdtypes.html#string-methods" target="_blank">
+        docs.python.org/3/library/stdtypes.html#string-methods
+      </a>.
+    </li>
+  </ul>
+</details>
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{ filename }}</code>
+    aus.
+    Geben Sie <code class="text-danger">1 + 1</code> ein und drücken Sie Enter.
+    Ihr Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">2.0</code></div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{ filename }}</code>
+    aus.
+    Geben Sie <code class="text-danger">2 - 3</code> ein und drücken Sie Enter.
+    Ihr Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">-1.0</code></div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{ filename }}</code>
+    aus.
+    Geben Sie <code class="text-danger">2 * 2</code> ein und drücken Sie Enter.
+    Ihr Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">4.0</code></div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{ filename }}</code>
+    aus.
+    Geben Sie <code class="text-danger">50 / 5</code> ein und drücken Sie Enter.
+    Ihr Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">10.0</code></div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
