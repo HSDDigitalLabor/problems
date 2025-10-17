@@ -88,7 +88,7 @@ def test_divide_random():
     module = check50.py.import_(FILE_NAME)
 
     dividend = rand.randint(17, 163)
-    divisor = rand.choice(list(range(-10, 0)) + list(range(1, 11)))
+    divisor = rand.choice([i for i in range(-10, 11) if i != 0])
     expected = int(dividend / divisor)
     check50.log(f"Testing divide({dividend}, {divisor})")
 
