@@ -14,7 +14,7 @@ render_params = {
     "title": "Math Interpreter",
     "foldername": "interpreter",
     "filename": "interpreter.py",
-    "asciicast_id": "",
+    "asciicast_id": "WyIAsiKcbNBwHNHV53DkvRUm4",
     "check50_path": "HSDDigitalLabor/problems/git2025/interpreter",
     "submit50_path": "HSDDigitalLabor/problems/git2025/interpreter",
     "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
