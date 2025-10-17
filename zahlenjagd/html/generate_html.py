@@ -14,7 +14,7 @@ render_params = {
     "title": "Zahlenjagd",
     "foldername": "zahlenjagd",
     "filename": "zahlenjagd.py",
-    "asciicast_id": "V8cgYPufhCWjvgLyw1cXymzQA",
+    "asciicast_id": "3wdfZ1fIogYJi0tra9yilrh0o",
     "check50_path": "HSDDigitalLabor/problems/git2025/zahlenjagd",
     "submit50_path": "HSDDigitalLabor/problems/git2025/zahlenjagd",
     "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
