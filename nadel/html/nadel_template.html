@@ -1,0 +1,97 @@
+{% include "header.html" %}
+
+<p>
+Die Redewendung <strong>"eine Nadel im Heuhaufen suchen"</strong> wird verwendet,
+um eine Aufgabe zu beschreiben, die extrem schwierig oder nahezu unmöglich zu lösen ist. 
+Es betont die Herausforderung, etwas sehr Kleines oder Unauffälliges in einer großen Menge zu finden.
+
+Zur Lösung dieser Aufgabe muss manchmal das ganze Dorf zusammenrücken
+</p>
+
+<p>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/8qVl4o3Yhb0?mute=1&cc_load_policy=1&cc_lang_pref=de"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>{% include "file.html" %}
+  Implementieren Sie eine Python-Funktion <code>str_index(heuhaufen, nadel)</code>,
+  die den Index des <strong>ersten Vorkommens</strong> von
+  <code class="text-danger border border-dark">nadel</code> in
+  <code class="text-danger border border-dark">heuhaufen</code> zurückgibt.
+  Wenn <code>nadel</code> nicht in <code>heuhaufen</code> vorkommt,
+  soll die Funktion <code>-1</code> zurückgeben. Verwenden Sie 
+  <strong>keine</strong> eingebauten Funktionen wie
+  <code class="text-danger border border-dark">str.find()</code> oder
+  den Operator <code class="text-danger border border-dark">in</code>.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li><code>heuhaufen</code> und <code>nadel</code> sind beides Zeichenketten
+      (<code class="text-danger border border-dark">str</code>).
+    </li>
+    <li>Nutzen Sie Schleifen und String-Slicing, um zu prüfen,
+      ob <code>nadel</code> ab einer bestimmten Position in
+      <code>heuhaufen</code> vorkommt.
+    </li>
+    <li>Denken Sie daran, dass Sie die Schleife nur bis zu der Position
+      durchlaufen müssen, an der <code>nadel</code> noch vollständig
+      in <code>heuhaufen</code> passt.</li>
+    <li>Wenn <code>nadel</code> leer ist, geben Sie <code>0</code> zurück.</li>
+  </ul>
+</details>
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>Testen Sie Ihre Funktion mit einer einfachen Übereinstimmung:
+    <div class="alert alert-primary"><code
+        class="text-dark font-weight-bold">print(str_index("sadbutsad", "sad"))</code></div>
+    Das Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">0</code></div>
+  </li>
+
+  <li>Wenn das gesuchte Wort nicht vorkommt:
+    <div class="alert alert-primary"><code
+        class="text-dark font-weight-bold">print(str_index("leetcode", "leeto"))</code></div>
+    Das Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">-1</code></div>
+  </li>
+
+  <li>Testen Sie ein Vorkommen in der Mitte:
+    <div class="alert alert-primary"><code
+        class="text-dark font-weight-bold">print(str_index("mississippi", "issip"))</code></div>
+    Das Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">4</code></div>
+  </li>
+
+  <li>Testen Sie den Fall, wenn <code>nadel</code> leer ist:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">print(str_index("abc", ""))</code></div>
+    Das Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">0</code></div>
+  </li>
+
+  <li>Testen Sie, wenn <code>heuhaufen</code> und <code>nadel</code> gleich sind:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">print(str_index("abc", "abc"))</code>
+    </div>
+    Das Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">0</code></div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}

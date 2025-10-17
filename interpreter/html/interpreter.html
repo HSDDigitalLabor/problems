@@ -1,0 +1,163 @@
+<h1 id="interpreters">Math Interpreter</h1>
+
+<p>
+  In dieser Aufgabe programmieren Sie einen simplen Math Interpreter, welcher es Nutzern ermöglicht mathematische
+  Ausdrücke auszurechnen.
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>  Erstellen Sie eine Datei mit dem Namen
+  <code class="text-danger border border-dark">interpreter.py</code> und
+  Implementieren Sie in der Datei ein Programm, welches den Nutzer nach einem arithmetischen Ausdruck bittet, diesen
+  dann berechnet und das Ergebnis als <code class="text-danger border border-dark">float</code>-Zahl mit einer
+  Nachkommastelle ausgibt. Nehmen Sie an, dass die Eingabe des Nutzers wie folgt formatiert ist <code
+    class="text-danger border border-dark">x y z</code>, mit einem Leerzeichen zwischen <code
+    class="text-danger border border-dark">x</code> und <code class="text-danger border border-dark">y</code> und einem
+  Leerzeichen zwischen <code class="text-danger border border-dark">y</code> und <code
+    class="text-danger border border-dark">z</code>. Dabei ist:
+<ul>
+  <li> <code class="text-danger border border-dark">x</code> ist ein integer</li>
+  <li> <code class="text-danger border border-dark">y</code> ist <code class="text-danger border border-dark">+</code>,
+    <code class="text-danger border border-dark">-</code>,<code class="text-danger border border-dark">/</code> oder
+    <code class="text-danger border border-dark">*</code>
+  </li>
+  <li> <code class="text-danger border border-dark">z</code> ist ein integer</li>
+</ul>
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Denken Sie daran, dass ein
+      <code class="text-danger border border-dark">str</code> mit einigen
+      Methoden ausgestattet ist, siehe
+      <a href="https://docs.python.org/3/library/stdtypes.html#string-methods" target="_blank">
+        docs.python.org/3/library/stdtypes.html#string-methods
+      </a>.
+    </li>
+  </ul>
+</details>
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
+  interpreter</code></div>
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">interpreter</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
+  interpreter</code></div>
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt ihres Terminals sollte
+  nun <code class="text-danger border border-dark">interpreter/$</code> anzeigen.
+  Jetzt können Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
+  interpreter.py</code></div>
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">interpreter.py</code> zu erstellen, in der Sie Ihr
+  Programm schreiben.
+</p>
+
+<h2 id="how-to-test">So testen Sie Ihr Programm</h2>
+<p>So können Sie Ihr Programm manuell testen:</p>
+<ul>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python interpreter.py</code>
+    aus.
+    Geben Sie <code class="text-danger">1 + 1</code> ein und drücken Sie Enter.
+    Ihr Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">2.0</code></div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python interpreter.py</code>
+    aus.
+    Geben Sie <code class="text-danger">2 - 3</code> ein und drücken Sie Enter.
+    Ihr Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">-1.0</code></div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python interpreter.py</code>
+    aus.
+    Geben Sie <code class="text-danger">2 * 2</code> ein und drücken Sie Enter.
+    Ihr Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">4.0</code></div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python interpreter.py</code>
+    aus.
+    Geben Sie <code class="text-danger">50 / 5</code> ein und drücken Sie Enter.
+    Ihr Programm sollte ausgeben:
+    <div class="alert alert-primary"><code class="text-dark font-weight-bold">10.0</code></div>
+  </li>
+</ul>
+
+<p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
+  class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
+  der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
+  aber auch selbst!</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  check50 HSDDigitalLabor/problems/git2025/interpreter
+  </code></div>
+<p>
+  Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
+  bedeuten, dass Ihr Programm einen Test bestanden hat! Rote
+  traurige Smileys <span style="font-family: monospace; color: red;">:( </span>
+  zeigen an, dass Ihr Programm etwas Unerwartetes ausgegeben
+  hat. Besuchen Sie die URL, die <code class="text-danger">check50</code>
+  ausgibt, um zu sehen, welche Eingabe <code class="text-danger">check50</code>
+  an Ihr Programm übergeben hat, welche Ausgabe erwartet wurde und welche
+  Ausgabe Ihr Programm tatsächlich geliefert hat.
+</p>
+
+<h2 id="how-to-submit">Abgabe</h2>
+<p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
+</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  submit50 HSDDigitalLabor/problems/git2025/interpreter
+  </code></div>
+<p>
+  Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
+  nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
+  die zuletzt eingereichte Version vor dem Fälligkeitsdatum. Nach Ablauf der
+  Frist können Sie technisch zwar noch Abgaben tätigen, Ihre Lösung wird jedoch
+  nicht mehr gewertet. Das Ergebnis kann ausschließlich mit obigem Befehl abgegeben
+  werden, eine Abgabe in Moodle ist nicht möglich.
+</p>
+
+<h2 id="how-to-mark">Markierung der Aufgabe als erledigt</h2>
+<p>Nachdem Einreichen der Lösung mit <code class="text-danger">submit50</code>,
+  nehmen Sie eine Pseudolösung in Moodle vor, indem Sie auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_solution" disabled>
+    Aufgabenlösung hinzufügen</button>
+  weiter unten auf dieser Seite betätigen und in das sich öffnende Feld unter
+  "Texteingabe online" den folgenden Text ein:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">Mit submit50 abgegeben.</code>
+</div>
+<p>Schließen Sie die Eingabe durch Klick auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_save" disabled>
+    Änderungen speichern</button> unterhalb des Textfeldes ab.
+</p>
+<p>
+  Zur besseren Übersicht markieren Sie das Problem interpreter.py in Moodle als erledigt,
+  indem Sie ganz oben auf dieser Seite den Button
+</p>
+<p>
+  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: interpreter.py  als erledigt kennzeichnen"
+    aria-label="Problem: interpreter.py  als erledigt kennzeichnen" disabled>
+    Als erledigt kennzeichnen
+  </button>
+  klicken. Daraufhin erscheint der Button
+  <button class="btn btn-success btn-sm text-nowrap"
+    title="Problem: interpreter.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
+    aria-label="Problem: interpreter.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
+    <i class="fa fa-check" aria-hidden="true"></i> Erledigt
+  </button>
+</p>
+
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-10-16 20:04:56</p>
