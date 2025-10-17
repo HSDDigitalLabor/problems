@@ -1,4 +1,7 @@
 import random as rand
+import tokenize
+from pathlib import Path
+
 import check50
 import check50.py
 
@@ -97,3 +100,20 @@ def test_divide_random():
     if result != expected:
         msg = f"Expected {expected} but got {result!r}"
         raise check50.Failure(msg)
+
+
+@check50.check(compiles)
+def no_forbidden_operators():
+    """does not use /, *, or % operators"""
+    forbidden = {"/", "*", "%"}
+
+    with Path(FILE_NAME).open() as f:
+        tokens = tokenize.generate_tokens(f.readline)
+
+        for tok_type, tok_string, *_ in tokens:
+            # Skip comments and string literals
+            if tok_type in (tokenize.COMMENT, tokenize.STRING):
+                continue
+            if tok_string in forbidden:
+                msg = f"found forbidden operator '{tok_string}' in your code"
+                raise check50.Failure(msg)
