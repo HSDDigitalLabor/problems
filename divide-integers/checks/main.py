@@ -64,3 +64,19 @@ def test_divide_by_minus_one():
     if result != 42:
         msg = f"Expected 42 but got {result!r}"
         raise check50.Failure(msg)
+
+@check50.check(compiles)
+def test_divide_random():
+    """divide randomly"""
+    module = check50.py.import_(FILE_NAME)
+    import random as rand
+    dividend = rand.randint(17, 163)
+    divisor = rand.randint(-10, 10)
+    expected = None
+    if divisor != 0:
+        expected = int(dividend / divisor)
+    result = module.divide(dividend, divisor)
+    check50.log(f"Testing divide({dividend}, {divisor})")
+    if result != expected:
+        msg = f"Expected {expected} but got {result!r}"
+        raise check50.Failure(msg)
