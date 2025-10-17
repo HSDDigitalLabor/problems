@@ -1,3 +1,4 @@
+import random as rand
 import check50
 import check50.py
 
@@ -85,20 +86,13 @@ def test_divide_zero():
 def test_divide_random():
     """divide randomly"""
     module = check50.py.import_(FILE_NAME)
-    import random as rand
 
     dividend = rand.randint(17, 163)
-    divisor = rand.randint(-10, 10)
-    expected = None
-    if divisor != 0:
-        expected = int(dividend / divisor)
+    divisor = rand.choice(list(range(-10, 0)) + list(range(1, 11)))
+    expected = int(dividend / divisor)
     check50.log(f"Testing divide({dividend}, {divisor})")
 
-    try:
-        result = module.divide(dividend, divisor)
-    except Exception as e:
-        result = None
-        check50.log(f"Function threw exception: {e}")
+    result = module.divide(dividend, divisor)
 
     if result != expected:
         msg = f"Expected {expected} but got {result!r}"
