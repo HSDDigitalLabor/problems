@@ -76,7 +76,7 @@ def test_divide_zero():
         result = None
         check50.log(f"Function threw exception: {e}")
 
-    if result != None:
+    if result is not None:
         msg = f"Expected {None} but got {result!r}"
         raise check50.Failure(msg)
 
