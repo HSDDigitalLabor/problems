@@ -1,8 +1,19 @@
 from pathlib import Path
+import random as rand
 
 import check50
 
 FILE_NAME = "luhn.py"
+
+
+def generate_Luhn(number):
+    digits = [int(d) for d in number]
+    # double every second digit starting from the rightmost
+    for i in range(len(digits) - 1, -1, -2):
+        doubled = digits[i] * 2
+        digits[i] = doubled - 9 if doubled > 9 else doubled
+    checksum = (10 - sum(digits) % 10) % 10
+    return checksum
 
 
 @check50.check()
@@ -42,6 +53,21 @@ def testUIC3():
 
     expected = "Die UIC-Wagennummer ist gültig.\n"
     actual = check50.run(f"python3 {FILE_NAME}").stdin("93 81 4 011 091-8").stdout()
+    if not match(expected, actual):
+        help = None
+        raise check50.Mismatch(expected, actual, help=help)
+
+
+@check50.check(exists)
+def testUICRand():
+    """check random UIC-Wagennummer"""
+    from re import match
+
+    UIC_digits = [str(rand.randint(0, 9)) for _ in range(11)]
+    prüfziffer = generate_Luhn("".join(UIC_digits))
+    UIC_number = "".join(UIC_digits) + str(prüfziffer)
+    expected = "Die UIC-Wagennummer ist gültig.\n"
+    actual = check50.run(f"python3 {FILE_NAME}").stdin(UIC_number).stdout()
     if not match(expected, actual):
         help = None
         raise check50.Mismatch(expected, actual, help=help)

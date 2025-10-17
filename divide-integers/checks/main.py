@@ -1,3 +1,7 @@
+import random as rand
+import tokenize
+from pathlib import Path
+
 import check50
 import check50.py
 
@@ -64,3 +68,52 @@ def test_divide_by_minus_one():
     if result != 42:
         msg = f"Expected 42 but got {result!r}"
         raise check50.Failure(msg)
+
+
+@check50.check(compiles)
+def test_divide_zero():
+    """divide(42, 0) returns None or raises an exception"""
+    module = check50.py.import_(FILE_NAME)
+    try:
+        result = module.divide(42, 0)
+    except Exception as e:
+        result = None
+        check50.log(f"Function threw exception: {e}")
+
+    if result is not None:
+        msg = f"Expected {None} but got {result!r}"
+        raise check50.Failure(msg)
+
+
+@check50.check(compiles)
+def test_divide_random():
+    """divide randomly"""
+    module = check50.py.import_(FILE_NAME)
+
+    dividend = rand.randint(17, 163)
+    divisor = rand.choice([i for i in range(-10, 11) if i != 0])
+    expected = int(dividend / divisor)
+    check50.log(f"Testing divide({dividend}, {divisor})")
+
+    result = module.divide(dividend, divisor)
+
+    if result != expected:
+        msg = f"Expected {expected} but got {result!r}"
+        raise check50.Failure(msg)
+
+
+@check50.check(compiles)
+def no_forbidden_operators():
+    """does not use /, *, or % operators"""
+    forbidden = {"/", "*", "%"}
+
+    with Path(FILE_NAME).open() as f:
+        tokens = tokenize.generate_tokens(f.readline)
+
+        for tok_type, tok_string, *_ in tokens:
+            # Skip comments and string literals
+            if tok_type in (tokenize.COMMENT, tokenize.STRING):
+                continue
+            if tok_string in forbidden:
+                msg = f"found forbidden operator '{tok_string}' in your code"
+                raise check50.Failure(msg)
