@@ -89,7 +89,7 @@ def test_divide_random():
 
     dividend = rand.randint(17, 163)
     divisor = rand.choice([i for i in range(-10, 11) if i != 0])
-    expected = dividend // divisor
+    expected = int(dividend / divisor)
     check50.log(f"Testing divide({dividend}, {divisor})")
 
     result = module.divide(dividend, divisor)
