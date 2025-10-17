@@ -12,8 +12,10 @@
   schreiben Sie ein Programm, das eine Zahlenjagd für einen Spieler
   implementiert. Das Programm wählt geheim eine zufällige Zahl zwischen <strong>1</strong> und
   <strong>100</strong> aus, die der Spieler durch wiederholtes Raten ermitteln muss. 
-  Nach jedem Versuch gibt das Programm Rückmeldung, ob die geratene Zahl zu hoch, zu niedrig oder
-  korrekt ist. Am Ende gibt das Programm die Anzahl der Versuche aus.
+  Nach jedem Versuch (<strong>Schuss</strong>) gibt das Programm Rückmeldung, 
+  ob die geratene Zahl zu hoch (<strong>Zu hoch!</strong>),
+   zu niedrig (<strong>Zu niedrig!</strong>) oder korrekt ist (<strong>Volltreffer!</strong>).
+   Am Ende gibt das Programm die Anzahl der Versuche aus.
 </p>
 
 <details>
@@ -28,9 +30,9 @@
     <li>Hinweise geben:
       Nach jedem Versuch informiert das Programm, ob die Eingabe zu hoch, zu niedrig oder korrekt ist.
       <ul>
-      <li>Versuch &gt; gesuchte Zahl terminal Ausgabe: "zuhoch"</li>
-      <li>Versuch &lt; gesuchte Zahl terminal Ausgabe: "zuniedrig"</li>
-      <li>Korrekt: Ausgabe einer Erfolgsmeldung und Beenden des Spiels.</li>
+      <li>Versuch &gt; gesuchte Zahl terminal Ausgabe: <strong>Zu hoch!</strong></li>
+      <li>Versuch &lt; gesuchte Zahl terminal Ausgabe: <strong>Zu niedrig!</strong></li>
+      <li>Korrekt: Ausgabe einer Erfolgsmeldung <strong>Volltreffer!</strong> und Beenden des Spiels.</li>
       </ul>
     </li>
     <li>Versuche zählen:
@@ -39,6 +41,8 @@
     <li>Fehlerbehandlung:
       Eingaben werden geprüft — nur ganze Zahlen zwischen 1 und 100 sind gültig. 
       Ungültige Eingaben lösen eine Fehlermeldung aus und führen zu einem neuen Eingabeversuch.
+      Fehlermeldungen bei ungültigen Eingaben: <strong>Ungültige Eingabe!</strong> wenn es sich um keine Zahl handelt,
+      <strong>Zahl zwischen 1 und 100</strong> wenn die Zahl außerhalb des gültigen Bereichs liegt.
     </li>
   </ul>
 </details>
@@ -153,4 +157,4 @@
   </button>
 </p>
 
-<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-10-16 20:39:04</p>
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-10-17 12:12:58</p>

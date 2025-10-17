@@ -1,4 +1,3 @@
-from pathlib import Path
 import check50
 from re import escape
 
@@ -7,7 +6,7 @@ FILE_NAME = "zahlenjagd.py"
 
 @check50.check()
 def exists():
-    """file exists"""
+    """Datei existiert"""
     check50.exists(FILE_NAME)
 
     # The hard-coded number 4 is the answer to the game (specified in test.py).
@@ -17,7 +16,7 @@ def exists():
 
 @check50.check(exists)
 def test_string_shot():
-    """zahlenjagd.py rejects non-numeric Schuss"""
+    """zahlenjagd.py lehnt nicht-numerischen Schuss ab"""
     check50.run(f"python3 {FILE_NAME}").stdin("cat", prompt=True).stdout(
         regex("Schuss"), "Gib einen Schuss ab:"
     ).kill()
@@ -25,7 +24,7 @@ def test_string_shot():
 
 @check50.check(exists)
 def test_integer_shot():
-    """zahlenjagd.py rejects out-of-range Schuss"""
+    """zahlenjagd.py lehnt Schuss außerhalb des Bereichs ab"""
     check50.run(f"python3 {FILE_NAME}").stdin("0", prompt=True).stdout(
         regex("Schuss"), "Gib einen Schuss ab:"
     ).kill()
@@ -33,7 +32,7 @@ def test_integer_shot():
 
 @check50.check(exists)
 def test_valid_shot():
-    """zahlenjagd.py accepts valid Schuss"""
+    """zahlenjagd.py akzeptiert gültigen Schuss"""
     check50.run(f"python3 {FILE_NAME}").stdin("10", prompt=True).stdout(
         regex("Schuss"), "Gib einen Schuss ab:", regex=True
     ).kill()
@@ -41,14 +40,14 @@ def test_valid_shot():
 
 @check50.check(test_valid_shot)
 def test_string_guess():
-    """zahlenjagd.py rejects nonnumeric Schuss"""
+    """zahlenjagd.py lehnt nicht-numerischen Schuss ab"""
     check50.run(f"python3 {FILE_NAME}").stdin("dog", prompt=True
     ).reject()
 
 
 @check50.check(test_valid_shot)
 def test_out_of_range_large():
-    """zahlenjagd.py rejects schuss above specified range with \"Zu hoch!\""""
+    """zahlenjagd.py lehnt Schuss oberhalb des Bereichs mit \"Zu hoch!\" ab"""
     output = "Zu hoch!"
     check50.run("python3 testing.py").stdin("8", prompt=True
     ).stdout(regex(output), output, regex=True).reject()
@@ -56,7 +55,7 @@ def test_out_of_range_large():
 
 @check50.check(test_valid_shot)
 def test_nonpositive_shot():
-    """zahlenjagd.py rejects nonpositive Schuss"""
+    """zahlenjagd.py lehnt nicht-positive Schüsse ab"""
     check50.run(f"python3 {FILE_NAME}").stdin("0", prompt=True
     ).stdout(reject_regex("1 und 100"),
               "Bitte gib eine Zahl zwischen 1 und 100 ein.").kill()
@@ -67,7 +66,7 @@ def test_nonpositive_shot():
 
 @check50.check(test_valid_shot)
 def test_too_large():
-    """zahlenjagd.py outputs \"Zu hoch!\" when Schuss is too large"""
+    """zahlenjagd.py gibt \"Zu hoch!\" aus, wenn der Schuss zu groß ist"""
     output = "Zu hoch!"
     check50.run("python3 testing.py").stdin("18", prompt=True
     ).stdout(regex(output), output, regex=True).reject()
@@ -75,7 +74,7 @@ def test_too_large():
 
 @check50.check(test_valid_shot)
 def test_just_right():
-    """zahlenjagd.py outputs \"Volltreffer!\" when Schuss is correct"""
+    """zahlenjagd.py gibt \"Volltreffer!\" aus, wenn der Schuss korrekt ist"""
     output = "Volltreffer!"
     check50.run("python3 testing.py").stdin("4", prompt=True
     ).stdout(regex(output), output, regex=True).exit()
@@ -83,17 +82,17 @@ def test_just_right():
 
 @check50.check(test_valid_shot)
 def test_too_small():
-    """zahlenjagd.py outputs \"Zu niedrig!\" when Schuss is too small"""
+    """zahlenjagd.py gibt \"Zu niedrig!\" aus, wenn der Schuss zu klein ist"""
     output = "Zu niedrig!"
     check50.run("python3 testing.py").stdin("2", prompt=True
     ).stdout(regex(output), output, regex=True).reject()
 
 
 def regex(text):
-    """match case-insensitively with any characters on either side"""
+    """Case-insensitiv mit beliebigen Zeichen davor und danach matchen"""
     return rf"(?i)^.*{escape(text)}.*$"
 
 
 def reject_regex(text):
-    """regex to reject if any text was printed before the expected text"""
+    """Regex, die ablehnt, falls vor dem erwarteten Text bereits Text ausgegeben wurde"""
     return rf"(?i)(?<!\n){escape(text)}"
