@@ -65,18 +65,41 @@ def test_divide_by_minus_one():
         msg = f"Expected 42 but got {result!r}"
         raise check50.Failure(msg)
 
+
+@check50.check(compiles)
+def test_divide_zero():
+    """divide(42, 0) returns None or raises an exception"""
+    module = check50.py.import_(FILE_NAME)
+    try:
+        result = module.divide(42, 0)
+    except Exception as e:
+        result = None
+        check50.log(f"Function threw exception: {e}")
+
+    if result != None:
+        msg = f"Expected {None} but got {result!r}"
+        raise check50.Failure(msg)
+
+
 @check50.check(compiles)
 def test_divide_random():
     """divide randomly"""
     module = check50.py.import_(FILE_NAME)
     import random as rand
+
     dividend = rand.randint(17, 163)
     divisor = rand.randint(-10, 10)
     expected = None
     if divisor != 0:
         expected = int(dividend / divisor)
-    result = module.divide(dividend, divisor)
     check50.log(f"Testing divide({dividend}, {divisor})")
+
+    try:
+        result = module.divide(dividend, divisor)
+    except Exception as e:
+        result = None
+        check50.log(f"Function threw exception: {e}")
+
     if result != expected:
         msg = f"Expected {expected} but got {result!r}"
         raise check50.Failure(msg)
