@@ -1,0 +1,68 @@
+{% include "header.html" %}
+
+<p><img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/236000358/ChatGPT%20Image%2016.%20Okt.%202025%2C%2015_56_25.png"
+    alt="zahlenjagd" width="600" height="400">
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>{% include "file.html" %}
+  schreiben Sie ein Programm, das eine Zahlenjagd für einen Spieler
+  implementiert. Das Programm wählt geheim eine zufällige Zahl zwischen <strong>1</strong> und
+  <strong>100</strong> aus, die der Spieler durch wiederholtes Raten ermitteln muss. 
+  Nach jedem Versuch (<strong>Schuss</strong>) gibt das Programm Rückmeldung, 
+  ob die geratene Zahl zu hoch (<strong>Zu hoch!</strong>),
+   zu niedrig (<strong>Zu niedrig!</strong>) oder korrekt ist (<strong>Volltreffer!</strong>).
+   Am Ende gibt das Programm die Anzahl der Versuche aus.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Zufällige Zahl generieren:
+      Zu Beginn wählt das Programm zufällig eine Zahl zwischen 1 und 100 aus.
+    </li>
+    <li>Eingabe des Spielers:
+      Der Spieler wird wiederholt aufgefordert, eine Zahl einzugeben, um die geheime Zahl zu erraten.
+    </li>
+    <li>Hinweise geben:
+      Nach jedem Versuch informiert das Programm, ob die Eingabe zu hoch, zu niedrig oder korrekt ist.
+      <ul>
+      <li>Versuch &gt; gesuchte Zahl terminal Ausgabe: <strong>Zu hoch!</strong></li>
+      <li>Versuch &lt; gesuchte Zahl terminal Ausgabe: <strong>Zu niedrig!</strong></li>
+      <li>Korrekt: Ausgabe einer Erfolgsmeldung <strong>Volltreffer!</strong> und Beenden des Spiels.</li>
+      </ul>
+    </li>
+    <li>Versuche zählen:
+      Das Programm zählt die Anzahl der Versuche und gibt diese nach dem Erraten aus.
+    </li>
+    <li>Fehlerbehandlung:
+      Eingaben werden geprüft — nur ganze Zahlen zwischen 1 und 100 sind gültig. 
+      Ungültige Eingaben lösen eine Fehlermeldung aus und führen zu einem neuen Eingabeversuch.
+      Fehlermeldungen bei ungültigen Eingaben: <strong>Ungültige Eingabe!</strong> wenn es sich um keine Zahl handelt,
+      <strong>Zahl zwischen 1 und 100</strong> wenn die Zahl außerhalb des gültigen Bereichs liegt.
+    </li>
+  </ul>
+</details>
+
+{% include "demo.html" %}
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python
+    {{ filename }}</code> aus. Ihr Programm sollte ausgeben:
+  <div class="alert alert-primary"><code
+    class="text-dark font-weight-bold">Willkommen zur Zahlenjagd!<br/>Gib einen Schuss ab: </code></div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}

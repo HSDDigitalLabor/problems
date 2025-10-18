@@ -1,0 +1,160 @@
+<h1 id="zahlenjagd">Zahlenjagd</h1>
+
+<p><img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/236000358/ChatGPT%20Image%2016.%20Okt.%202025%2C%2015_56_25.png"
+    alt="zahlenjagd" width="600" height="400">
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>  Erstellen Sie eine Datei mit dem Namen
+  <code class="text-danger border border-dark">zahlenjagd.py</code> und
+  schreiben Sie ein Programm, das eine Zahlenjagd für einen Spieler
+  implementiert. Das Programm wählt geheim eine zufällige Zahl zwischen <strong>1</strong> und
+  <strong>100</strong> aus, die der Spieler durch wiederholtes Raten ermitteln muss. 
+  Nach jedem Versuch (<strong>Schuss</strong>) gibt das Programm Rückmeldung, 
+  ob die geratene Zahl zu hoch (<strong>Zu hoch!</strong>),
+   zu niedrig (<strong>Zu niedrig!</strong>) oder korrekt ist (<strong>Volltreffer!</strong>).
+   Am Ende gibt das Programm die Anzahl der Versuche aus.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Zufällige Zahl generieren:
+      Zu Beginn wählt das Programm zufällig eine Zahl zwischen 1 und 100 aus.
+    </li>
+    <li>Eingabe des Spielers:
+      Der Spieler wird wiederholt aufgefordert, eine Zahl einzugeben, um die geheime Zahl zu erraten.
+    </li>
+    <li>Hinweise geben:
+      Nach jedem Versuch informiert das Programm, ob die Eingabe zu hoch, zu niedrig oder korrekt ist.
+      <ul>
+      <li>Versuch &gt; gesuchte Zahl terminal Ausgabe: <strong>Zu hoch!</strong></li>
+      <li>Versuch &lt; gesuchte Zahl terminal Ausgabe: <strong>Zu niedrig!</strong></li>
+      <li>Korrekt: Ausgabe einer Erfolgsmeldung <strong>Volltreffer!</strong> und Beenden des Spiels.</li>
+      </ul>
+    </li>
+    <li>Versuche zählen:
+      Das Programm zählt die Anzahl der Versuche und gibt diese nach dem Erraten aus.
+    </li>
+    <li>Fehlerbehandlung:
+      Eingaben werden geprüft — nur ganze Zahlen zwischen 1 und 100 sind gültig. 
+      Ungültige Eingaben lösen eine Fehlermeldung aus und führen zu einem neuen Eingabeversuch.
+      Fehlermeldungen bei ungültigen Eingaben: <strong>Ungültige Eingabe!</strong> wenn es sich um keine Zahl handelt,
+      <strong>Zahl zwischen 1 und 100</strong> wenn die Zahl außerhalb des gültigen Bereichs liegt.
+    </li>
+  </ul>
+</details>
+
+<p></p>
+<h2 id="demo">Demo</h2>
+<p>
+  <script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
+  id="asciicast-3wdfZ1fIogYJi0tra9yilrh0o"
+  src="https://asciinema.org/a/3wdfZ1fIogYJi0tra9yilrh0o.js">
+  </script>
+</p>
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
+  zahlenjagd</code></div>
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">zahlenjagd</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
+  zahlenjagd</code></div>
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt ihres Terminals sollte
+  nun <code class="text-danger border border-dark">zahlenjagd/$</code> anzeigen.
+  Jetzt können Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
+  zahlenjagd.py</code></div>
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">zahlenjagd.py</code> zu erstellen, in der Sie Ihr
+  Programm schreiben.
+</p>
+
+<h2 id="how-to-test">So testen Sie Ihr Programm</h2>
+<p>So können Sie Ihr Programm manuell testen:</p>
+<ul>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python
+    zahlenjagd.py</code> aus. Ihr Programm sollte ausgeben:
+  <div class="alert alert-primary"><code
+    class="text-dark font-weight-bold">Willkommen zur Zahlenjagd!<br/>Gib einen Schuss ab: </code></div>
+  </li>
+</ul>
+
+<p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
+  class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
+  der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
+  aber auch selbst!</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  check50 HSDDigitalLabor/problems/git2025/zahlenjagd
+  </code></div>
+<p>
+  Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
+  bedeuten, dass Ihr Programm einen Test bestanden hat! Rote
+  traurige Smileys <span style="font-family: monospace; color: red;">:( </span>
+  zeigen an, dass Ihr Programm etwas Unerwartetes ausgegeben
+  hat. Besuchen Sie die URL, die <code class="text-danger">check50</code>
+  ausgibt, um zu sehen, welche Eingabe <code class="text-danger">check50</code>
+  an Ihr Programm übergeben hat, welche Ausgabe erwartet wurde und welche
+  Ausgabe Ihr Programm tatsächlich geliefert hat.
+</p>
+
+<h2 id="how-to-submit">Abgabe</h2>
+<p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
+</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  submit50 HSDDigitalLabor/problems/git2025/zahlenjagd
+  </code></div>
+<p>
+  Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
+  nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
+  die zuletzt eingereichte Version vor dem Fälligkeitsdatum. Nach Ablauf der
+  Frist können Sie technisch zwar noch Abgaben tätigen, Ihre Lösung wird jedoch
+  nicht mehr gewertet. Das Ergebnis kann ausschließlich mit obigem Befehl abgegeben
+  werden, eine Abgabe in Moodle ist nicht möglich.
+</p>
+
+<h2 id="how-to-mark">Markierung der Aufgabe als erledigt</h2>
+<p>Nachdem Einreichen der Lösung mit <code class="text-danger">submit50</code>,
+  nehmen Sie eine Pseudolösung in Moodle vor, indem Sie auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_solution" disabled>
+    Aufgabenlösung hinzufügen</button>
+  weiter unten auf dieser Seite betätigen und in das sich öffnende Feld unter
+  "Texteingabe online" den folgenden Text ein:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">Mit submit50 abgegeben.</code>
+</div>
+<p>Schließen Sie die Eingabe durch Klick auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_save" disabled>
+    Änderungen speichern</button> unterhalb des Textfeldes ab.
+</p>
+<p>
+  Zur besseren Übersicht markieren Sie das Problem zahlenjagd.py in Moodle als erledigt,
+  indem Sie ganz oben auf dieser Seite den Button
+</p>
+<p>
+  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: zahlenjagd.py  als erledigt kennzeichnen"
+    aria-label="Problem: zahlenjagd.py  als erledigt kennzeichnen" disabled>
+    Als erledigt kennzeichnen
+  </button>
+  klicken. Daraufhin erscheint der Button
+  <button class="btn btn-success btn-sm text-nowrap"
+    title="Problem: zahlenjagd.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
+    aria-label="Problem: zahlenjagd.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
+    <i class="fa fa-check" aria-hidden="true"></i> Erledigt
+  </button>
+</p>
+
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-10-17 13:16:18</p>
