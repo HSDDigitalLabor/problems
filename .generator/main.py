@@ -6,23 +6,6 @@ from zoneinfo import ZoneInfo
 
 from generator import HtmlGenerator
 
-TEMPLATE_NAME = "emojize_template.html"
-SHARED_TEMPLATE_FOLDER = "../../_html_templates"
-OUTPUT_FILE_NAME = "emojize.html"
-
-# render_params = {
-#     "id": "file-emojize",
-#     "title": "Text in Emojis umwandeln",
-#     "foldername": "emojize",
-#     "filename": "emojize.py",
-#     "asciicast_id": "pNLj959rH9uaiAm83BegRM1cM",
-#     "check50_path": "HSDDigitalLabor/problems/git2025/emojize",
-#     "submit50_path": "HSDDigitalLabor/problems/git2025/emojize",
-#     "timestamp": datetime.datetime.now(tz=datetime.timezone.tzname("CEST")).strftime(
-#         "%Y-%m-%d %H:%M:%S"
-#     ),
-# }
-
 ROOT_DIR = Path(__file__).parent.parent
 
 if __name__ == "__main__":
