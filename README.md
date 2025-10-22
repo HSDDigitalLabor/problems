@@ -8,4 +8,10 @@ To install all dependencies run: ```uv sync --all-groups```
 
 ## Formatting
 
-Python files are formatted using ````ruff```, run ```uv run ruff format .``` to format files.
+Python files are formatted using ```ruff```, run ```uv run ruff format .``` to format files.
+
+## HTML Generation
+
+To update the HTML files for Moodle run 
+
+```uv run .generator/main.py``` to update all files or ```uv run .generator/main.py problem``` to only update the specified problem
