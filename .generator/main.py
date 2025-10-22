@@ -47,8 +47,10 @@ if __name__ == "__main__":
             continue
 
         template_file = html_folder / "template.html"
-
         params_path = html_folder / "params.json"
+        if not template_file.exists() or params_path.exists():
+            continue
+
         params = None
         with Path.open(params_path, encoding="utf-8") as f:
             params = json.load(f)
