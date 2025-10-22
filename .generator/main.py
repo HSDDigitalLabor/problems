@@ -48,7 +48,8 @@ if __name__ == "__main__":
 
         template_file = html_folder / "template.html"
         params_path = html_folder / "params.json"
-        if not template_file.exists() or params_path.exists():
+        if not template_file.exists() or not params_path.exists():
+            print(f"Skipping {entry.name}, no template or params file")
             continue
 
         params = None
@@ -65,4 +66,4 @@ if __name__ == "__main__":
 
         generator.generate(template_file, params, output_file)
 
-        print(f"{entry.name}")
+        print(f"Generated {entry.name}")
