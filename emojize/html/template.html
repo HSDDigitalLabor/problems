@@ -1,0 +1,83 @@
+{% include "header.html" %}
+
+<p>
+Da Emojis nicht so einfach zu tippen sind wie Text, zumindest auf Laptops und
+Desktops, unterstützen einige Programme „Codes“, sodass Sie zum Beispiel
+<code>:thumbs_up:</code> eingeben können, was automatisch in 👍 umgewandelt wird.
+Einige Programme unterstützen zusätzlich Aliase, sodass Sie zum Beispiel
+kürzer <code>:thumbsup:</code> eingeben können, was ebenfalls automatisch in 👍
+umgewandelt wird.
+<br>
+Siehe
+<a href="https://carpedm20.github.io/emoji/all.html?enableList=enable_list_alias"
+  target="_blank">
+  carpedm20.github.io/emoji/all.html?enableList=enable_list_alias
+</a>
+für eine Liste von Codes mit Aliassen.
+</p>
+
+
+<p>
+  {% include "file.html" %} 
+  implementieren Sie ein Programm, das den Benutzer nach einem Text 
+  fragt und dann die „emojisierte“ Version dieser Zeichenkette ausgibt,
+  alle im Eingabetext enthaltenen Codes (oder Aliasse) werden in das
+  entsprechende Emoji umgewandelt.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Beachten Sie, dass das <code class="text-danger border border-dark">emoji</code> Modul laut 
+      <a href="https://pypi.org/project/emoji/">pypi.org/project/emoji</a> zwei Funktionen enthält, 
+      eine davon ist <code class="text-danger border border-dark">emojize</code>.
+      Diese Funktion akzeptiert einen optionalen, benannten Parameter 
+      namens <code class="text-danger border border-dark">language</code>.
+      Sie können das Modul mit folgendem Befehl installieren:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">pip install emoji</code></div>
+    </li>
+  </ul>
+</details>
+
+{% include "demo.html" %}
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{ filename }}</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Texteingabe:</code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">Der schnellste erhält die :1st_place_medal:</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">Ausgabe: Der schnellste erhält die 🥇</code></div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{ filename }}</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Texteingabe:</code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">:money_bag:</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">Ausgabe: 💰</code></div>
+  </li>
+  <li>Führen Sie Ihr Programm mit <code class="text-danger">python {{ filename }}</code>
+      aus. Ihr Programm sollte ausgeben:
+      <code class="text-dark font-weight-bold">Texteingabe:</code></div>
+      und auf die Eingabe des Benutzers warten.
+      Geben Sie <code class="text-danger">Miezel, eine schlaue :smile_cat:, Molly, ein begabter :dog_face:, Wohnhaft an demselben Platze,
+Haßten sich aus Herzensgrund.</code> ein und drücken Sie Enter.
+      Ihr Programm sollte ausgeben:
+      <div class="alert alert-primary"><code class="text-dark font-weight-bold">Ausgabe: Miezel, eine schlaue 😸, Molly, ein begabter 🐶, Wohnhaft an demselben Platze,
+Haßten sich aus Herzensgrund.</code></div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
