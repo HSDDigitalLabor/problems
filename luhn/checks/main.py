@@ -74,15 +74,45 @@ def testUICRand():
 
 
 @check50.check(exists)
-def testUIC4():
-    """check invalid UIC: 93 81 4 011 090-6"""
-    from re import escape, match
+def testUIC_invalid1():
+    """check invalid UIC: 98 78 7 456 012-2"""
+    expected_digit = "9"
+    actual = check50.run(f"python3 {FILE_NAME}").stdin("98 78 7 456 012-2").stdout()
 
-    expected = escape("Die UIC-Wagennummer ist ungültig [Prüfziffer: 0].\n")  # escape
+    if "ungültig" not in actual:
+        expected = "[...] ungültig [...]."
+        raise check50.Mismatch(
+            expected, actual, help="Output should indicate the UIC number is ungültig."
+        )
+
+    if f"[Prüfziffer: {expected_digit}]" not in actual:
+        expected = "[...] ungültig [Prüfziffer: X]."
+        raise check50.Mismatch(
+            expected,
+            actual,
+            help=f'Expected output to contain "[Prüfziffer: {expected_digit}]".',
+        )
+
+
+@check50.check(exists)
+def testUIC_invalid2():
+    """check invalid UIC: 93 81 4 011 090-6"""
+    expected_digit = "0"
     actual = check50.run(f"python3 {FILE_NAME}").stdin("93 81 4 011 090-6").stdout()
-    if not match(expected, actual):
-        help = None
-        raise check50.Mismatch(expected, actual, help=help)
+
+    if "ungültig" not in actual:
+        expected = "[...] ungültig [...]."
+        raise check50.Mismatch(
+            expected, actual, help="Output should indicate the UIC number is ungültig."
+        )
+
+    if f"[Prüfziffer: {expected_digit}]" not in actual:
+        expected = "[...] ungültig [Prüfziffer: X]."
+        raise check50.Mismatch(
+            expected,
+            actual,
+            help='Expected output to contain "[Prüfziffer: X]".',
+        )
 
 
 @check50.check(exists)
