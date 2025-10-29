@@ -25,11 +25,20 @@ def testFile():
 
 @check50.check()
 def no_forbidden_methods():
-    """solution does not use forbidden built-ins"""
-    FORBIDDEN = ["str.lower(", "str.upper(", ".count("]
-    with Path.open(FILE_NAME) as f:
-        code = f.read()
-    for method in FORBIDDEN:
-        if method in code:
-            msg = f"Forbidden method used: {method}"
-            raise check50.Failure(msg)
+    """does not use forbidden built-ins or operators"""
+    import tokenize
+
+    forbidden_tokens = {"index"}
+    forbidden_ops = {"in"}
+
+    with Path(FILE_NAME).open() as f:
+        tokens = tokenize.generate_tokens(f.readline)
+
+        for tok_type, tok_string, *_ in tokens:
+            # Skip comments and string literals
+            if tok_type in (tokenize.COMMENT, tokenize.STRING):
+                continue
+
+            if tok_string in forbidden_tokens or tok_string in forbidden_ops:
+                msg = f"Found forbidden token or operator '{tok_string}' in your code"
+                raise check50.Failure(msg)
