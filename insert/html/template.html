@@ -1,0 +1,70 @@
+{% include "header.html" %}
+
+<p>
+  Implementieren Sie eine Funktion, die in einer <strong>sortierten Liste</strong> die
+  <strong>Einfügeposition</strong> für einen gegebenen Wert findet.
+  Wenn der Wert bereits existiert, soll der Index dieses Elements zurückgegeben werden.
+  Andernfalls soll die Position zurückgegeben werden, an der der Wert eingefügt werden müsste,
+  damit die Liste weiterhin sortiert bleibt.
+</p>
+
+<p>
+  {% include "file.html" %}
+  Implementieren Sie die folgende Funktion in Ihrer Datei:
+  <code>
+    def searchInsert(lst: list, key: int):
+  </code>
+</p>
+
+<p>
+  Die Funktion soll:
+</p>
+<ul>
+  <li>Eine <strong>sortierte</strong> Liste <code>lst</code> und einen Suchwert <code>key</code> als Parameter erhalten.
+  </li>
+  <li>Den Index zurückgeben, an welchem <code>key</code> zu finden ist oder eingefügt werden müsste.</li>
+  <li><strong>Effizient</strong> arbeiten (d.&nbsp;h. nicht die gesamte Liste linear durchsuchen).</li>
+</ul>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Die Liste <code>lst</code> ist <strong>sortiert</strong>.</li>
+    <li>Verwenden Sie <strong>keine eingebauten Suchfunktionen</strong> wie <code>index()</code>, <code>find()</code>,
+      <code>count()</code> usw.
+    </li>
+    <li>Vermeiden Sie eine lineare Suche wie <code>for x in lst</code> oder <code>while i &lt; len(lst)</code>.</li>
+    <li>Nutzen Sie stattdessen einen Ansatz basierend auf der <strong>binären Suche</strong>.</li>
+    <li>Geben Sie nur den <code>Index</code> zurück, keine Ausgaben mit <code>print()</code>.</li>
+  </ul>
+</details>
+
+{% include "demo.html" %}
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>
+    Ihr Programm sollte keine Benutzereingabe verlangen, sondern nur die Funktion definieren.
+    Sie können zum Testen eine <code>main()</code>-Funktion nutzen und
+    Ihr Programm mit <code class="text-danger">python {{ filename }}</code> ausführen.
+  </li>
+  <li>
+    Testen Sie die Funktion zum Beispiel mit:
+    <pre><code>
+print(searchInsert([1, 3, 5, 6], 5))   # Erwartet: 2
+print(searchInsert([1, 3, 5, 6], 2))   # Erwartet: 1
+print(searchInsert([1, 3, 5, 6], 7))   # Erwartet: 4
+print(searchInsert([1, 3, 5, 6], 0))   # Erwartet: 0
+    </code></pre>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
