@@ -22,7 +22,7 @@
 <p>  Erstellen Sie eine Datei mit dem Namen
   <code class="text-danger border border-dark">hackers.py</code> und
   implementieren Sie eine Funktion  
-  <code class="text-danger border border-dark">def checkHakersList(listenname):</code>, 
+  <code class="text-danger border border-dark">def checkHackersList(listenname):</code>, 
   die als Argument einen Dateinamen (type <code class="text-danger border border-dark">String</code>) 
   übergeben bekommt und diese aus dem aktuellen Verzeichnis einliest.
   Die Datei enthält eine Liste von IBANs, jeweils eine pro Zeile. Öffnen Sie diese 
@@ -126,32 +126,6 @@
   in das aktuelle Verzeichnis herunterzuladen
 </p>
 
-<h2 id="before-you-begin">Bevor Sie beginnen</h2>
-<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
-  auf Ihr Terminal und führen Sie <code
-  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
-  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
-<div class="alert alert-primary"><code
-  class="text-dark font-weight-bold">$</code></div>
-<p>Als nächstes führen Sie</p>
-<div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
-  hackers</code></div>
-<p>aus, um einen Ordner namens <code
-  class="text-danger border border-dark">hackers</code> in Ihrem Codespace
-  zu erstellen.</p>
-<p>Führen Sie anschließend</p>
-<div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
-  hackers</code></div>
-<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt ihres Terminals sollte
-  nun <code class="text-danger border border-dark">hackers/$</code> anzeigen.
-  Jetzt können Sie</p>
-<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
-  hackers.py</code></div>
-<p>ausführen, um eine Datei namens <code
-  class="text-danger">hackers.py</code> zu erstellen, in der Sie Ihr
-  Programm schreiben.
-</p>
-
 <p> Der Anfang des Programms wurde bereits erstellt, kopieren Sie diesen Code in Ihre Datei <code
     class="text-danger">hackers.py</code> und vervollständigen Sie den Code.
 </p>
@@ -167,7 +141,7 @@ def calcCheckDigitsDE(blz, konto):
     return random.randint(10, 99) # nur zur Simulation falls iban.py nicht gelöst wurde, bitte ersetzen!
 
 
-def checkHakersList(listenname):
+def checkHackersList(listenname):
     invalid_count = 0
 
     # TODO fügen Sie Ihren Code hier ein
@@ -176,7 +150,7 @@ def checkHakersList(listenname):
 
 
 name = sys.argv[1]
-print("Invalid count of IBANs:", checkHakersList(name))
+print("Invalid count of IBANs:", checkHackersList(name))
     </code></pre>
 </div>
 
@@ -267,4 +241,4 @@ print("Invalid count of IBANs:", checkHakersList(name))
   </button>
 </p>
 
-<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-10-31 14:00:14</p>
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-10-31 14:44:08</p>

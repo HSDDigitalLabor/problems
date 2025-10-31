@@ -21,7 +21,7 @@
 
 <p>{% include "file.html" %}
   implementieren Sie eine Funktion  
-  <code class="text-danger border border-dark">def checkHakersList(listenname):</code>, 
+  <code class="text-danger border border-dark">def checkHackersList(listenname):</code>, 
   die als Argument einen Dateinamen (type <code class="text-danger border border-dark">String</code>) 
   übergeben bekommt und diese aus dem aktuellen Verzeichnis einliest.
   Die Datei enthält eine Liste von IBANs, jeweils eine pro Zeile. Öffnen Sie diese 
@@ -94,8 +94,6 @@
   in das aktuelle Verzeichnis herunterzuladen
 </p>
 
-{% include "before_you_begin.html" %}
-
 <p> Der Anfang des Programms wurde bereits erstellt, kopieren Sie diesen Code in Ihre Datei <code
     class="text-danger">{{filename}}</code> und vervollständigen Sie den Code.
 </p>
@@ -111,7 +109,7 @@ def calcCheckDigitsDE(blz, konto):
     return random.randint(10, 99) # nur zur Simulation falls iban.py nicht gelöst wurde, bitte ersetzen!
 
 
-def checkHakersList(listenname):
+def checkHackersList(listenname):
     invalid_count = 0
 
     # TODO fügen Sie Ihren Code hier ein
@@ -120,7 +118,7 @@ def checkHakersList(listenname):
 
 
 name = sys.argv[1]
-print("Invalid count of IBANs:", checkHakersList(name))
+print("Invalid count of IBANs:", checkHackersList(name))
     </code></pre>
 </div>
 
