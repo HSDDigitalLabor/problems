@@ -30,7 +30,7 @@ def testFile2():
     filename = "whistleblower"
     check50.include(f"files/{filename}.txt")
 
-    expected = "Invalid count of IBANs: 14\n"
+    expected = "Invalid count of IBANs: 13\n"
     actual = check50.run(f"python3 {FILE_NAME} {filename}.txt").stdout()
     if not match(expected, actual):
         help = None
