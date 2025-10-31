@@ -1,0 +1,127 @@
+{% include "header.html" %}
+
+<p><img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/792935324/ChatGPT%20Image%2031.%20Okt.%202025%2C%2007_27_38.png"
+    alt="iban" width="400" height="267">
+</p>
+<p>
+  <strong>Die Berechnung der IBAN</strong>
+  <br/>
+  Eine deutsche IBAN wird wie folgt aus <strong>Kontonummer</strong> und
+  <strong>Bankleitzahl</strong> berechnet:
+
+  <ul>
+    <li>
+      Erstellen Sie eine 24-stellige Zahl nach folgendem Schema:
+      Beginnen Sie mit der Bankleitzahl (achtstellige Zahlenfolge),
+      fügen Sie die auf zehn Stellen aufgefüllte 
+      Kontonummer hinzu (ergänzen Sie ggf. führende Nullen) und 
+      hängen Sie abschließend die Ziffernfolge 131400 an.
+      Diese Ziffernfolge repräsentiert "DE00", wobei Buchstaben 
+      in zweistellige Zahlen umgewandelt werden (A=10, B=11, usw.).
+      <br/>
+      <strong>Beispiel:</strong> Für die Kontonummer 123456789 und die
+      Bankleitzahl 50010517 ergibt sich die Zahl
+      500105170123456789131400.
+    </li>
+    <li>
+      Berechnen Sie den Rest, der bei der Division dieser 24-stelligen Zahl 
+      durch 97 entsteht. Ziehen Sie diesen Rest von 98 ab. Das Ergebnis sind 
+      die Prüfziffern. Falls das Ergebnis einstellig ist, ergänzen Sie eine 
+      führende Null, sodass die Prüfziffer zweistellig ist.
+      <br/>
+      <strong>Beispiel:</strong> Die Zahl 500105170123456789131400 ergibt bei 
+      Division durch 97 den Rest 57. Rechnung: 98 - 57 = 41. Die Prüfziffer 
+      lautet somit 41.
+    </li>
+    <li>
+      Die IBAN erhält man schließlich, indem man die beiden Prüfziffern
+      an die Länderkennung DE anhängt, gefolgt von der Bankleitzahl und
+      der ggf. auf zehn Stellen erweiterten Kontonummer. 
+      <br/>
+      <strong>Beispiel:</strong> Für die Kontonummer 123456789 und 
+      die Bankleitzahl 50010517 ergibt sich die IBAN DE41500105170123456789.
+    </li>
+  </ul>
+  Die Berechnung der Prüfziffern erfolgt für andere Länder nach dem gleichen
+  Verfahren. Jedoch unterscheiden sich die Anordnung von Kontonummer und
+  Bankcode innerhalb der IBAN sowie die Gesamtlänge der IBAN von Land zu Land.
+  Innerhalb eines Landes ist die IBAN-Länge jedoch stets gleich.
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>{% include "file.html" %}
+  implementieren Sie eine Funktion 
+  <code class="text-danger border border-dark">def calcCheckDigitsDE(blz, konto):</code>, 
+  die die Prüfziffern für eine deutsche IBAN berechnet.
+  Die Funktion erhält als Argumente die Bankleitzahl
+  <code class="text-danger border border-dark">blz</code> und die Kontonummer
+  <code class="text-danger border border-dark">konto</code> und gibt die Prüfziffer als
+  <code class="text-danger border border-dark">int</code> Wert zurück.
+    Die Funktion soll die Argumente auf Gültigkeit prüfen und im Fehlerfall eine 
+  <code class="text-danger border border-dark">ValueError</code> Exception auslösen.
+  Konzipieren Sie die Funktion ausschließlich für deutsche IBANs, d.h. 
+  die Länderkennung "DE" wird nur intern zur Berechnung der Prüfziffer benötigt 
+  und muss nicht von der Funktion als Argument übernommen werden. 
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Denken Sie daran, dass ein
+      <code class="text-danger border border-dark">str</code> mit einigen
+      Methoden ausgestattet ist, siehe
+      <a href="https://docs.python.org/3/library/stdtypes.html#string-methods" target="_blank">
+        docs.python.org/3/library/stdtypes.html#string-methods
+      </a>.
+    </li>
+    <li>
+      Denken Sie daran, Python bietet die Möglichkeit fehlermeldungen zu generieren, siehe
+      <a href="https://docs.python.org/3/tutorial/errors.html#raising-exceptions" target="_blank">
+        docs.python.org/3/tutorial/errors.html#raising-exceptions
+      </a>.
+    </li>
+    <li>
+      Denken Sie daran, in Python können boolesche Werte mit speziellen Operatoren verknüpft werden, siehe
+      <a href="https://docs.python.org/3/library/stdtypes.html#boolean-operations-and-or-not" target="_blank">
+        docs.python.org/3/library/stdtypes.html#boolean-operations-and-or-not
+      </a>.
+    </li>
+  </ul>
+</details>
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>
+    Ihr Programm sollte keine Benutzereingabe verlangen, sondern nur die Funktion definieren. 
+    Sie können zum Testen eine main()-Funktion nutzen und Ihr Programm mit 
+    <code class="text-danger">python {{filename}}</code> ausführen.
+  </li>
+  <li>
+    Testen Sie Ihre Funktion mit verschiedenen Ganzzahlen, z.B.:
+    <pre><code>
+print(calcCheckDigitsDE(50010517, 123456789))   # Erwartet: 41
+print(calcCheckDigitsDE(50640000, 123456789))   # Erwartet: 45
+print(calcCheckDigitsDE(48590377, 987654321))   # Erwartet: 23
+    </code></pre>
+  </li>
+</ul>
+<p>
+  Testen Sie unbedingt auch weitere BLZ und Kontonummern, um
+  sicherzugehen, dass Ihre Funktion korrekt arbeitet! Verwenden Sie
+  keine realen Kontonummern denken Sie an den Datenschutz!
+</p>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
