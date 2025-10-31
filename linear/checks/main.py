@@ -73,7 +73,7 @@ def test_empty_list():
     expected = -1
     result = module.linear_search(lst, key)
     if result != expected:
-        raise
+        raise check50.Mismatch(expected, result, help="Expected -1 on empty list")
 
 
 @check50.check(has_function)
