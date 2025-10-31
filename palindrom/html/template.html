@@ -67,12 +67,25 @@
 
 {% include "before_you_begin.html" %}
 
+<p> Der Anfang des Programms wurde bereits erstellt, kopieren Sie diesen Code in Ihre Datei <code
+    class="text-danger">{{filename}}</code> und vervollständigen Sie den Code.
+</p>
+
+<div class="alert alert-dark">
+    <pre><code>
+def isPalindrome(number):
+    # TODO
+
+print(isPalindrome(8778))  # Erwartet: True
+    </code></pre>
+</div>
+
 {% include "how_to_test_head.html" %}
 <ul>
   <li>
     Ihr Programm sollte keine Benutzereingabe verlangen, sondern nur die Funktion definieren. 
-    Sie können zum Testen eine main()-Funktion nutzen und Ihr Programm mit 
-    <code class="text-danger">python {{filename}}</code> ausführen.
+    Sie können zum Testen wie in dem Beispiel gezeigt <code class="text-danger">print</code>-Anweisungen
+    verwenden und Ihr Programm mit <code class="text-danger">python {{filename}}</code> ausführen.
   </li>
   <li>
     Testen Sie Ihre Funktion mit verschiedenen Ganzzahlen, z.B.:
