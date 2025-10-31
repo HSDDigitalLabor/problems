@@ -25,8 +25,8 @@ def compiles():
 def has_function():
     """function defined"""
     module = check50.py.import_(FILE_NAME)
-    if not hasattr(module, "checkDigitsDE"):
-        msg = "Function `checkDigitsDE` not found in iban.py"
+    if not hasattr(module, "calcCheckDigitsDE"):
+        msg = "Function `calcCheckDigitsDE` not found in iban.py"
         raise check50.Failure(msg)
 
 
@@ -40,7 +40,7 @@ def test_example1():
 
     expected = calc_expected(banking_code, account_number)
 
-    result = module.checkDigitsDE(banking_code, account_number)
+    result = module.calcCheckDigitsDE(banking_code, account_number)
 
     if result != expected:
         raise check50.Mismatch(str(expected), str(result))
@@ -56,7 +56,7 @@ def test_example2():
 
     expected = calc_expected(banking_code, account_number)
 
-    result = module.checkDigitsDE(banking_code, account_number)
+    result = module.calcCheckDigitsDE(banking_code, account_number)
 
     if result != expected:
         raise check50.Mismatch(str(expected), str(result))
@@ -72,7 +72,7 @@ def test_example3():
 
     expected = calc_expected(banking_code, account_number)
 
-    result = module.checkDigitsDE(banking_code, account_number)
+    result = module.calcCheckDigitsDE(banking_code, account_number)
 
     if result != expected:
         raise check50.Mismatch(str(expected), str(result))
@@ -88,7 +88,7 @@ def test_example4():
 
     expected = calc_expected(banking_code, account_number)
 
-    result = module.checkDigitsDE(banking_code, account_number)
+    result = module.calcCheckDigitsDE(banking_code, account_number)
 
     if result != expected:
         raise check50.Mismatch(str(expected), str(result))
@@ -104,7 +104,7 @@ def test_example5():
 
     expected = calc_expected(banking_code, account_number)
 
-    result = module.checkDigitsDE(banking_code, account_number)
+    result = module.calcCheckDigitsDE(banking_code, account_number)
 
     if result != expected:
         raise check50.Mismatch(str(expected), str(result))
@@ -120,7 +120,7 @@ def test_example6():
 
     expected = calc_expected(banking_code, account_number)
 
-    result = module.checkDigitsDE(banking_code, account_number)
+    result = module.calcCheckDigitsDE(banking_code, account_number)
 
     if result != expected:
         raise check50.Mismatch(str(expected), str(result))
@@ -136,7 +136,7 @@ def test_example7():
 
     expected = calc_expected(banking_code, account_number)
 
-    result = module.checkDigitsDE(banking_code, account_number)
+    result = module.calcCheckDigitsDE(banking_code, account_number)
 
     if result != expected:
         raise check50.Mismatch(str(expected), str(result))
@@ -152,7 +152,7 @@ def test_example8():
 
     expected = calc_expected(banking_code, account_number)
 
-    result = module.checkDigitsDE(banking_code, account_number)
+    result = module.calcCheckDigitsDE(banking_code, account_number)
 
     if result != expected:
         raise check50.Mismatch(str(expected), str(result))
