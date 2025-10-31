@@ -1,4 +1,3 @@
-from pathlib import Path
 import check50
 from re import match
 
