@@ -12,7 +12,7 @@
   {% include "file.html" %}
   Implementieren Sie die folgende Funktion in Ihrer Datei:
   <code>
-    def searchInsert(lst: list, key: int):
+    def searchInsert(lst, key):
   </code>
 </p>
 
@@ -33,6 +33,8 @@
     <li>Verwenden Sie <strong>keine eingebauten Suchfunktionen</strong> wie <code>index()</code>, <code>find()</code>,
       <code>count()</code> usw.
     </li>
+    <li><code>lst</code> wird eine sortierte Liste von Zahlen (Integer) sein, in der gesucht wird.</li>
+    <li><code>key</code> ist eine ganze Zahl (Integer), nach der gesucht wird.</li>
     <li>Vermeiden Sie eine lineare Suche wie <code>for x in lst</code> oder <code>while i &lt; len(lst)</code>.</li>
     <li>Nutzen Sie stattdessen einen Ansatz basierend auf der <strong>binären Suche</strong>.</li>
     <li>Geben Sie nur den <code>Index</code> zurück, keine Ausgaben mit <code>print()</code>.</li>
