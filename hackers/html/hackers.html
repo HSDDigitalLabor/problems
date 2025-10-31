@@ -1,0 +1,270 @@
+<h1 id="hackers">IBAN Liste aus dem Hackers News Forum</h1>
+
+<p><img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/149623637/ChatGPT%20Image%2031.%20Okt.%202025%2C%2009_49_25.png"
+    alt="ibans" width="400" height="400">
+</p>
+<p>
+  Bei der Bearbeitung des Problem "iban.py" haben Sie bereits die Struktur 
+  und die Prüfziffernberechnung einer IBAN kennengelernt, 
+  sollten Sie dieses Problem noch nicht bearbeitet haben, bearbeiten Sie dieses zuerst.
+  In dieser Aufgabe sollen Sie eine Liste von IBANs verarbeiten, die aus 
+  einem kompromittierten "Hackers News Forum" stammt. 
+  Ein anonymer Whistleblower hat Ihnen eine Datei mit verdächtigen 
+  IBAN-Nummern zugespielt, die möglicherweise für betrügerische 
+  Zwecke missbraucht werden sollten. Ihre Aufgabe ist es, diese Liste 
+  zu analysieren und die Anzahl der ungültigen IBANs zu ermitteln, 
+  um das Ausmaß des Datenlecks besser einschätzen zu können.
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>  Erstellen Sie eine Datei mit dem Namen
+  <code class="text-danger border border-dark">hackers.py</code> und
+  implementieren Sie eine Funktion  
+  <code class="text-danger border border-dark">def checkHakersList(listenname):</code>, 
+  die als Argument einen Dateinamen (type <code class="text-danger border border-dark">String</code>) 
+  übergeben bekommt und diese aus dem aktuellen Verzeichnis einliest.
+  Die Datei enthält eine Liste von IBANs, jeweils eine pro Zeile. Öffnen Sie diese 
+  Datei lesend und überprüfen Sie jede IBAN auf Gültigkeit. Verwenden Sie dazu die in 
+  der letzten Aufgabe implementierte Funktion 
+  <code class="text-danger border border-dark">def calcCheckDigitsDE(blz, konto):</code>
+  zur IBAN-Prüfziffernberechnung.
+  Die Funktion soll die Anzahl der ungültigen IBANs in der Datei zählen und als Ganzzahl
+  <code class="text-danger border border-dark">int</code> zurückgeben.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Denken Sie daran, in Python können Dateien einfach gelesen werden, siehe
+      <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" target="_blank">
+        https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
+      </a>.
+    </li>
+    <li>
+      Denken Sie daran, Sie können eine Schleife verwenden, um auf einzelne Zeilen einer Datei zuzugreifen.
+      Siehe
+      <a href="https://docs.python.org/3/tutorial/controlflow.html#for-statements" target="_blank">
+        https://docs.python.org/3/tutorial/controlflow.html#for-statements
+      </a>.
+    </li>
+    <li>
+      Denken Sie daran, das es möglich ist auf einzelne Teile eines Strings zuzugreifen, siehe
+      <a href="https://docs.python.org/3/tutorial/introduction.html#text" target="_blank">
+        docs.python.org/3/tutorial/introduction.html#text
+      </a>.
+    </li>
+  </ul>
+</details>
+
+<!-- <p></p>
+<h2 id="demo">Demo</h2>
+<p>
+  <script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
+  id="asciicast-"
+  src="https://asciinema.org/a/.js">
+  </script>
+</p> -->
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
+  hackers</code></div>
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">hackers</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
+  hackers</code></div>
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt ihres Terminals sollte
+  nun <code class="text-danger border border-dark">hackers/$</code> anzeigen.
+  Jetzt können Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
+  hackers.py</code></div>
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">hackers.py</code> zu erstellen, in der Sie Ihr
+  Programm schreiben.
+</p>
+
+<p>
+  Führen Sie im Terminal folgenden Befehl aus:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">
+    wget https://hsddigitallabor.github.io/problems/hackers/files/test.txt
+  </code>
+</div>
+<p>
+  um die Datei 
+  <a href="https://hsddigitallabor.github.io/problems/hackers/files/test.txt">
+    test.txt
+  </a> 
+  in das aktuelle Verzeichnis herunterzuladen
+</p>
+
+<p>
+  Führen Sie im Terminal folgenden Befehl aus:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">
+    wget https://hsddigitallabor.github.io/problems/hackers/files/whistleblower.txt
+  </code>
+</div>
+<p>
+  um die Datei 
+  <a href="https://hsddigitallabor.github.io/problems/hackers/files/whistleblower.txt">
+    whistleblower.txt
+  </a> 
+  in das aktuelle Verzeichnis herunterzuladen
+</p>
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
+  hackers</code></div>
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">hackers</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
+  hackers</code></div>
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt ihres Terminals sollte
+  nun <code class="text-danger border border-dark">hackers/$</code> anzeigen.
+  Jetzt können Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
+  hackers.py</code></div>
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">hackers.py</code> zu erstellen, in der Sie Ihr
+  Programm schreiben.
+</p>
+
+<p> Der Anfang des Programms wurde bereits erstellt, kopieren Sie diesen Code in Ihre Datei <code
+    class="text-danger">hackers.py</code> und vervollständigen Sie den Code.
+</p>
+
+<div class="alert alert-dark">
+    <pre><code>
+import sys
+import random
+
+
+def calcCheckDigitsDE(blz, konto):
+    # TODO code mit Lösung aus iban.py ersetzten
+    return random.randint(10, 99) # nur zur Simulation falls iban.py nicht gelöst wurde, bitte ersetzen!
+
+
+def checkHakersList(listenname):
+    invalid_count = 0
+
+    # TODO fügen Sie Ihren Code hier ein
+
+    return invalid_count
+
+
+name = sys.argv[1]
+print("Invalid count of IBANs:", checkHakersList(name))
+    </code></pre>
+</div>
+
+<h2 id="how-to-test">So testen Sie Ihr Programm</h2>
+<p>So können Sie Ihr Programm manuell testen:</p>
+<ul>
+  <li>
+    Ihr Programm sollte keine Benutzereingabe verlangen, sondern nur die Funktion definieren. 
+    Sie können zum Testen Ihr Programm mit indem Sie den Dateiname der zu testenden Datei
+    als Kommandozeilenargument übergeben, z.B.
+    <code class="text-danger">python hackers.py dateiname.txt</code> ausführen.
+  </li>
+  <li>
+    Testen Sie Ihre Funktion zuerst mit der übersichtlichen Datei 
+    <code class="text-danger">python hackers.py test.txt</code>, 
+    Sie können die Datei test.txt im Editor öffnen und deren Inhalt verändern,
+    um weitere Testszenarien zu generieren.
+  </li>
+  <li>
+    Anschließend testen Sie Ihre Funktion mit der umfangreichen Datei
+    <code class="text-danger">python hackers.py whistleblower.txt</code>.
+  </li>
+</ul>
+
+
+<p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
+  class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
+  der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
+  aber auch selbst!</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  check50 HSDDigitalLabor/problems/git2025/hackers
+  </code></div>
+<p>
+  Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
+  bedeuten, dass Ihr Programm einen Test bestanden hat! Rote
+  traurige Smileys <span style="font-family: monospace; color: red;">:( </span>
+  zeigen an, dass Ihr Programm etwas Unerwartetes ausgegeben
+  hat. Besuchen Sie die URL, die <code class="text-danger">check50</code>
+  ausgibt, um zu sehen, welche Eingabe <code class="text-danger">check50</code>
+  an Ihr Programm übergeben hat, welche Ausgabe erwartet wurde und welche
+  Ausgabe Ihr Programm tatsächlich geliefert hat.
+</p>
+
+<h2 id="how-to-submit">Abgabe</h2>
+<p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
+</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  submit50 HSDDigitalLabor/problems/git2025/hackers
+  </code></div>
+<p>
+  Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
+  nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
+  die zuletzt eingereichte Version vor dem Fälligkeitsdatum. Nach Ablauf der
+  Frist können Sie technisch zwar noch Abgaben tätigen, Ihre Lösung wird jedoch
+  nicht mehr gewertet. Das Ergebnis kann ausschließlich mit obigem Befehl abgegeben
+  werden, eine Abgabe in Moodle ist nicht möglich.
+</p>
+
+<h2 id="how-to-mark">Markierung der Aufgabe als erledigt</h2>
+<p>Nachdem Einreichen der Lösung mit <code class="text-danger">submit50</code>,
+  nehmen Sie eine Pseudolösung in Moodle vor, indem Sie auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_solution" disabled>
+    Aufgabenlösung hinzufügen</button>
+  weiter unten auf dieser Seite betätigen und in das sich öffnende Feld unter
+  "Texteingabe online" den folgenden Text ein:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">Mit submit50 abgegeben.</code>
+</div>
+<p>Schließen Sie die Eingabe durch Klick auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_save" disabled>
+    Änderungen speichern</button> unterhalb des Textfeldes ab.
+</p>
+<p>
+  Zur besseren Übersicht markieren Sie das Problem hackers.py in Moodle als erledigt,
+  indem Sie ganz oben auf dieser Seite den Button
+</p>
+<p>
+  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: hackers.py  als erledigt kennzeichnen"
+    aria-label="Problem: hackers.py  als erledigt kennzeichnen" disabled>
+    Als erledigt kennzeichnen
+  </button>
+  klicken. Daraufhin erscheint der Button
+  <button class="btn btn-success btn-sm text-nowrap"
+    title="Problem: hackers.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
+    aria-label="Problem: hackers.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
+    <i class="fa fa-check" aria-hidden="true"></i> Erledigt
+  </button>
+</p>
+
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-10-31 14:00:14</p>
