@@ -11,7 +11,7 @@
   {% include "file.html" %}
   Implementieren Sie die folgende Funktion in Ihrer Datei:
   <code>
-    def binary_search(lst: list, key: int):
+    def binary_search(lst, key):
   </code>
 </p>
 
@@ -21,6 +21,8 @@
 <ul>
   <li>Eine <strong>sortierte</strong> Liste <code>lst</code> und einen Suchwert <code>key</code> als Parameter erhalten.
   </li>
+  <li><code>lst</code> wird eine sortierte Liste von Zahlen (Integer) sein, in der gesucht wird.</li>
+  <li><code>key</code> ist eine ganze Zahl (Integer), nach der gesucht wird.</li>
   <li>Mit Hilfe von <strong>Start-</strong> (<code>low</code>) und <strong>Endindizes</strong> (<code>high</code>) sowie
     einer <strong>Mitte</strong> (<code>mid</code>) den Suchbereich schrittweise halbieren.</li>
   <li>Den <strong>Index</strong> des Elements zurückgeben, falls <code>key</code> gefunden wurde.</li>
