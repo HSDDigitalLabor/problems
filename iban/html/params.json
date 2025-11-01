@@ -1,0 +1,9 @@
+{
+    "id": "iban",
+    "title": "International Bank Account Number (IBAN)",
+    "foldername": "iban",
+    "filename": "iban.py",
+    "asciicast_id": "",
+    "check50_path": "HSDDigitalLabor/problems/git2025/iban",
+    "submit50_path": "HSDDigitalLabor/problems/git2025/iban"
+}

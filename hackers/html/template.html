@@ -1,0 +1,152 @@
+{% include "header.html" %}
+
+<p><img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/149623637/ChatGPT%20Image%2031.%20Okt.%202025%2C%2009_49_25.png"
+    alt="ibans" width="400" height="400">
+</p>
+<p>
+  Bei der Bearbeitung des Problem "iban.py" haben Sie bereits die Struktur 
+  und die Prüfziffernberechnung einer IBAN kennengelernt, 
+  sollten Sie dieses Problem noch nicht bearbeitet haben, bearbeiten Sie dieses zuerst.
+  In dieser Aufgabe sollen Sie eine Liste von IBANs verarbeiten, die aus 
+  einem kompromittierten "Hackers News Forum" stammt. 
+  Ein anonymer Whistleblower hat Ihnen eine Datei mit verdächtigen 
+  IBAN-Nummern zugespielt, die möglicherweise für betrügerische 
+  Zwecke missbraucht werden sollten. Ihre Aufgabe ist es, diese Liste 
+  zu analysieren und die Anzahl der ungültigen IBANs zu ermitteln, 
+  um das Ausmaß des Datenlecks besser einschätzen zu können.
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>{% include "file.html" %}
+  implementieren Sie eine Funktion  
+  <code class="text-danger border border-dark">def checkHackersList(listenname):</code>, 
+  die als Argument einen Dateinamen (type <code class="text-danger border border-dark">String</code>) 
+  übergeben bekommt und diese aus dem aktuellen Verzeichnis einliest.
+  Die Datei enthält eine Liste von IBANs, jeweils eine pro Zeile. Öffnen Sie diese 
+  Datei lesend und überprüfen Sie jede IBAN auf Gültigkeit. Verwenden Sie dazu die in 
+  der letzten Aufgabe implementierte Funktion 
+  <code class="text-danger border border-dark">def calcCheckDigitsDE(blz, konto):</code>
+  zur IBAN-Prüfziffernberechnung.
+  Die Funktion soll die Anzahl der ungültigen IBANs in der Datei zählen und als Ganzzahl
+  <code class="text-danger border border-dark">int</code> zurückgeben.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Denken Sie daran, in Python können Dateien einfach gelesen werden, siehe
+      <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" target="_blank">
+        https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
+      </a>.
+    </li>
+    <li>
+      Denken Sie daran, Sie können eine Schleife verwenden, um auf einzelne Zeilen einer Datei zuzugreifen.
+      Siehe
+      <a href="https://docs.python.org/3/tutorial/controlflow.html#for-statements" target="_blank">
+        https://docs.python.org/3/tutorial/controlflow.html#for-statements
+      </a>.
+    </li>
+    <li>
+      Denken Sie daran, das es möglich ist auf einzelne Teile eines Strings zuzugreifen, siehe
+      <a href="https://docs.python.org/3/tutorial/introduction.html#text" target="_blank">
+        docs.python.org/3/tutorial/introduction.html#text
+      </a>.
+    </li>
+  </ul>
+</details>
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+<p>
+  Führen Sie im Terminal folgenden Befehl aus:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">
+    wget https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2025/hackers/files/test.txt
+  </code>
+</div>
+<p>
+  um die Datei 
+  <a href="https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2025/hackers/files/whistleblower.txt">
+    test.txt
+  </a> 
+  in das aktuelle Verzeichnis herunterzuladen
+</p>
+
+<p>
+  Führen Sie im Terminal folgenden Befehl aus:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">
+    wget https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2025/hackers/files/whistleblower.txt
+  </code>
+</div>
+<p>
+  um die Datei 
+  <a href="https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2025/hackers/files/whistleblower.txt">
+    whistleblower.txt
+  </a> 
+  in das aktuelle Verzeichnis herunterzuladen
+</p>
+
+<p> Der Anfang des Programms wurde bereits erstellt, kopieren Sie diesen Code in Ihre Datei <code
+    class="text-danger">{{filename}}</code> und vervollständigen Sie den Code.
+</p>
+
+<div class="alert alert-dark">
+    <pre><code>
+import sys
+import random
+
+
+def calcCheckDigitsDE(blz, konto):
+    # TODO code mit Lösung aus iban.py ersetzten
+    return random.randint(10, 99) # nur zur Simulation falls iban.py nicht gelöst wurde, bitte ersetzen!
+
+
+def checkHackersList(listenname):
+    invalid_count = 0
+
+    # TODO fügen Sie Ihren Code hier ein
+
+    return invalid_count
+
+
+name = sys.argv[1]
+print("Invalid count of IBANs:", checkHackersList(name))
+    </code></pre>
+</div>
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>
+    Ihr Programm sollte keine Benutzereingabe verlangen, sondern nur die Funktion definieren. 
+    Sie können zum Testen Ihr Programm mit indem Sie den Dateiname der zu testenden Datei
+    als Kommandozeilenargument übergeben, z.B.
+    <code class="text-danger">python {{filename}} dateiname.txt</code> ausführen.
+  </li>
+  <li>
+    Testen Sie Ihre Funktion zuerst mit der übersichtlichen Datei 
+    <code class="text-danger">python {{filename}} test.txt</code>, 
+    Sie können die Datei test.txt im Editor öffnen und deren Inhalt verändern,
+    um weitere Testszenarien zu generieren.
+  </li>
+  <li>
+    Anschließend testen Sie Ihre Funktion mit der umfangreichen Datei
+    <code class="text-danger">python {{filename}} whistleblower.txt</code>.
+  </li>
+</ul>
+
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
