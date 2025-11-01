@@ -135,3 +135,22 @@ def test_example8():
 
     if result != expected:
         raise check50.Mismatch(str(expected), str(result))
+
+
+@check50.check(has_function)
+def random_tests():
+    """randomized tests"""
+    import random
+
+    random.seed("git2025")
+    module = check50.py.import_(FILE_NAME)
+
+    for _ in range(10):
+        n = random.randint(-(10**12), 10**12)
+
+        s = str(n)
+        expected = s == s[::-1] if n >= 0 else False
+        result = module.isPalindrome(n)
+
+        if result != expected:
+            raise check50.Mismatch(str(expected), str(result))
