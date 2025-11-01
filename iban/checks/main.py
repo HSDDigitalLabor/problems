@@ -1,5 +1,4 @@
 import check50
-
 import check50.py
 
 FILE_NAME = "iban.py"
@@ -156,3 +155,21 @@ def test_example8():
 
     if result != expected:
         raise check50.Mismatch(str(expected), str(result))
+
+
+@check50.check(has_function)
+def random_tests():
+    """randomized hidden tests"""
+    import random
+
+    module = check50.py.import_(FILE_NAME)
+
+    for _ in range(5):
+        banking_code = random.randint(10000000, 99999999)
+        account_number = random.randint(1, 999999999)
+
+        expected = calc_expected(banking_code, account_number)
+        result = module.calcCheckDigitsDE(banking_code, account_number)
+
+        if result != expected:
+            raise check50.Mismatch(str(expected), str(result))
