@@ -1,6 +1,6 @@
-import check50
 from re import match
 
+import check50
 
 FILE_NAME = "hackers.py"
 
@@ -35,4 +35,3 @@ def testFile2():
     if not match(expected, actual):
         help = None
         raise check50.Mismatch(expected, actual, help=help)
-
