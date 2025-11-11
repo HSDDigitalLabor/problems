@@ -39,8 +39,8 @@ def has_function():
 
 
 @check50.check(has_function)
-def test_found_first():
-    """finds first occurrence of key in list"""
+def sorts_small_list():
+    """bubble_sort correctly sorts a small list"""
     module = check50.py.import_(FILE_NAME)
     lst = [3, 2, 1]
     sorted_lst = module.bogo_sort(lst.copy())
