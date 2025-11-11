@@ -6,6 +6,17 @@ import check50.py
 FILE_NAME = "bogo.py"
 
 
+# helper function for prettier lst difference print
+def assert_list_equal(actual, expected, func_name="bogo_sort"):
+    if actual != expected:
+        msg = (
+            f"{func_name} returned the wrong list.\n"
+            f"Expected: {expected}\n"
+            f"Got     : {actual}"
+        )
+        raise check50.Failure(msg)
+
+
 @check50.check()
 def exists():
     """file exists"""
@@ -34,8 +45,7 @@ def test_found_first():
     lst = [3, 2, 1]
     sorted_lst = module.bogo_sort(lst.copy())
     expected = [1, 2, 3]
-    if sorted_lst != expected:
-        raise check50.Mismatch(expected, sorted_lst)
+    assert_list_equal(sorted_lst, expected)
 
 
 @check50.check(has_function)
@@ -45,8 +55,7 @@ def sorts_already_sorted():
     lst = [1, 2, 3]
     sorted_lst = module.bogo_sort(lst.copy())
     expected = [1, 2, 3]
-    if sorted_lst != expected:
-        raise check50.Mismatch(expected, sorted_lst)
+    assert_list_equal(sorted_lst, expected)
 
 
 @check50.check(has_function)
@@ -56,8 +65,7 @@ def handles_duplicates():
     lst = [3, 1, 3, 2]
     sorted_lst = module.bogo_sort(lst.copy())
     expected = [1, 2, 3, 3]
-    if sorted_lst != expected:
-        raise check50.Mismatch(expected, sorted_lst)
+    assert_list_equal(sorted_lst, expected)
 
 
 @check50.check(has_function)
@@ -70,8 +78,7 @@ def sorts_random_lists():
         lst = random.sample(range(10), 5)  # random list of 5 unique numbers
         sorted_lst = module.bogo_sort(lst.copy())
         expected = sorted(lst)
-        if sorted_lst != expected:
-            raise check50.Mismatch(expected, sorted_lst)
+        assert_list_equal(sorted_lst, expected)
 
 
 @check50.check(has_function)
@@ -82,20 +89,17 @@ def sorts_edge_cases():
     # empty list
     lst = []
     sorted_lst = module.bogo_sort(lst.copy())
-    if sorted_lst != []:
-        raise check50.Mismatch([], sorted_lst)
+    assert_list_equal(sorted_lst, [])
 
     # single element
     lst = [42]
     sorted_lst = module.bogo_sort(lst.copy())
-    if sorted_lst != [42]:
-        raise check50.Mismatch([42], sorted_lst)
+    assert_list_equal(sorted_lst, lst)
 
     # all identical
     lst = [7, 7, 7, 7]
     sorted_lst = module.bogo_sort(lst.copy())
-    if sorted_lst != [7, 7, 7, 7]:
-        raise check50.Mismatch([7, 7, 7, 7], sorted_lst)
+    assert_list_equal(sorted_lst, lst)
 
 
 @check50.check()
