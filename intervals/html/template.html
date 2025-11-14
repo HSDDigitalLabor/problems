@@ -1,0 +1,105 @@
+{% include "header.html" %}
+
+<p>
+  In dieser Übung implementieren Sie die Funktion <code>merge(intervals)</code>,
+  die eine Liste von Intervallen zusammenführt, sodass sich überlappende Intervalle
+  zu einem einzigen Intervall kombiniert werden.
+</p>
+
+<p>
+  Jedes Intervall ist eine Liste aus zwei Ganzzahlen
+  <code>[start, end]</code>, wobei <code>start &lt;= end</code> gilt.
+  Die Funktion soll eine neue Liste mit den zusammengeführten Intervallen
+  zurückgeben, wobei die Intervalle nach ihrem Startwert sortiert sind.
+</p>
+
+<pre><code>def merge(intervals):
+    ...
+</code></pre>
+
+<p>
+  Beispiel:
+</p>
+
+<pre><code>
+Eingabe:  [[1, 3], [2, 6], [8, 10], [15, 18]]
+Ausgabe: [[1, 6], [8, 10], [15, 18]]
+
+Eingabe:  [[1, 4], [4, 5]]
+Ausgabe: [[1, 5]]
+</code></pre>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Falls sich zwei Intervalle überlappen oder direkt aneinandergrenzen,
+      sollen sie zu einem größeren Intervall zusammengeführt werden.
+    </li>
+    <li>
+      Sie dürfen keine eingebauten Sortierfunktionen wie <code>sorted()</code> oder
+      <code>list.sort()</code> verwenden. Implementieren Sie das Sortieren der
+      Intervalle selbst, z.&nbsp;B. mit einem einfachen Sortierverfahren wie
+      <em>Bubble Sort</em> oder <em>Insertion Sort</em>.
+    </li>
+    <li>
+      Achten Sie darauf, dass die Eingabeliste <code>intervals</code> nach dem
+      Sortieren alle Intervalle in aufsteigender Reihenfolge ihrer Startwerte enthält.
+    </li>
+  </ul>
+</details>
+
+<h3>Pseudocode</h3>
+
+<pre><code>
+function merge(intervals):
+    # wenn Intervalle leere List, return leere Liste
+
+    # 1. Sortiere die Intervalle nach ihrem Startwert (manuell)
+    # Implementieren Sie dazu einen der vorher besprochen Sortieralgorithmus
+
+    # 2. Führe überlappende Intervalle zusammen
+    merged = empty list
+    for interval in intervals:
+        if merged is empty:
+            append a copy of interval to merged
+        else:
+            last <-- letztes Element von merged
+            if interval.start > last.end:
+                append interval to merged
+            else:
+                last.end = max(last.end, interval.end)
+
+    return merged
+</code></pre>
+
+{% include "demo.html" %}
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>
+    Testen Sie mit einfachen Intervallen:
+    <pre><code>print(merge([[1, 4], [4, 5]]))  # sollte [[1, 5]] ausgeben</code></pre>
+  </li>
+  <li>
+    Testen Sie mit unsortierten Intervallen:
+    <pre><code>print(merge([[4, 7], [1, 4]]))  # sollte [[1, 7]] ausgeben</code></pre>
+  </li>
+  <li>
+    Testen Sie mit nicht überlappenden Intervallen:
+    <pre><code>print(merge([[1, 2], [3, 4], [5, 6]]))  # sollte [[1, 2], [3, 4], [5, 6]] ausgeben</code></pre>
+  </li>
+  <li>
+    Überlegen Sie sich weitere Testfälle.
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
