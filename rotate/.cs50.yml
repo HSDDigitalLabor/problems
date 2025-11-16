@@ -2,7 +2,7 @@ submit50:
   files: &submit50_files
     - !exclude "*"
     - !include "*.py"
-    - !require hackers.py
+    - !require rotate.py
   
 check50:
   files: *submit50_files

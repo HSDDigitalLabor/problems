@@ -9,6 +9,3 @@ FILE_NAME = "rotate.py"
 def exists():
     """file exists"""
     check50.exists(FILE_NAME)
-
-
-
