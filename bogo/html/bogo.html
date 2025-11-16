@@ -1,19 +1,42 @@
-<h1 id="bogo">Bogosort</h1>
+<h1 id="bogo">Bogo-Sort</h1>
+<p>
+  Der Name „Bogo-Sort“ setzt sich aus den englischen Wörtern „bogus“ (falsch/unsinnig) 
+  und „sort“ (sortieren) zusammen. Er beschreibt treffend die absurde und extrem 
+  ineffiziente Idee hinter dem Verfahren: Die Liste wird so lange zufällig permutiert
+  (gemischt), bis sie vollständig sortiert ist. Aufgrund seiner schlechten 
+  Laufzeit ist der Algorithmus auch als „Stupid Sort“ bekannt.
+</p>
+
+<h1 id="bogo"><img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/31410327/ChatGPT%20Image%2016.%20Nov.%202025%2C%2016_23_38.png"
+    alt="Bogosort" width="400" height="267"></h1>
+
+<h2 id="aufgabe">Aufgabe</h2>
 
 <p>
-  In dieser Übung implementieren Sie die Funktion <code>bogo_sort(lst)</code>, die
-  eine Liste von Zahlen mittels Bogosort sortiert. Bogosort funktioniert, indem die
-  Liste so lange zufällig gemischt wird, bis sie vollständig sortiert ist.
+  Implementieren Sie die Funktion <code>bogo_sort(lst)</code>, die
+  eine Liste <code>lst</code> von Zahlen als Argument entgegennimmt
+  und diese mittels Bogo-Sort sortiert und die sortierte Liste zurückgibt.
+  Implementieren Sie zur Umsetzung eine Hilfsfunktion <code>is_sorted(lst)</code>,
+  die prüft, ob die Liste bereits sortiert ist.
 </p>
 
 <p>
-  Die Funktion sollte wie folgt aussehen:
-<pre><code>def bogo_sort(lst):
+  Die Funktionen sollten wie folgt aussehen:
+
+<div class="alert alert-dark">
+    <pre><code>
+def is_sorted(lst):
     ...
-</code></pre>
-Die Funktion nimmt eine Liste <code>lst</code> als Parameter und gibt die
-sortierte Liste zurück. Sie sollen keine eingebauten Sortierfunktionen
-wie <code>sorted()</code> oder <code>list.sort()</code> verwenden.
+
+
+def bogo_sort(lst):
+    ...
+    </code></pre>
+</div>
+
+  Verwenden Sie <strong>keine</strong> eingebauten Sortierfunktionen wie 
+  <code>sorted()</code> oder <code>list.sort()</code>.
 </p>
 
 <details>
@@ -26,26 +49,20 @@ wie <code>sorted()</code> oder <code>list.sort()</code> verwenden.
       </a>.
     </li>
     <li>
-      Implementieren Sie zuerst eine Hilfsfunktion <code>is_sorted(lst)</code>,
-      die prüft, ob die Liste bereits sortiert ist:
-      <pre><code>def is_sorted(lst):</code></pre>
-      Verwenden Sie diese Funktion in Ihrem <code>bogo_sort</code>-Algorithmus.
-    </li>
-    <li>
-      Bogosort ist sehr ineffizient. Verwenden Sie daher in Tests nur kurze Listen,
-      z.B. 3-5 Elemente, um endlose Schleifen zu vermeiden.
+      Bogo-Sort ist sehr ineffizient. Verwenden Sie daher in Tests nur <strong>kurze</strong> Listen,
+      z.B. 3-5 Elemente, um eine endlose Bearbeitungszeiten zu vermeiden.
     </li>
   </ul>
 </details>
 
-<p></p>
+<!-- <p></p>
 <h2 id="demo">Demo</h2>
 <p>
   <script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
   id="asciicast-"
   src="https://asciinema.org/a/.js">
   </script>
-</p>
+</p> -->
 
 <h2 id="before-you-begin">Bevor Sie beginnen</h2>
 <p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
@@ -77,8 +94,6 @@ wie <code>sorted()</code> oder <code>list.sort()</code> verwenden.
 <p>So können Sie Ihr Programm manuell testen:</p>
 <ul>
   <li>
-    Importieren Sie Ihre Funktion in Python:
-    <pre><code>from bogo import bogo_sort</code></pre>
     Testen Sie die Funktion mit einer kleinen Liste, z. B.:
     <pre><code>print(bogo_sort([3, 2, 1]))  # sollte [1, 2, 3] ausgeben</code></pre>
   </li>
@@ -157,4 +172,4 @@ wie <code>sorted()</code> oder <code>list.sort()</code> verwenden.
   </button>
 </p>
 
-<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-11-11 22:29:58</p>
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-11-16 16:46:08</p>
