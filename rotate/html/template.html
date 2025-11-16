@@ -1,0 +1,104 @@
+{% include "header.html" %}
+
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>{% include "file.html" %}
+  Implementieren Sie eine Funktion  
+  <code class="text-danger border border-dark">def rotate_list(liste, positionen):</code>,
+  die eine gegebene numerische Liste um eine bestimmte Anzahl von Positionen nach rechts rotiert. 
+  Jedes Element der Liste wird dabei um <code>positionen</code> verschoben. Elemente, die über
+  das Ende der Liste hinausgehen, werden am Anfang wieder eingefügt. 
+  Die Funktion soll die rotierte Liste zurückgeben. Die Rotation soll "in-place" erfolgen,
+  d.h. es soll kein neues Array erstellt werden, lediglich Hilfsvariablen sind erlaubt.
+</p>
+
+<p>
+  Die Funktionsdefinition ist bereits vorgegeben, verwenden Sie diese:
+</p>
+<div class="alert alert-dark">
+  <pre><code>
+def rotate_list(liste, positionen):
+    ...
+  </code></pre>
+</div>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Denken Sie daran, das es möglich ist auf einzelne Elemente einer Liste zuzugreifen, siehe
+      <a href="https://docs.python.org/3/tutorial/introduction.html#lists" target="_blank">
+        https://docs.python.org/3/tutorial/introduction.html#lists
+      </a>.
+    </li>
+  </ul>
+</details>
+
+<h3>Beispiele</h3>
+
+<p>Beispiel 1</p>
+<pre><code>
+Eingabe: liste = [1,2,3,4,5,6,7], positionen = 3
+Ausgabe: [5,6,7,1,2,3,4]
+
+Erklärung:
+rotiere um 1 Position nach rechts:   [7,1,2,3,4,5,6]
+rotiere um 2 Positionen nach rechts: [6,7,1,2,3,4,5]
+rotiere um 3 Positionen nach rechts: [5,6,7,1,2,3,4]
+</code></pre>
+
+
+<p>Beispiel 2</p>
+<pre><code>
+Eingabe: liste = [-1,-100,3,99], positionen = 3
+Ausgabe: [3,99,-1,-100]
+
+Erklärung:
+rotiere um 1 Position nach rechts:   [99,-1,-100,3]
+rotiere um 2 Positionen nach rechts: [3,99,-1,-100]
+</code></pre>
+
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>
+    Einfacher Test (Beispiel):
+    <pre><code>liste = [1,2,3,4,5,6,7]
+print(rotate_list(liste, 3))  # sollte [5,6,7,1,2,3,4] ausgeben</code></pre>
+  </li>
+  <li>
+    Rotation um 0 Positionen:
+    <pre><code>liste = [1,2,3]
+print(rotate_list(liste, 0))  # sollte [1,2,3] ausgeben</code></pre>
+  </li>
+  <li>
+    Rotation gleich Listenlänge:
+    <pre><code>liste = [1,2,3,4]
+print(rotate_list(liste, 4))  # sollte [1,2,3,4] ausgeben</code></pre>
+  </li>
+  <li>
+    Rotation größer als die Listenlänge:
+    <pre><code>liste = [1,2,3]
+print(rotate_list(liste, 4))  # sollte [3,1,2] ausgeben (da 4 % 3 == 1)</code></pre>
+  </li>
+  <li>
+    Mit negativen Zahlen:
+    <pre><code>liste = [-1,-100,3,99]
+print(rotate_list(liste, 3))  # sollte [-100,3,99,-1] ausgeben</code></pre>
+  </li>
+</ul>
+
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
