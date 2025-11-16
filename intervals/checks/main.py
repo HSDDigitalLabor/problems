@@ -24,7 +24,7 @@ def exists():
 
 @check50.check(exists)
 def compiles():
-    """merge.py compiles"""
+    """intervals.py compiles"""
     check50.py.compile(FILE_NAME)
 
 
