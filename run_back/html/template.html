@@ -1,0 +1,74 @@
+{% include "header.html" %}
+
+<p>
+  Implementieren Sie den in der Vorlesung vorgestellten Algorithmus zur 
+  <strong>binären Suche</strong>, verwenden Sie diesmal einen 
+  <strong>rekursiven</strong> Ansatz. 
+</p>
+
+<p>
+  {% include "file.html" %}
+  Implementieren Sie die folgende Funktion in Ihrer Datei:
+  <code>
+    def binary_recursive(lst, key):
+  </code>
+</p>
+
+<p>
+  Die Funktion soll:
+</p>
+<ul>
+  <li>Eine <strong>sortierte</strong> Liste <code>lst</code> und einen Suchwert <code>key</code> als Parameter erhalten.
+  </li>
+  <li><code>lst</code> wird eine sortierte Liste von Zahlen (Integer) sein, in der gesucht wird.</li>
+  <li><code>key</code> ist eine ganze Zahl (Integer), nach der gesucht wird.</li>
+  <li>Mit Hilfe von <strong>Start-</strong> (<code>low</code>) und <strong>Endindizes</strong> (<code>high</code>) sowie
+    einer <strong>Mitte</strong> (<code>mid</code>) den Suchbereich schrittweise halbieren.</li>
+  <li>Rekursiv den Suchbereich eingrenzen, bis das Element gefunden oder der Bereich leer ist.</li>
+  <li>Den <strong>Index</strong> des Elements zurückgeben, falls <code>key</code> gefunden wurde.</li>
+  <li><code>-1</code> zurückgeben, wenn das Element nicht gefunden wird.</li>
+</ul>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Die Liste <code>lst</code> muss <strong>sortiert</strong> sein, damit der Algorithmus korrekt funktioniert.</li>
+    <li>Verwenden Sie <strong>keine eingebauten Suchfunktionen</strong> wie <code>index()</code>, <code>find()</code>,
+      <code>count()</code> usw.
+    </li>
+    <li>Verwenden Sie <strong>keine</strong> lineare Durchläufe der Form <code>for x in lst</code> oder
+      <code>while i &lt; len(lst)</code>.
+    </li>
+    <li>Geben Sie nur den <code>Index</code> oder <code>-1</code> zurück, keine Ausgaben mit <code>print()</code>.</li>
+  </ul>
+</details>
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>
+    Ihr Programm soll keine Eingabe vom Benutzer verlangen, sondern nur die Funktion definieren.
+    Zum Testen können Sie eine main()-Funktion schreiben, in welcher Sie bestimmte Fälle testen. Dann können Sie mit
+    <code class="text-danger">python {{ filename }}</code> Ihr Programm ausführen.
+  </li>
+  <li>
+    Testen Sie die Funktion zum Beispiel mit:
+    <pre><code>
+print(binary_recursive([6, 7, 8, 9, 10], 8))        # Erwartet: 2
+print(binary_recursive([11, 13, 15, 17, 18], 17))   # Erwartet: 3
+print(binary_recursive([3, 4, 5, 6, 7], 1))         # Erwartet: -1
+print(binary_recursive([], 13))                     # Erwartet: -1
+    </code></pre>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
