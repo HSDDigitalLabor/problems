@@ -3,6 +3,8 @@ name: CS50 CI
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+    paths:
+      - '**/*.py'
 
 jobs:
   run-cs50-ci:
