@@ -68,16 +68,6 @@ def example3():
 
 
 @check50.check(has_function)
-def overlapping():
-    """merges multiple overlapping intervals"""
-    module = check50.py.import_(FILE_NAME)
-    intervals = [[1, 3], [2, 6], [8, 10], [15, 18]]
-    expected = [[1, 6], [8, 10], [15, 18]]
-    result = module.merge(intervals)
-    assert_list_equal(result, expected)
-
-
-@check50.check(has_function)
 def merges_multiple_overlaps():
     """merges multiple overlapping intervals"""
     module = check50.py.import_(FILE_NAME)
