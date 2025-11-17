@@ -111,8 +111,8 @@ def handles_empty_input():
 def handles_non_overlapping():
     """returns intervals unchanged if none overlap"""
     module = check50.py.import_(FILE_NAME)
-    intervals = [[1, 2], [3, 4], [5, 6]]
-    expected = [[1, 2], [3, 4], [5, 6]]
+    intervals = [[10, 20], [30, 40], [50, 60]]
+    expected = [[10, 20], [30, 40], [50, 60]]
     result = module.merge(intervals)
     assert_list_equal(result, expected)
 
