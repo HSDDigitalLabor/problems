@@ -1,0 +1,166 @@
+<h1 id="run_back">Rückwärts laufen - Binäre Suche rekursiv</h1>
+
+<p>
+  Implementieren Sie den in der Vorlesung vorgestellten Algorithmus zur 
+  <strong>binären Suche</strong>, verwenden Sie diesmal einen 
+  <strong>rekursiven</strong> Ansatz. 
+</p>
+
+<p>
+    Erstellen Sie eine Datei mit dem Namen
+  <code class="text-danger border border-dark">run_back.py</code> und
+  Implementieren Sie die folgende Funktion in Ihrer Datei:
+  <code>
+    def binary_recursive(lst, key):
+  </code>
+</p>
+
+<p>
+  Die Funktion soll:
+</p>
+<ul>
+  <li>Eine <strong>sortierte</strong> Liste <code>lst</code> und einen Suchwert <code>key</code> als Parameter erhalten.
+  </li>
+  <li><code>lst</code> wird eine sortierte Liste von Zahlen (Integer) sein, in der gesucht wird.</li>
+  <li><code>key</code> ist eine ganze Zahl (Integer), nach der gesucht wird.</li>
+  <li>Mit Hilfe von <strong>Start-</strong> (<code>low</code>) und <strong>Endindizes</strong> (<code>high</code>) sowie
+    einer <strong>Mitte</strong> (<code>mid</code>) den Suchbereich schrittweise halbieren.</li>
+  <li>Rekursiv den Suchbereich eingrenzen, bis das Element gefunden oder der Bereich leer ist.</li>
+  <li>Den <strong>Index</strong> des Elements zurückgeben, falls <code>key</code> gefunden wurde.</li>
+  <li><code>-1</code> zurückgeben, wenn das Element nicht gefunden wird.</li>
+</ul>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Die Liste <code>lst</code> muss <strong>sortiert</strong> sein, damit der Algorithmus korrekt funktioniert.</li>
+    <li>Verwenden Sie <strong>keine eingebauten Suchfunktionen</strong> wie <code>index()</code>, <code>find()</code>,
+      <code>count()</code> usw.
+    </li>
+    <li>Verwenden Sie <strong>keine</strong> lineare Durchläufe der Form <code>for x in lst</code> oder
+      <code>while i &lt; len(lst)</code>.
+    </li>
+    <li>Geben Sie nur den <code>Index</code> oder <code>-1</code> zurück, keine Ausgaben mit <code>print()</code>.</li>
+  </ul>
+</details>
+
+<!-- <p></p>
+<h2 id="demo">Demo</h2>
+<p>
+  <script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
+  id="asciicast-"
+  src="https://asciinema.org/a/.js">
+  </script>
+</p> -->
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
+  run_back</code></div>
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">run_back</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
+  run_back</code></div>
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt Ihres Terminals sollte
+  nun <code class="text-danger border border-dark">run_back/$</code> anzeigen.
+  Jetzt können Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
+  run_back.py</code></div>
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">run_back.py</code> zu erstellen, in der Sie Ihr
+  Programm schreiben.
+</p>
+
+<h2 id="how-to-test">So testen Sie Ihr Programm</h2>
+<p>So können Sie Ihr Programm manuell testen:</p>
+<ul>
+  <li>
+    Ihr Programm soll keine Eingabe vom Benutzer verlangen, sondern nur die Funktion definieren.
+    Zum Testen können Sie eine main()-Funktion schreiben, in welcher Sie bestimmte Fälle testen. Dann können Sie mit
+    <code class="text-danger">python run_back.py</code> Ihr Programm ausführen.
+  </li>
+  <li>
+    Testen Sie die Funktion zum Beispiel mit:
+    <pre><code>
+print(binary_recursive([6, 7, 8, 9, 10], 8))        # Erwartet: 2
+print(binary_recursive([11, 13, 15, 17, 18], 17))   # Erwartet: 3
+print(binary_recursive([3, 4, 5, 6, 7], 1))         # Erwartet: -1
+print(binary_recursive([], 13))                     # Erwartet: -1
+    </code></pre>
+  </li>
+</ul>
+
+<p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
+  class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
+  der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
+  aber auch selbst!</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  check50 HSDDigitalLabor/problems/git2025/run_back
+  </code></div>
+<p>
+  Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
+  bedeuten, dass Ihr Programm einen Test bestanden hat! Rote
+  traurige Smileys <span style="font-family: monospace; color: red;">:( </span>
+  zeigen an, dass Ihr Programm etwas Unerwartetes ausgegeben
+  hat. Besuchen Sie die URL, die <code class="text-danger">check50</code>
+  ausgibt, um zu sehen, welche Eingabe <code class="text-danger">check50</code>
+  an Ihr Programm übergeben hat, welche Ausgabe erwartet wurde und welche
+  Ausgabe Ihr Programm tatsächlich geliefert hat.
+</p>
+
+<h2 id="how-to-submit">Abgabe</h2>
+<p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
+</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  submit50 HSDDigitalLabor/problems/git2025/run_back
+  </code></div>
+<p>
+  Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
+  nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
+  die zuletzt eingereichte Version vor dem Fälligkeitsdatum. Nach Ablauf der
+  Frist können Sie technisch zwar noch Abgaben tätigen, Ihre Lösung wird jedoch
+  nicht mehr gewertet. Das Ergebnis kann ausschließlich mit obigem Befehl abgegeben
+  werden, eine Abgabe in Moodle ist nicht möglich.
+</p>
+
+<h2 id="how-to-mark">Markierung der Aufgabe als erledigt</h2>
+<p>Nach dem Einreichen der Lösung mit <code class="text-danger">submit50</code>,
+  nehmen Sie eine Pseudolösung in Moodle vor, indem Sie auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_solution" disabled>
+    Aufgabenlösung hinzufügen</button>
+  weiter unten auf dieser Seite betätigen und in das sich öffnende Feld unter
+  "Texteingabe online" den folgenden Text ein:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">Mit submit50 abgegeben.</code>
+</div>
+<p>Schließen Sie die Eingabe durch Klick auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_save" disabled>
+    Änderungen speichern</button> unterhalb des Textfeldes ab.
+</p>
+<p>
+  Zur besseren Übersicht markieren Sie das Problem run_back.py in Moodle als erledigt,
+  indem Sie ganz oben auf dieser Seite den Button
+</p>
+<p>
+  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: run_back.py  als erledigt kennzeichnen"
+    aria-label="Problem: run_back.py  als erledigt kennzeichnen" disabled>
+    Als erledigt kennzeichnen
+  </button>
+  klicken. Daraufhin erscheint der Button
+  <button class="btn btn-success btn-sm text-nowrap"
+    title="Problem: run_back.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
+    aria-label="Problem: run_back.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
+    <i class="fa fa-check" aria-hidden="true"></i> Erledigt
+  </button>
+</p>
+
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-11-16 21:54:49</p>
