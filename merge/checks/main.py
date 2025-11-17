@@ -39,13 +39,35 @@ def has_function():
 
 
 @check50.check(has_function)
-def merges_basic_case():
-    """merges two small sorted lists correctly"""
+def example1():
+    """test on example 1"""
     module = check50.py.import_(FILE_NAME)
     lst1 = [1, 3, 5]
     lst2 = [2, 4, 6]
     result = module.merge(lst1, lst2)
     expected = [1, 2, 3, 4, 5, 6]
+    assert_list_equal(result, expected)
+
+
+@check50.check(has_function)
+def example2():
+    """test on example 2"""
+    module = check50.py.import_(FILE_NAME)
+    lst1 = []
+    lst2 = [1, 2, 3]
+    result = module.merge(lst1, lst2)
+    expected = [1, 2, 3]
+    assert_list_equal(result, expected)
+
+
+@check50.check(has_function)
+def example3():
+    """test on example 3"""
+    module = check50.py.import_(FILE_NAME)
+    lst1 = [1, 2, 2]
+    lst2 = [2, 3]
+    result = module.merge(lst1, lst2)
+    expected = [1, 2, 2, 2, 3]
     assert_list_equal(result, expected)
 
 
@@ -73,7 +95,7 @@ def merges_with_negatives():
 
 @check50.check(has_function)
 def merges_with_empty_lists():
-    """handles empty lists correctly"""
+    """handles variations of empty lists correctly"""
     module = check50.py.import_(FILE_NAME)
 
     # first empty
