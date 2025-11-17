@@ -1,0 +1,198 @@
+<h1 id="rotate">Rotiere eine Liste</h1>
+
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>  Erstellen Sie eine Datei mit dem Namen
+  <code class="text-danger border border-dark">rotate.py</code> und
+  Implementieren Sie eine Funktion  
+  <code class="text-danger border border-dark">def rotate_list(liste, positionen):</code>,
+  die eine gegebene numerische Liste um eine bestimmte Anzahl von Positionen nach rechts rotiert. 
+  Jedes Element der Liste wird dabei um <code>positionen</code> verschoben. Elemente, die über
+  das Ende der Liste hinausgehen, werden am Anfang wieder eingefügt. 
+  Die Funktion soll die rotierte Liste zurückgeben. Die Rotation soll "in-place" erfolgen,
+  d.h. es soll keine neue Liste erstellt werden. 
+  Zusätzlicher Speicher darf ausschließlich für Hilfsvariablen verwendet werden.
+</p>
+
+<p>
+  Die Funktionsdefinition ist bereits vorgegeben, verwenden Sie diese:
+</p>
+<div class="alert alert-dark">
+  <pre><code>
+def rotate_list(liste, positionen):
+    ...
+  </code></pre>
+</div>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Denken Sie daran, dass es möglich ist auf einzelne Elemente einer Liste zuzugreifen, siehe
+      <a href="https://docs.python.org/3/tutorial/introduction.html#lists" target="_blank">
+        https://docs.python.org/3/tutorial/introduction.html#lists
+      </a>.
+    </li>
+  </ul>
+</details>
+
+<h3>Beispiele</h3>
+
+<p>Beispiel 1</p>
+<pre><code>
+Eingabe: liste = [1,2,3,4,5,6,7], positionen = 3
+Ausgabe: [5,6,7,1,2,3,4]
+
+Erklärung:
+rotiere um 1 Position nach rechts:   [7,1,2,3,4,5,6]
+rotiere um 2 Positionen nach rechts: [6,7,1,2,3,4,5]
+rotiere um 3 Positionen nach rechts: [5,6,7,1,2,3,4]
+</code></pre>
+
+
+<p>Beispiel 2</p>
+<pre><code>
+Eingabe: liste = [-1,-100,3,99], positionen = 3
+Ausgabe: [-100,3,99,-1]
+
+Erklärung:
+rotiere um 1 Position nach rechts:   [99,-1,-100,3]
+rotiere um 2 Positionen nach rechts: [3,99,-1,-100]
+rotiere um 3 Positionen nach rechts: [-100,3,99,-1]
+</code></pre>
+
+
+<!-- <p></p>
+<h2 id="demo">Demo</h2>
+<p>
+  <script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
+  id="asciicast-"
+  src="https://asciinema.org/a/.js">
+  </script>
+</p> -->
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
+  rotate</code></div>
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">rotate</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
+  rotate</code></div>
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt ihres Terminals sollte
+  nun <code class="text-danger border border-dark">rotate/$</code> anzeigen.
+  Jetzt können Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
+  rotate.py</code></div>
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">rotate.py</code> zu erstellen, in der Sie Ihr
+  Programm schreiben.
+</p>
+
+
+<h2 id="how-to-test">So testen Sie Ihr Programm</h2>
+<p>So können Sie Ihr Programm manuell testen:</p>
+<ul>
+  <li>
+    Einfacher Test (Beispiel):
+    <pre><code>liste = [1,2,3,4,5,6,7]
+print(rotate_list(liste, 3))  # sollte [5,6,7,1,2,3,4] ausgeben</code></pre>
+  </li>
+  <li>
+    Rotation um 0 Positionen:
+    <pre><code>liste = [1,2,3]
+print(rotate_list(liste, 0))  # sollte [1,2,3] ausgeben</code></pre>
+  </li>
+  <li>
+    Rotation gleich Listenlänge:
+    <pre><code>liste = [1,2,3,4]
+print(rotate_list(liste, 4))  # sollte [1,2,3,4] ausgeben</code></pre>
+  </li>
+  <li>
+    Rotation größer als die Listenlänge:
+    <pre><code>liste = [1,2,3]
+print(rotate_list(liste, 4))  # sollte [3,1,2] ausgeben (da 4 % 3 == 1)</code></pre>
+  </li>
+  <li>
+    Mit negativen Zahlen:
+    <pre><code>liste = [-1,-100,3,99]
+print(rotate_list(liste, 3))  # sollte [-100,3,99,-1] ausgeben</code></pre>
+  </li>
+</ul>
+
+
+<p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
+  class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
+  der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
+  aber auch selbst!</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  check50 HSDDigitalLabor/problems/git2025/rotate
+  </code></div>
+<p>
+  Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
+  bedeuten, dass Ihr Programm einen Test bestanden hat! Rote
+  traurige Smileys <span style="font-family: monospace; color: red;">:( </span>
+  zeigen an, dass Ihr Programm etwas Unerwartetes ausgegeben
+  hat. Besuchen Sie die URL, die <code class="text-danger">check50</code>
+  ausgibt, um zu sehen, welche Eingabe <code class="text-danger">check50</code>
+  an Ihr Programm übergeben hat, welche Ausgabe erwartet wurde und welche
+  Ausgabe Ihr Programm tatsächlich geliefert hat.
+</p>
+
+<h2 id="how-to-submit">Abgabe</h2>
+<p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
+</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  submit50 HSDDigitalLabor/problems/git2025/rotate
+  </code></div>
+<p>
+  Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
+  nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
+  die zuletzt eingereichte Version vor dem Fälligkeitsdatum. Nach Ablauf der
+  Frist können Sie technisch zwar noch Abgaben tätigen, Ihre Lösung wird jedoch
+  nicht mehr gewertet. Das Ergebnis kann ausschließlich mit obigem Befehl abgegeben
+  werden, eine Abgabe in Moodle ist nicht möglich.
+</p>
+
+<h2 id="how-to-mark">Markierung der Aufgabe als erledigt</h2>
+<p>Nachdem Einreichen der Lösung mit <code class="text-danger">submit50</code>,
+  nehmen Sie eine Pseudolösung in Moodle vor, indem Sie auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_solution" disabled>
+    Aufgabenlösung hinzufügen</button>
+  weiter unten auf dieser Seite betätigen und in das sich öffnende Feld unter
+  "Texteingabe online" den folgenden Text ein:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">Mit submit50 abgegeben.</code>
+</div>
+<p>Schließen Sie die Eingabe durch Klick auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_save" disabled>
+    Änderungen speichern</button> unterhalb des Textfeldes ab.
+</p>
+<p>
+  Zur besseren Übersicht markieren Sie das Problem rotate.py in Moodle als erledigt,
+  indem Sie ganz oben auf dieser Seite den Button
+</p>
+<p>
+  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: rotate.py  als erledigt kennzeichnen"
+    aria-label="Problem: rotate.py  als erledigt kennzeichnen" disabled>
+    Als erledigt kennzeichnen
+  </button>
+  klicken. Daraufhin erscheint der Button
+  <button class="btn btn-success btn-sm text-nowrap"
+    title="Problem: rotate.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
+    aria-label="Problem: rotate.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
+    <i class="fa fa-check" aria-hidden="true"></i> Erledigt
+  </button>
+</p>
+
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-11-16 23:05:17</p>
