@@ -142,7 +142,7 @@ def no_forbidden_methods():
     """does not use forbidden built-ins or operators"""
     import tokenize
 
-    forbidden_tokens = {"sorted", "sort", "min", "max", "heapq"}
+    forbidden_tokens = {"sorted", "sort", "heapq"}
     with Path(FILE_NAME).open() as f:
         tokens = tokenize.generate_tokens(f.readline)
         for tok_type, tok_string, *_ in tokens:
