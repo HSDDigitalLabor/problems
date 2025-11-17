@@ -1,0 +1,84 @@
+{% include "header.html" %}
+<p>
+  Der Name „Bogo-Sort“ setzt sich aus den englischen Wörtern „bogus“ (falsch/unsinnig) 
+  und „sort“ (sortieren) zusammen. Er beschreibt treffend die absurde und extrem 
+  ineffiziente Idee hinter dem Verfahren: Die Liste wird so lange zufällig permutiert
+  (gemischt), bis sie vollständig sortiert ist. Aufgrund seiner schlechten 
+  Laufzeit ist der Algorithmus auch als „Stupid Sort“ bekannt.
+</p>
+
+<h1 id="bogo"><img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/31410327/ChatGPT%20Image%2016.%20Nov.%202025%2C%2016_23_38.png"
+    alt="Bogosort" width="400" height="267"></h1>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>
+  Implementieren Sie die Funktion <code>bogo_sort(lst)</code>, die
+  eine Liste <code>lst</code> von Zahlen als Argument entgegennimmt
+  und diese mittels Bogo-Sort sortiert und die sortierte Liste zurückgibt.
+  Implementieren Sie zur Umsetzung eine Hilfsfunktion <code>is_sorted(lst)</code>,
+  die prüft, ob die Liste bereits sortiert ist.
+</p>
+
+<p>
+  Die Funktionen sollten wie folgt aussehen:
+
+<div class="alert alert-dark">
+    <pre><code>
+def is_sorted(lst):
+    ...
+
+
+def bogo_sort(lst):
+    ...
+    </code></pre>
+</div>
+
+  Verwenden Sie <strong>keine</strong> eingebauten Sortierfunktionen wie 
+  <code>sorted()</code> oder <code>list.sort()</code>.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Um die Liste zufällig zu mischen können Sie folgende Funktion verwenden <a
+        href="https://docs.python.org/3/library/random.html#random.shuffle" target="_blank">
+        https://docs.python.org/3/library/random.html#random.shuffle
+      </a>.
+    </li>
+    <li>
+      Bogo-Sort ist sehr ineffizient. Verwenden Sie daher in Tests nur <strong>kurze</strong> Listen,
+      z.B. 3-5 Elemente, um eine endlose Bearbeitungszeiten zu vermeiden.
+    </li>
+  </ul>
+</details>
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>
+    Testen Sie die Funktion mit einer kleinen Liste, z. B.:
+    <pre><code>print(bogo_sort([3, 2, 1]))  # sollte [1, 2, 3] ausgeben</code></pre>
+  </li>
+  <li>
+    Testen Sie eine bereits sortierte Liste:
+    <pre><code>print(bogo_sort([1, 2, 3]))  # sollte [1, 2, 3] ausgeben</code></pre>
+  </li>
+  <li>
+    Testen Sie eine Liste mit doppelten Werten:
+    <pre><code>print(bogo_sort([3, 1, 3, 2]))  # sollte [1, 2, 3, 3] ausgeben</code></pre>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}

@@ -1,0 +1,83 @@
+{% include "header.html" %}
+
+<p>
+  Der Bubble-Sort-Algorithmus vergleicht wiederholt benachbarte Elemente und vertauscht sie,
+  wenn sie nicht in der gewünschten Reihenfolge sind, bis die Liste vollständig sortiert ist.
+  Dabei "blubbern" die größten oder kleinsten Elemente wie Luftblasen an das Ende der Liste.
+</p>
+
+<p><img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/819313663/ChatGPT%20Image%2016.%20Nov.%202025%2C%2016_59_21.png"
+    alt="bubble_sort" width="300" height="450">
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>
+  Implementieren Sie die Funktion <code>bubble_sort(lst)</code>, die eine Liste von Zahlen 
+  mithilfe des <strong>Bubble-Sort</strong>-Algorithmus in <strong>aufsteigender</strong> Reihenfolge 
+  sortiert. Die Funktion erhält die unsortierte Liste <code>lst</code> als Parameter und 
+  gibt die sortierte Liste zurück.
+</p>
+
+<p>
+  Die Funktionsdefinition ist bereits vorgegeben, verwenden Sie diese:
+<div class="alert alert-dark">
+  <pre><code>
+def bubble_sort(lst):
+    ...
+  </code></pre>
+</div>
+Verwenden sie <strong>keine</strong> eingebauten Sortierfunktionen
+wie <code>sorted()</code> oder <code>list.sort()</code>.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Sie können die Liste mit zwei verschachtelten <code>for</code>-Schleifen durchlaufen.
+      Vergleichen Sie jeweils zwei benachbarte Elemente <code>lst[j]</code> und <code>lst[j + 1]</code>
+      und vertauschen Sie diese, falls sie die falsche Reihenfolge aufweisen.
+    </li>
+    <li>
+      Nach jedem vollständigen Durchlauf wird das größte Element „nach oben gebubbelt“.
+      Daher können Sie in der inneren Schleife bei jedem Durchgang ein Element weniger überprüfen.
+    </li>
+    <li>
+      Eine Verbesserung des Algorithmus besteht darin, den Sortiervorgang vorzeitig abzubrechen,
+      wenn in einem Durchlauf keine Vertauschungen vorgenommen wurden. Hierfür können Sie eine 
+      Variable <code>swapped</code> einführen, um zu überprüfen, ob während eines Durchlaufs 
+      Vertauschungen stattgefunden haben. Wenn dies nicht der Fall ist, ist die Liste bereits 
+      sortiert, und der Algorithmus kann vorzeitig beendet werden.
+    </li>
+  </ul>
+</details>
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>
+    Testen Sie die Funktion mit einer kleinen Liste, z. B.:
+    <pre><code>print(bubble_sort([3, 2, 4, 1]))  # sollte [1, 2, 3, 4] ausgeben</code></pre>
+  </li>
+  <li>
+    Testen Sie eine bereits sortierte Liste:
+    <pre><code>print(bubble_sort([1, 2, 3, 4, 5, 6]))  # sollte [1, 2, 3, 4, 5, 6] ausgeben</code></pre>
+  </li>
+  <li>
+    Testen Sie eine Liste mit doppelten Werten:
+    <pre><code>print(bubble_sort([3, 1, 3, 2, 3, 4]))  # sollte [1, 2, 3, 3, 3, 4] ausgeben</code></pre>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
