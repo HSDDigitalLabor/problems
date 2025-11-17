@@ -1,0 +1,86 @@
+{% include "header.html" %}
+
+<p>
+  Merge Sort ist ein effizienter Sortieralgorithmus, der das 
+  Prinzip "Teile und Herrsche" anwendet, indem er eine Liste wiederholt
+  in zwei Hälften teilt, diese rekursiv sortiert und anschließend 
+  die sortierten Teillisten wieder zu einer einzigen sortierten Liste zusammenführt. 
+  Das Zusammenführen der Listen ist dabei der entscheidende Schritt, 
+  dieser wird als "Merge" bezeichnet und in diesem Problem genauer betrachtet.
+</p>
+
+<p>
+  <iframe width="560" height="315"
+    src="https://www.youtube-nocookie.com/embed/XaqR3G_NVoo?si=GObJfHvpm0TXWf2S"
+    title="YouTube-Video: Merge (Mergesort) Erklärung"
+    style="border: 0;"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+</iframe>
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>
+  Implementieren Sie die Funktion <code>merge(lst1, lst2)</code>,
+  die zwei <strong>aufsteigend sortierte</strong> Listen zu einer neuen, ebenfalls 
+  <strong>aufsteigend sortierten</strong> Liste zusammenführt.
+  Die ursprünglichen Listen sollen dabei unverändert bleiben. Die Funktion nimmt zwei 
+  <code>list</code>-Objekte <code>lst1</code> und <code>lst2</code> als Parameter entgegen
+  und gibt eine neue Liste zurück, die alle Elemente beider Listen in aufsteigender Reihenfolge enthält.
+</p>
+
+<p>
+  Die Funktionsdefinition ist bereits vorgegeben, verwenden Sie diese:
+</p>
+<div class="alert alert-dark">
+  <pre><code>
+def merge(lst1, lst2):
+    ...
+  </code></pre>
+</div>
+<p>
+Verwenden Sie <strong>keine</strong> eingebauten Sortierfunktionen
+wie <code>sorted()</code> oder <code>list.sort()</code>.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Beide Eingabelisten <code>lst1</code> und <code>lst2</code> sind bereits sortiert.
+      Ihre Aufgabe ist es, die Elemente effizient zusammenzuführen – ähnlich wie im
+      <a href="https://de.wikipedia.org/wiki/Mergesort" target="_blank">Merge-Schritt von Mergesort</a>.
+    </li>
+  </ul>
+</details>
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>
+    Testen Sie sie mit einfachen Listen, z.B.:
+    <pre><code>print(merge([1, 3, 5], [2, 4, 6]))  # sollte [1, 2, 3, 4, 5, 6] ausgeben</code></pre>
+  </li>
+  <li>
+    Testen Sie mit einer leeren Liste:
+    <pre><code>print(merge([], [1, 2, 3]))  # sollte [1, 2, 3] ausgeben</code></pre>
+  </li>
+  <li>
+    Testen Sie mit Listen, die doppelte Werte enthalten:
+    <pre><code>print(merge([1, 2, 2], [2, 3]))  # sollte [1, 2, 2, 2, 3] ausgeben</code></pre>
+  </li>
+  <li>Überlegen Sie sich weitere Testfälle und Randbedingungen zum Testen.</li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
