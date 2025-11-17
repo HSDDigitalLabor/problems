@@ -1,6 +1,5 @@
-from re import match
-
 import check50
+import check50.py
 
 FILE_NAME = "rotate.py"
 
@@ -9,3 +8,78 @@ FILE_NAME = "rotate.py"
 def exists():
     """file exists"""
     check50.exists(FILE_NAME)
+
+
+@check50.check(exists)
+def compiles():
+    """rotate.py compiles"""
+    check50.py.compile(FILE_NAME)
+
+
+@check50.check(compiles)
+def has_function():
+    """rotate_list function defined"""
+    module = check50.py.import_(FILE_NAME)
+    if not hasattr(module, "rotate_list"):
+        msg = f"Function `rotate_list` not found in {FILE_NAME}"
+        raise check50.Failure(msg)
+
+
+@check50.check(has_function)
+def example1():
+    """Example 1: rotate_list([1,2,3,4,5,6,7], 3) works"""
+    module = check50.py.import_(FILE_NAME)
+    lst = [1, 2, 3, 4, 5, 6, 7]
+    module.rotate_list(lst, 3)
+    expected = [5, 6, 7, 1, 2, 3, 4]
+    if lst != expected:
+        msg = f"expected {expected}, got {lst}"
+        raise check50.Failure(msg)
+
+
+@check50.check(has_function)
+def zero_rotation():
+    """Rotation by 0 keeps list unchanged"""
+    module = check50.py.import_(FILE_NAME)
+    lst = [1, 2, 3]
+    module.rotate_list(lst, 0)
+    expected = [1, 2, 3]
+    if lst != expected:
+        msg = f"expected {expected}, got {lst}"
+        raise check50.Failure(msg)
+
+
+@check50.check(has_function)
+def rotation_equal_length():
+    """Rotation by list length keeps list unchanged"""
+    module = check50.py.import_(FILE_NAME)
+    lst = [1, 2, 3, 4]
+    module.rotate_list(lst, 4)
+    expected = [1, 2, 3, 4]
+    if lst != expected:
+        msg = f"expected {expected}, got {lst}"
+        raise check50.Failure(msg)
+
+
+@check50.check(has_function)
+def rotation_greater_than_length():
+    """Rotation greater than list length works"""
+    module = check50.py.import_(FILE_NAME)
+    lst = [1, 2, 3]
+    module.rotate_list(lst, 4)
+    expected = [3, 1, 2]
+    if lst != expected:
+        msg = f"expected {expected}, got {lst}"
+        raise check50.Failure(msg)
+
+
+@check50.check(has_function)
+def negatives():
+    """Rotation with negative numbers works"""
+    module = check50.py.import_(FILE_NAME)
+    lst = [-1, -100, 3, 99]
+    module.rotate_list(lst, 3)
+    expected = [-100, 3, 99, -1]
+    if lst != expected:
+        msg = f"expected {expected}, got {lst}"
+        raise check50.Failure(msg)
