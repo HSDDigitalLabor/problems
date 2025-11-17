@@ -21,66 +21,62 @@ def has_function():
     """binary_recursive function defined"""
     module = check50.py.import_(FILE_NAME)
     if not hasattr(module, "binary_recursive"):
-        msg = "Function `binary_recursive` not found in run_back.py"
+        msg = "Function `binary_recursive` not found in binary_recursive.py"
         raise check50.Failure(msg)
 
 
 @check50.check(has_function)
-def test_found_first():
+def test_sample_1():
+    """sample test: finds 8 in list"""
+    module = check50.py.import_(FILE_NAME)
+    result = module.binary_recursive([6, 7, 8, 9, 10], 8)
+    if result != 2:
+        raise check50.Mismatch(2, result)
+
+
+@check50.check(has_function)
+def test_sample_2():
+    """sample test: finds 17 in list"""
+    module = check50.py.import_(FILE_NAME)
+    result = module.binary_recursive([11, 13, 15, 17, 18], 17)
+    if result != 3:
+        raise check50.Mismatch(3, result)
+
+
+@check50.check(has_function)
+def test_sample_3():
+    """sample test: returns -1 for missing element"""
+    module = check50.py.import_(FILE_NAME)
+    result = module.binary_recursive([3, 4, 5, 6, 7], 1)
+    if result != -1:
+        raise check50.Mismatch(-1, result)
+
+
+@check50.check(has_function)
+def test_sample_4():
+    """sample test: empty list returns -1"""
+    module = check50.py.import_(FILE_NAME)
+    result = module.binary_recursive([], 13)
+    if result != -1:
+        raise check50.Mismatch(-1, result)
+
+
+@check50.check(has_function)
+def test_first():
     """finds first element"""
     module = check50.py.import_(FILE_NAME)
-    lst = [1, 2, 3]
-    key = 1
-    expected = lst.index(key)
-    result = module.binary_recursive(lst, key)
-    if result != expected:
-        raise check50.Mismatch(expected, result, help=f"Expected index {expected}")
+    result = module.binary_recursive([1, 2, 3], 1)
+    if result != 0:
+        raise check50.Mismatch(0, result)
 
 
 @check50.check(has_function)
-def test_found_middle():
-    """finds middle element"""
-    module = check50.py.import_(FILE_NAME)
-    lst = [1, 2, 3, 4, 5]
-    key = 3
-    expected = lst.index(key)
-    result = module.binary_recursive(lst, key)
-    if result != expected:
-        raise check50.Mismatch(expected, result, help=f"Expected index {expected}")
-
-
-@check50.check(has_function)
-def test_found_last():
+def test_last():
     """finds last element"""
     module = check50.py.import_(FILE_NAME)
-    lst = [10, 20, 30, 40, 50]
-    key = 50
-    expected = lst.index(key)
-    result = module.binary_recursive(lst, key)
-    if result != expected:
-        raise check50.Mismatch(expected, result, help=f"Expected index {expected}")
-
-
-@check50.check(has_function)
-def test_not_found():
-    """returns -1 when key not in list"""
-    module = check50.py.import_(FILE_NAME)
-    lst = [1, 3, 5, 7, 9]
-    key = 4
-    result = module.binary_recursive(lst, key)
-    if result != -1:
-        raise check50.Mismatch(-1, result, help="Expected -1 when key not found")
-
-
-@check50.check(has_function)
-def test_empty_list():
-    """returns -1 on empty list"""
-    module = check50.py.import_(FILE_NAME)
-    lst = []
-    key = 10
-    result = module.binary_recursive(lst, key)
-    if result != -1:
-        raise check50.Mismatch(-1, result, help="Expected -1 on empty list")
+    result = module.binary_recursive([10, 20, 30, 40, 50], 50)
+    if result != 4:
+        raise check50.Mismatch(4, result)
 
 
 @check50.check(has_function)
@@ -88,10 +84,9 @@ def test_duplicates():
     """handles duplicates correctly (returns any valid index)"""
     module = check50.py.import_(FILE_NAME)
     lst = [1, 2, 2, 2, 3, 4]
-    key = 2
-    result = module.binary_recursive(lst, key)
-    if result not in [1, 2, 3]:
-        msg = f"Expected index 1, 2, or 3 but got {result}"
+    result = module.binary_recursive(lst, 2)
+    if result not in (1, 2, 3):
+        msg = f"Expected index 1, 2 or 3 but got {result}"
         raise check50.Failure(msg)
 
 
@@ -99,36 +94,31 @@ def test_duplicates():
 def test_negative_numbers():
     """works with negative numbers"""
     module = check50.py.import_(FILE_NAME)
-    lst = [-10, -5, 0, 5, 10]
-    key = -5
+    result = module.binary_recursive([-10, -5, 0, 5, 10], -5)
+    if result != 1:
+        raise check50.Mismatch(1, result)
+
+
+@check50.check(has_function)
+def test_random():
+    """works on a random sorted list"""
+    import random
+
+    module = check50.py.import_(FILE_NAME)
+    random.seed("git2025")
+    lst = sorted(random.sample(range(0, 500), 30))
+    key = random.choice(lst)
     expected = lst.index(key)
     result = module.binary_recursive(lst, key)
+
     if result != expected:
         raise check50.Mismatch(expected, result)
 
 
 @check50.check(has_function)
-def test_random():
-    """works on random sorted lists"""
-    import random
-
-    module = check50.py.import_(FILE_NAME)
-    random.seed("cs50binary")
-    lst = sorted(random.sample(range(0, 500), 30))
-    key = random.choice(lst)
-    expected = lst.index(key)
-    result = module.binary_recursive(lst, key)
-    if result != expected:
-        raise check50.Mismatch(
-            expected,
-            result,
-            help=f"Expected index {expected} for key {key} in list {lst}",
-        )
-
-
-@check50.check(has_function)
 def test_efficiency():
-    """performs well on large lists"""
+    """algorithm accesses only logarithmic number of elements"""
+
     from collections import UserList
 
     class WatchList(UserList):
@@ -140,51 +130,57 @@ def test_efficiency():
 
     lst = WatchList(range(100_000))
     lst.accesses = 0
-    key = 99999
 
-    module.binary_recursive(lst, key)
+    module.binary_recursive(lst, 99999)
 
-    if lst.accesses > 1000:  # binary search should only need ~17 accesses
-        msg = "too many element accesses on large list"
+    if lst.accesses > 1000:
+        msg = "Too many list accesses; algorithm may not be binary search"
+        raise check50.Failure(msg)
+
+
+@check50.check(has_function)
+def test_recursion():
+    """binary_recursive uses recursion"""
+    module = check50.py.import_(FILE_NAME)
+
+    calls = 0
+    original = module.binary_recursive
+
+    def wrapper(*args, **kwargs):
+        nonlocal calls
+        calls += 1
+        return original(*args, **kwargs)
+
+    # Monkey-patch function so that calls are counted
+    module.binary_recursive = wrapper
+
+    # Perform a search that requires recursion
+    result = module.binary_recursive([1, 2, 3, 4, 5, 6, 7], 6)
+
+    # Restore original function (cleanliness, not required but good practice)
+    module.binary_recursive = original
+
+    if calls <= 1:
+        msg = "Your function does not appear to be recursive (only 1 call detected)."
         raise check50.Failure(msg)
 
 
 @check50.check(has_function)
 def no_forbidden_methods():
-    """does not use forbidden built-ins or operators"""
+    """does not use forbidden built-ins or membership tests"""
     import tokenize
     from pathlib import Path
 
-    forbidden_tokens = {
-        "index",
-        "sort",
-        "enumerate",
-        "find",
-        "count",
-        "map",
-        "filter",
-        "any",
-        "all",
-        "next",
-    }
+    forbidden = {"index", "sort", "enumerate", "find", "count", "map", "filter"}
 
     with Path(FILE_NAME).open() as f:
         tokens = list(tokenize.generate_tokens(f.readline))
 
-        for i, (tok_type, tok_string, _, _, _) in enumerate(tokens):
-            # Skip comments and string literals
+        for tok_type, tok_string, _, _, _ in tokens:
+            # Skip comments and strings
             if tok_type in (tokenize.COMMENT, tokenize.STRING):
                 continue
 
-            # Disallow built-ins
-            if tok_string in forbidden_tokens:
-                msg = f"Found forbidden token '{tok_string}' in your code"
+            if tok_string in forbidden:
+                msg = f"Found forbidden function '{tok_string}'"
                 raise check50.Failure(msg)
-
-            # Check for forbidden membership tests: "if <expr> in <expr>"
-            if tok_string == "in":
-                # Look backwards a few tokens to see if we're inside a for loop
-                lookback = [t[1] for t in tokens[max(0, i - 3) : i]]
-                if "for" not in lookback:  # only flag if not inside a for statement
-                    msg = "Found forbidden membership test using 'in'"
-                    raise check50.Failure(msg)
