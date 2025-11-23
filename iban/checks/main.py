@@ -30,6 +30,21 @@ def has_function():
 
 
 @check50.check(has_function)
+def return_type():
+    """function returns an integer"""
+    module = check50.py.import_(FILE_NAME)
+
+    banking_code = 50010517
+    account_number = 123456789
+
+    result = module.calcCheckDigitsDE(banking_code, account_number)
+
+    if not isinstance(result, int):
+        msg = f"Expected return type 'int' but got '{type(result).__name__}'"
+        raise check50.Failure(msg)
+
+
+@check50.check(return_type)
 def test_example1():
     """test on example 1"""
     module = check50.py.import_(FILE_NAME)
@@ -45,7 +60,7 @@ def test_example1():
         raise check50.Mismatch(str(expected), str(result))
 
 
-@check50.check(has_function)
+@check50.check(return_type)
 def test_example2():
     """test on example 2"""
     module = check50.py.import_(FILE_NAME)
@@ -61,7 +76,7 @@ def test_example2():
         raise check50.Mismatch(str(expected), str(result))
 
 
-@check50.check(has_function)
+@check50.check(return_type)
 def test_example3():
     """test on example 3"""
     module = check50.py.import_(FILE_NAME)
@@ -77,7 +92,7 @@ def test_example3():
         raise check50.Mismatch(str(expected), str(result))
 
 
-@check50.check(has_function)
+@check50.check(return_type)
 def test_example4():
     """test on example 4"""
     module = check50.py.import_(FILE_NAME)
@@ -93,7 +108,7 @@ def test_example4():
         raise check50.Mismatch(str(expected), str(result))
 
 
-@check50.check(has_function)
+@check50.check(return_type)
 def test_example5():
     """test on example 5"""
     module = check50.py.import_(FILE_NAME)
@@ -109,7 +124,7 @@ def test_example5():
         raise check50.Mismatch(str(expected), str(result))
 
 
-@check50.check(has_function)
+@check50.check(return_type)
 def test_example6():
     """test on example 6"""
     module = check50.py.import_(FILE_NAME)
@@ -125,7 +140,7 @@ def test_example6():
         raise check50.Mismatch(str(expected), str(result))
 
 
-@check50.check(has_function)
+@check50.check(return_type)
 def test_example7():
     """test on example 7"""
     module = check50.py.import_(FILE_NAME)
@@ -141,7 +156,7 @@ def test_example7():
         raise check50.Mismatch(str(expected), str(result))
 
 
-@check50.check(has_function)
+@check50.check(return_type)
 def test_example8():
     """test on example 8"""
     module = check50.py.import_(FILE_NAME)
@@ -157,7 +172,7 @@ def test_example8():
         raise check50.Mismatch(str(expected), str(result))
 
 
-@check50.check(has_function)
+@check50.check(return_type)
 def random_tests():
     """randomized hidden tests"""
     import random
