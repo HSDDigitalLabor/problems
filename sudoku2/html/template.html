@@ -1,0 +1,116 @@
+{% include "header.html" %}
+
+<p>
+  Beim Lösen eines Sudoku-Rätsels ist es wichtig sicherzustellen, dass das Sudoku-Feld
+  gültig ist. Für diese Aufgabe sollen Sie nur die 3x3-Subgrids überprüfen:
+</p>
+
+<ul>
+  <li>Jedes 3x3-Block darf jede Ziffer 1-9 höchstens einmal enthalten.</li>
+</ul>
+
+<p>
+  Ihre Aufgabe ist es, eine Funktion <code class="text-danger border border-dark">isValid(board)</code>
+  zu implementieren, die ein 9x9-Sudoku-Board (als Liste von Listen mit Strings)
+  entgegennimmt und <strong>True</strong> zurückgibt, wenn alle 3x3-Blocks gültig sind,
+  ansonsten <strong>False</strong>. Leere Felder sind durch <code>"."</code> dargestellt.
+</p>
+
+<p>
+  {% include "file.html" %}
+  Implementieren Sie Ihr Programm so, dass die Funktion
+  <code class="text-danger border border-dark">isValid(board)</code> korrekt überprüft,
+  ob jedes 3x3-Subgrid die Regeln erfüllt.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Verwenden Sie keine Funktionen wie
+      <code class="text-danger border border-dark">.count()</code> oder
+      <code class="text-danger border border-dark">.index()</code>.
+      Arbeiten Sie stattdessen mit Schleifen und Vergleichen.
+    </li>
+    <li>
+      Leere Felder (<code>"."</code>) sollten ignoriert werden.
+    </li>
+    <li>
+      Jedes Element des Boards ist ein String, nicht eine Zahl.
+    </li>
+    <li>
+      Denken Sie daran, dass jedes 3x3-Subgrid durch die Zellen
+      <code>board[r][c]</code> bestimmt wird, wobei <code>r</code> die Zeilennummer
+      (0 bis 8) und <code>c</code> die Spaltennummer (0 bis 8) ist.
+      Um herauszufinden, in welchem 3x3-Block eine Zelle liegt, können Sie
+      die ganzzahlige Division <code>//</code> verwenden:
+      <ul>
+        <li><code>r // 3</code> gibt die Block-Zeile (0 bis 2) an</li>
+        <li><code>c // 3</code> gibt die Block-Spalte (0 bis 2) an</li>
+      </ul>
+      Beispielsweise gehören die Zellen mit <code>r = 0..2</code> und <code>c = 0..2</code>
+      zum oberen linken 3x3-Block. So können Sie die Zellen jedes Blocks systematisch
+      überprüfen, ohne Zeilen oder Spalten zu beachten.
+    </li>
+  </ul>
+</details>
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>
+    Ihr Programm wird nicht über Eingaben getestet, sondern ausschließlich
+    über Aufrufe der Funktion <code>isValid</code> mit verschiedenen Sudoku-Boards.
+  </li>
+
+  <li>
+    Beispiel für ein gültiges Board (alle 3x3-Blocks korrekt):
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        [
+          ["5","3",".",".","7",".",".",".","."],
+          ["6",".",".","1","9","5",".",".","."],
+          [".","9","8",".",".",".",".","6","."],
+          ["8",".",".",".","6",".",".",".","3"],
+          ["4",".",".","8",".","3",".",".","1"],
+          ["7",".",".",".","2",".",".",".","6"],
+          [".","6",".",".",".",".","2","8","."],
+          [".",".",".","4","1","9",".",".","5"],
+          [".",".",".",".","8",".",".","7","9"]
+        ]
+      </code>
+      → Erwartet: <strong>True</strong>
+    </div>
+  </li>
+
+  <li>
+    Beispiel für ein ungültiges Board (Duplikat in einem 3x3-Block):
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        [
+          ["5","3",".",".","7",".",".",".","."],
+          ["6","5",".","1","9","5",".",".","."],
+          [".","9","8",".",".",".",".","6","."],
+          ...
+        ]
+      </code>
+      → Erwartet: <strong>False</strong>
+    </div>
+  </li>
+
+  <li>
+    Ein Duplikat außerhalb des 3x3-Blocks (z.B. nur in Zeilen oder Spalten) sollte
+    <strong>nicht</strong> zu False führen.
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
