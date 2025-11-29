@@ -1,0 +1,111 @@
+{% include "header.html" %}
+
+<p>
+  Beim Lösen eines Sudoku-Rätsels ist es wichtig sicherzustellen, dass das Sudoku-Feld
+  gültig ist. Ein gültiges Sudoku erfüllt zwei Bedingungen:
+</p>
+
+<ul>
+  <li>In jeder Zeile dürfen die Ziffern 1-9 höchstens einmal vorkommen.</li>
+  <li>In jeder Spalte dürfen die Ziffern 1-9 höchstens einmal vorkommen.</li>
+</ul>
+
+<p>
+  Ihre Aufgabe ist es, eine Funktion <code class="text-danger border border-dark">isValid(board)</code>
+  zu implementieren, die ein 9x9-Sudoku-Board (als Liste von Listen mit Strings)
+  entgegennimmt und <strong>True</strong> zurückgibt, wenn das Board die Regeln für
+  Zeilen und Spalten erfüllt, andernfalls <strong>False</strong>. Leere Felder sind durch
+  <code>"."</code> dargestellt.
+</p>
+
+<p>
+  {% include "file.html" %}
+  Implementieren Sie Ihr Programm so, dass die Funktion
+  <code class="text-danger border border-dark">isValid(board)</code> korrekt überprüft,
+  ob das Sudoku-Feld Zeilen und Spalten korrekt befüllt hat.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Verwenden Sie keine Funktionen wie
+      <code class="text-danger border border-dark">.count()</code> oder
+      <code class="text-danger border border-dark">.index()</code>.
+      Arbeiten Sie stattdessen mit Schleifen und Vergleichen.
+    </li>
+    <li>
+      Leere Felder (<code>"."</code>) sollten ignoriert werden.
+    </li>
+    <li>
+      Jedes Element des Boards ist ein String, nicht eine Zahl.
+    </li>
+  </ul>
+</details>
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>
+    Ihr Programm wird nicht über Eingaben getestet, sondern ausschließlich
+    über Aufrufe der Funktion <code>isValid</code> mit verschiedenen Sudoku-Boards.
+  </li>
+
+  <li>
+    Beispiel für ein gültiges Board (Ihre Funktion sollte <strong>True</strong> zurückgeben):
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        [
+          ["5","3",".",".","7",".",".",".","."],
+          ["6",".",".","1","9","5",".",".","."],
+          [".","9","8",".",".",".",".","6","."],
+          ["8",".",".",".","6",".",".",".","3"],
+          ["4",".",".","8",".","3",".",".","1"],
+          ["7",".",".",".","2",".",".",".","6"],
+          [".","6",".",".",".",".","2","8","."],
+          [".",".",".","4","1","9",".",".","5"],
+          [".",".",".",".","8",".",".","7","9"]
+        ]
+      </code>
+    </div>
+  </li>
+
+  <li>
+    Beispiel für ein ungültiges Board (Duplikat in einer Zeile):
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        [
+          ["8","8",".",".","7",".",".",".","."],
+          ...
+        ]
+      </code>
+      → Erwartet: <strong>False</strong>
+    </div>
+  </li>
+
+  <li>
+    Beispiel für ein ungültiges Board (Duplikat in einer Spalte):
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        [
+          ["5","3",".",".","7",".",".",".","."],
+          ["6",".",".","1","9","5",".",".","."],
+          ["5","9","8",".",".",".",".","6","."],
+          ...
+        ]
+      </code>
+      → Erwartet: <strong>False</strong>
+    </div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
