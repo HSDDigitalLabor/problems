@@ -1,0 +1,237 @@
+<h1 id="neuner">Neunerprobe</h1>
+
+<p>
+  Die <strong>Neunerprobe</strong> ist eine Methode zur Überprüfung 
+  von Multiplikationsergebnissen. Dazu wird für die Faktoren und das Produkt eine 
+  einstellige <strong>Prüfsumme</strong> gebildet, die anschließend
+  miteinander verglichen werden, um Rechenfehler zu erkennen.
+</p>
+
+<p><img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/189032753/neuner.png"
+    alt="neuner" width="600" height="240">
+</p>
+
+<p><strong>Das Verfahren:</strong></p>
+<ol>
+  <li>
+    <strong>Prüfsumme berechnen:</strong>
+    <ul>
+      <li>Bilde die Quersumme der Zahl (Summe aller Ziffern)</li>
+      <li>Falls das Ergebnis mehrstellig ist: Bilde erneut die Quersumme</li>
+      <li>Wiederhole dies, bis nur noch eine Ziffer übrig bleibt</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Anwendung auf die Multiplikation a · b = c:</strong>
+    <ul>
+      <li>Berechne die Prüfsumme von a → Ergebnis: PSUM<sub>a</sub></li>
+      <li>Berechne die Prüfsumme von b → Ergebnis: PSUM<sub>b</sub></li>
+      <li>Berechne die Prüfsumme von c → Ergebnis: PSUM<sub>c</sub></li>
+    </ul>
+  </li>
+  <li>
+    <strong>Vergleich durchführen:</strong>
+    <ul>
+      <li>Multipliziere PSUM<sub>a</sub> · PSUM<sub>b</sub></li>
+      <li>Bilde die Prüfsumme dieses Produkts → Ergebnis: PSUM<sub>prod</sub></li>
+      <li>Vergleiche PSUM<sub>prod</sub> mit PSUM<sub>c</sub></li>
+    </ul>
+  </li>
+  <li>
+    <strong>Auswertung:</strong>
+    <ul>
+      <li>Falls PSUM<sub>prod</sub> ≠ PSUM<sub>c</sub>: Ist das Ergebnis c <strong>definitiv falsch</strong></li>
+      <li>Falls PSUM<sub>prod</sub> = PSUM<sub>c</sub>: Kann das Ergebnis c <strong>korrekt sein</strong> (aber nicht garantiert)</li>
+    </ul>
+  </li>
+</ol>
+
+<p>
+  <strong>Wichtig:</strong> Die Methode ist nicht narrensicher – sie erkennt viele, 
+  aber nicht alle Fehler. Ein falsches Ergebnis kann den Test bestehen.
+</p>
+
+<p><strong>Beispiel:</strong> a = 429, b = 357, c = 154153</p>
+<ul>
+  <li>PSUM<sub>a</sub> = 4+2+9 = 15 → 1+5 = 6</li>
+  <li>PSUM<sub>b</sub> = 3+5+7 = 15 → 1+5 = 6</li>
+  <li>PSUM<sub>c</sub> = 1+5+4+1+5+3 = 19 → 1+9 = 10 → 1+0 = 1</li>
+  <li>PSUM<sub>a</sub> · PSUM<sub>b</sub> = 6 · 6 = 36 → 3+6 = 9</li>
+  <li>Da PSUM<sub>prod</sub> = 9 ≠ 1 = PSUM<sub>c</sub>, ist c falsch</li>
+</ul>
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>
+  Schreiben Sie eine Funktion <code class="text-danger border border-dark">isValidProduct(a, b, c)</code>,
+  die die Faktoren <strong>a</strong>, <strong>b</strong> und das Ergebnis <strong>c</strong> (als Strings oder Zahlen)
+  entgegennimmt und mittels Neunerprobe prüft, ob <strong>c</strong> korrekt sein <em>kann</em>.
+  Die Funktion soll <strong>True</strong> zurückgeben, wenn die Prüfsumme von <code>a · b</code> mit der Prüfsumme von <code>c</code>
+  übereinstimmt, sonst <strong>False</strong>. Leere oder nicht-numerische Eingaben sind zu behandeln.
+</p>
+
+<p>
+    Erstellen Sie eine Datei mit dem Namen
+  <code class="text-danger border border-dark">neuner.py</code> und
+  Implementieren Sie Ihr Programm so, dass die Funktion
+  <code class="text-danger border border-dark">isValidProduct(a, b, c)</code> 
+  die Neunerprobe korrekt durchführt.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Die Prüfsumme einer Zahl kann durch wiederholtes Bilden der Quersumme ermittelt werden,
+      bis nur noch eine einstellige Zahl übrig bleibt.
+    </li>
+    <li>
+      Behandeln Sie Sonderfälle: leere Strings, nicht-numerische Eingaben und negative Zahlen.
+    </li>
+    <li>
+      Die Eingaben <code>a</code>, <code>b</code> und <code>c</code> können sowohl als
+      Strings als auch als Zahlen übergeben werden.
+    </li>
+    <li>
+      Die Funktion soll <code class="text-danger border border-dark">True</code> zurückgeben,
+      wenn die Neunerprobe besteht (also s = s<sub>c</sub>), sonst
+      <code class="text-danger border border-dark">False</code>.
+    </li>
+    <li>
+      Die Bildung der einstelligen Prüfsumme (Quersumme bis zur Einerstelle) kann iterativ
+      oder rekursiv implementiert werden. Es ist jedoch nicht erforderlich, Rekursion zu verwenden.
+  </ul>
+</details>
+
+<!-- <p></p>
+<h2 id="demo">Demo</h2>
+<p>
+  <script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
+  id="asciicast-"
+  src="https://asciinema.org/a/.js">
+  </script>
+</p> -->
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
+  neuner</code></div>
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">neuner</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
+  neuner</code></div>
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt Ihres Terminals sollte
+  nun <code class="text-danger border border-dark">neuner/$</code> anzeigen.
+  Jetzt können Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
+  neuner.py</code></div>
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">neuner.py</code> zu erstellen, in der Sie Ihr
+  Programm schreiben.
+</p>
+
+<h2 id="how-to-test">So testen Sie Ihr Programm</h2>
+<p>So können Sie Ihr Programm manuell testen:</p>
+<ul>
+  <li>
+    Ihr Programm wird nicht über Eingaben getestet, sondern ausschließlich
+    über Aufrufe der Funktion <code>isValidProduct</code> mit verschiedenen Beispielen.
+  </li>
+
+  <li>
+    Beispiel für ein gültiges Produkt (Ihre Funktion sollte <strong>True</strong> zurückgeben):
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        isValidProduct(429, 357, 154153)
+      </code>
+      → Erwartet: <strong>True</strong>
+    </div>
+  </li>
+
+  <li>
+    Beispiel für ein ungültiges Produkt:
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        isValidProduct(123, 456, 56088)
+      </code>
+      → Erwartet: <strong>False</strong>
+    </div>
+  </li>
+</ul>
+
+<p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
+  class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
+  der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
+  aber auch selbst!</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  check50 HSDDigitalLabor/problems/git2025/neuner
+  </code></div>
+<p>
+  Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
+  bedeuten, dass Ihr Programm einen Test bestanden hat! Rote
+  traurige Smileys <span style="font-family: monospace; color: red;">:( </span>
+  zeigen an, dass Ihr Programm etwas Unerwartetes ausgegeben
+  hat. Besuchen Sie die URL, die <code class="text-danger">check50</code>
+  ausgibt, um zu sehen, welche Eingabe <code class="text-danger">check50</code>
+  an Ihr Programm übergeben hat, welche Ausgabe erwartet wurde und welche
+  Ausgabe Ihr Programm tatsächlich geliefert hat.
+</p>
+
+<h2 id="how-to-submit">Abgabe</h2>
+<p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
+</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  submit50 HSDDigitalLabor/problems/git2025/neuner
+  </code></div>
+<p>
+  Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
+  nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
+  die zuletzt eingereichte Version vor dem Fälligkeitsdatum. Nach Ablauf der
+  Frist können Sie technisch zwar noch Abgaben tätigen, Ihre Lösung wird jedoch
+  nicht mehr gewertet. Das Ergebnis kann ausschließlich mit obigem Befehl abgegeben
+  werden, eine Abgabe in Moodle ist nicht möglich.
+</p>
+
+<h2 id="how-to-mark">Markierung der Aufgabe als erledigt</h2>
+<p>Nach dem Einreichen der Lösung mit <code class="text-danger">submit50</code>,
+  nehmen Sie eine Pseudolösung in Moodle vor, indem Sie auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_solution" disabled>
+    Aufgabenlösung hinzufügen</button>
+  weiter unten auf dieser Seite betätigen und in das sich öffnende Feld unter
+  "Texteingabe online" den folgenden Text ein:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">Mit submit50 abgegeben.</code>
+</div>
+<p>Schließen Sie die Eingabe durch Klick auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_save" disabled>
+    Änderungen speichern</button> unterhalb des Textfeldes ab.
+</p>
+<p>
+  Zur besseren Übersicht markieren Sie das Problem neuner.py in Moodle als erledigt,
+  indem Sie ganz oben auf dieser Seite den Button
+</p>
+<p>
+  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: neuner.py  als erledigt kennzeichnen"
+    aria-label="Problem: neuner.py  als erledigt kennzeichnen" disabled>
+    Als erledigt kennzeichnen
+  </button>
+  klicken. Daraufhin erscheint der Button
+  <button class="btn btn-success btn-sm text-nowrap"
+    title="Problem: neuner.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
+    aria-label="Problem: neuner.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
+    <i class="fa fa-check" aria-hidden="true"></i> Erledigt
+  </button>
+</p>
+
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-11-30 19:28:27</p>

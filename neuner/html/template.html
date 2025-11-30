@@ -1,0 +1,145 @@
+{% include "header.html" %}
+
+<p>
+  Die <strong>Neunerprobe</strong> ist eine Methode zur Überprüfung 
+  von Multiplikationsergebnissen. Dazu wird für die Faktoren und das Produkt eine 
+  einstellige <strong>Prüfsumme</strong> gebildet, die anschließend
+  miteinander verglichen werden, um Rechenfehler zu erkennen.
+</p>
+
+<p><img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/189032753/neuner.png"
+    alt="neuner" width="600" height="240">
+</p>
+
+<p><strong>Das Verfahren:</strong></p>
+<ol>
+  <li>
+    <strong>Prüfsumme berechnen:</strong>
+    <ul>
+      <li>Bilde die Quersumme der Zahl (Summe aller Ziffern)</li>
+      <li>Falls das Ergebnis mehrstellig ist: Bilde erneut die Quersumme</li>
+      <li>Wiederhole dies, bis nur noch eine Ziffer übrig bleibt</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Anwendung auf die Multiplikation a · b = c:</strong>
+    <ul>
+      <li>Berechne die Prüfsumme von a → Ergebnis: PSUM<sub>a</sub></li>
+      <li>Berechne die Prüfsumme von b → Ergebnis: PSUM<sub>b</sub></li>
+      <li>Berechne die Prüfsumme von c → Ergebnis: PSUM<sub>c</sub></li>
+    </ul>
+  </li>
+  <li>
+    <strong>Vergleich durchführen:</strong>
+    <ul>
+      <li>Multipliziere PSUM<sub>a</sub> · PSUM<sub>b</sub></li>
+      <li>Bilde die Prüfsumme dieses Produkts → Ergebnis: PSUM<sub>prod</sub></li>
+      <li>Vergleiche PSUM<sub>prod</sub> mit PSUM<sub>c</sub></li>
+    </ul>
+  </li>
+  <li>
+    <strong>Auswertung:</strong>
+    <ul>
+      <li>Falls PSUM<sub>prod</sub> ≠ PSUM<sub>c</sub>: Ist das Ergebnis c <strong>definitiv falsch</strong></li>
+      <li>Falls PSUM<sub>prod</sub> = PSUM<sub>c</sub>: Kann das Ergebnis c <strong>korrekt sein</strong> (aber nicht garantiert)</li>
+    </ul>
+  </li>
+</ol>
+
+<p>
+  <strong>Wichtig:</strong> Die Methode ist nicht narrensicher – sie erkennt viele, 
+  aber nicht alle Fehler. Ein falsches Ergebnis kann den Test bestehen.
+</p>
+
+<p><strong>Beispiel:</strong> a = 429, b = 357, c = 154153</p>
+<ul>
+  <li>PSUM<sub>a</sub> = 4+2+9 = 15 → 1+5 = 6</li>
+  <li>PSUM<sub>b</sub> = 3+5+7 = 15 → 1+5 = 6</li>
+  <li>PSUM<sub>c</sub> = 1+5+4+1+5+3 = 19 → 1+9 = 10 → 1+0 = 1</li>
+  <li>PSUM<sub>a</sub> · PSUM<sub>b</sub> = 6 · 6 = 36 → 3+6 = 9</li>
+  <li>Da PSUM<sub>prod</sub> = 9 ≠ 1 = PSUM<sub>c</sub>, ist c falsch</li>
+</ul>
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>
+  Schreiben Sie eine Funktion <code class="text-danger border border-dark">isValidProduct(a, b, c)</code>,
+  die die Faktoren <strong>a</strong>, <strong>b</strong> und das Ergebnis <strong>c</strong> (als Strings oder Zahlen)
+  entgegennimmt und mittels Neunerprobe prüft, ob <strong>c</strong> korrekt sein <em>kann</em>.
+  Die Funktion soll <strong>True</strong> zurückgeben, wenn die Prüfsumme von <code>a · b</code> mit der Prüfsumme von <code>c</code>
+  übereinstimmt, sonst <strong>False</strong>. Leere oder nicht-numerische Eingaben sind zu behandeln.
+</p>
+
+<p>
+  {% include "file.html" %}
+  Implementieren Sie Ihr Programm so, dass die Funktion
+  <code class="text-danger border border-dark">isValidProduct(a, b, c)</code> 
+  die Neunerprobe korrekt durchführt.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Die Prüfsumme einer Zahl kann durch wiederholtes Bilden der Quersumme ermittelt werden,
+      bis nur noch eine einstellige Zahl übrig bleibt.
+    </li>
+    <li>
+      Behandeln Sie Sonderfälle: leere Strings, nicht-numerische Eingaben und negative Zahlen.
+    </li>
+    <li>
+      Die Eingaben <code>a</code>, <code>b</code> und <code>c</code> können sowohl als
+      Strings als auch als Zahlen übergeben werden.
+    </li>
+    <li>
+      Die Funktion soll <code class="text-danger border border-dark">True</code> zurückgeben,
+      wenn die Neunerprobe besteht (also s = s<sub>c</sub>), sonst
+      <code class="text-danger border border-dark">False</code>.
+    </li>
+    <li>
+      Die Bildung der einstelligen Prüfsumme (Quersumme bis zur Einerstelle) kann iterativ
+      oder rekursiv implementiert werden. Es ist jedoch nicht erforderlich, Rekursion zu verwenden.
+  </ul>
+</details>
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+<ul>
+  <li>
+    Ihr Programm wird nicht über Eingaben getestet, sondern ausschließlich
+    über Aufrufe der Funktion <code>isValidProduct</code> mit verschiedenen Beispielen.
+  </li>
+
+  <li>
+    Beispiel für ein gültiges Produkt (Ihre Funktion sollte <strong>True</strong> zurückgeben):
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        isValidProduct(429, 357, 154153)
+      </code>
+      → Erwartet: <strong>True</strong>
+    </div>
+  </li>
+
+  <li>
+    Beispiel für ein ungültiges Produkt:
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        isValidProduct(123, 456, 56088)
+      </code>
+      → Erwartet: <strong>False</strong>
+    </div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
