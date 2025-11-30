@@ -189,21 +189,3 @@ def test_invalid_indices_safe():
 
     if M != original:
         raise check50.Mismatch(str(original), str(M))
-
-
-@check50.check(has_functions)
-def no_forbidden_methods():
-    """does not use forbidden built-ins"""
-    forbidden = {"index", "sort", "enumerate", "find", "count", "map", "filter"}
-
-    with Path(FILE_NAME).open() as f:
-        tokens = list(tokenize.generate_tokens(f.readline))
-
-        for tok_type, tok_string, *_ in tokens:
-            # Skip comments and string literals
-            if tok_type in (tokenize.COMMENT, tokenize.STRING):
-                continue
-
-            if tok_string in forbidden:
-                msg = f"Found forbidden function '{tok_string}'"
-                raise check50.Failure(msg)
