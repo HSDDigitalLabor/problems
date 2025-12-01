@@ -2,7 +2,7 @@ submit50:
   files: &submit50_files
     - !exclude "*"
     - !include "*.py"
-    - !require run_back.py
+    - !require einsen.py
   
 check50:
   files: *submit50_files

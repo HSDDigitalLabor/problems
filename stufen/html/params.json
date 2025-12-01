@@ -1,0 +1,9 @@
+{
+    "id": "stufen",
+    "title": "Zeilenstufenform einer Matrix erzeugen (Gauß-Algorithmus)",
+    "foldername": "stufen",
+    "filename": "stufen.py",
+    "asciicast_id": "",
+    "check50_path": "HSDDigitalLabor/problems/git2025/stufen",
+    "submit50_path": "HSDDigitalLabor/problems/git2025/stufen"
+}

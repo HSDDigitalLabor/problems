@@ -1,0 +1,233 @@
+<h1 id="einsen">Einheitsmatrix einer Matrix erzeugen (Gauß-Algorithmus)</h1>
+
+<p>
+  In den letzten beiden Problemen zum Gauß-Algorithmus haben Sie Funktionen
+  implementiert, mit deren Hilfe es gelungen ist, eine Matrix in Zeilenstufenform
+  zu bringen. In diesem Problem werden Sie die Funktionalität erweitern und die Koeffizientenmatrix
+  in die <strong>reduzierte Stufenform</strong> überführen. Dadurch ist das Identifizieren der Lösungen eines
+  linearen Gleichungssystems noch einfacher möglich (Gauß-Jordan-Algorithmus).
+</p>
+
+<p><img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/398392355/Einheitsmatrix.png"
+    alt="Einheitsmatrix" width="392" height="388">
+</p>
+
+<h3>Beschreibung des Algorithmus als Textcode</h3>
+
+<div class="alert alert-dark">
+  <p><strong>Algorithmus (Reduzierte Zeilenstufenform):</strong></p>
+  <ul>
+    <li><strong>Voraussetzung</strong>: Die Matrix ist in Zeilenstufenform. Idealerweise sind alle Pivot-Elemente bereits 1.</li>
+    <li>Bearbeite die Pivotzeilen von unten nach oben.
+    <li><strong>Schritt 1 - Pivot suchen</strong>: Finde in Zeile i die Pivotspalte j (erste 1 von links).</li>
+    <li><strong>Schritt 2 - Pivot skalieren</strong>: Ist der Pivot nicht 1, verwende die Funktion <code>rowMult</code>, um den Pivot auf 1 zu skalieren.</li>
+    <li><strong>Schritt 3 - Zeilen oberhalb des Pivots eliminieren</strong>: Für jede Zeile k oberhalb von i verwende die Funktion:
+          <code>rowAdd</code> damit der Eintrag in Spalte j in Zeile k auf 0 gesetzt wird.
+    </li>
+   <li><strong>Wiederholung</strong>: Wiederhole für alle Pivotzeilen.
+    <li>
+      Am Ende sind in jeder Pivotspalte nur noch die Einträge 0 außer einer 1 im Pivot. Damit ist die Matrix in reduzierter Zeilenstufenform.
+    </li>
+  </ul>
+</div>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>
+  Implementieren Sie die Funktion <code>reduzierteStufen</code> in Python. 
+  Die Funktion bekommt die Matrix <code>M</code> in Stufenform als Liste von Listen übergeben und 
+  soll die Matrix <code>M</code> in-place verändern.
+</p>
+<p>
+  Die äußere Liste repräsentiert die Zeilen, die inneren Listen die Spalten der Matrix.
+  Verwenden Sie die Hilfsfunktionen <code>rowMult</code> und <code>rowAdd</code> aus dem
+  Problem <strong>Zeilen</strong>. Falls Sie das Problem <strong>Zeilen</strong> noch 
+  nicht gelöst haben, belassen Sie die Funktionsdefinitionen in Ihrer Datei und 
+  testen Sie Ihren Code mit <code>check50</code> (die fehlenden Funktionen werden beim Check ergänzt).
+</p>
+
+<p>
+    Erstellen Sie eine Datei mit dem Namen
+  <code class="text-danger border border-dark">einsen.py</code> und
+  implementieren Sie die Funktion <code>reduzierteStufen</code> in Ihrer Datei:
+</p>
+<div class="alert alert-dark">
+  <pre><code>def rowMult(M, i, k):
+    """Multipliziert die i-te Zeile der Matrix M mit dem Faktor k."""
+
+
+def rowAdd(M, i, j, k):
+    """Addiert das k-fache der i-ten Zeile zur j-ten Zeile der Matrix M."""
+
+
+def reduzierteStufen(M):
+    """Bringt die Matrix M in reduzierte Stufenform."""</code></pre>
+</div>
+
+<p>
+  Beachten Sie dabei folgende Anforderungen:
+</p>
+<ul>
+  <li>Die Matrix <code>M</code> wird als <strong>Liste von Listen</strong> übergeben (äußere Liste = Zeilen, innere Listen = Spalten).</li>
+  <li>Die Operationen sollen die Matrix <strong>in-place</strong> verändern (keine neue Matrix zurückgeben).</li>
+</ul>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>In Python werden List-Objekte als Referenzen übergeben, daher wirken sich Änderungen in den Funktionen direkt auf die ursprüngliche Matrix aus.</li>
+  </ul>
+  <ul>
+    <li>Wegen Rundungsfehlern bei Gleitkommazahlen ggf. mit geeigneter Toleranz auf 0 prüfen.</li>
+  </ul>
+</details>
+
+<!-- <p></p>
+<h2 id="demo">Demo</h2>
+<p>
+  <script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
+  id="asciicast-"
+  src="https://asciinema.org/a/.js">
+  </script>
+</p> -->
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
+  einsen</code></div>
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">einsen</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
+  einsen</code></div>
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt Ihres Terminals sollte
+  nun <code class="text-danger border border-dark">einsen/$</code> anzeigen.
+  Jetzt können Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
+  einsen.py</code></div>
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">einsen.py</code> zu erstellen, in der Sie Ihr
+  Programm schreiben.
+</p>
+
+<h2 id="how-to-test">So testen Sie Ihr Programm</h2>
+<p>So können Sie Ihr Programm manuell testen:</p>
+
+<ul>
+  <li>
+    <p>Erzeuge eine reduzierte Stufenform für eine 3x4-Matrix:</p>
+<div class="alert alert-dark">
+<pre><code>
+M = [
+    [1, 4, -2, -2],
+    [0, 1, -0.714285, 0.0],
+    [0, 0, 1, 2.1875]
+]
+</code></pre>
+</div>
+<p><code>reduzierteStufen(M)</code></p>
+<pre><code>
+# Erwartetes Ergebnis
+# [
+#    [1.0, 0.0, 0.0, -3.87499375]
+#    [0.0, 1.0, 0.0, 1.5624984375]
+#    [0, 0, 1, 2.1875]
+# ]</code></pre>
+  </li>
+  <li>
+    <p>Erzeuge eine reduzierte Stufenform für eine 4x5-Matrix:</p>
+<div class="alert alert-dark">
+<pre><code>
+M = [
+    [1.0, 2.0, 1.0, 0, 3.0],
+    [0.0, 1.0, 0.0, 2.0, 2.0],
+    [0.0, 0.0, 1.0, -0.5, -0.5],
+    [0.0, 0.0, 0.0, 1.0, 1.666666]
+]</code></pre>
+</div>
+<p><code>reduzierteStufen(M)</code></p>
+<pre><code>
+# Erwartetes Ergebnis
+# [
+#    [1.0, 0.0, 0.0, 0.0, 5.333330999999999]
+#    [0.0, 1.0, 0.0, 0.0, -1.333332]
+#    [0.0, 0.0, 1.0, 0.0, 0.333333]
+#    [0.0, 0.0, 0.0, 1.0, 1.666666]
+# ]</code></pre>
+  </li>
+</ul>
+
+<p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
+  class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
+  der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
+  aber auch selbst!</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  check50 HSDDigitalLabor/problems/git2025/einsen
+  </code></div>
+<p>
+  Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
+  bedeuten, dass Ihr Programm einen Test bestanden hat! Rote
+  traurige Smileys <span style="font-family: monospace; color: red;">:( </span>
+  zeigen an, dass Ihr Programm etwas Unerwartetes ausgegeben
+  hat. Besuchen Sie die URL, die <code class="text-danger">check50</code>
+  ausgibt, um zu sehen, welche Eingabe <code class="text-danger">check50</code>
+  an Ihr Programm übergeben hat, welche Ausgabe erwartet wurde und welche
+  Ausgabe Ihr Programm tatsächlich geliefert hat.
+</p>
+
+<h2 id="how-to-submit">Abgabe</h2>
+<p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
+</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  submit50 HSDDigitalLabor/problems/git2025/einsen
+  </code></div>
+<p>
+  Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
+  nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
+  die zuletzt eingereichte Version vor dem Fälligkeitsdatum. Nach Ablauf der
+  Frist können Sie technisch zwar noch Abgaben tätigen, Ihre Lösung wird jedoch
+  nicht mehr gewertet. Das Ergebnis kann ausschließlich mit obigem Befehl abgegeben
+  werden, eine Abgabe in Moodle ist nicht möglich.
+</p>
+
+<h2 id="how-to-mark">Markierung der Aufgabe als erledigt</h2>
+<p>Nach dem Einreichen der Lösung mit <code class="text-danger">submit50</code>,
+  nehmen Sie eine Pseudolösung in Moodle vor, indem Sie auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_solution" disabled>
+    Aufgabenlösung hinzufügen</button>
+  weiter unten auf dieser Seite betätigen und in das sich öffnende Feld unter
+  "Texteingabe online" den folgenden Text ein:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">Mit submit50 abgegeben.</code>
+</div>
+<p>Schließen Sie die Eingabe durch Klick auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_save" disabled>
+    Änderungen speichern</button> unterhalb des Textfeldes ab.
+</p>
+<p>
+  Zur besseren Übersicht markieren Sie das Problem einsen.py in Moodle als erledigt,
+  indem Sie ganz oben auf dieser Seite den Button
+</p>
+<p>
+  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: einsen.py  als erledigt kennzeichnen"
+    aria-label="Problem: einsen.py  als erledigt kennzeichnen" disabled>
+    Als erledigt kennzeichnen
+  </button>
+  klicken. Daraufhin erscheint der Button
+  <button class="btn btn-success btn-sm text-nowrap"
+    title="Problem: einsen.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
+    aria-label="Problem: einsen.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
+    <i class="fa fa-check" aria-hidden="true"></i> Erledigt
+  </button>
+</p>
+
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-12-01 21:01:12</p>
