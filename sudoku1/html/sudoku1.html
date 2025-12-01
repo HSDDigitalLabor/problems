@@ -1,0 +1,206 @@
+<h1 id="sudoku1">Sudoku 1</h1>
+
+<p><img class="img-fluid" src="https://mdl.hs-duesseldorf.de/draftfile.php/253964/user/draft/61391073/sudoku1.png"
+    alt="Sudoku Feld" width="400" height="328"></p>
+
+<p>
+  Beim Lösen eines Sudoku-Rätsels ist es wichtig sicherzustellen, dass das Sudoku-Feld
+  gültig ist. Ein gültiges Sudoku erfüllt zwei Bedingungen:
+</p>
+
+<ul>
+  <li>In jeder Zeile dürfen die Ziffern 1-9 höchstens einmal vorkommen.</li>
+  <li>In jeder Spalte dürfen die Ziffern 1-9 höchstens einmal vorkommen.</li>
+</ul>
+
+<p>
+  Ihre Aufgabe ist es, eine Funktion <code class="text-danger border border-dark">isValid(board)</code>
+  zu implementieren, die ein 9x9-Sudoku-Board (als Liste von Listen mit Strings)
+  entgegennimmt und <strong>True</strong> zurückgibt, wenn das Board die Regeln für
+  Zeilen und Spalten erfüllt, andernfalls <strong>False</strong>. Leere Felder sind durch
+  <code>"."</code> dargestellt.
+</p>
+
+<p>
+    Erstellen Sie eine Datei mit dem Namen
+  <code class="text-danger border border-dark">sudoku.py</code> und
+  Implementieren Sie Ihr Programm so, dass die Funktion
+  <code class="text-danger border border-dark">isValid(board)</code> korrekt überprüft,
+  ob das Sudoku-Feld Zeilen und Spalten korrekt befüllt hat.
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Verwenden Sie keine Funktionen wie
+      <code class="text-danger border border-dark">.count()</code> oder
+      <code class="text-danger border border-dark">.index()</code>.
+      Arbeiten Sie stattdessen mit Schleifen und Vergleichen.
+    </li>
+    <li>
+      Leere Felder (<code>"."</code>) sollten ignoriert werden.
+    </li>
+    <li>
+      Jedes Element des Boards ist ein String, nicht eine Zahl.
+    </li>
+  </ul>
+</details>
+
+<!-- <p></p>
+<h2 id="demo">Demo</h2>
+<p>
+  <script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
+  id="asciicast-"
+  src="https://asciinema.org/a/.js">
+  </script>
+</p> -->
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
+  sudoku1</code></div>
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">sudoku1</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
+  sudoku1</code></div>
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt Ihres Terminals sollte
+  nun <code class="text-danger border border-dark">sudoku1/$</code> anzeigen.
+  Jetzt können Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
+  sudoku.py</code></div>
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">sudoku.py</code> zu erstellen, in der Sie Ihr
+  Programm schreiben.
+</p>
+
+<h2 id="how-to-test">So testen Sie Ihr Programm</h2>
+<p>So können Sie Ihr Programm manuell testen:</p>
+<ul>
+  <li>
+    Ihr Programm wird nicht über Eingaben getestet, sondern ausschließlich
+    über Aufrufe der Funktion <code>isValid</code> mit verschiedenen Sudoku-Boards.
+  </li>
+
+  <li>
+    Beispiel für ein gültiges Board (Ihre Funktion sollte <strong>True</strong> zurückgeben):
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        [
+          ["5","3",".",".","7",".",".",".","."],
+          ["6",".",".","1","9","5",".",".","."],
+          [".","9","8",".",".",".",".","6","."],
+          ["8",".",".",".","6",".",".",".","3"],
+          ["4",".",".","8",".","3",".",".","1"],
+          ["7",".",".",".","2",".",".",".","6"],
+          [".","6",".",".",".",".","2","8","."],
+          [".",".",".","4","1","9",".",".","5"],
+          [".",".",".",".","8",".",".","7","9"]
+        ]
+      </code>
+    </div>
+  </li>
+
+  <li>
+    Beispiel für ein ungültiges Board (Duplikat in einer Zeile):
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        [
+          ["8","8",".",".","7",".",".",".","."],
+          ...
+        ]
+      </code>
+      → Erwartet: <strong>False</strong>
+    </div>
+  </li>
+
+  <li>
+    Beispiel für ein ungültiges Board (Duplikat in einer Spalte):
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        [
+          ["5","3",".",".","7",".",".",".","."],
+          ["6",".",".","1","9","5",".",".","."],
+          ["5","9","8",".",".",".",".","6","."],
+          ...
+        ]
+      </code>
+      → Erwartet: <strong>False</strong>
+    </div>
+  </li>
+</ul>
+
+<p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
+  class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
+  der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
+  aber auch selbst!</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  check50 HSDDigitalLabor/problems/git2025/sudoku1
+  </code></div>
+<p>
+  Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
+  bedeuten, dass Ihr Programm einen Test bestanden hat! Rote
+  traurige Smileys <span style="font-family: monospace; color: red;">:( </span>
+  zeigen an, dass Ihr Programm etwas Unerwartetes ausgegeben
+  hat. Besuchen Sie die URL, die <code class="text-danger">check50</code>
+  ausgibt, um zu sehen, welche Eingabe <code class="text-danger">check50</code>
+  an Ihr Programm übergeben hat, welche Ausgabe erwartet wurde und welche
+  Ausgabe Ihr Programm tatsächlich geliefert hat.
+</p>
+
+<h2 id="how-to-submit">Abgabe</h2>
+<p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
+</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  submit50 HSDDigitalLabor/problems/git2025/sudoku1
+  </code></div>
+<p>
+  Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
+  nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
+  die zuletzt eingereichte Version vor dem Fälligkeitsdatum. Nach Ablauf der
+  Frist können Sie technisch zwar noch Abgaben tätigen, Ihre Lösung wird jedoch
+  nicht mehr gewertet. Das Ergebnis kann ausschließlich mit obigem Befehl abgegeben
+  werden, eine Abgabe in Moodle ist nicht möglich.
+</p>
+
+<h2 id="how-to-mark">Markierung der Aufgabe als erledigt</h2>
+<p>Nach dem Einreichen der Lösung mit <code class="text-danger">submit50</code>,
+  nehmen Sie eine Pseudolösung in Moodle vor, indem Sie auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_solution" disabled>
+    Aufgabenlösung hinzufügen</button>
+  weiter unten auf dieser Seite betätigen und in das sich öffnende Feld unter
+  "Texteingabe online" den folgenden Text ein:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">Mit submit50 abgegeben.</code>
+</div>
+<p>Schließen Sie die Eingabe durch Klick auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_save" disabled>
+    Änderungen speichern</button> unterhalb des Textfeldes ab.
+</p>
+<p>
+  Zur besseren Übersicht markieren Sie das Problem sudoku.py in Moodle als erledigt,
+  indem Sie ganz oben auf dieser Seite den Button
+</p>
+<p>
+  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: sudoku.py  als erledigt kennzeichnen"
+    aria-label="Problem: sudoku.py  als erledigt kennzeichnen" disabled>
+    Als erledigt kennzeichnen
+  </button>
+  klicken. Daraufhin erscheint der Button
+  <button class="btn btn-success btn-sm text-nowrap"
+    title="Problem: sudoku.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
+    aria-label="Problem: sudoku.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
+    <i class="fa fa-check" aria-hidden="true"></i> Erledigt
+  </button>
+</p>
+
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-12-01 13:16:12</p>
