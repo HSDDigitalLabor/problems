@@ -1,8 +1,10 @@
 {% include "header.html" %}
 
 <p>
-  Bei der Lösung von linearen Gleichungssystemen mit dem Gauß-Algorithmus werden die Gleichungen in eine Matrixform gebracht.
-  Zur weiteren Vereinfachung werden dabei sogenannte <strong>Zeilenoperationen</strong> angewendet. Die elementaren Zeilenoperationen sind:
+  Bei der Lösung von linearen Gleichungssystemen mit dem Gauß-Algorithmus werden die Gleichungen in eine Matrixform
+  gebracht.
+  Zur weiteren Vereinfachung werden dabei sogenannte <strong>Zeilenoperationen</strong> angewendet. Die elementaren
+  Zeilenoperationen sind:
 </p>
 <ul>
   <li>
@@ -22,8 +24,8 @@
 <h2 id="aufgabe">Aufgabe</h2>
 
 <p>
-  Implementieren Sie diese zwei elementaren Zeilenoperationen als Funktionen in Python. 
-  Die Funktionen bekommen die Matrix <code>M</code> als Liste von Listen übergeben und 
+  Implementieren Sie diese zwei elementaren Zeilenoperationen als Funktionen in Python.
+  Die Funktionen bekommen die Matrix <code>M</code> als Liste von Listen übergeben und
   sollen die Matrix <code>M</code> in-place verändern.
 </p>
 <p>
@@ -41,7 +43,7 @@
 
 <p>
   {% include "file.html" %}
-  Implementieren Sie die folgenden Funktionen in Ihrer Datei:
+  implementieren Sie die folgenden Funktionen in Ihrer Datei:
 </p>
 <div class="alert alert-dark">
   <pre><code>def rowMult(M, i, k):
@@ -56,19 +58,23 @@ def rowAdd(M, i, j, k):
   Beachten Sie dabei folgende Anforderungen:
 </p>
 <ul>
-  <li>Die Matrix <code>M</code> wird als <strong>Liste von Listen</strong> übergeben (äußere Liste = Zeilen, innere Listen = Spalten).</li>
+  <li>Die Matrix <code>M</code> wird als <strong>Liste von Listen</strong> übergeben (äußere Liste = Zeilen, innere
+    Listen = Spalten).</li>
   <li>Die Operationen sollen die Matrix <strong>in-place</strong> verändern (keine neue Matrix zurückgeben).</li>
   <li><code>i</code> und <code>j</code> sind <strong>Zeilenindizes</strong> (0-basiert).</li>
   <li>Überprüfen Sie die Indizes <code>i</code> und <code>j</code> auf Gültigkeit, um Fehler zu vermeiden.</li>
   <li><code>k</code> ist ein <strong>Faktor</strong> (Zahl), mit dem multipliziert bzw. skaliert wird.</li>
   <li>Falls <code>k</code> den Wert 0 hat, soll die Matrix nicht verändert werden.</li>
-  <li><em>Hinweis: Dies ist eine Vereinfachung für diese Aufgabe. In der Mathematik würde das Multiplizieren einer Zeile mit 0 normalerweise dazu führen, dass die gesamte Zeile zu Nullen wird. Für diese Übung soll die Matrix jedoch bei <code>k = 0</code> unverändert bleiben, wie in den Tests vorgegeben.</em></li>
+  <li><em>Hinweis: Dies ist eine Vereinfachung für diese Aufgabe. In der Mathematik würde das Multiplizieren einer Zeile
+      mit 0 normalerweise dazu führen, dass die gesamte Zeile zu Nullen wird. Für diese Übung soll die Matrix jedoch bei
+      <code>k = 0</code> unverändert bleiben, wie in den Tests vorgegeben.</em></li>
 </ul>
 
 <details>
   <summary>Hinweise</summary>
   <ul>
-    <li>In Python werden List-Objekte als Referenzen übergeben, daher wirken sich Änderungen in den Funktionen direkt auf die ursprüngliche Matrix aus.</li>
+    <li>In Python werden List-Objekte als Referenzen übergeben, daher wirken sich Änderungen in den Funktionen direkt
+      auf die ursprüngliche Matrix aus.</li>
   </ul>
 </details>
 
@@ -83,7 +89,7 @@ def rowAdd(M, i, j, k):
     <p>Die zweite Zeile (Index 1) der Matrix wird mit dem Faktor 8 multipliziert.</p>
     <p><code>rowMult(M, 1, 8)</code> auf einer 4x4-Matrix:</p>
     <div class="alert alert-dark">
-    <pre><code class="text-dark font-weight-bold">
+      <pre><code class="text-dark font-weight-bold">
 M = [
     [1, 2, 3, 4],
     [5, 6, 7, 8],
@@ -92,7 +98,7 @@ M = [
 ]
 </code></pre>
     </div>
-<pre><code>
+    <pre><code>
 # Erwartetes Ergebnis
 # [
 #     [1, 2, 3, 4],
@@ -105,7 +111,7 @@ M = [
     <p>Die dritte Zeile (Index 2) der Matrix wird mit dem Faktor 0 multipliziert.</p>
     <p><code>rowMult(M, 2, 0)</code> auf einer 4x4-Matrix:</p>
     <div class="alert alert-dark">
-    <pre><code class="text-dark font-weight-bold">
+      <pre><code class="text-dark font-weight-bold">
 M = [
     [1, 2, 3, 4],
     [5, 6, 7, 8],
@@ -114,7 +120,7 @@ M = [
 ]
 </code></pre>
     </div>
-<pre><code>
+    <pre><code>
 # Erwartetes Ergebnis
 # [
 #     [1, 2, 3, 4],
@@ -127,7 +133,7 @@ M = [
     <p>Das -3-fache der ersten Zeile (Index 0) wird zur dritten Zeile (Index 2) addiert.</p>
     <p><code>rowAdd(M, 0, 2, -3)</code> auf einer 4x4-Matrix:</p>
     <div class="alert alert-dark">
-    <pre><code class="text-dark font-weight-bold">
+      <pre><code class="text-dark font-weight-bold">
 M = [
     [1, 2, 3, 4],
     [5, 6, 7, 8],
@@ -136,7 +142,7 @@ M = [
 ]
 </code></pre>
     </div>
-<pre><code>
+    <pre><code>
 # Erwartetes Ergebnis
 # [
 #     [1, 2, 3, 4],
