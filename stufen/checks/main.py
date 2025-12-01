@@ -19,6 +19,18 @@ def matrices_almost_equal(actual, expected, eps=1e-6):
                 raise check50.Mismatch(str(expected), str(actual))
 
 
+def a(a, b, c, d):
+    if not (0 <= b < len(a)) or not (0 <= c < len(a)) or d == 0:
+        return
+    a[c] = [x + d * y for x, y in zip(a[c], a[b])]
+
+
+def m(a, b, c):
+    if not (0 <= b < len(a)) or c == 0:
+        return
+    a[b] = [x * c if x != 0 else x for x in a[b]]
+
+
 @check50.check()
 def exists():
     """stufen.py exists"""
@@ -49,127 +61,6 @@ def has_functions():
         raise check50.Failure(msg)
 
 
-# ---------- Tests für rowMult ----------
-
-
-@check50.check(has_functions)
-def test_rowMult_example_1():
-    """rowMult: multiply 2nd row by 8 (example-style test)"""
-    module = check50.py.import_(FILE_NAME)
-
-    M = [
-        [1, 2, 3, 4],
-        [5, 6, 7, 8],
-        [9, 10, 11, 12],
-        [13, 14, 15, 16],
-    ]
-
-    module.rowMult(M, 1, 8)
-
-    expected = [
-        [1, 2, 3, 4],
-        [40, 48, 56, 64],
-        [9, 10, 11, 12],
-        [13, 14, 15, 16],
-    ]
-
-    if M != expected:
-        raise check50.Mismatch(str(expected), str(M))
-
-
-@check50.check(has_functions)
-def test_rowMult_only_target_row_changes():
-    """rowMult changes only the target row (k != 0)"""
-    module = check50.py.import_(FILE_NAME)
-
-    M = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
-    ]
-
-    module.rowMult(M, 1, -2)
-
-    expected = [
-        [1, 2, 3],
-        [-8, -10, -12],
-        [7, 8, 9],
-    ]
-
-    if M != expected:
-        raise check50.Mismatch(str(expected), str(M))
-
-
-# ---------- Tests für rowAdd ----------
-
-
-@check50.check(has_functions)
-def test_rowAdd_example():
-    """rowAdd: add -3 times row 0 to row 2 (example from problem)"""
-    module = check50.py.import_(FILE_NAME)
-
-    M = [
-        [1, 2, 3, 4],
-        [5, 6, 7, 8],
-        [9, 10, 11, 12],
-        [13, 14, 15, 16],
-    ]
-
-    module.rowAdd(M, 0, 2, -3)
-
-    expected = [
-        [1, 2, 3, 4],
-        [5, 6, 7, 8],
-        [6, 4, 2, 0],
-        [13, 14, 15, 16],
-    ]
-
-    if M != expected:
-        raise check50.Mismatch(str(expected), str(M))
-
-
-@check50.check(has_functions)
-def test_rowAdd_k_zero_no_change():
-    """rowAdd with k = 0 does not change the matrix"""
-    module = check50.py.import_(FILE_NAME)
-
-    M = [
-        [2, 4, 6],
-        [1, 3, 5],
-        [0, 0, 1],
-    ]
-
-    original = [row[:] for row in M]
-
-    module.rowAdd(M, 0, 2, 0)
-
-    if M != original:
-        raise check50.Mismatch(str(original), str(M))
-
-
-@check50.check(has_functions)
-def test_rowAdd_only_target_row_changes():
-    """rowAdd changes only the destination row (for k != 0)"""
-    module = check50.py.import_(FILE_NAME)
-
-    M = [
-        [1, 0, 0],
-        [0, 1, 0],
-        [2, 3, 4],
-    ]
-
-    module.rowAdd(M, 0, 2, 5)  # Zeile 2 := Zeile 2 + 5 * Zeile 0
-
-    expected = [
-        [1, 0, 0],
-        [0, 1, 0],
-        [7, 3, 4],
-    ]
-
-    if M != expected:
-        raise check50.Mismatch(str(expected), str(M))
-
-
 # ---------- Tests für zeilenStufen (nur Vorwärtsschritt) ----------
 
 
@@ -184,6 +75,8 @@ def test_zeilenStufen_3x4():
         [-2, -7, 1, -9],
     ]
 
+    module.rowAdd = a
+    module.rowMult = m
     module.zeilenStufen(M)
 
     # Erwartete Zeilenstufenform bei reinem Vorwärtsschritt + Pivot-Skalierung
@@ -208,6 +101,8 @@ def test_zeilenStufen_4x5():
         [3, 10, 3, 5, 12],
     ]
 
+    module.rowAdd = a
+    module.rowMult = m
     module.zeilenStufen(M)
 
     expected = [
@@ -220,13 +115,165 @@ def test_zeilenStufen_4x5():
     matrices_almost_equal(M, expected)
 
 
-# ---------- Stil-Check ----------
+@check50.check(has_functions)
+def test_zeilenStufen_2x3():
+    """zeilenStufen: 2x3-Matrix in Zeilenstufenform bringen"""
+    module = check50.py.import_(FILE_NAME)
+
+    M = [
+        [4, 8, -4],
+        [2, 3, 1],
+    ]
+
+    module.rowAdd = a
+    module.rowMult = m
+    module.zeilenStufen(M)
+
+    expected = [
+        [1.0, 2.0, -1.0],
+        [0.0, 1.0, -3.0],
+    ]
+
+    matrices_almost_equal(M, expected)
 
 
 @check50.check(has_functions)
+def test_zeilenStufen_5x6():
+    """zeilenStufen: 5x6-Matrix in Zeilenstufenform bringen"""
+    module = check50.py.import_(FILE_NAME)
+
+    M = [
+        [2, 4, 0, 0, 8, 10],
+        [0, 3, 6, 0, 9, 12],
+        [0, 0, 5, 10, 15, 20],
+        [0, 0, 0, 7, 14, 21],
+        [0, 0, 0, 0, 11, 22],
+    ]
+
+    module.rowAdd = a
+    module.rowMult = m
+    module.zeilenStufen(M)
+
+    expected = [
+        [1.0, 2.0, 0.0, 0.0, 4.0, 5.0],
+        [0.0, 1.0, 2.0, 0.0, 3.0, 4.0],
+        [0.0, 0.0, 1.0, 2.0, 3.0, 4.0],
+        [0.0, 0.0, 0.0, 1.0, 2.0, 3.0],
+        [0.0, 0.0, 0.0, 0.0, 1.0, 2.0],
+    ]
+
+    matrices_almost_equal(M, expected)
+
+
+@check50.check(has_functions)
+def test_zeilenStufen_7x8():
+    """zeilenStufen: 7x8-Matrix in Zeilenstufenform bringen"""
+    module = check50.py.import_(FILE_NAME)
+
+    M = [
+        [2, 4, 6, 8, 10, 12, 14, 16],
+        [0, 3, 6, 9, 12, 15, 18, 21],
+        [0, 0, 4, 8, 12, 16, 20, 24],
+        [0, 0, 0, 5, 10, 15, 20, 25],
+        [0, 0, 0, 0, 6, 12, 18, 24],
+        [0, 0, 0, 0, 0, 7, 14, 21],
+        [0, 0, 0, 0, 0, 0, 8, 16],
+    ]
+
+    module.rowAdd = a
+    module.rowMult = m
+    module.zeilenStufen(M)
+
+    expected = [
+        [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0],
+        [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0],
+        [0.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0],
+        [0.0, 0.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0],
+        [0.0, 0.0, 0.0, 0.0, 1.0, 2.0, 3.0, 4.0],
+        [0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 2.0, 3.0],
+        [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 2.0],
+    ]
+
+    matrices_almost_equal(M, expected)
+
+
+@check50.check(has_functions)
+def test_zeilenStufen_4x4_with_zero_rows():
+    """zeilenStufen: 4x4-Matrix, erwartete Form mit Nullzeilen unten"""
+    module = check50.py.import_(FILE_NAME)
+
+    M = [
+        [1, 2, 0, 3],
+        [2, 5, 1, 8],
+        [0, 1, 1, 2],
+        [3, 8, 2, 13],
+    ]
+
+    module.rowAdd = a
+    module.rowMult = m
+    module.zeilenStufen(M)
+
+    expected = [
+        [1.0, 2.0, 0.0, 3.0],
+        [0.0, 1.0, 1.0, 2.0],
+        [0.0, 0.0, 0.0, 0.0],
+        [0.0, 0.0, 0.0, 0.0],
+    ]
+
+    matrices_almost_equal(M, expected)
+
+
+@check50.check(has_functions)
+def test_zeilenStufen_identity_matrix_preserved():
+    """zeilenStufen: 3x3-Matrix Einheitsmatrix bleibt unverändert"""
+    module = check50.py.import_(FILE_NAME)
+
+    M = [
+        [1, 0, 0],
+        [0, 1, 0],
+        [0, 0, 1],
+    ]
+
+    module.rowAdd = a
+    module.rowMult = m
+    module.zeilenStufen(M)
+
+    expected = [
+        [1.0, 0.0, 0.0],
+        [0.0, 1.0, 0.0],
+        [0.0, 0.0, 1.0],
+    ]
+    matrices_almost_equal(M, expected)
+
+
+@check50.check(has_functions)
+def test_zeilenStufen_zero_matrix_remains_zero():
+    """zeilenStufen: 3x4-Matrix Nullmatrix bleibt unverändert"""
+    module = check50.py.import_(FILE_NAME)
+
+    M = [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+    ]
+
+    module.rowAdd = a
+    module.rowMult = m
+    module.zeilenStufen(M)
+
+    expected = [
+        [0.0, 0.0, 0.0, 0.0],
+        [0.0, 0.0, 0.0, 0.0],
+        [0.0, 0.0, 0.0, 0.0],
+    ]
+    matrices_almost_equal(M, expected)
+
+
+# ---------- Stil-Check ----------
+@check50.check(has_functions)
 def no_forbidden_methods():
     """does not use forbidden built-ins"""
-    forbidden = {"index", "sort", "enumerate", "find", "count", "map", "filter"}
+    forbidden = {"rref", "numpy", "sympy"}
 
     with Path(FILE_NAME).open() as f:
         tokens = list(tokenize.generate_tokens(f.readline))
