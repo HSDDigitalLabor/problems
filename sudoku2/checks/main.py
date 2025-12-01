@@ -20,10 +20,10 @@ def compiles():
 
 @check50.check(compiles)
 def has_function():
-    """isValid function defined"""
+    """isValidBlock function defined"""
     module = check50.py.import_(FILE_NAME)
-    if not hasattr(module, "isValid"):
-        msg = f"Function `isValid` not found in {FILE_NAME}"
+    if not hasattr(module, "isValidBlock"):
+        msg = f"Function `isValidBlock` not found in {FILE_NAME}"
         raise check50.Failure(msg)
 
 
@@ -42,7 +42,7 @@ def test_valid_subgrid_shifted():
         [".", ".", ".", ".", "8", ".", ".", "7", "9"],
     ]
     expected = True
-    result = module.isValid(board)
+    result = module.isValidBlock(board)
     if result != expected:
         raise check50.Mismatch(str(expected), str(result))
 
@@ -63,7 +63,7 @@ def test_invalid_subgrid():
         [".", ".", ".", ".", "8", ".", ".", "7", "9"],
     ]
     expected = False
-    result = module.isValid(board)
+    result = module.isValidBlock(board)
     if result != expected:
         raise check50.Mismatch(str(expected), str(result))
 
@@ -74,7 +74,7 @@ def test_empty_board():
     module = check50.py.import_(FILE_NAME)
     board = [["." for _ in range(9)] for _ in range(9)]
     expected = True
-    result = module.isValid(board)
+    result = module.isValidBlock(board)
     if result != expected:
         raise check50.Mismatch(str(expected), str(result))
 
@@ -95,7 +95,7 @@ def test_full_valid_board():
         ["3", "4", "5", "2", "8", "6", "1", "7", "9"],
     ]
     expected = True
-    result = module.isValid(board)
+    result = module.isValidBlock(board)
     if result != expected:
         raise check50.Mismatch(str(expected), str(result))
 
