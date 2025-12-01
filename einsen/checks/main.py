@@ -63,9 +63,10 @@ def has_functions():
 
 # ---------- Tests für reduzierteStufen (Reduzierte Zeilenstufenform) ----------
 
+
 @check50.check(has_functions)
 def test_reduzierteStufen_3x4():
-    """reduzierteStufen: 3x4-Beispielmatrix in reduzierte Zeilenstufenform bringen (Pivot nicht 1)"""
+    """reduzierteStufen: 3x4-Matrix (Pivot nicht 1) in reduzierte Zeilenstufenform"""
     module = check50.py.import_(FILE_NAME)
 
     # Matrix liegt bereits in Zeilenstufenform vor
@@ -90,7 +91,7 @@ def test_reduzierteStufen_3x4():
 
 @check50.check(has_functions)
 def test_reduzierteStufen_4x5():
-    """reduzierteStufen: 4x5-Beispielmatrix in reduzierte Zeilenstufenform bringen (Pivot nicht 1)"""
+    """reduzierteStufen: 4x5-Matrix (Pivot nicht 1) in reduzierte Zeilenstufenform"""
     module = check50.py.import_(FILE_NAME)
 
     # Matrix liegt bereits in Zeilenstufenform vor
@@ -117,7 +118,7 @@ def test_reduzierteStufen_4x5():
 
 @check50.check(has_functions)
 def test_reduzierteStufen_2x3():
-    """reduzierteStufen: 2x3-Matrix in reduzierte Zeilenstufenform bringen (Pivot nicht 1)"""
+    """reduzierteStufen: 2x3-Matrix (Pivot nicht 1) in reduzierte Zeilenstufenform"""
     module = check50.py.import_(FILE_NAME)
 
     # Matrix liegt bereits in Zeilenstufenform vor
@@ -140,7 +141,7 @@ def test_reduzierteStufen_2x3():
 
 @check50.check(has_functions)
 def test_reduzierteStufen_5x6():
-    """reduzierteStufen: 5x6-Matrix in reduzierte Zeilenstufenform bringen (Pivot nicht 1)"""
+    """reduzierteStufen: 5x6-Matrix (Pivot nicht 1) in reduzierte Zeilenstufenform"""
     module = check50.py.import_(FILE_NAME)
 
     # Matrix liegt bereits in Zeilenstufenform vor
@@ -169,7 +170,7 @@ def test_reduzierteStufen_5x6():
 
 @check50.check(has_functions)
 def test_reduzierteStufen_7x8():
-    """reduzierteStufen: 7x8-Matrix in reduzierte Zeilenstufenform bringen (Pivot nicht 1)"""
+    """reduzierteStufen: 7x8-Matrix (Pivot nicht 1) in reduzierte Zeilenstufenform"""
     module = check50.py.import_(FILE_NAME)
 
     # Matrix liegt bereits in Zeilenstufenform vor
