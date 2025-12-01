@@ -117,6 +117,32 @@ def test_rowMult_example_1():
 
 
 @check50.check(has_rowMult_function)
+def test_rowMult_example_2():
+    """rowMult(M, 2, 0): multiply 2nd row by 0 (example 2)"""
+    module = check50.py.import_(FILE_NAME)
+
+    M = [
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12],
+        [13, 14, 15, 16],
+    ]
+
+    module.rowMult(M, 2, 0)
+
+    expected = [
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12],
+        [13, 14, 15, 16],
+    ]
+
+    if expected != M:
+        msg = pretty_matrix_diff(expected, M)
+        raise check50.Failure(msg)
+
+
+@check50.check(has_rowMult_function)
 def rowMult_invalid_indices():
     """rowMult(): ignores invalid indices"""
     import copy
@@ -185,7 +211,7 @@ def rowAdd_ignore_k():
 
 @check50.check(has_rowAdd_function)
 def rowAdd_test_example():
-    """rowAdd(M, 0, 2, -3): -3 * row 0 + row 2 (example 2)"""
+    """rowAdd(M, 0, 2, -3): -3 * row 0 + row 2 (example 3)"""
     module = check50.py.import_(FILE_NAME)
 
     M = [
