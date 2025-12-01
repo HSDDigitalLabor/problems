@@ -1,9 +1,37 @@
 import check50
 import check50.py
-import tokenize
-from pathlib import Path
 
 FILE_NAME = "zeilen.py"
+
+
+def pretty_matrix_diff(expected, actual):
+    """Return a pretty diff between two matrices as a string with aligned columns."""
+    lines = ["expected values in ():"]
+
+    num_cols = max(
+        len(row) for row in expected + actual
+    )  # calculate the number of columns
+
+    # calculate the maximum width for each column
+    col_widths = []
+    for col in range(num_cols):
+        max_width = 0
+        for row in expected + actual:
+            if col < len(row):
+                max_width = max(max_width, len(str(row[col])))
+        col_widths.append(max_width)
+
+    # build diff lines
+    for i, (exp_row, act_row) in enumerate(zip(expected, actual, strict=False)):
+        row_diff = []
+        for j in range(num_cols):
+            e = exp_row[j] if j < len(exp_row) else ""
+            a = act_row[j] if j < len(act_row) else ""
+            cell = f"{a}" if a == e else f"{a} ({e})"
+            row_diff.append(cell.ljust(col_widths[j] + 4))  # pad with spaces
+        lines.append(f"Row {i}: " + " | ".join(row_diff))
+
+    return "\n".join(lines)
 
 
 @check50.check()
@@ -18,25 +46,53 @@ def compiles():
     check50.py.compile(FILE_NAME)
 
 
+# rowMult tests
 @check50.check(compiles)
-def has_functions():
-    """rowMult and rowAdd functions defined"""
+def has_rowMult_function():
     module = check50.py.import_(FILE_NAME)
+    FUNCTION_NAME = "rowMult"
 
-    missing = []
-    if not hasattr(module, "rowMult"):
-        missing.append("rowMult")
-    if not hasattr(module, "rowAdd"):
-        missing.append("rowAdd")
-
-    if missing:
-        msg = f"Function(s) {', '.join(f'`{m}`' for m in missing)} not found in {FILE_NAME}"
+    if not hasattr(module, FUNCTION_NAME):
+        msg = f"Function {FUNCTION_NAME} not found in {FILE_NAME}"
         raise check50.Failure(msg)
 
 
-@check50.check(has_functions)
+@check50.check(has_rowMult_function)
+def rowMult_is_inplace():
+    """rowMult(): operates in place"""
+    module = check50.py.import_(FILE_NAME)
+
+    input = [[1, 2, 3], [1, 2, 3]]
+    output = module.rowMult(input, 1, 1)
+
+    if not output:
+        # nothing was returned, which is also valid
+        return
+
+    if id(input) != id(output):
+        msg = "rowMult() should operate inplace, no new list should be returned"
+        raise check50.Failure(msg)
+
+
+@check50.check(rowMult_is_inplace)
+def rowMult_ignore_k():
+    """rowMult(): has no effect with k=0"""
+    import copy
+
+    module = check50.py.import_(FILE_NAME)
+
+    input = [[1, 2, 3], [1, 2, 3]]
+    expected = copy.deepcopy(input)
+    module.rowMult(input, 1, 0)
+
+    if expected != input:
+        msg = pretty_matrix_diff(expected, input)
+        raise check50.Failure(msg)
+
+
+@check50.check(has_rowMult_function)
 def test_rowMult_example_1():
-    """rowMult: multiply 2nd row by 8 (example-style test)"""
+    """rowMult(M, 1, 8): multiply 2nd row by 8 (example 1)"""
     module = check50.py.import_(FILE_NAME)
 
     M = [
@@ -55,35 +111,81 @@ def test_rowMult_example_1():
         [13, 14, 15, 16],
     ]
 
-    if M != expected:
-        raise check50.Mismatch(str(expected), str(M))
+    if expected != M:
+        msg = pretty_matrix_diff(expected, M)
+        raise check50.Failure(msg)
 
 
-@check50.check(has_functions)
-def test_rowMult_k_zero_no_change():
-    """rowMult: k = 0 does not change the matrix"""
+@check50.check(has_rowMult_function)
+def rowMult_invalid_indices():
+    """rowMult(): ignores invalid indices"""
+    import copy
+
     module = check50.py.import_(FILE_NAME)
 
-    M = [
-        [1, 2, 3, 4],
-        [5, 6, 7, 8],
-        [9, 10, 11, 12],
-        [13, 14, 15, 16],
+    expected = [
+        [1, 2],
+        [3, 4],
     ]
+    output = copy.deepcopy(expected)
 
-    original = [row[:] for row in M]
+    try:
+        module.rowMult(output, -1, 2)
+        module.rowMult(output, 3, 2)
+    except IndexError:
+        msg = (
+            "IndexError raised, check that only 0 to length of column / row is allowed"
+        )
+        raise check50.Failure(msg) from None
 
-    module.rowMult(M, 2, 0)
 
-    expected = original  # soll unverändert bleiben
+# rowAdd tests
+@check50.check(compiles)
+def has_rowAdd_function():
+    module = check50.py.import_(FILE_NAME)
+    FUNCTION_NAME = "rowAdd"
 
-    if M != expected:
-        raise check50.Mismatch(str(expected), str(M))
+    if not hasattr(module, FUNCTION_NAME):
+        msg = f"Function {FUNCTION_NAME} not found in {FILE_NAME}"
+        raise check50.Failure(msg)
 
 
-@check50.check(has_functions)
-def test_rowAdd_example():
-    """rowAdd: add -3 times row 0 to row 2 (example from problem)"""
+@check50.check(has_rowAdd_function)
+def rowAdd_is_inplace():
+    """rowAdd(): operates in place"""
+    module = check50.py.import_(FILE_NAME)
+
+    input = [[1, 2, 3], [1, 2, 3]]
+    output = module.rowAdd(input, 1, 1, 1)
+
+    if not output:
+        # nothing was returned, which is also valid
+        return
+
+    if id(input) != id(output):
+        msg = "rowAdd() should operate inplace, no new list should be returned"
+        raise check50.Failure(msg)
+
+
+@check50.check(has_rowAdd_function)
+def rowAdd_ignore_k():
+    """rowAdd(M, i, j, 0): has no effect with k=0"""
+    import copy
+
+    module = check50.py.import_(FILE_NAME)
+
+    input = [[1, 2, 3], [1, 2, 3]]
+    expected = copy.deepcopy(input)
+    module.rowAdd(input, 1, 1, 0)
+
+    if expected != input:
+        msg = pretty_matrix_diff(expected, input)
+        raise check50.Failure(msg)
+
+
+@check50.check(has_rowAdd_function)
+def rowAdd_test_example():
+    """rowAdd(M, 0, 2, -3): -3 * row 0 + row 2 (example 2)"""
     module = check50.py.import_(FILE_NAME)
 
     M = [
@@ -102,90 +204,55 @@ def test_rowAdd_example():
         [13, 14, 15, 16],
     ]
 
-    if M != expected:
-        raise check50.Mismatch(str(expected), str(M))
+    if expected != M:
+        msg = pretty_matrix_diff(expected, M)
+        raise check50.Failure(msg)
 
 
-@check50.check(has_functions)
-def test_rowAdd_k_zero_no_change():
-    """rowAdd with k = 0 does not change the matrix"""
+@check50.check(has_rowAdd_function)
+def rowAdd_invalid_indices():
+    """rowAdd(): ignores invalid indices"""
+    import copy
+
     module = check50.py.import_(FILE_NAME)
-
-    M = [
-        [2, 4, 6],
-        [1, 3, 5],
-        [0, 0, 1],
-    ]
-
-    original = [row[:] for row in M]
-
-    module.rowAdd(M, 0, 2, 0)
-
-    if M != original:
-        raise check50.Mismatch(str(original), str(M))
-
-
-@check50.check(has_functions)
-def test_rowMult_only_target_row_changes():
-    """rowMult changes only the target row (k != 0)"""
-    module = check50.py.import_(FILE_NAME)
-
-    M = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
-    ]
-
-    module.rowMult(M, 1, -2)
 
     expected = [
-        [1, 2, 3],
-        [-8, -10, -12],
-        [7, 8, 9],
-    ]
-
-    if M != expected:
-        raise check50.Mismatch(str(expected), str(M))
-
-
-@check50.check(has_functions)
-def test_rowAdd_only_target_row_changes():
-    """rowAdd changes only the destination row (for k != 0)"""
-    module = check50.py.import_(FILE_NAME)
-
-    M = [
-        [1, 0, 0],
-        [0, 1, 0],
-        [2, 3, 4],
-    ]
-
-    module.rowAdd(M, 0, 2, 5)  # Zeile 2 := Zeile 2 + 5 * Zeile 0
-
-    expected = [
-        [1, 0, 0],
-        [0, 1, 0],
-        [7, 3, 4],
-    ]
-
-    if M != expected:
-        raise check50.Mismatch(str(expected), str(M))
-
-
-@check50.check(has_functions)
-def test_invalid_indices_safe():
-    """functions handle invalid row indices without crashing"""
-    module = check50.py.import_(FILE_NAME)
-
-    M = [
         [1, 2],
         [3, 4],
     ]
-    original = [row[:] for row in M]
+    output = copy.deepcopy(expected)
 
-    # Ungültiger Index sollte Matrix nicht verändern (oder zumindest nicht crashen)
-    module.rowMult(M, 5, 3)
-    module.rowAdd(M, -1, 1, 2)
-    module.rowAdd(M, 0, 10, 2)
+    try:
+        module.rowAdd(output, -1, 1, 2)
+        module.rowAdd(output, 0, 10, 2)
+    except IndexError:
+        msg = (
+            "IndexError raised, check that only 0 to length of column / row is allowed"
+        )
+        raise check50.Failure(msg) from None
 
-    if M != original:
-        raise check50.Mismatch(str(original), str(M))
+
+@check50.check(compiles)
+def no_forbidden_methods():
+    """does not use libraries"""
+    import tokenize
+    from pathlib import Path
+
+    # forbidden libraries / functions and common aliases AND the import keyword
+    forbidden = {"rref", "numpy", "sympy", "np", "sp", "import"}
+
+    path = Path(FILE_NAME)
+
+    with path.open() as f:
+        tokens = list(tokenize.generate_tokens(f.readline))
+
+        for tok_type, tok_string, *_ in tokens:
+            # Skip comments and string literals
+            if tok_type in (tokenize.COMMENT, tokenize.STRING):
+                continue
+
+            # Normalize to lowercase for case-insensitive check
+            tok_lower = tok_string.lower()
+            if tok_lower in forbidden:
+                msg = f"Found forbidden function or library '{tok_string}'"
+                raise check50.Failure(msg)
