@@ -33,19 +33,19 @@ def m(a, b, c):
 
 @check50.check()
 def exists():
-    """stufen.py exists"""
+    """einsen.py exists"""
     check50.exists(FILE_NAME)
 
 
 @check50.check(exists)
 def compiles():
-    """stufen.py compiles"""
+    """einsen.py compiles"""
     check50.py.compile(FILE_NAME)
 
 
 @check50.check(compiles)
 def has_functions():
-    """rowMult, rowAdd und zeilenStufen functions defined"""
+    """rowMult, rowAdd und reduzierteStufen functions defined"""
     module = check50.py.import_(FILE_NAME)
 
     missing = []
@@ -53,36 +53,35 @@ def has_functions():
         missing.append("rowMult")
     if not hasattr(module, "rowAdd"):
         missing.append("rowAdd")
-    if not hasattr(module, "zeilenStufen"):
-        missing.append("zeilenStufen")
+    if not hasattr(module, "reduzierteStufen"):
+        missing.append("reduzierteStufen")
 
     if missing:
         msg = f"Function(s) {', '.join(f'`{m}`' for m in missing)} not found in {FILE_NAME}"
         raise check50.Failure(msg)
 
 
-# ---------- Tests für zeilenStufen (nur Vorwärtsschritt) ----------
-
+# ---------- Tests für reduzierteStufen (Reduzierte Zeilenstufenform) ----------
 
 @check50.check(has_functions)
-def test_zeilenStufen_3x4():
-    """zeilenStufen: 3x4-Beispielmatrix in Zeilenstufenform bringen"""
+def test_reduzierteStufen_3x4():
+    """reduzierteStufen: 3x4-Beispielmatrix in reduzierte Zeilenstufenform bringen (Pivot nicht 1)"""
     module = check50.py.import_(FILE_NAME)
 
+    # Matrix liegt bereits in Zeilenstufenform vor
     M = [
         [2, 4, -2, 2],
-        [4, 9, -3, 8],
-        [-2, -7, 1, -9],
+        [0, 1, 1, 2],
+        [0, 0, 1, 2.5],
     ]
 
     module.rowAdd = a
     module.rowMult = m
-    module.zeilenStufen(M)
+    module.reduzierteStufen(M)
 
-    # Erwartete Zeilenstufenform bei reinem Vorwärtsschritt + Pivot-Skalierung
     expected = [
-        [1.0, 2.0, -1.0, 1.0],
-        [0.0, 1.0, 1.0, 4.0],
+        [1.0, 0.0, 0.0, 4.5],
+        [0.0, 1.0, 0.0, -0.5],
         [0.0, 0.0, 1.0, 2.5],
     ]
 
@@ -90,25 +89,26 @@ def test_zeilenStufen_3x4():
 
 
 @check50.check(has_functions)
-def test_zeilenStufen_4x5():
-    """zeilenStufen: 4x5-Beispielmatrix in Zeilenstufenform bringen"""
+def test_reduzierteStufen_4x5():
+    """reduzierteStufen: 4x5-Beispielmatrix in reduzierte Zeilenstufenform bringen (Pivot nicht 1)"""
     module = check50.py.import_(FILE_NAME)
 
+    # Matrix liegt bereits in Zeilenstufenform vor
     M = [
         [2, 4, 2, 0, 6],
-        [1, 3, 1, 2, 5],
         [0, 1, 0, 1, 1],
-        [3, 10, 3, 5, 12],
+        [0, 0, 0, 1, 1],
+        [0, 0, 0, 0, 1],
     ]
 
     module.rowAdd = a
     module.rowMult = m
-    module.zeilenStufen(M)
+    module.reduzierteStufen(M)
 
     expected = [
-        [1.0, 2.0, 1.0, 0.0, 3.0],
-        [0.0, 1.0, 0.0, 2.0, 2.0],
-        [0.0, 0.0, 0.0, 1.0, 1.0],
+        [1.0, 0.0, 1.0, 0.0, 0.0],
+        [0.0, 1.0, 0.0, 0.0, 0.0],
+        [0.0, 0.0, 0.0, 1.0, 0.0],
         [0.0, 0.0, 0.0, 0.0, 1.0],
     ]
 
@@ -116,32 +116,34 @@ def test_zeilenStufen_4x5():
 
 
 @check50.check(has_functions)
-def test_zeilenStufen_2x3():
-    """zeilenStufen: 2x3-Matrix in Zeilenstufenform bringen"""
+def test_reduzierteStufen_2x3():
+    """reduzierteStufen: 2x3-Matrix in reduzierte Zeilenstufenform bringen (Pivot nicht 1)"""
     module = check50.py.import_(FILE_NAME)
 
+    # Matrix liegt bereits in Zeilenstufenform vor
     M = [
         [4, 8, -4],
-        [2, 3, 1],
+        [0, 1, 1],
     ]
 
     module.rowAdd = a
     module.rowMult = m
-    module.zeilenStufen(M)
+    module.reduzierteStufen(M)
 
     expected = [
-        [1.0, 2.0, -1.0],
-        [0.0, 1.0, -3.0],
+        [1.0, 0.0, -3.0],
+        [0.0, 1.0, 1.0],
     ]
 
     matrices_almost_equal(M, expected)
 
 
 @check50.check(has_functions)
-def test_zeilenStufen_5x6():
-    """zeilenStufen: 5x6-Matrix in Zeilenstufenform bringen"""
+def test_reduzierteStufen_5x6():
+    """reduzierteStufen: 5x6-Matrix in reduzierte Zeilenstufenform bringen (Pivot nicht 1)"""
     module = check50.py.import_(FILE_NAME)
 
+    # Matrix liegt bereits in Zeilenstufenform vor
     M = [
         [2, 4, 0, 0, 8, 10],
         [0, 3, 6, 0, 9, 12],
@@ -152,24 +154,25 @@ def test_zeilenStufen_5x6():
 
     module.rowAdd = a
     module.rowMult = m
-    module.zeilenStufen(M)
+    module.reduzierteStufen(M)
 
     expected = [
-        [1.0, 2.0, 0.0, 0.0, 4.0, 5.0],
-        [0.0, 1.0, 2.0, 0.0, 3.0, 4.0],
-        [0.0, 0.0, 1.0, 2.0, 3.0, 4.0],
-        [0.0, 0.0, 0.0, 1.0, 2.0, 3.0],
-        [0.0, 0.0, 0.0, 0.0, 1.0, 2.0],
+        [1.0, 0.0, 0.0, 0.0, 0.0, 1.0],
+        [0, 1.0, 0.0, 0.0, 0.0, -2.0],
+        [0, 0, 1.0, 0.0, 0.0, 0.0],
+        [0, 0, 0, 1.0, 0.0, -1.0],
+        [0, 0, 0, 0, 1.0, 2.0],
     ]
 
     matrices_almost_equal(M, expected)
 
 
 @check50.check(has_functions)
-def test_zeilenStufen_7x8():
-    """zeilenStufen: 7x8-Matrix in Zeilenstufenform bringen"""
+def test_reduzierteStufen_7x8():
+    """reduzierteStufen: 7x8-Matrix in reduzierte Zeilenstufenform bringen (Pivot nicht 1)"""
     module = check50.py.import_(FILE_NAME)
 
+    # Matrix liegt bereits in Zeilenstufenform vor
     M = [
         [2, 4, 6, 8, 10, 12, 14, 16],
         [0, 3, 6, 9, 12, 15, 18, 21],
@@ -182,52 +185,54 @@ def test_zeilenStufen_7x8():
 
     module.rowAdd = a
     module.rowMult = m
-    module.zeilenStufen(M)
+    module.reduzierteStufen(M)
 
     expected = [
-        [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0],
-        [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0],
-        [0.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0],
-        [0.0, 0.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0],
-        [0.0, 0.0, 0.0, 0.0, 1.0, 2.0, 3.0, 4.0],
-        [0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 2.0, 3.0],
-        [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 2.0],
+        [1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 0, 0, 0],
+        [0, 0, 0, 0, 0, 1, 0, -1],
+        [0, 0, 0, 0, 0, 0, 1, 2],
     ]
 
     matrices_almost_equal(M, expected)
 
 
 @check50.check(has_functions)
-def test_zeilenStufen_4x4_with_zero_rows():
-    """zeilenStufen: 4x4-Matrix, erwartete Form mit Nullzeilen unten"""
+def test_reduzierteStufen_4x4_with_zero_rows():
+    """reduzierteStufen: 4x4-Matrix, erwartete Form mit Nullzeilen unten"""
     module = check50.py.import_(FILE_NAME)
 
+    # Matrix liegt bereits in Zeilenstufenform vor
     M = [
         [1, 2, 0, 3],
-        [2, 5, 1, 8],
         [0, 1, 1, 2],
-        [3, 8, 2, 13],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
     ]
 
     module.rowAdd = a
     module.rowMult = m
-    module.zeilenStufen(M)
+    module.reduzierteStufen(M)
 
     expected = [
-        [1.0, 2.0, 0.0, 3.0],
-        [0.0, 1.0, 1.0, 2.0],
-        [0.0, 0.0, 0.0, 0.0],
-        [0.0, 0.0, 0.0, 0.0],
+        [1, 0, -2, -1],
+        [0, 1, 1, 2],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
     ]
 
     matrices_almost_equal(M, expected)
 
 
 @check50.check(has_functions)
-def test_zeilenStufen_identity_matrix_preserved():
-    """zeilenStufen: 3x3-Matrix Einheitsmatrix bleibt unverändert"""
+def test_reduzierteStufen_identity_matrix_preserved():
+    """reduzierteStufen: 3x3-Matrix Einheitsmatrix bleibt unverändert"""
     module = check50.py.import_(FILE_NAME)
 
+    # Matrix liegt bereits in Zeilenstufenform vor
     M = [
         [1, 0, 0],
         [0, 1, 0],
@@ -236,7 +241,7 @@ def test_zeilenStufen_identity_matrix_preserved():
 
     module.rowAdd = a
     module.rowMult = m
-    module.zeilenStufen(M)
+    module.reduzierteStufen(M)
 
     expected = [
         [1.0, 0.0, 0.0],
@@ -247,10 +252,11 @@ def test_zeilenStufen_identity_matrix_preserved():
 
 
 @check50.check(has_functions)
-def test_zeilenStufen_zero_matrix_remains_zero():
-    """zeilenStufen: 3x4-Matrix Nullmatrix bleibt unverändert"""
+def test_reduzierteStufen_zero_matrix_remains_zero():
+    """reduzierteStufen: 3x4-Matrix Nullmatrix bleibt unverändert"""
     module = check50.py.import_(FILE_NAME)
 
+    # Matrix liegt bereits in Zeilenstufenform vor
     M = [
         [0, 0, 0, 0],
         [0, 0, 0, 0],
@@ -259,7 +265,7 @@ def test_zeilenStufen_zero_matrix_remains_zero():
 
     module.rowAdd = a
     module.rowMult = m
-    module.zeilenStufen(M)
+    module.reduzierteStufen(M)
 
     expected = [
         [0.0, 0.0, 0.0, 0.0],

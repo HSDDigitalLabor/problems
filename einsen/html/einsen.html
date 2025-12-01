@@ -21,11 +21,11 @@
     <li><strong>Voraussetzung</strong>: Die Matrix ist in Zeilenstufenform. Idealerweise sind alle Pivot-Elemente bereits 1.</li>
     <li>Bearbeite die Pivotzeilen von unten nach oben.
     <li><strong>Schritt 1 - Pivot suchen</strong>: Finde in Zeile i die Pivotspalte j (erste 1 von links).</li>
-    <li><strong>Schritt 2 - Zeilen oberhalb des Pivots eliminieren</strong>: Für jede Zeile k oberhalb von i verwende die Funktion:
+    <li><strong>Schritt 2 - Pivot skalieren</strong>: Ist der Pivot nicht 1, verwende die Funktion <code>rowMult</code>, um den Pivot auf 1 zu skalieren.</li>
+    <li><strong>Schritt 3 - Zeilen oberhalb des Pivots eliminieren</strong>: Für jede Zeile k oberhalb von i verwende die Funktion:
           <code>rowAdd</code> damit der Eintrag in Spalte j in Zeile k auf 0 gesetzt wird.
     </li>
-    <li><strong>Schritt 3 - Pivot skalieren</strong>: Verwende die Funktion <code>rowMult</code>, um den Pivot auf 1 zu skalieren.</li>
-    <li><strong>Wiederholung</strong>: Wiederhole für alle Pivotzeilen.
+   <li><strong>Wiederholung</strong>: Wiederhole für alle Pivotzeilen.
     <li>
       Am Ende sind in jeder Pivotspalte nur noch die Einträge 0 außer einer 1 im Pivot. Damit ist die Matrix in reduzierter Zeilenstufenform.
     </li>
@@ -230,4 +230,4 @@ M = [
   </button>
 </p>
 
-<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-12-01 20:24:16</p>
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-12-01 21:01:12</p>
