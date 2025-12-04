@@ -36,7 +36,7 @@ def empty_list():
         msg = "got new list, address of list changes"
         raise check50.Failure(msg)
 
-    if ret != expected:
+    if lst != expected:
         msg = f"expected {expected}, got {lst}"
         raise check50.Failure(msg)
 
@@ -49,10 +49,10 @@ def zero_rotation():
     ret = module.rotate_list(lst, 0)
     expected = [1, 2, 3]
     if id(lst) != id(ret):
-        msg = "got new list, address of list changes"
+        msg = "expected in-place modification, but got a new list"
         raise check50.Failure(msg)
 
-    if ret != expected:
+    if lst != expected:
         msg = f"expected {expected}, got {lst}"
         raise check50.Failure(msg)
 
@@ -64,7 +64,7 @@ def check_inplace():
     lst = [1, 2, 3, 4, 5, 6, 7]
     ret = module.rotate_list(lst, 3)
     if id(lst) != id(ret):
-        msg = "got new list, address of list changes"
+        msg = "expected in-place modification, but got a new list"
         raise check50.Failure(msg)
 
 
