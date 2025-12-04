@@ -26,13 +26,17 @@ def has_function():
 
 
 @check50.check(has_function)
-def example1():
-    """Example 1: rotate_list([1,2,3,4,5,6,7], 3) works"""
+def empty_list():
+    """empty list is unchanged"""
     module = check50.py.import_(FILE_NAME)
-    lst = [1, 2, 3, 4, 5, 6, 7]
-    module.rotate_list(lst, 3)
-    expected = [5, 6, 7, 1, 2, 3, 4]
-    if lst != expected:
+    lst = []
+    ret = module.rotate_list(lst, 0)
+    expected = []
+    if id(lst) != id(ret):
+        msg = "got new list, address of list changes"
+        raise check50.Failure(msg)
+
+    if ret != expected:
         msg = f"expected {expected}, got {lst}"
         raise check50.Failure(msg)
 
@@ -42,14 +46,29 @@ def zero_rotation():
     """Rotation by 0 keeps list unchanged"""
     module = check50.py.import_(FILE_NAME)
     lst = [1, 2, 3]
-    module.rotate_list(lst, 0)
+    ret = module.rotate_list(lst, 0)
     expected = [1, 2, 3]
-    if lst != expected:
+    if id(lst) != id(ret):
+        msg = "got new list, address of list changes"
+        raise check50.Failure(msg)
+
+    if ret != expected:
         msg = f"expected {expected}, got {lst}"
         raise check50.Failure(msg)
 
 
 @check50.check(has_function)
+def check_inplace():
+    """check list is used in place"""
+    module = check50.py.import_(FILE_NAME)
+    lst = [1, 2, 3, 4, 5, 6, 7]
+    ret = module.rotate_list(lst, 3)
+    if id(lst) != id(ret):
+        msg = "got new list, address of list changes"
+        raise check50.Failure(msg)
+
+
+@check50.check(check_inplace)
 def rotation_equal_length():
     """Rotation by list length keeps list unchanged"""
     module = check50.py.import_(FILE_NAME)
@@ -61,7 +80,7 @@ def rotation_equal_length():
         raise check50.Failure(msg)
 
 
-@check50.check(has_function)
+@check50.check(check_inplace)
 def rotation_greater_than_length():
     """Rotation greater than list length works"""
     module = check50.py.import_(FILE_NAME)
@@ -73,7 +92,7 @@ def rotation_greater_than_length():
         raise check50.Failure(msg)
 
 
-@check50.check(has_function)
+@check50.check(check_inplace)
 def negatives():
     """Rotation with negative numbers works"""
     module = check50.py.import_(FILE_NAME)
