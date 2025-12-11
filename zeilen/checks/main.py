@@ -90,7 +90,6 @@ def rowMult_ignore_k():
         raise check50.Failure(msg)
 
 
-
 @check50.check(has_rowMult_function)
 def test_rowMult_example_1():
     """rowMult(M, 1, 8): multiply 2nd row by 8 (example 1)"""
@@ -167,7 +166,8 @@ def test_rowMult_example_3():
     if expected != M:
         msg = pretty_matrix_diff(expected, M)
         raise check50.Failure(msg)
-    
+
+
 @check50.check(has_rowMult_function)
 def test_rowMult_example_4():
     """rowMult(M, 3, 2): multiply 4th row by 2 (example 4)"""
