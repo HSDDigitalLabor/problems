@@ -1,7 +1,8 @@
 {% include "header.html" %}
 
-<p><img class="img-fluid" src="https://mdl.hs-duesseldorf.de/draftfile.php/253964/user/draft/653362729/sudoku2.png"
-    alt="Suduko Feld" width="400" height="328"></p>
+<p><img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/482253436/sudoku2%20%281%29.png"
+    alt="Sudoku Feld" width="400" height="328"></p>
 
 <p>
   Beim Lösen eines Sudoku-Rätsels ist es wichtig sicherzustellen, dass das Sudoku-Feld
@@ -13,7 +14,7 @@
 </ul>
 
 <p>
-  Ihre Aufgabe ist es, eine Funktion <code class="text-danger border border-dark">isValid(board)</code>
+  Ihre Aufgabe ist es, eine Funktion <code class="text-danger border border-dark">isValidBlock(board)</code>
   zu implementieren, die ein 9x9-Sudoku-Board (als Liste von Listen mit Strings)
   entgegennimmt und <strong>True</strong> zurückgibt, wenn alle 3x3-Blocks gültig sind,
   ansonsten <strong>False</strong>. Leere Felder sind durch <code>"."</code> dargestellt.
@@ -22,7 +23,7 @@
 <p>
   {% include "file.html" %}
   Implementieren Sie Ihr Programm so, dass die Funktion
-  <code class="text-danger border border-dark">isValid(board)</code> korrekt überprüft,
+  <code class="text-danger border border-dark">isValidBlock(board)</code> korrekt überprüft,
   ob jedes 3x3-Subgrid die Regeln erfüllt.
 </p>
 
@@ -66,7 +67,7 @@
 <ul>
   <li>
     Ihr Programm wird nicht über Eingaben getestet, sondern ausschließlich
-    über Aufrufe der Funktion <code>isValid</code> mit verschiedenen Sudoku-Boards.
+    über Aufrufe der Funktion <code>isValidBlock</code> mit verschiedenen Sudoku-Boards.
   </li>
 
   <li>
