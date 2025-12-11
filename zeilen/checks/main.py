@@ -90,6 +90,7 @@ def rowMult_ignore_k():
         raise check50.Failure(msg)
 
 
+
 @check50.check(has_rowMult_function)
 def test_rowMult_example_1():
     """rowMult(M, 1, 8): multiply 2nd row by 8 (example 1)"""
@@ -135,6 +136,57 @@ def test_rowMult_example_2():
         [5, 6, 7, 8],
         [9, 10, 11, 12],
         [13, 14, 15, 16],
+    ]
+
+    if expected != M:
+        msg = pretty_matrix_diff(expected, M)
+        raise check50.Failure(msg)
+
+
+@check50.check(has_rowMult_function)
+def test_rowMult_example_3():
+    """rowMult(M, 0, 3): multiply 1st row by 3 (example 3)"""
+    module = check50.py.import_(FILE_NAME)
+
+    M = [
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12],
+        [13, 14, 15, 16],
+    ]
+
+    module.rowMult(M, 0, 3)
+
+    expected = [
+        [3, 6, 9, 12],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12],
+        [13, 14, 15, 16],
+    ]
+
+    if expected != M:
+        msg = pretty_matrix_diff(expected, M)
+        raise check50.Failure(msg)
+    
+@check50.check(has_rowMult_function)
+def test_rowMult_example_4():
+    """rowMult(M, 3, 2): multiply 4th row by 2 (example 4)"""
+    module = check50.py.import_(FILE_NAME)
+
+    M = [
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12],
+        [13, 14, 15, 16],
+    ]
+
+    module.rowMult(M, 3, 2)
+
+    expected = [
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12],
+        [26, 28, 30, 32],
     ]
 
     if expected != M:
