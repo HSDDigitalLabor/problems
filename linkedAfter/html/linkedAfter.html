@@ -1,0 +1,204 @@
+<h1 id="linkedAfter">Linked List: Insert After Node</h1>
+
+<p>
+  In dieser Übung werden Sie die Datenstruktur <strong>Verkettete Liste (Linked List)</strong> erweitern.
+  Gegeben sind bereits die Klassen <code>ListNode</code> und <code>LinkedList</code>, sowie einige
+  Hilfsmethoden zur Erzeugung einer verkettenten Liste aus eine Python Liste <code>FromPythonlist(inputList)</code>
+  und der Methode zur Ausgabe einer verketteten Liste <code>printList()</code>. Eine weitere Methode ist 
+  <code>searchValue(value)</code> mit deren Hilfe Sie eine Listenelement mit einem bestimmten Wert 
+  suchen können. Ihre Aufgabe ist es, eine Methode <code>insertAfterNode(prevNode, newNode)</code> 
+  zu implementieren, die ein neues Listenelement <code>newNode</code> direkt nach dem gegebenen 
+  Element <code>prevNode</code> einfügt.
+</p>
+
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>
+  Implementieren Sie die Funktion <code>insertAfterNode</code> in Python. 
+  Die Funktion bekommt das Element <code>prevNode</code> und das neue Element <code>newNode</code>
+  übergeben und soll das neue Element in die Liste einfügen. Ist <code>prevNode</code> None,
+  soll eine <code>ValueError</code> Exception ausgelöst werden.
+</p>
+
+
+<p>
+    Erstellen Sie eine Datei mit dem Namen
+  <code class="text-danger border border-dark">linkedAfter.py</code> und
+  Implementieren Sie die Funktion <code>insertAfterNode</code> in Ihrer Datei. Kopieren Sie dazu den 
+  folgenden Codeblock in die Datei <code class="text-danger border border-dark">linkedAfter.py</code>,
+  und ergänzen Sie die Methode <code>insertAfterNode</code>:
+</p>
+
+<div class="alert alert-dark">
+  <pre><code>
+class ListNode:
+    def __init__(self, value: int):
+        self.value: int = value
+        self.next: ListNode | None = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def FromPythonlist(self, inputList: list[int]):
+        for val in inputList:
+            newNode = ListNode(value=val)
+            self.insertAfterHead(newNode)
+
+    def searchValue(self, value: int) -> ListNode:
+        current = self.head
+        while current is not None:
+            if current.value == value:
+                return current
+            current = current.next
+        return None
+
+    def printList(self):
+        current = self.head
+        while current is not None:
+            print(current.value, end=" -> ")
+            current = current.next
+        print("None")
+
+    def insertAfterHead(self, newNode: ListNode):
+        newNode.next = self.head
+        self.head = newNode
+</code></pre>
+</div>
+
+
+<!-- <p></p>
+<h2 id="demo">Demo</h2>
+<p>
+  <script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
+  id="asciicast-"
+  src="https://asciinema.org/a/.js">
+  </script>
+</p> -->
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
+  linkedAfter</code></div>
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">linkedAfter</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
+  linkedAfter</code></div>
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt Ihres Terminals sollte
+  nun <code class="text-danger border border-dark">linkedAfter/$</code> anzeigen.
+  Jetzt können Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
+  linkedAfter.py</code></div>
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">linkedAfter.py</code> zu erstellen, in der Sie Ihr
+  Programm schreiben.
+</p>
+
+<h2 id="how-to-test">So testen Sie Ihr Programm</h2>
+<p>So können Sie Ihr Programm manuell testen:</p>
+
+<p>
+  Testen Sie Ihre Implementierung, indem Sie das Skript ausführen.
+  Erstellen Sie dazu eine Instanz der <code>LinkedList</code>, fügen Sie Elemente hinzu und rufen Sie dann Ihre Methode <code>insertAfterNode</code> auf.
+  Überprüfen Sie anschließend, ob die Liste die erwartete Struktur hat, indem Sie <code>printList()</code> verwenden.
+</p>
+
+<div class="alert alert-dark">
+<pre><code>
+  # Erstellen einer verketteten Liste aus einer Python-Liste
+  inputList = [4, 8, 2, 1]
+  ll = LinkedList()
+  ll.FromPythonlist(inputList)
+
+  print("Liste vorher:")
+  ll.printList()
+
+  node = ll.searchValue(8)
+  newNode = ListNode(3)
+  # Einfügen von 3 nach 8
+  ll.insertAfterNode(node, newNode)
+
+  print("Liste nachher:")
+  ll.printList()
+  # Erwartete Ausgabe: 1 -> 2 -> 8 -> 3 -> 4 -> None
+</code></pre>
+</div>
+
+
+
+<p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
+  class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
+  der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
+  aber auch selbst!</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  check50 HSDDigitalLabor/problems/adg2025/linkedAfter
+  </code></div>
+<p>
+  Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
+  bedeuten, dass Ihr Programm einen Test bestanden hat! Rote
+  traurige Smileys <span style="font-family: monospace; color: red;">:( </span>
+  zeigen an, dass Ihr Programm etwas Unerwartetes ausgegeben
+  hat. Besuchen Sie die URL, die <code class="text-danger">check50</code>
+  ausgibt, um zu sehen, welche Eingabe <code class="text-danger">check50</code>
+  an Ihr Programm übergeben hat, welche Ausgabe erwartet wurde und welche
+  Ausgabe Ihr Programm tatsächlich geliefert hat.
+</p>
+
+<h2 id="how-to-submit">Abgabe</h2>
+<p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
+</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  submit50 HSDDigitalLabor/problems/adg2025/linkedAfter
+  </code></div>
+<p>
+  Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
+  nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
+  die zuletzt eingereichte Version vor dem Fälligkeitsdatum. Nach Ablauf der
+  Frist können Sie technisch zwar noch Abgaben tätigen, Ihre Lösung wird jedoch
+  nicht mehr gewertet. Das Ergebnis kann ausschließlich mit obigem Befehl abgegeben
+  werden, eine Abgabe in Moodle ist nicht möglich.
+</p>
+
+<h2 id="how-to-mark">Markierung der Aufgabe als erledigt</h2>
+<p>Nach dem Einreichen der Lösung mit <code class="text-danger">submit50</code>,
+  nehmen Sie eine Pseudolösung in Moodle vor, indem Sie auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_solution" disabled>
+    Aufgabenlösung hinzufügen</button>
+  weiter unten auf dieser Seite betätigen und in das sich öffnende Feld unter
+  "Texteingabe online" den folgenden Text ein:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">Mit submit50 abgegeben.</code>
+</div>
+<p>Schließen Sie die Eingabe durch Klick auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_save" disabled>
+    Änderungen speichern</button> unterhalb des Textfeldes ab.
+</p>
+<p>
+  Zur besseren Übersicht markieren Sie das Problem linkedAfter.py in Moodle als erledigt,
+  indem Sie ganz oben auf dieser Seite den Button
+</p>
+<p>
+  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: linkedAfter.py  als erledigt kennzeichnen"
+    aria-label="Problem: linkedAfter.py  als erledigt kennzeichnen" disabled>
+    Als erledigt kennzeichnen
+  </button>
+  klicken. Daraufhin erscheint der Button
+  <button class="btn btn-success btn-sm text-nowrap"
+    title="Problem: linkedAfter.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
+    aria-label="Problem: linkedAfter.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
+    <i class="fa fa-check" aria-hidden="true"></i> Erledigt
+  </button>
+</p>
+
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-12-19 19:13:17</p>
