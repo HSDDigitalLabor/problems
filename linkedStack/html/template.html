@@ -1,0 +1,129 @@
+{% include "header.html" %}
+
+<p>
+  In dieser Übung werden Sie die Datenstruktur <strong>Verkettete Liste (Linked List)</strong> verwenden, um einen <strong>Stack (Stapel)</strong> zu implementieren.
+  Gegeben sind bereits die Klassen <code>ListNode</code> und <code>LinkedList</code>.
+  Ihre Aufgabe ist es, die Klasse <code>Stack</code> zu implementieren, die intern eine <code>LinkedList</code> verwendet, um die Stack-Operationen durchzuführen.
+</p>
+
+<p><img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/796474036/stack_graphic.png"
+    alt="Stack" width="466" height="300">
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>
+  Implementieren Sie die Klasse <code>Stack</code> mit den folgenden Methoden:
+  <ul>
+    <li><code>push(value)</code>: Legt einen Wert auf den Stack (fügt ihn am Anfang der Liste ein).</li>
+    <li><code>pop()</code>: Entfernt das oberste Element vom Stack und gibt dessen Wert zurück. Gibt <code>None</code> zurück, wenn der Stack leer ist.</li>
+    <li><code>peek()</code>: Gibt den Wert des obersten Elements zurück, ohne es zu entfernen. Gibt <code>None</code> zurück, wenn der Stack leer ist.</li>
+  </ul>
+  Nutzen Sie für die Implementierung die Methoden der Klasse <code>LinkedList</code>.
+</p>
+
+
+<p>
+  {% include "file.html" %}
+  Implementieren Sie die Klasse <code>Stack</code> in Ihrer Datei. Kopieren Sie dazu den 
+  folgenden Codeblock in die Datei <code class="text-danger border border-dark">{{filename}}</code>,
+  und ergänzen Sie die fehlenden Methoden:
+</p>
+
+<div class="alert alert-dark">
+  <pre><code>
+class ListNode:
+    def __init__(self, value: int):
+        self.value: int = value
+        self.next: ListNode | None = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insertAfterHead(self, newNode: ListNode):
+        newNode.next = self.head
+        self.head = newNode
+
+    def removeAfterHead(self):
+        # TODO: Eine hilfreiche Methode zum Erstellen eines Stacks
+
+    def printList(self):
+        current = self.head
+        while current is not None:
+            print(current.value, end=" -> ")
+            current = current.next
+        print("None")
+
+
+class Stack:
+    def __init__(self):
+        self.ll = LinkedList()
+
+    def push(self, value: int):
+        # TODO: Implementieren Sie diese Methode
+        pass
+
+    def pop(self) -> int | None:
+        # TODO: Implementieren Sie diese Methode
+        pass
+
+    def peek(self) -> int | None:
+        # TODO: Implementieren Sie diese Methode
+        pass
+</code></pre>
+</div>
+
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+
+<p>
+  Testen Sie Ihre Implementierung, indem Sie das Skript ausführen.
+  Erstellen Sie dazu eine Instanz der Klasse <code>Stack</code>, führen Sie einige Operationen durch und überprüfen Sie die Ausgaben.
+</p>
+
+<div class="alert alert-dark">
+<pre><code>
+  stack = Stack()
+  
+  print("Push 10, 20, 30")
+  stack.push(10)
+  stack.push(20)
+  stack.push(30)
+  
+  print("Stack Inhalt (via LinkedList):")
+  stack.ll.printList()
+  # Erwartet: 30 -> 20 -> 10 -> None
+  
+  print(f"Peek: {stack.peek()}")
+  # Erwartet: 30
+  
+  print(f"Pop: {stack.pop()}")
+  # Erwartet: 30
+  
+  print("Stack Inhalt nach Pop:")
+  stack.ll.printList()
+  # Erwartet: 20 -> 10 -> None
+  
+  print(f"Pop: {stack.pop()}")
+  print(f"Pop: {stack.pop()}")
+  print(f"Pop (leer): {stack.pop()}")
+  # Erwartet: 20, 10, None
+</code></pre>
+</div>
+
+
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
