@@ -1,0 +1,118 @@
+{% include "header.html" %}
+
+<p>
+  In dieser Übung werden Sie die Datenstruktur <strong>Verkettete Liste (Linked List)</strong> erweitern.
+  Gegeben sind bereits die Klassen <code>ListNode</code> und <code>LinkedList</code>, sowie einige
+  Hilfsmethoden: <code>FromPythonlist(inputList)</code> zur Erzeugung einer verketteten Liste aus einer Python-Liste
+  und <code>printList()</code> zur Ausgabe der Liste.
+  Ihre Aufgabe ist es, die Methode <code>removeElement(node)</code> 
+  zu implementieren, die das übergebene Listenelement <code>node</code> aus der Liste entfernt.
+</p>
+
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>
+  Implementieren Sie die Methode <code>removeElement(self, node)</code> in der Klasse <code>LinkedList</code>. 
+  Die Methode erhält das Element <code>node</code>, das entfernt werden soll. Sie soll dieses Element aus der Liste entfernen.
+  Achten Sie darauf, den Vorgänger des Elements korrekt mit dem Nachfolger zu verbinden.
+  Wenn das Element der Kopf (Head) der Liste ist, muss der Kopf aktualisiert werden.
+</p>
+
+
+<p>
+  {% include "file.html" %}
+  Implementieren Sie die Methode <code>removeElement</code> in Ihrer Datei. Kopieren Sie dazu den 
+  folgenden Codeblock in die Datei <code class="text-danger border border-dark">{{filename}}</code>,
+  und ergänzen Sie die Methode <code>removeElement</code>:
+</p>
+
+<div class="alert alert-dark">
+  <pre><code>
+class ListNode:
+    def __init__(self, value: int):
+        self.value: int = value
+        self.next: ListNode | None = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def FromPythonlist(self, inputList: list[int]):
+        for val in inputList:
+            newNode = ListNode(value=val)
+            self.insertAfterHead(newNode)
+
+    def searchValue(self, value: int) -> ListNode | None:
+        # Siehe Problem 'linkedFind.py' für die Implementierung dieser Methode
+        return None
+
+    def insertAfterNode(self, prevNode: ListNode | None, newNode: ListNode):
+        # Siehe Problem 'linkedAfter.py' für die Implementierung dieser Methode
+        return
+
+    def insertAfterLast(self, newNode: ListNode):
+        # Siehe Problem 'linkedInsert.py' für die Implementierung dieser Methode
+        pass
+
+    def removeElement(self, node: ListNode):
+        # TODO: Implementieren Sie diese Methode
+        pass
+
+    def printList(self):
+        current = self.head
+        while current is not None:
+            print(current.value, end=" -> ")
+            current = current.next
+        print("None")
+
+    def insertAfterHead(self, newNode: ListNode):
+        newNode.next = self.head
+        self.head = newNode
+</code></pre>
+</div>
+
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+
+<p>
+  Testen Sie Ihre Implementierung, indem Sie das Skript ausführen.
+  Erstellen Sie dazu eine Instanz der <code>LinkedList</code>, fügen Sie Elemente hinzu und rufen Sie dann Ihre Methode <code>removeElement</code> auf.
+  Überprüfen Sie anschließend, ob die Liste die erwartete Struktur hat, indem Sie <code>printList()</code> verwenden.
+</p>
+
+<div class="alert alert-dark">
+<pre><code>
+  # Erstellen einer verketteten Liste aus einer Python-Liste
+  inputList = [4, 8, 2, 1]
+  ll = LinkedList()
+  ll.FromPythonlist(inputList)
+
+  print("Liste vorher:")
+  ll.printList()
+
+  # Suchen und Entfernen von 8
+  node = ll.searchValue(8)
+  if node:
+      ll.removeElement(node)
+
+  print("Liste nachher:")
+  ll.printList()
+  # Erwartete Ausgabe: 1 -> 2 -> 4 -> None
+</code></pre>
+</div>
+
+
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
