@@ -66,8 +66,10 @@ def test_remove_middle():
     # Find node with value 20
     node_to_remove = ll.searchValue(20)
     if node_to_remove is None:
-        msg = ("searchValue(20) returned None, but 20 should be in the list. "
-               "Cannot test removeElement.")
+        msg = (
+            "searchValue(20) returned None, but 20 should be in the list. "
+            "Cannot test removeElement."
+        )
         raise check50.Failure(msg)
 
     ll.removeElement(node_to_remove)
@@ -89,8 +91,10 @@ def test_remove_head():
     # Find node with value 30 (head)
     node_to_remove = ll.searchValue(30)
     if node_to_remove is None:
-        msg = ("searchValue(30) returned None, but 30 should be in the list. "
-               "Cannot test removeElement.")
+        msg = (
+            "searchValue(30) returned None, but 30 should be in the list. "
+            "Cannot test removeElement."
+        )
         raise check50.Failure(msg)
 
     ll.removeElement(node_to_remove)
@@ -112,8 +116,10 @@ def test_remove_tail():
     # Find node with value 10 (tail)
     node_to_remove = ll.searchValue(10)
     if node_to_remove is None:
-        msg = ("searchValue(10) returned None, but 10 should be in the list. "
-               "Cannot test removeElement.")
+        msg = (
+            "searchValue(10) returned None, but 10 should be in the list. "
+            "Cannot test removeElement."
+        )
         raise check50.Failure(msg)
 
     ll.removeElement(node_to_remove)
