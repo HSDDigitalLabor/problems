@@ -156,5 +156,5 @@ def test_insert_after_none_prevnode():
         threw = True
 
     if not threw:
-        msg = "insertAfterNode should raise an ValueError when prevNode is None"
+        msg = "insertAfterNode should raise a ValueError when prevNode is None"
         raise check50.Failure(msg)
