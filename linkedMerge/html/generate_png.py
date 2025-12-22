@@ -76,4 +76,6 @@ ax.set_ylim(-1.0, 3.0)
 ax.axis("off")
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-plt.savefig(os.path.join(script_dir, "linked_list_graphic.png"), dpi=200, bbox_inches="tight")
+plt.savefig(
+    os.path.join(script_dir, "linked_list_graphic.png"), dpi=200, bbox_inches="tight"
+)
