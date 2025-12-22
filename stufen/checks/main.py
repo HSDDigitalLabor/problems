@@ -21,14 +21,16 @@ def matrices_almost_equal(actual, expected, eps=1e-6):
 
 def a(a, b, c, d):
     if not (0 <= b < len(a)) or not (0 <= c < len(a)) or d == 0:
-        return
+        return a
     a[c] = [x + d * y for x, y in zip(a[c], a[b])]
+    return a
 
 
 def m(a, b, c):
     if not (0 <= b < len(a)) or c == 0:
-        return
+        return a
     a[b] = [x * c if x != 0 else x for x in a[b]]
+    return a
 
 
 @check50.check()
