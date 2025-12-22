@@ -1,0 +1,108 @@
+{% include "header.html" %}
+
+<p>
+  In dieser Übung werden Sie die Datenstruktur <strong>Verkettete Liste (Linked List)</strong> erweitern.
+  Gegeben sind bereits die Klassen <code>ListNode</code> und <code>LinkedList</code>, sowie einige
+  Hilfsmethoden: <code>FromPythonlist(inputList)</code> zur Erzeugung einer verketteten Liste aus einer Python-Liste
+  und <code>printList()</code> zur Ausgabe der Liste.
+  Ihre Aufgabe ist es, die Methode <code>searchValue(value)</code> 
+  zu implementieren, mit deren Hilfe Sie ein Listenelement mit einem bestimmten Wert 
+  suchen können. 
+</p>
+
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>
+  Implementieren Sie die Methode <code>searchValue(self, value)</code> in der Klasse <code>LinkedList</code>. 
+  Die Methode erhält den Wert <code>value</code>, nach dem gesucht werden soll, und 
+  soll das erste <code>ListNode</code>-Objekt zurückgeben, das diesen Wert enthält. Wird kein Element mit dem
+  gesuchten Wert gefunden, soll <code>None</code> zurückgegeben werden.
+</p>
+
+
+<p>
+  {% include "file.html" %}
+  Implementieren Sie die Funktion <code>searchValue(self, value)</code> in Ihrer Datei.
+  Kopieren Sie dazu den folgenden Codeblock in die Datei 
+  <code class="text-danger border border-dark">{{filename}}</code>,
+  und ergänzen Sie die Methode <code>searchValue(self, value)</code>:
+</p>
+
+<div class="alert alert-dark">
+  <pre><code>
+class ListNode:
+    def __init__(self, value: int):
+        self.value: int = value
+        self.next: ListNode | None = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def FromPythonlist(self, inputList: list[int]):
+        for val in inputList:
+            newNode = ListNode(value=val)
+            self.insertAfterHead(newNode)
+
+    def searchValue(self, value: int) -> ListNode | None:
+        # TODO implementieren Sie hier die Suche nach dem Wert
+        return None
+
+    def printList(self):
+        current = self.head
+        while current is not None:
+            print(current.value, end=" -> ")
+            current = current.next
+        print("None")
+
+    def insertAfterHead(self, newNode: ListNode):
+        newNode.next = self.head
+        self.head = newNode
+</code></pre>
+</div>
+
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+
+<p>
+  Testen Sie Ihre Implementierung, indem Sie das Skript ausführen.
+  Erstellen Sie dazu eine Instanz der <code>LinkedList</code>, 
+  fügen Sie Elemente hinzu und rufen Sie dann Ihre Methode <code>searchValue</code> auf.
+  Überprüfen Sie anschließend, ob die Liste die erwartete Struktur hat, 
+  indem Sie <code>printList()</code> verwenden.
+</p>
+
+<div class="alert alert-dark">
+<pre><code>
+  # Erstellen einer verketteten Liste aus einer Python-Liste
+  inputList = [1, 2, 8, 4]
+  ll = LinkedList()
+  ll.FromPythonlist(inputList)
+
+  print("Liste:")
+  ll.printList()
+
+  node = ll.searchValue(8)
+  if node is not None:
+      print(f"Gefundenes Element: {node.value}")
+  else:
+      print("Element nicht gefunden.")
+
+</code></pre>
+</div>
+
+
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
