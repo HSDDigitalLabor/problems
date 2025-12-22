@@ -26,6 +26,15 @@ def build_ll(module, values):
     return ll
 
 
+def a(self, b):
+    c = self.head
+    while c is not None:
+        if c.value == b:
+            return c
+        c = c.next
+    return None
+
+
 @check50.check()
 def exists():
     """linkedAfter.py exists"""
@@ -75,6 +84,7 @@ def test_insert_after_middle():
     module = check50.py.import_(FILE_NAME)
 
     ll = build_ll(module, [1, 2, 8, 4])  # Liste: 4 -> 8 -> 2 -> 1
+    module.LinkedList.searchValue = a
     node = ll.searchValue(8)
     if node is None:
         msg = "searchValue(8) returned None, but 8 should be in the list"
@@ -94,6 +104,7 @@ def test_insert_after_head():
     module = check50.py.import_(FILE_NAME)
 
     ll = build_ll(module, [10, 20, 30])  # Liste: 30 -> 20 -> 10
+    module.LinkedList.searchValue = a
     head = ll.head
     if head is None:
         msg = "Linked list head is None after FromPythonlist"
@@ -113,6 +124,7 @@ def test_insert_after_tail():
     module = check50.py.import_(FILE_NAME)
 
     ll = build_ll(module, [10, 20, 30])  # Liste: 30 -> 20 -> 10
+    module.LinkedList.searchValue = a
     tail = ll.searchValue(10)  # 10 ist Tail
     if tail is None:
         msg = "searchValue(10) returned None, but 10 should be in the list"
@@ -133,6 +145,7 @@ def test_insert_after_none_prevnode():
     module = check50.py.import_(FILE_NAME)
 
     ll = build_ll(module, [1, 2, 3])
+    module.LinkedList.searchValue = a
     prev = ll.searchValue(999)  # not in list -> None
     new_node = module.ListNode(4)
 

@@ -3,10 +3,10 @@
 <p>
   In dieser Übung werden Sie die Datenstruktur <strong>Verkettete Liste (Linked List)</strong> erweitern.
   Gegeben sind bereits die Klassen <code>ListNode</code> und <code>LinkedList</code>, sowie einige
-  Hilfsmethoden zur Erzeugung einer verkettenten Liste aus eine Python Liste <code>FromPythonlist(inputList)</code>
-  und der Methode zur Ausgabe einer verketteten Liste <code>printList()</code>. Eine weitere Methode ist 
-  <code>searchValue(value)</code> mit deren Hilfe Sie eine Listenelement mit einem bestimmten Wert 
-  suchen können. Ihre Aufgabe ist es, eine Methode <code>insertAfterNode(prevNode, newNode)</code> 
+  Hilfsmethoden: <code>FromPythonlist(inputList)</code> zur Erzeugung einer verketteten Liste aus einer Python-Liste
+  und <code>printList()</code> zur Ausgabe der Liste. Ebenfalls gegeben ist die Methode 
+  <code>searchValue(value)</code>, mit deren Hilfe Sie ein Listenelement mit einem bestimmten Wert 
+  suchen können. Ihre Aufgabe ist es, die Methode <code>insertAfterNode(prevNode, newNode)</code> 
   zu implementieren, die ein neues Listenelement <code>newNode</code> direkt nach dem gegebenen 
   Element <code>prevNode</code> einfügt.
 </p>
@@ -15,16 +15,16 @@
 <h2 id="aufgabe">Aufgabe</h2>
 
 <p>
-  Implementieren Sie die Funktion <code>insertAfterNode</code> in Python. 
-  Die Funktion bekommt das Element <code>prevNode</code> und das neue Element <code>newNode</code>
-  übergeben und soll das neue Element in die Liste einfügen. Ist <code>prevNode</code> None,
-  soll eine <code>ValueError</code> Exception ausgelöst werden.
+  Implementieren Sie die Methode <code>insertAfterNode(self, prevNode, newNode)</code> in der Klasse <code>LinkedList</code>. 
+  Die Methode erhält das Element <code>prevNode</code> und das neue Element <code>newNode</code>
+  und soll das neue Element direkt nach <code>prevNode</code> in die Liste einfügen. Ist <code>prevNode</code> <code>None</code>,
+  soll eine <code>ValueError</code>-Exception ausgelöst werden.
 </p>
 
 
 <p>
   {% include "file.html" %}
-  Implementieren Sie die Funktion <code>insertAfterNode</code> in Ihrer Datei. Kopieren Sie dazu den 
+  Implementieren Sie die Methode <code>insertAfterNode</code> in Ihrer Datei. Kopieren Sie dazu den 
   folgenden Codeblock in die Datei <code class="text-danger border border-dark">{{filename}}</code>,
   und ergänzen Sie die Methode <code>insertAfterNode</code>:
 </p>
@@ -47,12 +47,12 @@ class LinkedList:
             self.insertAfterHead(newNode)
 
     def searchValue(self, value: int) -> ListNode:
-        current = self.head
-        while current is not None:
-            if current.value == value:
-                return current
-            current = current.next
-        return None
+        # Siehe Problem 'linkedFind.py' für die Implementierung dieser Methode
+        return
+
+    def insertAfterNode(self, prevNode: ListNode | None, newNode: ListNode):
+        # TODO: Implementieren Sie diese Methode
+        return
 
     def printList(self):
         current = self.head
