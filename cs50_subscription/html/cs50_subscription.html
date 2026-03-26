@@ -1,0 +1,363 @@
+<h1 id="cs50_subscription">CS50 Subscription</h1>
+
+<p>Diese Aufgabe dient zur Überprüfung Ihrer Anmeldung zum <strong>GIT_SoSe2026</strong> Kurs.
+  Nach erfolgreicher Anmeldung und Ausführung der folgenden Schritte 
+  wird im Moodle-Kurs der Status „bestanden" angezeigt. 
+  <strong>Beachten Sie, dass die Bewertung in Moodle manuell nach Ablauf der Abgabefrist erfolgt.</strong></p>
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+
+
+
+
+
+
+    <div class="alert alert-primary">
+    <div class="d-flex gap-2">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="2100312">
+            mkdir cs50_subscription
+        </code>
+        <button class="btn btn-secondary" id="copyCmdBtn_2100312" type="button"><i class="fa-regular fa-clipboard"></i></button>
+    </div>
+    <div id="copyFeedback_2100312" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+        Fehler beim Kopieren!
+    </div>
+
+    <script>
+    (function () {
+        if (!window.commandBoxWithCp) {
+            window.commandBoxWithCp = {
+                showCopyError: function (feedbackId) {
+                    var feedback = document.getElementById(feedbackId);
+                    if (!feedback) return;
+                    feedback.classList.remove('d-none');
+                    setTimeout(function () {
+                        feedback.classList.add('d-none');
+                    }, 2500);
+                },
+                copyToClipboard: function (buttonId, codeId, feedbackId) {
+                    var btn = document.getElementById(buttonId);
+                    var codeEl = document.getElementById(codeId);
+                    if (!btn || !codeEl) return;
+
+                    var text = codeEl.textContent.trim();
+                    btn.disabled = true;
+
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).catch(function () {
+                            window.commandBoxWithCp.showCopyError(feedbackId);
+                        });
+                        setTimeout(function () {
+                            btn.disabled = false;
+                        }, 500);
+                        return;
+                    }
+
+                    var ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.focus();
+                    ta.select();
+
+                    try {
+                        document.execCommand('copy');
+                    } catch (e) {
+                        window.commandBoxWithCp.showCopyError(feedbackId);
+                    }
+
+                    document.body.removeChild(ta);
+                    setTimeout(function () {
+                        btn.disabled = false;
+                    }, 1000);
+                },
+                bind: function (buttonId, codeId, feedbackId) {
+                    var btn = document.getElementById(buttonId);
+                    if (!btn) return;
+                    btn.addEventListener('click', function () {
+                        window.commandBoxWithCp.copyToClipboard(buttonId, codeId, feedbackId);
+                    });
+                }
+            };
+        }
+
+        window.commandBoxWithCp.bind('copyCmdBtn_2100312', '2100312', 'copyFeedback_2100312');
+    })();
+    </script>
+</div>
+
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">cs50_subscription</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+
+
+
+
+
+
+    <div class="alert alert-primary">
+    <div class="d-flex gap-2">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="4072215">
+            cd cs50_subscription
+        </code>
+        <button class="btn btn-secondary" id="copyCmdBtn_4072215" type="button"><i class="fa-regular fa-clipboard"></i></button>
+    </div>
+    <div id="copyFeedback_4072215" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+        Fehler beim Kopieren!
+    </div>
+
+    <script>
+    (function () {
+        if (!window.commandBoxWithCp) {
+            window.commandBoxWithCp = {
+                showCopyError: function (feedbackId) {
+                    var feedback = document.getElementById(feedbackId);
+                    if (!feedback) return;
+                    feedback.classList.remove('d-none');
+                    setTimeout(function () {
+                        feedback.classList.add('d-none');
+                    }, 2500);
+                },
+                copyToClipboard: function (buttonId, codeId, feedbackId) {
+                    var btn = document.getElementById(buttonId);
+                    var codeEl = document.getElementById(codeId);
+                    if (!btn || !codeEl) return;
+
+                    var text = codeEl.textContent.trim();
+                    btn.disabled = true;
+
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).catch(function () {
+                            window.commandBoxWithCp.showCopyError(feedbackId);
+                        });
+                        setTimeout(function () {
+                            btn.disabled = false;
+                        }, 500);
+                        return;
+                    }
+
+                    var ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.focus();
+                    ta.select();
+
+                    try {
+                        document.execCommand('copy');
+                    } catch (e) {
+                        window.commandBoxWithCp.showCopyError(feedbackId);
+                    }
+
+                    document.body.removeChild(ta);
+                    setTimeout(function () {
+                        btn.disabled = false;
+                    }, 1000);
+                },
+                bind: function (buttonId, codeId, feedbackId) {
+                    var btn = document.getElementById(buttonId);
+                    if (!btn) return;
+                    btn.addEventListener('click', function () {
+                        window.commandBoxWithCp.copyToClipboard(buttonId, codeId, feedbackId);
+                    });
+                }
+            };
+        }
+
+        window.commandBoxWithCp.bind('copyCmdBtn_4072215', '4072215', 'copyFeedback_4072215');
+    })();
+    </script>
+</div>
+
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt Ihres Terminals sollte
+  nun <code class="text-danger border border-dark">cs50_subscription/$</code> anzeigen.
+  Jetzt können Sie</p>
+
+
+
+
+
+
+    <div class="alert alert-primary">
+    <div class="d-flex gap-2">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="9440274">
+            wget https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2025/cs50_subscription/files/cs50_subscription.py
+        </code>
+        <button class="btn btn-secondary" id="copyCmdBtn_9440274" type="button"><i class="fa-regular fa-clipboard"></i></button>
+    </div>
+    <div id="copyFeedback_9440274" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+        Fehler beim Kopieren!
+    </div>
+
+    <script>
+    (function () {
+        if (!window.commandBoxWithCp) {
+            window.commandBoxWithCp = {
+                showCopyError: function (feedbackId) {
+                    var feedback = document.getElementById(feedbackId);
+                    if (!feedback) return;
+                    feedback.classList.remove('d-none');
+                    setTimeout(function () {
+                        feedback.classList.add('d-none');
+                    }, 2500);
+                },
+                copyToClipboard: function (buttonId, codeId, feedbackId) {
+                    var btn = document.getElementById(buttonId);
+                    var codeEl = document.getElementById(codeId);
+                    if (!btn || !codeEl) return;
+
+                    var text = codeEl.textContent.trim();
+                    btn.disabled = true;
+
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).catch(function () {
+                            window.commandBoxWithCp.showCopyError(feedbackId);
+                        });
+                        setTimeout(function () {
+                            btn.disabled = false;
+                        }, 500);
+                        return;
+                    }
+
+                    var ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.focus();
+                    ta.select();
+
+                    try {
+                        document.execCommand('copy');
+                    } catch (e) {
+                        window.commandBoxWithCp.showCopyError(feedbackId);
+                    }
+
+                    document.body.removeChild(ta);
+                    setTimeout(function () {
+                        btn.disabled = false;
+                    }, 1000);
+                },
+                bind: function (buttonId, codeId, feedbackId) {
+                    var btn = document.getElementById(buttonId);
+                    if (!btn) return;
+                    btn.addEventListener('click', function () {
+                        window.commandBoxWithCp.copyToClipboard(buttonId, codeId, feedbackId);
+                    });
+                }
+            };
+        }
+
+        window.commandBoxWithCp.bind('copyCmdBtn_9440274', '9440274', 'copyFeedback_9440274');
+    })();
+    </script>
+</div>
+
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">cs50_subscription.py</code> herunterzuladen, die Sie anschließend zu Testzwecken Abgeben</p>
+</p>
+
+<h2 id="how-to-submit">Abgabe</h2>
+<p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
+</p>
+
+
+
+
+
+
+    <div class="alert alert-primary">
+    <div class="d-flex gap-2">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="2039984">
+            submit50 HSDDigitalLabor/problems/git2025/cs50_subscription
+        </code>
+        <button class="btn btn-secondary" id="copyCmdBtn_2039984" type="button"><i class="fa-regular fa-clipboard"></i></button>
+    </div>
+    <div id="copyFeedback_2039984" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+        Fehler beim Kopieren!
+    </div>
+
+    <script>
+    (function () {
+        if (!window.commandBoxWithCp) {
+            window.commandBoxWithCp = {
+                showCopyError: function (feedbackId) {
+                    var feedback = document.getElementById(feedbackId);
+                    if (!feedback) return;
+                    feedback.classList.remove('d-none');
+                    setTimeout(function () {
+                        feedback.classList.add('d-none');
+                    }, 2500);
+                },
+                copyToClipboard: function (buttonId, codeId, feedbackId) {
+                    var btn = document.getElementById(buttonId);
+                    var codeEl = document.getElementById(codeId);
+                    if (!btn || !codeEl) return;
+
+                    var text = codeEl.textContent.trim();
+                    btn.disabled = true;
+
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).catch(function () {
+                            window.commandBoxWithCp.showCopyError(feedbackId);
+                        });
+                        setTimeout(function () {
+                            btn.disabled = false;
+                        }, 500);
+                        return;
+                    }
+
+                    var ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.focus();
+                    ta.select();
+
+                    try {
+                        document.execCommand('copy');
+                    } catch (e) {
+                        window.commandBoxWithCp.showCopyError(feedbackId);
+                    }
+
+                    document.body.removeChild(ta);
+                    setTimeout(function () {
+                        btn.disabled = false;
+                    }, 1000);
+                },
+                bind: function (buttonId, codeId, feedbackId) {
+                    var btn = document.getElementById(buttonId);
+                    if (!btn) return;
+                    btn.addEventListener('click', function () {
+                        window.commandBoxWithCp.copyToClipboard(buttonId, codeId, feedbackId);
+                    });
+                }
+            };
+        }
+
+        window.commandBoxWithCp.bind('copyCmdBtn_2039984', '2039984', 'copyFeedback_2039984');
+    })();
+    </script>
+</div>
+
+<p>
+  Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
+  nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
+  die zuletzt eingereichte Version vor dem Fälligkeitsdatum. Nach Ablauf der
+  Frist können Sie technisch zwar noch Abgaben tätigen, Ihre Lösung wird jedoch
+  nicht mehr gewertet. Das Ergebnis kann ausschließlich mit obigem Befehl abgegeben
+  werden, eine Abgabe in Moodle ist nicht möglich.
+</p>
+
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2026-03-26 18:37:51</p>
