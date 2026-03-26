@@ -1,0 +1,78 @@
+{% set cp_id = range(1000000, 9999999) | random %}
+{% set cp_btn_id = 'copyCmdBtn_' ~ cp_id %}
+{% set cp_feedback_id = 'copyFeedback_' ~ cp_id %}
+
+    <div class="alert alert-primary">
+    <div class="d-flex gap-2">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="{{ cp_id }}">
+            {{ command }}
+        </code>
+        <button class="btn btn-secondary" id="{{ cp_btn_id }}" type="button"><i class="fa-regular fa-clipboard"></i></button>
+    </div>
+    <div id="{{ cp_feedback_id }}" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+        Fehler beim Kopieren!
+    </div>
+
+    <script>
+    (function () {
+        if (!window.commandBoxWithCp) {
+            window.commandBoxWithCp = {
+                showCopyError: function (feedbackId) {
+                    var feedback = document.getElementById(feedbackId);
+                    if (!feedback) return;
+                    feedback.classList.remove('d-none');
+                    setTimeout(function () {
+                        feedback.classList.add('d-none');
+                    }, 2500);
+                },
+                copyToClipboard: function (buttonId, codeId, feedbackId) {
+                    var btn = document.getElementById(buttonId);
+                    var codeEl = document.getElementById(codeId);
+                    if (!btn || !codeEl) return;
+
+                    var text = codeEl.textContent.trim();
+                    btn.disabled = true;
+
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).catch(function () {
+                            window.commandBoxWithCp.showCopyError(feedbackId);
+                        });
+                        setTimeout(function () {
+                            btn.disabled = false;
+                        }, 500);
+                        return;
+                    }
+
+                    var ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.focus();
+                    ta.select();
+
+                    try {
+                        document.execCommand('copy');
+                    } catch (e) {
+                        window.commandBoxWithCp.showCopyError(feedbackId);
+                    }
+
+                    document.body.removeChild(ta);
+                    setTimeout(function () {
+                        btn.disabled = false;
+                    }, 1000);
+                },
+                bind: function (buttonId, codeId, feedbackId) {
+                    var btn = document.getElementById(buttonId);
+                    if (!btn) return;
+                    btn.addEventListener('click', function () {
+                        window.commandBoxWithCp.copyToClipboard(buttonId, codeId, feedbackId);
+                    });
+                }
+            };
+        }
+
+        window.commandBoxWithCp.bind('{{ cp_btn_id }}', '{{ cp_id }}', '{{ cp_feedback_id }}');
+    })();
+    </script>
+</div>

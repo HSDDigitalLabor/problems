@@ -1,9 +1,10 @@
 <h2 id="how-to-submit">Abgabe</h2>
 <p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
 </p>
-<div class="alert alert-primary"><code class="text-dark font-weight-bold">
-  submit50 {{ submit50_path }}
-  </code></div>
+
+{% set command="submit50 " + submit50_path %}
+{% include "command_box_with_cp.html" %}
+
 <p>
   Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
   nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
