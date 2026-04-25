@@ -82,12 +82,12 @@
 
     <div class="alert alert-primary">
     <div class="d-flex gap-2">
-        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="9753326">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="6405054">
             mkdir sinuswave
         </code>
-        <button class="btn btn-secondary" id="copyCmdBtn_9753326" type="button"><i class="fa-regular fa-clipboard"></i></button>
+        <button class="btn btn-secondary" id="copyCmdBtn_6405054" type="button"><i class="fa-regular fa-clipboard"></i></button>
     </div>
-    <div id="copyFeedback_9753326" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+    <div id="copyFeedback_6405054" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
         Fehler beim Kopieren!
     </div>
 
@@ -150,7 +150,7 @@
             };
         }
 
-        window.commandBoxWithCp.bind('copyCmdBtn_9753326', '9753326', 'copyFeedback_9753326');
+        window.commandBoxWithCp.bind('copyCmdBtn_6405054', '6405054', 'copyFeedback_6405054');
     })();
     </script>
 </div>
@@ -167,12 +167,12 @@
 
     <div class="alert alert-primary">
     <div class="d-flex gap-2">
-        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="4892434">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="1450505">
             cd sinuswave
         </code>
-        <button class="btn btn-secondary" id="copyCmdBtn_4892434" type="button"><i class="fa-regular fa-clipboard"></i></button>
+        <button class="btn btn-secondary" id="copyCmdBtn_1450505" type="button"><i class="fa-regular fa-clipboard"></i></button>
     </div>
-    <div id="copyFeedback_4892434" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+    <div id="copyFeedback_1450505" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
         Fehler beim Kopieren!
     </div>
 
@@ -235,7 +235,7 @@
             };
         }
 
-        window.commandBoxWithCp.bind('copyCmdBtn_4892434', '4892434', 'copyFeedback_4892434');
+        window.commandBoxWithCp.bind('copyCmdBtn_1450505', '1450505', 'copyFeedback_1450505');
     })();
     </script>
 </div>
@@ -262,6 +262,16 @@ einen Aufruf dieser Funktion enthalten, um eine Sinus-Look-Up-Tabelle
 mit den übergebenen Parametern zu generieren und in der Datei
 <code class="text-danger border border-dark">sinus.mem</code> zu speichern.
 
+<br/><br/>
+
+Ereugen Sie eine Sinus-Look-Up-Tabelle (sinus.mem) mit 1024 Stützstellen und einer 
+maximalen Amplitude von 65535, indem Sie den folgenden Code in Ihre Datei 
+<code class="text-danger border border-dark">sinuswave.py</code> einfügen:
+<pre><code class="text-danger border border-dark">generateLUT(1024, 65535)
+</code></pre>
+Diese Datei sollte sich in selben Verzeichnis befinden, Sie wird bei der automatischen Überprüfung überprüft.
+
+
 <p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
   class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
   der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
@@ -280,4 +290,4 @@ mit den übergebenen Parametern zu generieren und in der Datei
   Ausgabe Ihr Programm tatsächlich geliefert hat.
 </p>
 
-<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2026-04-25 14:54:31</p>
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2026-04-25 16:52:53</p>
