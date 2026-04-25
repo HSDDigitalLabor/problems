@@ -1,0 +1,82 @@
+{% include "header.html" %}
+
+<p>Eine Look-Up-Tabelle (LUT) für eine Sinusfunktion enthält diskrete Werte 
+  einer vollständigen Sinusperiode. Solche Tabellen werden häufig in der 
+  digitalen Signalverarbeitung, bei der Klangsynthese oder in eingebetteten 
+  Systemen verwendet, um Sinuswerte effizient bereitzustellen.</p>
+<ul>
+  <li>Berechnen Sie für eine vorgegebene Anzahl von Punkten 
+    <code class="text-danger border border-dark">num_points</code> gleichmäßig
+    verteilte Stützstellen über eine vollständige Periode der Sinusfunktion,
+    also im Bereich von 0 bis \(2\pi\).
+  </li>
+  <li>Skalieren Sie die berechneten Sinuswerte aus dem Bereich [-1, 1] in den
+    Bereich [0, MaxAmplitude]. Die Ergebnisse sollen als Ganzzahlen gespeichert
+    werden. <br><strong>Beispiel:</strong> Bei einer Maximalamplitude von 1023
+    entspricht der Mittelpunkt der Sinusfunktion ungefähr dem Wert 512.
+  </li>
+  <li>Geben Sie die erzeugten Werte formatiert aus und speichern Sie sie Zeilenweise
+    in der Datei <code class="text-danger border border-dark">sinus.mem</code> 
+  </li>
+</ul>
+<p><img class="img-fluid"
+    style="display: block; margin-left: auto; margin-right: auto;"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/593470455/sinusmem%20%281%29.png"
+    alt="sinusmem" width="530" height="301">
+</p>
+
+<p>
+  {% include "file.html" %} implementieren Sie eine Funktion
+  <code class="text-danger border border-dark">
+    def generateLUT(num_points, max_amplitude):</code>, die 
+    eine vollständige Sinus-Look-Up-Tabelle erzeugt.
+</p>
+
+<p>Die Funktion erhält als Argumente:</p>
+<ul>
+  <li><code class="text-danger border border-dark">num_points</code>: Anzahl der
+    Stützstellen einer vollständigen Periode</li>
+  <li><code class="text-danger border border-dark">max_amplitude</code>:
+    Maximalwert der skalierten Amplitude</li>
+</ul>
+<p>Die Funktion soll die erzeugte Look-Up-Tabelle in der Datei
+  <code class="text-danger border border-dark">sinus.mem</code> 
+  im aktuellen Verzeichnis speichern. Die Argumente sind auf Gültigkeit zu prüfen.
+  Im Fehlerfall soll eine <code class="text-danger border border-dark">ValueError</code> 
+  Exception ausgelöst werden.</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Verwenden Sie zur Berechnung der Sinuswerte das Modul <code
+        class="text-danger border border-dark">math</code>, insbesondere die
+      Funktion <code class="text-danger border border-dark">math.sin()</code>.
+    </li>
+    <li>Denken Sie daran, dass Werte passend gerundet und anschließend als
+      Ganzzahlen verarbeitet werden sollen.</li>
+    <li>Prüfen Sie sorgfältig, ob die Eingabewerte sinnvoll sind, z. B. ob die
+      Anzahl der Punkte größer als 0 ist und der Maximalwert der Amplitude positiv ist.
+    </li>
+    <li>Denken Sie daran, Python bietet die Möglichkeit Fehlermeldungen zu
+      generieren, siehe <a
+        href="https://docs.python.org/3/tutorial/errors.html#raising-exceptions"
+        target="_blank" rel="noopener">
+        docs.python.org/3/tutorial/errors.html#raising-exceptions </a>.</li>
+  </ul>
+</details>
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+
+indem Sie in der Kommandozeile 
+<code class="text-danger">python {{filename}}</code> eingeben. 
+Ihr Programm sollte neben der Funktionsdefinition 
+<code class="text-danger border border-dark">generateLUT(num_points, max_amplitude)</code>
+einen Aufruf dieser Funktion enthalten, um eine Sinus-Look-Up-Tabelle 
+mit den übergebenen Parametern zu generieren und in der Datei
+<code class="text-danger border border-dark">sinus.mem</code> zu speichern.
+
+{% include "how_to_test_auto.html" %}
+
+{% include "footer.html" %}

@@ -1,0 +1,283 @@
+<h1 id="sinuswave">Sinus-Lookup-Table Generator</h1>
+
+<p>Eine Look-Up-Tabelle (LUT) für eine Sinusfunktion enthält diskrete Werte 
+  einer vollständigen Sinusperiode. Solche Tabellen werden häufig in der 
+  digitalen Signalverarbeitung, bei der Klangsynthese oder in eingebetteten 
+  Systemen verwendet, um Sinuswerte effizient bereitzustellen.</p>
+<ul>
+  <li>Berechnen Sie für eine vorgegebene Anzahl von Punkten 
+    <code class="text-danger border border-dark">num_points</code> gleichmäßig
+    verteilte Stützstellen über eine vollständige Periode der Sinusfunktion,
+    also im Bereich von 0 bis \(2\pi\).
+  </li>
+  <li>Skalieren Sie die berechneten Sinuswerte aus dem Bereich [-1, 1] in den
+    Bereich [0, MaxAmplitude]. Die Ergebnisse sollen als Ganzzahlen gespeichert
+    werden. <br><strong>Beispiel:</strong> Bei einer Maximalamplitude von 1023
+    entspricht der Mittelpunkt der Sinusfunktion ungefähr dem Wert 512.
+  </li>
+  <li>Geben Sie die erzeugten Werte formatiert aus und speichern Sie sie Zeilenweise
+    in der Datei <code class="text-danger border border-dark">sinus.mem</code> 
+  </li>
+</ul>
+<p><img class="img-fluid"
+    style="display: block; margin-left: auto; margin-right: auto;"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/593470455/sinusmem%20%281%29.png"
+    alt="sinusmem" width="530" height="301">
+</p>
+
+<p>
+    Erstellen Sie eine Datei mit dem Namen
+  <code class="text-danger border border-dark">sinuswave.py</code> und implementieren Sie eine Funktion
+  <code class="text-danger border border-dark">
+    def generateLUT(num_points, max_amplitude):</code>, die 
+    eine vollständige Sinus-Look-Up-Tabelle erzeugt.
+</p>
+
+<p>Die Funktion erhält als Argumente:</p>
+<ul>
+  <li><code class="text-danger border border-dark">num_points</code>: Anzahl der
+    Stützstellen einer vollständigen Periode</li>
+  <li><code class="text-danger border border-dark">max_amplitude</code>:
+    Maximalwert der skalierten Amplitude</li>
+</ul>
+<p>Die Funktion soll die erzeugte Look-Up-Tabelle in der Datei
+  <code class="text-danger border border-dark">sinus.mem</code> 
+  im aktuellen Verzeichnis speichern. Die Argumente sind auf Gültigkeit zu prüfen.
+  Im Fehlerfall soll eine <code class="text-danger border border-dark">ValueError</code> 
+  Exception ausgelöst werden.</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Verwenden Sie zur Berechnung der Sinuswerte das Modul <code
+        class="text-danger border border-dark">math</code>, insbesondere die
+      Funktion <code class="text-danger border border-dark">math.sin()</code>.
+    </li>
+    <li>Denken Sie daran, dass Werte passend gerundet und anschließend als
+      Ganzzahlen verarbeitet werden sollen.</li>
+    <li>Prüfen Sie sorgfältig, ob die Eingabewerte sinnvoll sind, z. B. ob die
+      Anzahl der Punkte größer als 0 ist und der Maximalwert der Amplitude positiv ist.
+    </li>
+    <li>Denken Sie daran, Python bietet die Möglichkeit Fehlermeldungen zu
+      generieren, siehe <a
+        href="https://docs.python.org/3/tutorial/errors.html#raising-exceptions"
+        target="_blank" rel="noopener">
+        docs.python.org/3/tutorial/errors.html#raising-exceptions </a>.</li>
+  </ul>
+</details>
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+
+
+
+
+
+
+    <div class="alert alert-primary">
+    <div class="d-flex gap-2">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="9753326">
+            mkdir sinuswave
+        </code>
+        <button class="btn btn-secondary" id="copyCmdBtn_9753326" type="button"><i class="fa-regular fa-clipboard"></i></button>
+    </div>
+    <div id="copyFeedback_9753326" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+        Fehler beim Kopieren!
+    </div>
+
+    <script>
+    (function () {
+        if (!window.commandBoxWithCp) {
+            window.commandBoxWithCp = {
+                showCopyError: function (feedbackId) {
+                    var feedback = document.getElementById(feedbackId);
+                    if (!feedback) return;
+                    feedback.classList.remove('d-none');
+                    setTimeout(function () {
+                        feedback.classList.add('d-none');
+                    }, 2500);
+                },
+                copyToClipboard: function (buttonId, codeId, feedbackId) {
+                    var btn = document.getElementById(buttonId);
+                    var codeEl = document.getElementById(codeId);
+                    if (!btn || !codeEl) return;
+
+                    var text = codeEl.textContent.trim();
+                    btn.disabled = true;
+
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).catch(function () {
+                            window.commandBoxWithCp.showCopyError(feedbackId);
+                        });
+                        setTimeout(function () {
+                            btn.disabled = false;
+                        }, 500);
+                        return;
+                    }
+
+                    var ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.focus();
+                    ta.select();
+
+                    try {
+                        document.execCommand('copy');
+                    } catch (e) {
+                        window.commandBoxWithCp.showCopyError(feedbackId);
+                    }
+
+                    document.body.removeChild(ta);
+                    setTimeout(function () {
+                        btn.disabled = false;
+                    }, 1000);
+                },
+                bind: function (buttonId, codeId, feedbackId) {
+                    var btn = document.getElementById(buttonId);
+                    if (!btn) return;
+                    btn.addEventListener('click', function () {
+                        window.commandBoxWithCp.copyToClipboard(buttonId, codeId, feedbackId);
+                    });
+                }
+            };
+        }
+
+        window.commandBoxWithCp.bind('copyCmdBtn_9753326', '9753326', 'copyFeedback_9753326');
+    })();
+    </script>
+</div>
+
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">sinuswave</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+
+
+
+
+
+
+    <div class="alert alert-primary">
+    <div class="d-flex gap-2">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="4892434">
+            cd sinuswave
+        </code>
+        <button class="btn btn-secondary" id="copyCmdBtn_4892434" type="button"><i class="fa-regular fa-clipboard"></i></button>
+    </div>
+    <div id="copyFeedback_4892434" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+        Fehler beim Kopieren!
+    </div>
+
+    <script>
+    (function () {
+        if (!window.commandBoxWithCp) {
+            window.commandBoxWithCp = {
+                showCopyError: function (feedbackId) {
+                    var feedback = document.getElementById(feedbackId);
+                    if (!feedback) return;
+                    feedback.classList.remove('d-none');
+                    setTimeout(function () {
+                        feedback.classList.add('d-none');
+                    }, 2500);
+                },
+                copyToClipboard: function (buttonId, codeId, feedbackId) {
+                    var btn = document.getElementById(buttonId);
+                    var codeEl = document.getElementById(codeId);
+                    if (!btn || !codeEl) return;
+
+                    var text = codeEl.textContent.trim();
+                    btn.disabled = true;
+
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).catch(function () {
+                            window.commandBoxWithCp.showCopyError(feedbackId);
+                        });
+                        setTimeout(function () {
+                            btn.disabled = false;
+                        }, 500);
+                        return;
+                    }
+
+                    var ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.focus();
+                    ta.select();
+
+                    try {
+                        document.execCommand('copy');
+                    } catch (e) {
+                        window.commandBoxWithCp.showCopyError(feedbackId);
+                    }
+
+                    document.body.removeChild(ta);
+                    setTimeout(function () {
+                        btn.disabled = false;
+                    }, 1000);
+                },
+                bind: function (buttonId, codeId, feedbackId) {
+                    var btn = document.getElementById(buttonId);
+                    if (!btn) return;
+                    btn.addEventListener('click', function () {
+                        window.commandBoxWithCp.copyToClipboard(buttonId, codeId, feedbackId);
+                    });
+                }
+            };
+        }
+
+        window.commandBoxWithCp.bind('copyCmdBtn_4892434', '4892434', 'copyFeedback_4892434');
+    })();
+    </script>
+</div>
+
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt Ihres Terminals sollte
+  nun <code class="text-danger border border-dark">sinuswave/$</code> anzeigen.
+  Jetzt können Sie</p>
+
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
+  sinuswave.py</code></div>
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">sinuswave.py</code> zu erstellen, in der Sie Ihr
+  Programm schreiben.
+</p>
+
+<h2 id="how-to-test">So testen Sie Ihr Programm</h2>
+<p>So können Sie Ihr Programm manuell testen:</p>
+
+indem Sie in der Kommandozeile 
+<code class="text-danger">python sinuswave.py</code> eingeben. 
+Ihr Programm sollte neben der Funktionsdefinition 
+<code class="text-danger border border-dark">generateLUT(num_points, max_amplitude)</code>
+einen Aufruf dieser Funktion enthalten, um eine Sinus-Look-Up-Tabelle 
+mit den übergebenen Parametern zu generieren und in der Datei
+<code class="text-danger border border-dark">sinus.mem</code> zu speichern.
+
+<p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
+  class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
+  der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
+  aber auch selbst!</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  check50 HSDDigitalLabor/problems/digsig/sinuswave
+  </code></div>
+<p>
+  Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
+  bedeuten, dass Ihr Programm einen Test bestanden hat! Rote
+  traurige Smileys <span style="font-family: monospace; color: red;">:( </span>
+  zeigen an, dass Ihr Programm etwas Unerwartetes ausgegeben
+  hat. Besuchen Sie die URL, die <code class="text-danger">check50</code>
+  ausgibt, um zu sehen, welche Eingabe <code class="text-danger">check50</code>
+  an Ihr Programm übergeben hat, welche Ausgabe erwartet wurde und welche
+  Ausgabe Ihr Programm tatsächlich geliefert hat.
+</p>
+
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2026-04-25 14:54:31</p>
