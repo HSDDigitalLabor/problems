@@ -1,0 +1,221 @@
+<h1 id="linkedStack">Stack mit verketteter Liste implementieren</h1>
+
+<p>
+  In dieser Übung werden Sie die Datenstruktur <strong>Verkettete Liste (Linked List)</strong> verwenden, um einen <strong>Stack (Stapel)</strong> zu implementieren.
+  Gegeben sind bereits die Klassen <code>ListNode</code> und <code>LinkedList</code>.
+  Ihre Aufgabe ist es, die Klasse <code>Stack</code> zu implementieren, die intern eine <code>LinkedList</code> verwendet, um die Stack-Operationen durchzuführen.
+</p>
+
+<p><img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/796474036/stack_graphic.png"
+    alt="Stack" width="466" height="300">
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>
+  Implementieren Sie die Klasse <code>Stack</code> mit den folgenden Methoden:
+  <ul>
+    <li><code>push(value)</code>: Legt einen Wert auf den Stack (fügt ihn am Anfang der Liste ein).</li>
+    <li><code>pop()</code>: Entfernt das oberste Element vom Stack und gibt dessen Wert zurück. Gibt <code>None</code> zurück, wenn der Stack leer ist.</li>
+    <li><code>peek()</code>: Gibt den Wert des obersten Elements zurück, ohne es zu entfernen. Gibt <code>None</code> zurück, wenn der Stack leer ist.</li>
+  </ul>
+  Nutzen Sie für die Implementierung die Methoden der Klasse <code>LinkedList</code>.
+</p>
+
+
+<p>
+    Erstellen Sie eine Datei mit dem Namen
+  <code class="text-danger border border-dark">linkedStack.py</code> und
+  Implementieren Sie die Klasse <code>Stack</code> in Ihrer Datei. Kopieren Sie dazu den 
+  folgenden Codeblock in die Datei <code class="text-danger border border-dark">linkedStack.py</code>,
+  und ergänzen Sie die fehlenden Methoden:
+</p>
+
+<div class="alert alert-dark">
+  <pre><code>
+class ListNode:
+    def __init__(self, value: int):
+        self.value: int = value
+        self.next: ListNode | None = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insertAfterHead(self, newNode: ListNode):
+        newNode.next = self.head
+        self.head = newNode
+
+    def removeAfterHead(self):
+        # TODO: Eine hilfreiche Methode zum Erstellen eines Stacks
+
+    def printList(self):
+        current = self.head
+        while current is not None:
+            print(current.value, end=" -> ")
+            current = current.next
+        print("None")
+
+
+class Stack:
+    def __init__(self):
+        self.ll = LinkedList()
+
+    def push(self, value: int):
+        # TODO: Implementieren Sie diese Methode
+        pass
+
+    def pop(self) -> int | None:
+        # TODO: Implementieren Sie diese Methode
+        pass
+
+    def peek(self) -> int | None:
+        # TODO: Implementieren Sie diese Methode
+        pass
+</code></pre>
+</div>
+
+
+<!-- <p></p>
+<h2 id="demo">Demo</h2>
+<p>
+  <script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
+  id="asciicast-"
+  src="https://asciinema.org/a/.js">
+  </script>
+</p> -->
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">mkdir
+  linkedStack</code></div>
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">linkedStack</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">cd
+  linkedStack</code></div>
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt Ihres Terminals sollte
+  nun <code class="text-danger border border-dark">linkedStack/$</code> anzeigen.
+  Jetzt können Sie</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
+  linkedStack.py</code></div>
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">linkedStack.py</code> zu erstellen, in der Sie Ihr
+  Programm schreiben.
+</p>
+
+<h2 id="how-to-test">So testen Sie Ihr Programm</h2>
+<p>So können Sie Ihr Programm manuell testen:</p>
+
+<p>
+  Testen Sie Ihre Implementierung, indem Sie das Skript ausführen.
+  Erstellen Sie dazu eine Instanz der Klasse <code>Stack</code>, führen Sie einige Operationen durch und überprüfen Sie die Ausgaben.
+</p>
+
+<div class="alert alert-dark">
+<pre><code>
+  stack = Stack()
+  
+  print("Push 10, 20, 30")
+  stack.push(10)
+  stack.push(20)
+  stack.push(30)
+  
+  print("Stack Inhalt (via LinkedList):")
+  stack.ll.printList()
+  # Erwartet: 30 -> 20 -> 10 -> None
+  
+  print(f"Peek: {stack.peek()}")
+  # Erwartet: 30
+  
+  print(f"Pop: {stack.pop()}")
+  # Erwartet: 30
+  
+  print("Stack Inhalt nach Pop:")
+  stack.ll.printList()
+  # Erwartet: 20 -> 10 -> None
+  
+  print(f"Pop: {stack.pop()}")
+  print(f"Pop: {stack.pop()}")
+  print(f"Pop (leer): {stack.pop()}")
+  # Erwartet: 20, 10, None
+</code></pre>
+</div>
+
+
+
+<p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
+  class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
+  der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
+  aber auch selbst!</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  check50 HSDDigitalLabor/problems/adg2025/linkedStack
+  </code></div>
+<p>
+  Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
+  bedeuten, dass Ihr Programm einen Test bestanden hat! Rote
+  traurige Smileys <span style="font-family: monospace; color: red;">:( </span>
+  zeigen an, dass Ihr Programm etwas Unerwartetes ausgegeben
+  hat. Besuchen Sie die URL, die <code class="text-danger">check50</code>
+  ausgibt, um zu sehen, welche Eingabe <code class="text-danger">check50</code>
+  an Ihr Programm übergeben hat, welche Ausgabe erwartet wurde und welche
+  Ausgabe Ihr Programm tatsächlich geliefert hat.
+</p>
+
+<h2 id="how-to-submit">Abgabe</h2>
+<p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
+</p>
+<div class="alert alert-primary"><code class="text-dark font-weight-bold">
+  submit50 HSDDigitalLabor/problems/adg2025/linkedStack
+  </code></div>
+<p>
+  Führen Sie diesen Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
+  nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
+  die zuletzt eingereichte Version vor dem Fälligkeitsdatum. Nach Ablauf der
+  Frist können Sie technisch zwar noch Abgaben tätigen, Ihre Lösung wird jedoch
+  nicht mehr gewertet. Das Ergebnis kann ausschließlich mit obigem Befehl abgegeben
+  werden, eine Abgabe in Moodle ist nicht möglich.
+</p>
+
+<h2 id="how-to-mark">Markierung der Aufgabe als erledigt</h2>
+<p>Nach dem Einreichen der Lösung mit <code class="text-danger">submit50</code>,
+  nehmen Sie eine Pseudolösung in Moodle vor, indem Sie auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_solution" disabled>
+    Aufgabenlösung hinzufügen</button>
+  weiter unten auf dieser Seite betätigen und in das sich öffnende Feld unter
+  "Texteingabe online" den folgenden Text ein:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">Mit submit50 abgegeben.</code>
+</div>
+<p>Schließen Sie die Eingabe durch Klick auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_save" disabled>
+    Änderungen speichern</button> unterhalb des Textfeldes ab.
+</p>
+<p>
+  Zur besseren Übersicht markieren Sie das Problem linkedStack.py in Moodle als erledigt,
+  indem Sie ganz oben auf dieser Seite den Button
+</p>
+<p>
+  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: linkedStack.py  als erledigt kennzeichnen"
+    aria-label="Problem: linkedStack.py  als erledigt kennzeichnen" disabled>
+    Als erledigt kennzeichnen
+  </button>
+  klicken. Daraufhin erscheint der Button
+  <button class="btn btn-success btn-sm text-nowrap"
+    title="Problem: linkedStack.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
+    aria-label="Problem: linkedStack.py ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
+    <i class="fa fa-check" aria-hidden="true"></i> Erledigt
+  </button>
+</p>
+
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2025-12-22 12:14:08</p>

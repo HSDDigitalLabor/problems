@@ -8,9 +8,16 @@
 
 <p>
   {% include "file.html" %}
-  Implementieren Sie die folgende Funktion in Ihrer Datei:
+  Implementieren Sie die folgende Funktion in Ihrer Datei.
+  Vervollständigen Sie den Code für die rekursive Suche:
   <code>
-    def binary_recursive(lst, key):
+    def binary_recursive(lst, key, low, high):
+
+        if len(lst) == 0:
+            # List is empty no search needed
+            return -1
+
+        # TODO Implementieren Sie hier die rekursive binäre Suche 
   </code>
 </p>
 
@@ -57,10 +64,21 @@
   <li>
     Testen Sie die Funktion zum Beispiel mit:
     <pre><code>
-print(binary_recursive([6, 7, 8, 9, 10], 8))        # Erwartet: 2
-print(binary_recursive([11, 13, 15, 17, 18], 17))   # Erwartet: 3
-print(binary_recursive([3, 4, 5, 6, 7], 1))         # Erwartet: -1
-print(binary_recursive([], 13))                     # Erwartet: -1
+numbers = [6, 7, 8, 9, 10]
+high_idx = len(numbers) - 1
+print(binary_recursive(numbers, 8, low = 0, high = high_idx))   # Erwartet: 2
+
+numbers = [11, 13, 15, 17, 18]
+high_idx = len(numbers) - 1
+print(binary_recursive(numbers, 17, low = 0, high = high_idx))  # Erwartet: 3
+
+numbers = [3, 4, 5, 6, 7]
+high_idx = len(numbers) - 1
+print(binary_recursive(numbers, 1, low = 0, high = high_idx))   # Erwartet: -1
+
+numbers = []
+high_idx = len(numbers) - 1
+print(binary_recursive(numbers, 13, low = 0, high = high_idx))  # Erwartet: -1
     </code></pre>
   </li>
 </ul>

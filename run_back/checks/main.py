@@ -29,7 +29,8 @@ def has_function():
 def test_sample_1():
     """sample test: finds 8 in list"""
     module = check50.py.import_(FILE_NAME)
-    result = module.binary_recursive([6, 7, 8, 9, 10], 8)
+    list = [6, 7, 8, 9, 10]
+    result = module.binary_recursive(list, 8, 0, len(list) - 1)
     if result != 2:
         raise check50.Mismatch(2, result)
 
@@ -38,7 +39,8 @@ def test_sample_1():
 def test_sample_2():
     """sample test: finds 17 in list"""
     module = check50.py.import_(FILE_NAME)
-    result = module.binary_recursive([11, 13, 15, 17, 18], 17)
+    list = [11, 13, 15, 17, 18]
+    result = module.binary_recursive(list, 17, 0, len(list) - 1)
     if result != 3:
         raise check50.Mismatch(3, result)
 
@@ -47,7 +49,8 @@ def test_sample_2():
 def test_sample_3():
     """sample test: returns -1 for missing element"""
     module = check50.py.import_(FILE_NAME)
-    result = module.binary_recursive([3, 4, 5, 6, 7], 1)
+    list = [3, 4, 5, 6, 7]
+    result = module.binary_recursive(list, 1, 0, len(list) - 1)
     if result != -1:
         raise check50.Mismatch(-1, result)
 
@@ -56,7 +59,8 @@ def test_sample_3():
 def test_sample_4():
     """sample test: empty list returns -1"""
     module = check50.py.import_(FILE_NAME)
-    result = module.binary_recursive([], 13)
+    list = []
+    result = module.binary_recursive(list, 13, 0, len(list) - 1)
     if result != -1:
         raise check50.Mismatch(-1, result)
 
@@ -65,7 +69,8 @@ def test_sample_4():
 def test_first():
     """finds first element"""
     module = check50.py.import_(FILE_NAME)
-    result = module.binary_recursive([1, 2, 3], 1)
+    list = [1, 2, 3]
+    result = module.binary_recursive(list, 1, 0, len(list) - 1)
     if result != 0:
         raise check50.Mismatch(0, result)
 
@@ -74,7 +79,8 @@ def test_first():
 def test_last():
     """finds last element"""
     module = check50.py.import_(FILE_NAME)
-    result = module.binary_recursive([10, 20, 30, 40, 50], 50)
+    list = [10, 20, 30, 40, 50]
+    result = module.binary_recursive(list, 50, 0, len(list) - 1)
     if result != 4:
         raise check50.Mismatch(4, result)
 
@@ -84,7 +90,7 @@ def test_duplicates():
     """handles duplicates correctly (returns any valid index)"""
     module = check50.py.import_(FILE_NAME)
     lst = [1, 2, 2, 2, 3, 4]
-    result = module.binary_recursive(lst, 2)
+    result = module.binary_recursive(lst, 2, 0, len(lst) - 1)
     if result not in (1, 2, 3):
         msg = f"Expected index 1, 2 or 3 but got {result}"
         raise check50.Failure(msg)
@@ -94,7 +100,8 @@ def test_duplicates():
 def test_negative_numbers():
     """works with negative numbers"""
     module = check50.py.import_(FILE_NAME)
-    result = module.binary_recursive([-10, -5, 0, 5, 10], -5)
+    list = [-10, -5, 0, 5, 10]
+    result = module.binary_recursive(list, -5, 0, len(list) - 1)
     if result != 1:
         raise check50.Mismatch(1, result)
 
@@ -109,7 +116,7 @@ def test_random():
     lst = sorted(random.sample(range(0, 500), 30))
     key = random.choice(lst)
     expected = lst.index(key)
-    result = module.binary_recursive(lst, key)
+    result = module.binary_recursive(lst, key, 0, len(lst) - 1)
 
     if result != expected:
         raise check50.Mismatch(expected, result)
@@ -131,7 +138,7 @@ def test_efficiency():
     lst = WatchList(range(100_000))
     lst.accesses = 0
 
-    module.binary_recursive(lst, 99999)
+    module.binary_recursive(lst, 99999, 0, len(lst) - 1)
 
     if lst.accesses > 1000:
         msg = "Too many list accesses; algorithm may not be binary search"
@@ -155,7 +162,8 @@ def test_recursion():
     module.binary_recursive = wrapper
 
     # Perform a search that requires recursion
-    result = module.binary_recursive([1, 2, 3, 4, 5, 6, 7], 6)
+    list = [1, 2, 3, 4, 5, 6, 7]
+    result = module.binary_recursive(list, 6, 0, len(list) - 1)
 
     # Restore original function (cleanliness, not required but good practice)
     module.binary_recursive = original

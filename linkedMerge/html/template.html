@@ -1,0 +1,129 @@
+{% include "header.html" %}
+
+<p>
+  In dieser Übung werden Sie die Datenstruktur <strong>Verkettete Liste (Linked List)</strong> erweitern.
+  Gegeben sind bereits die Klassen <code>ListNode</code> und <code>LinkedList</code>, sowie einige
+  Hilfsmethoden: <code>FromPythonlist(inputList)</code> zur Erzeugung einer verketteten Liste aus einer Python-Liste
+  und <code>printList()</code> zur Ausgabe der Liste.
+  Ihre Aufgabe ist es, die Funktion <code>mergeTwoLists(list1, list2)</code> 
+  zu implementieren, die zwei sortierte verkettete Listen (Objekte vom Typ <code>LinkedList</code>) zu einer einzigen sortierten Liste zusammenfügt.
+</p>
+
+<p><img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/460854472/linked_list_graphic.png"
+    alt="merge" width="518" height="300">
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>
+  Implementieren Sie die Funktion <code>mergeTwoLists(list1, list2)</code> außerhalb der Klasse <code>LinkedList</code>. 
+  Die Funktion erhält zwei sortierte <code>LinkedList</code>-Objekte, <code>list1</code> und <code>list2</code>.
+  Sie soll die beiden Listen so verknüpfen, dass eine einzige, aufsteigend sortierte Liste entsteht.
+  Geben Sie ein neues <code>LinkedList</code>-Objekt zurück, das die gemergte Liste enthält.
+</p>
+
+
+<p>
+  {% include "file.html" %}
+  Implementieren Sie die Funktion <code>mergeTwoLists</code> in Ihrer Datei. Kopieren Sie dazu den 
+  folgenden Codeblock in die Datei <code class="text-danger border border-dark">{{filename}}</code>,
+  und ergänzen Sie die Funktion <code>mergeTwoLists</code>:
+</p>
+
+<div class="alert alert-dark">
+  <pre><code>
+class ListNode:
+    def __init__(self, value: int):
+        self.value: int = value
+        self.next: ListNode | None = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def FromPythonlist(self, inputList: list[int]):
+        for val in inputList:
+            newNode = ListNode(value=val)
+            self.insertAfterHead(newNode)
+
+    def printList(self):
+        current = self.head
+        while current is not None:
+            print(current.value, end=" -> ")
+            current = current.next
+        print("None")
+
+    def searchValue(self, value: int) -> ListNode | None:
+        # Siehe Problem 'linkedFind.py' für die Implementierung dieser Methode
+        return None
+
+    def insertAfterNode(self, prevNode: ListNode | None, newNode: ListNode):
+        # Siehe Problem 'linkedAfter.py' für die Implementierung dieser Methode
+        return
+
+    def insertAfterLast(self, newNode: ListNode):
+        # Siehe Problem 'linkedInsert.py' für die Implementierung dieser Methode
+        return
+
+    def insertAfterHead(self, newNode: ListNode):
+        newNode.next = self.head
+        self.head = newNode
+
+def mergeTwoLists(list1: LinkedList, list2: LinkedList) -> LinkedList:
+    mergedList = LinkedList()
+    # TODO: Implementieren Sie diese Funktion
+    return mergedList
+</code></pre>
+</div>
+
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+
+<p>
+  Testen Sie Ihre Implementierung, indem Sie das Skript ausführen.
+  Erstellen Sie dazu eine Instanz der <code>LinkedList</code>, fügen Sie Elemente hinzu und rufen Sie dann Ihre Funktion <code>mergeTwoLists</code> auf.
+  Überprüfen Sie anschließend, ob die Liste die erwartete Struktur hat.
+</p>
+
+<div class="alert alert-dark">
+<pre><code>
+  # Erstellen zweier sortierter Listen
+  # Hinweis: FromPythonlist fügt vorne ein, daher umgekehrte Reihenfolge für korrekte Sortierung
+  
+  # Liste 1: 1 -> 2 -> 4
+  ll1 = LinkedList()
+  ll1.FromPythonlist([4, 2, 1])
+  
+  # Liste 2: 1 -> 3 -> 4
+  ll2 = LinkedList()
+  ll2.FromPythonlist([4, 3, 1])
+
+  print("Liste 1:")
+  ll1.printList()
+  print("Liste 2:")
+  ll2.printList()
+
+  # Mergen der Listen
+  merged_list = mergeTwoLists(ll1, ll2)
+
+  print("Gemergte Liste:")
+  merged_list.printList()
+  # Erwartete Ausgabe: 1 -> 1 -> 2 -> 3 -> 4 -> 4 -> None
+</code></pre>
+</div>
+
+
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
