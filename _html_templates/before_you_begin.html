@@ -1,7 +1,8 @@
 {% include "before_you_begin_start.html" %}
 
-<div class="alert alert-primary"><code class="text-dark font-weight-bold">code
-  {{ filename }}</code></div>
+{% set command="code " + filename %}
+{% include "command_box_with_cp.html" %}
+
 <p>ausführen, um eine Datei namens <code
   class="text-danger">{{ filename }}</code> zu erstellen, in der Sie Ihr
   Programm schreiben.
