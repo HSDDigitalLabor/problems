@@ -1,0 +1,11 @@
+submit50:
+  files: &submit50_files
+    - !exclude "*"
+    - !include "*.py"
+    - !include "*.mem"
+    - !require sinuswave.py
+    - !require sinus.mem
+  
+check50:
+  files: *submit50_files
+  checks: checks/main.py
