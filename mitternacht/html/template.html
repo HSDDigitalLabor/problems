@@ -1,0 +1,120 @@
+﻿<p>
+  Die Mitternachtsformel (auch abc-Formel) ist eine Lösungsformel für quadratische Gleichungen der allgemeinen Form:
+  ax² + bx + c = 0
+</p>
+
+<h3 style="text-align: center;">\( ax^2+bx+c \)</h3>
+<h3 style="text-align: center;">\( x_{1,2}= \frac{-b \pm \sqrt{b^2-4ac}}{2a} \)
+</h3>
+
+<p>
+  <img class="img-fluid" style="display: block; margin-left: auto; margin-right: auto;"
+    src="https://mdl.hs-duesseldorf.de/pluginfile.php/365310/mod_assign/intro/formel.png" alt="Mitternachtsformel"
+    width="675" height="377">
+</p>
+
+<p>
+  {% include "file.html" %}
+  implementieren Sie ein Programm, dass den Benutzer zuerst nach einer Eingabe für den Wert für <code>a</code>, dann für
+  den Wert für <code>b</code> und schlussendlich für den Wert für <code>c</code> fragt.
+</p>
+
+<p>
+  Anschließend soll Ihr Programm die Lösungen der quadratischen Gleichung mithilfe der Mitternachtsformel berechnen.
+  Abhängig von der Anzahl der reellen Lösungen soll das Programm die entsprechende Anzahl und die berechneten
+  Lösungen ausgeben. Überlegen Sie, welche Bedingungen erfüllt sein müssen damit
+</p>
+
+<p>
+  Dabei sind drei Fälle zu unterscheiden:
+</p>
+
+<ul>
+  <li>
+    <strong>Keine Lösung:</strong> Geben Sie <code>Keine Lösung</code> auf der Konsole aus.
+  </li>
+  <li>
+    <strong>Eine Lösung:</strong> Berechnen Sie diese Lösung und geben Sie sie als <code>Eine Lösung: x = ...</code>
+    aus.
+  </li>
+  <li>
+    <strong>Zwei Lösungen:</strong> Berechnen Sie beide Lösungen und geben Sie sie als
+    <code>Zwei Lösungen: x1 = ..., x2 = ...</code> aus.
+  </li>
+</ul>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Lesen Sie die Werte für <code>a, b, c</code> über die Konsole ein. Nutzen Sie dazu die
+      <a href="https://docs.python.org/3/library/functions.html#input">input()-Funktion</a>.
+      Bei den Werten kann es sich um Zahlen mit Nachkommastellen handeln.
+    </li>
+    <li>
+      Berechnen Sie zunächst den Ausdruck unter der Wurzel:
+      <code>b² - 4ac</code>.
+      Dieser wird auch als Diskriminante bezeichnet.
+    </li>
+    <li>
+      Beachten Sie, dass das <code class="text-danger border border-dark">math</code>-Modul eine Funktion beinhaltet,
+      um die Wurzel einer Zahl zu berechnen. Siehe
+      <a href="https://docs.python.org/3/library/math.html#math.sqrt">math.sqrt()</a>.
+    </li>
+    <li>
+      Verwenden Sie <code>math.sqrt()</code> nur dann, wenn die Diskriminante größer oder gleich 0 ist.
+    </li>
+  </ul>
+</details>
+
+{% include "demo.html" %}
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+
+<ul>
+  <li>
+    Führen Sie Ihr Programm mit <code class="text-danger">python {{ filename }}</code> aus.
+    Geben Sie für <code>a</code> den Wert <code>1</code>, für <code>b</code> den Wert <code>-5</code>
+    und für <code>c</code> den Wert <code>6</code> ein.
+    Ihr Programm sollte zwei Lösungen berechnen und ausgeben:
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        Zwei Lösungen: x1 = 3.0, x2 = 2.0
+      </code>
+    </div>
+  </li>
+
+  <li>
+    Führen Sie Ihr Programm erneut mit <code class="text-danger">python {{ filename }}</code> aus.
+    Geben Sie für <code>a</code> den Wert <code>1</code>, für <code>b</code> den Wert <code>-4</code>
+    und für <code>c</code> den Wert <code>4</code> ein.
+    Ihr Programm sollte eine Lösung berechnen und ausgeben:
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        Eine Lösung: x = 2.0
+      </code>
+    </div>
+  </li>
+
+  <li>
+    Führen Sie Ihr Programm erneut mit <code class="text-danger">python {{ filename }}</code> aus.
+    Geben Sie für <code>a</code> den Wert <code>1</code>, für <code>b</code> den Wert <code>2</code>
+    und für <code>c</code> den Wert <code>5</code> ein.
+    Die Gleichung besitzt keine reelle Lösung. Ihr Programm sollte daher ausgeben:
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        Keine Lösung
+      </code>
+    </div>
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
