@@ -1,17 +1,16 @@
 {% include "header.html" %}
 
-<p><img class="img-fluid"
-    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/524655488/intervals.png"
+<p><img class="img-fluid" src="https://mdl.hs-duesseldorf.de/pluginfile.php/324437/mod_assign/intro/intervals.png"
     alt="intervals" width="600" height="261"></p>
 <p>
 
 <h2 id="aufgabe">Aufgabe</h2>
 
 <p>
-  Implementieren Sie die Funktion <code>merge(intervals)</code>,
+  {% include "file.html" %} implementieren Sie die Funktion <code>merge(intervals)</code>,
   die eine Liste von Intervallen zusammenführt. Überlappende Intervalle werden dabei
-  zu einem einzigen Intervall kombiniert. Die Funktion erhält als Parameter eine Liste 
-  <code>intervals</code>, die mehrere Intervalle enthält. 
+  zu einem einzigen Intervall kombiniert. Die Funktion erhält als Parameter eine Liste
+  <code>intervals</code>, die mehrere Intervalle enthält.
   Jedes Intervall wird dabei selbst als eine Liste dargestellt.
 </p>
 
@@ -34,11 +33,11 @@ def merge(intervals):
 </div>
 
 <p>
-Verwenden sie <strong>keine</strong> eingebauten Sortierfunktionen
-wie <code>sorted()</code> oder <code>list.sort()</code>.
+  Verwenden sie <strong>keine</strong> eingebauten Sortierfunktionen
+  wie <code>sorted()</code> oder <code>list.sort()</code>.
 </p>
 
-   
+
 <h3>Beispiel</h3>
 
 <pre><code>
@@ -57,14 +56,14 @@ Ausgabe: [[1, 5]]
       sollen sie zu einem größeren Intervall zusammengeführt werden.
     </li>
     <li>
-      Implementieren Sie das Sortieren der Intervalle selbst, z.&nbsp;B. 
+      Implementieren Sie das Sortieren der Intervalle selbst, z.&nbsp;B.
       mit einem einfachen Sortierverfahren wie <em>Bubble Sort</em> oder
       <em>Insertion Sort</em>.
     </li>
     <li>
-      Stellen Sie sicher, dass die Liste <code>intervals</code> nach Ihrem 
-      eigenen Sortieralgorithmus strikt aufsteigend nach den jeweiligen 
-      <code>start</code>-Werten geordnet ist, bevor Sie mit dem Zusammenführen beginnen. 
+      Stellen Sie sicher, dass die Liste <code>intervals</code> nach Ihrem
+      eigenen Sortieralgorithmus strikt aufsteigend nach den jeweiligen
+      <code>start</code>-Werten geordnet ist, bevor Sie mit dem Zusammenführen beginnen.
       Prüfen Sie dies ggf. dadurch, dass für jedes benachbarte Paar gilt:
       <code>intervals[i][0] &lt;= intervals[i + 1][0]</code>.
     </li>
