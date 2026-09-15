@@ -1,7 +1,7 @@
 <h1 id="zahlenjagd">Zahlenjagd</h1>
 
 <p><img class="img-fluid"
-    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/236000358/ChatGPT%20Image%2016.%20Okt.%202025%2C%2015_56_25.png"
+    src="https://mdl.hs-duesseldorf.de/pluginfile.php/320251/mod_assign/intro/ChatGPT%20Image%2016.%20Okt.%202025%2C%2015_56_25.png"
     alt="zahlenjagd" width="600" height="400">
 </p>
 
@@ -12,11 +12,11 @@
 </span> und
   schreiben Sie ein Programm, das eine Zahlenjagd für einen Spieler
   implementiert. Das Programm wählt geheim eine zufällige Zahl zwischen <strong>1</strong> und
-  <strong>100</strong> aus, die der Spieler durch wiederholtes Raten ermitteln muss. 
-  Nach jedem Versuch (<strong>Schuss</strong>) gibt das Programm Rückmeldung, 
+  <strong>100</strong> aus, die der Spieler durch wiederholtes Raten ermitteln muss.
+  Nach jedem Versuch (<strong>Schuss</strong>) gibt das Programm Rückmeldung,
   ob die geratene Zahl zu hoch (<strong>Zu hoch!</strong>),
-   zu niedrig (<strong>Zu niedrig!</strong>) oder korrekt ist (<strong>Volltreffer!</strong>).
-   Am Ende gibt das Programm die Anzahl der Versuche aus.
+  zu niedrig (<strong>Zu niedrig!</strong>) oder korrekt ist (<strong>Volltreffer!</strong>).
+  Am Ende gibt das Programm die Anzahl der Versuche aus.
 </p>
 
 <details>
@@ -31,16 +31,16 @@
     <li>Hinweise geben:
       Nach jedem Versuch informiert das Programm, ob die Eingabe zu hoch, zu niedrig oder korrekt ist.
       <ul>
-      <li>Versuch &gt; gesuchte Zahl terminal Ausgabe: <strong>Zu hoch!</strong></li>
-      <li>Versuch &lt; gesuchte Zahl terminal Ausgabe: <strong>Zu niedrig!</strong></li>
-      <li>Korrekt: Ausgabe einer Erfolgsmeldung <strong>Volltreffer!</strong> und Beenden des Spiels.</li>
+        <li>Versuch &gt; gesuchte Zahl terminal Ausgabe: <strong>Zu hoch!</strong></li>
+        <li>Versuch &lt; gesuchte Zahl terminal Ausgabe: <strong>Zu niedrig!</strong></li>
+        <li>Korrekt: Ausgabe einer Erfolgsmeldung <strong>Volltreffer!</strong> und Beenden des Spiels.</li>
       </ul>
     </li>
     <li>Versuche zählen:
       Das Programm zählt die Anzahl der Versuche und gibt diese nach dem Erraten aus.
     </li>
     <li>Fehlerbehandlung:
-      Eingaben werden geprüft — nur ganze Zahlen zwischen 1 und 100 sind gültig. 
+      Eingaben werden geprüft — nur ganze Zahlen zwischen 1 und 100 sind gültig.
       Ungültige Eingaben lösen eine Fehlermeldung aus und führen zu einem neuen Eingabeversuch.
       Fehlermeldungen bei ungültigen Eingaben: <strong>Ungültige Eingabe!</strong> wenn es sich um keine Zahl handelt,
       <strong>Zahl zwischen 1 und 100</strong> wenn die Zahl außerhalb des gültigen Bereichs liegt.
@@ -73,15 +73,15 @@
 
     <div class="alert alert-primary">
     <div class="d-flex gap-2">
-        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="7185621">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="7535219">
             mkdir zahlenjagd
         </code>
-        <button class="btn btn-secondary" id="copyCmdBtn_7185621" type="button"><i class="fa-regular fa-clipboard"></i></button>
+        <button class="btn btn-secondary" id="copyCmdBtn_7535219" type="button"><i class="fa-regular fa-clipboard"></i></button>
     </div>
-    <div id="copyFeedback_7185621" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+    <div id="copyFeedback_7535219" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
         Fehler beim Kopieren!
     </div>
-    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_7185621','7185621','copyFeedback_7185621']);</script>
+    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_7535219','7535219','copyFeedback_7535219']);</script>
 </div>
 
 <p>aus, um einen Ordner namens <code
@@ -96,15 +96,15 @@
 
     <div class="alert alert-primary">
     <div class="d-flex gap-2">
-        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="5730277">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="4858161">
             cd zahlenjagd
         </code>
-        <button class="btn btn-secondary" id="copyCmdBtn_5730277" type="button"><i class="fa-regular fa-clipboard"></i></button>
+        <button class="btn btn-secondary" id="copyCmdBtn_4858161" type="button"><i class="fa-regular fa-clipboard"></i></button>
     </div>
-    <div id="copyFeedback_5730277" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+    <div id="copyFeedback_4858161" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
         Fehler beim Kopieren!
     </div>
-    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_5730277','5730277','copyFeedback_5730277']);</script>
+    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_4858161','4858161','copyFeedback_4858161']);</script>
 </div>
 
 <p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt Ihres Terminals sollte
@@ -118,15 +118,15 @@
 
     <div class="alert alert-primary">
     <div class="d-flex gap-2">
-        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="7240443">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="4441612">
             code zahlenjagd.py
         </code>
-        <button class="btn btn-secondary" id="copyCmdBtn_7240443" type="button"><i class="fa-regular fa-clipboard"></i></button>
+        <button class="btn btn-secondary" id="copyCmdBtn_4441612" type="button"><i class="fa-regular fa-clipboard"></i></button>
     </div>
-    <div id="copyFeedback_7240443" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+    <div id="copyFeedback_4441612" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
         Fehler beim Kopieren!
     </div>
-    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_7240443','7240443','copyFeedback_7240443']);</script>
+    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_4441612','4441612','copyFeedback_4441612']);</script>
 </div>
 
 <p>ausführen, um eine Datei namens <code
@@ -139,8 +139,8 @@
 <ul>
   <li>Führen Sie Ihr Programm mit <code class="text-danger">python
     zahlenjagd.py</code> aus. Ihr Programm sollte ausgeben:
-  <div class="alert alert-primary"><code
-    class="text-dark font-weight-bold">Willkommen zur Zahlenjagd!<br/>Gib einen Schuss ab: </code></div>
+    <div class="alert alert-primary"><code
+        class="text-dark font-weight-bold">Willkommen zur Zahlenjagd!<br/>Gib einen Schuss ab: </code></div>
   </li>
 </ul>
 
@@ -156,15 +156,15 @@
 
     <div class="alert alert-primary">
     <div class="d-flex gap-2">
-        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="5483544">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="3692267">
             check50 HSDDigitalLabor/problems/git2026/zahlenjagd
         </code>
-        <button class="btn btn-secondary" id="copyCmdBtn_5483544" type="button"><i class="fa-regular fa-clipboard"></i></button>
+        <button class="btn btn-secondary" id="copyCmdBtn_3692267" type="button"><i class="fa-regular fa-clipboard"></i></button>
     </div>
-    <div id="copyFeedback_5483544" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+    <div id="copyFeedback_3692267" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
         Fehler beim Kopieren!
     </div>
-    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_5483544','5483544','copyFeedback_5483544']);</script>
+    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_3692267','3692267','copyFeedback_3692267']);</script>
 </div>
 
 <p>
@@ -189,15 +189,15 @@
 
     <div class="alert alert-primary">
     <div class="d-flex gap-2">
-        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="9932949">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="7516077">
             submit50 HSDDigitalLabor/problems/git2026/zahlenjagd
         </code>
-        <button class="btn btn-secondary" id="copyCmdBtn_9932949" type="button"><i class="fa-regular fa-clipboard"></i></button>
+        <button class="btn btn-secondary" id="copyCmdBtn_7516077" type="button"><i class="fa-regular fa-clipboard"></i></button>
     </div>
-    <div id="copyFeedback_9932949" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+    <div id="copyFeedback_7516077" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
         Fehler beim Kopieren!
     </div>
-    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_9932949','9932949','copyFeedback_9932949']);</script>
+    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_7516077','7516077','copyFeedback_7516077']);</script>
 </div>
 
 <p>
@@ -288,4 +288,4 @@
     }
 })();
 </script>
-<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2026-09-08 08:25:36</p>
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2026-09-15 08:58:19</p>
