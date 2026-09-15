@@ -1,14 +1,13 @@
 {% include "header.html" %}
 
 <p>
-  Die <strong>Neunerprobe</strong> ist eine Methode zur Überprüfung 
-  von Multiplikationsergebnissen. Dazu wird für die Faktoren und das Produkt eine 
+  Die <strong>Neunerprobe</strong> ist eine Methode zur Überprüfung
+  von Multiplikationsergebnissen. Dazu wird für die Faktoren und das Produkt eine
   einstellige <strong>Prüfsumme</strong> gebildet, die anschließend
   miteinander verglichen werden, um Rechenfehler zu erkennen.
 </p>
 
-<p><img class="img-fluid"
-    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/189032753/neuner.png"
+<p><img class="img-fluid" src="https://mdl.hs-duesseldorf.de/pluginfile.php/326663/mod_assign/intro/neuner.png"
     alt="neuner" width="600" height="240">
 </p>
 
@@ -42,13 +41,14 @@
     <strong>Auswertung:</strong>
     <ul>
       <li>Falls PSUM<sub>prod</sub> ≠ PSUM<sub>c</sub>: Ist das Ergebnis c <strong>definitiv falsch</strong></li>
-      <li>Falls PSUM<sub>prod</sub> = PSUM<sub>c</sub>: Kann das Ergebnis c <strong>korrekt sein</strong> (aber nicht garantiert)</li>
+      <li>Falls PSUM<sub>prod</sub> = PSUM<sub>c</sub>: Kann das Ergebnis c <strong>korrekt sein</strong> (aber nicht
+        garantiert)</li>
     </ul>
   </li>
 </ol>
 
 <p>
-  <strong>Wichtig:</strong> Die Methode ist nicht narrensicher – sie erkennt viele, 
+  <strong>Wichtig:</strong> Die Methode ist nicht narrensicher – sie erkennt viele,
   aber nicht alle Fehler. Ein falsches Ergebnis kann den Test bestehen.
 </p>
 
@@ -65,17 +65,19 @@
 <h2 id="aufgabe">Aufgabe</h2>
 
 <p>
-  Schreiben Sie eine Funktion <code class="text-danger border border-dark">isValidProduct(a, b, c)</code>,
+  {% include "file.html" %} schreiben Sie eine Funktion <code
+    class="text-danger border border-dark">isValidProduct(a, b, c)</code>,
   die die Faktoren <strong>a</strong>, <strong>b</strong> und das Ergebnis <strong>c</strong> (als Strings oder Zahlen)
   entgegennimmt und mittels Neunerprobe prüft, ob <strong>c</strong> korrekt sein <em>kann</em>.
-  Die Funktion soll <strong>True</strong> zurückgeben, wenn die Prüfsumme von <code>a · b</code> mit der Prüfsumme von <code>c</code>
+  Die Funktion soll <strong>True</strong> zurückgeben, wenn die Prüfsumme von <code>a · b</code> mit der Prüfsumme von
+  <code>c</code>
   übereinstimmt, sonst <strong>False</strong>. Leere oder nicht-numerische Eingaben sind zu behandeln.
 </p>
 
 <p>
   {% include "file.html" %}
   Implementieren Sie Ihr Programm so, dass die Funktion
-  <code class="text-danger border border-dark">isValidProduct(a, b, c)</code> 
+  <code class="text-danger border border-dark">isValidProduct(a, b, c)</code>
   die Neunerprobe korrekt durchführt.
 </p>
 
