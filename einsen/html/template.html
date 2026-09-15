@@ -8,8 +8,7 @@
   linearen Gleichungssystems noch einfacher möglich (Gauß-Jordan-Algorithmus).
 </p>
 
-<p><img class="img-fluid"
-    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/398392355/Einheitsmatrix.png"
+<p><img class="img-fluid" src="https://mdl.hs-duesseldorf.de/pluginfile.php/326661/mod_assign/intro/Einheitsmatrix.png"
     alt="Einheitsmatrix" width="392" height="388">
 </p>
 
@@ -18,16 +17,20 @@
 <div class="alert alert-dark">
   <p><strong>Algorithmus (Reduzierte Zeilenstufenform):</strong></p>
   <ul>
-    <li><strong>Voraussetzung</strong>: Die Matrix ist in Zeilenstufenform. Idealerweise sind alle Pivot-Elemente bereits 1.</li>
+    <li><strong>Voraussetzung</strong>: Die Matrix ist in Zeilenstufenform. Idealerweise sind alle Pivot-Elemente
+      bereits 1.</li>
     <li>Bearbeite die Pivotzeilen von unten nach oben.
     <li><strong>Schritt 1 - Pivot suchen</strong>: Finde in Zeile i die Pivotspalte j (erste 1 von links).</li>
-    <li><strong>Schritt 2 - Pivot skalieren</strong>: Ist der Pivot nicht 1, verwende die Funktion <code>rowMult</code>, um den Pivot auf 1 zu skalieren.</li>
-    <li><strong>Schritt 3 - Zeilen oberhalb des Pivots eliminieren</strong>: Für jede Zeile k oberhalb von i verwende die Funktion:
-          <code>rowAdd</code> damit der Eintrag in Spalte j in Zeile k auf 0 gesetzt wird.
+    <li><strong>Schritt 2 - Pivot skalieren</strong>: Ist der Pivot nicht 1, verwende die Funktion <code>rowMult</code>,
+      um den Pivot auf 1 zu skalieren.</li>
+    <li><strong>Schritt 3 - Zeilen oberhalb des Pivots eliminieren</strong>: Für jede Zeile k oberhalb von i verwende
+      die Funktion:
+      <code>rowAdd</code> damit der Eintrag in Spalte j in Zeile k auf 0 gesetzt wird.
     </li>
-   <li><strong>Wiederholung</strong>: Wiederhole für alle Pivotzeilen.
+    <li><strong>Wiederholung</strong>: Wiederhole für alle Pivotzeilen.
     <li>
-      Am Ende sind in jeder Pivotspalte nur noch die Einträge 0 außer einer 1 im Pivot. Damit ist die Matrix in reduzierter Zeilenstufenform.
+      Am Ende sind in jeder Pivotspalte nur noch die Einträge 0 außer einer 1 im Pivot. Damit ist die Matrix in
+      reduzierter Zeilenstufenform.
     </li>
   </ul>
 </div>
@@ -35,15 +38,15 @@
 <h2 id="aufgabe">Aufgabe</h2>
 
 <p>
-  Implementieren Sie die Funktion <code>reduzierteStufen</code> in Python. 
-  Die Funktion bekommt die Matrix <code>M</code> in Stufenform als Liste von Listen übergeben und 
+  Implementieren Sie die Funktion <code>reduzierteStufen</code> in Python.
+  Die Funktion bekommt die Matrix <code>M</code> in Stufenform als Liste von Listen übergeben und
   soll die Matrix <code>M</code> in-place verändern.
 </p>
 <p>
   Die äußere Liste repräsentiert die Zeilen, die inneren Listen die Spalten der Matrix.
   Verwenden Sie die Hilfsfunktionen <code>rowMult</code> und <code>rowAdd</code> aus dem
-  Problem <strong>Zeilen</strong>. Falls Sie das Problem <strong>Zeilen</strong> noch 
-  nicht gelöst haben, belassen Sie die Funktionsdefinitionen in Ihrer Datei und 
+  Problem <strong>Zeilen</strong>. Falls Sie das Problem <strong>Zeilen</strong> noch
+  nicht gelöst haben, belassen Sie die Funktionsdefinitionen in Ihrer Datei und
   testen Sie Ihren Code mit <code>check50</code> (die fehlenden Funktionen werden beim Check ergänzt).
 </p>
 
@@ -68,14 +71,16 @@ def reduzierteStufen(M):
   Beachten Sie dabei folgende Anforderungen:
 </p>
 <ul>
-  <li>Die Matrix <code>M</code> wird als <strong>Liste von Listen</strong> übergeben (äußere Liste = Zeilen, innere Listen = Spalten).</li>
+  <li>Die Matrix <code>M</code> wird als <strong>Liste von Listen</strong> übergeben (äußere Liste = Zeilen, innere
+    Listen = Spalten).</li>
   <li>Die Operationen sollen die Matrix <strong>in-place</strong> verändern (keine neue Matrix zurückgeben).</li>
 </ul>
 
 <details>
   <summary>Hinweise</summary>
   <ul>
-    <li>In Python werden List-Objekte als Referenzen übergeben, daher wirken sich Änderungen in den Funktionen direkt auf die ursprüngliche Matrix aus.</li>
+    <li>In Python werden List-Objekte als Referenzen übergeben, daher wirken sich Änderungen in den Funktionen direkt
+      auf die ursprüngliche Matrix aus.</li>
   </ul>
   <ul>
     <li>Wegen Rundungsfehlern bei Gleitkommazahlen ggf. mit geeigneter Toleranz auf 0 prüfen.</li>
@@ -91,17 +96,17 @@ def reduzierteStufen(M):
 <ul>
   <li>
     <p>Erzeuge eine reduzierte Stufenform für eine 3x4-Matrix:</p>
-<div class="alert alert-dark">
-<pre><code>
+    <div class="alert alert-dark">
+      <pre><code>
 M = [
     [1, 4, -2, -2],
     [0, 1, -0.714285, 0.0],
     [0, 0, 1, 2.1875]
 ]
 </code></pre>
-</div>
-<p><code>reduzierteStufen(M)</code></p>
-<pre><code>
+    </div>
+    <p><code>reduzierteStufen(M)</code></p>
+    <pre><code>
 # Erwartetes Ergebnis
 # [
 #    [1.0, 0.0, 0.0, -3.87499375]
@@ -111,17 +116,17 @@ M = [
   </li>
   <li>
     <p>Erzeuge eine reduzierte Stufenform für eine 4x5-Matrix:</p>
-<div class="alert alert-dark">
-<pre><code>
+    <div class="alert alert-dark">
+      <pre><code>
 M = [
     [1.0, 2.0, 1.0, 0, 3.0],
     [0.0, 1.0, 0.0, 2.0, 2.0],
     [0.0, 0.0, 1.0, -0.5, -0.5],
     [0.0, 0.0, 0.0, 1.0, 1.666666]
 ]</code></pre>
-</div>
-<p><code>reduzierteStufen(M)</code></p>
-<pre><code>
+    </div>
+    <p><code>reduzierteStufen(M)</code></p>
+    <pre><code>
 # Erwartetes Ergebnis
 # [
 #    [1.0, 0.0, 0.0, 0.0, 5.333330999999999]
