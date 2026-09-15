@@ -1,32 +1,29 @@
 {% include "header.html" %}
 
 <p>
-  Merge Sort ist ein effizienter Sortieralgorithmus, der das 
+  Merge Sort ist ein effizienter Sortieralgorithmus, der das
   Prinzip "Teile und Herrsche" anwendet, indem er eine Liste wiederholt
-  in zwei Hälften teilt, diese rekursiv sortiert und anschließend 
-  die sortierten Teillisten wieder zu einer einzigen sortierten Liste zusammenführt. 
-  Das Zusammenführen der Listen ist dabei der entscheidende Schritt, 
+  in zwei Hälften teilt, diese rekursiv sortiert und anschließend
+  die sortierten Teillisten wieder zu einer einzigen sortierten Liste zusammenführt.
+  Das Zusammenführen der Listen ist dabei der entscheidende Schritt,
   dieser wird als "Merge" bezeichnet und in diesem Problem genauer betrachtet.
 </p>
 
 <p>
-  <iframe width="560" height="315"
-    src="https://www.youtube-nocookie.com/embed/XaqR3G_NVoo?si=GObJfHvpm0TXWf2S"
-    title="YouTube-Video: Merge (Mergesort) Erklärung"
-    style="border: 0;"
+  <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/XaqR3G_NVoo?si=GObJfHvpm0TXWf2S"
+    title="YouTube-Video: Merge (Mergesort) Erklärung" style="border: 0;"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-</iframe>
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+  </iframe>
 </p>
 
 <h2 id="aufgabe">Aufgabe</h2>
 
 <p>
-  Implementieren Sie die Funktion <code>merge(lst1, lst2)</code>,
-  die zwei <strong>aufsteigend sortierte</strong> Listen zu einer neuen, ebenfalls 
+  {% include "file.html" %} und implementieren Sie die Funktion <code>merge(lst1, lst2)</code>,
+  die zwei <strong>aufsteigend sortierte</strong> Listen zu einer neuen, ebenfalls
   <strong>aufsteigend sortierten</strong> Liste zusammenführt.
-  Die ursprünglichen Listen sollen dabei unverändert bleiben. Die Funktion nimmt zwei 
+  Die ursprünglichen Listen sollen dabei unverändert bleiben. Die Funktion nimmt zwei
   <code>list</code>-Objekte <code>lst1</code> und <code>lst2</code> als Parameter entgegen
   und gibt eine neue Liste zurück, die alle Elemente beider Listen in aufsteigender Reihenfolge enthält.
 </p>
@@ -41,8 +38,8 @@ def merge(lst1, lst2):
   </code></pre>
 </div>
 <p>
-Verwenden Sie <strong>keine</strong> eingebauten Sortierfunktionen
-wie <code>sorted()</code> oder <code>list.sort()</code>.
+  Verwenden Sie <strong>keine</strong> eingebauten Sortierfunktionen
+  wie <code>sorted()</code> oder <code>list.sort()</code>.
 </p>
 
 <details>
