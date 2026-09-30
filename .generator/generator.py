@@ -4,7 +4,7 @@ from jinja2 import Environment, FileSystemLoader
 
 
 class HtmlGenerator:
-    def __init__(self, shared_template_folder="_html_templates"):
+    def __init__(self, shared_template_folder=".generator/_html_templates"):
         self.SHARED_TEMPLATE_FOLDER = shared_template_folder
         self.env = Environment(loader=FileSystemLoader(self.SHARED_TEMPLATE_FOLDER))
 

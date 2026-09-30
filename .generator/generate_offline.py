@@ -604,7 +604,7 @@ if __name__ == "__main__":
     timestamp = now.strftime("%Y-%m-%d %H:%M:%S")
 
     # Use absolute path for template folder so the script works from any cwd
-    gen = HtmlGenerator(str(ROOT_DIR / "_html_templates"))
+    gen = HtmlGenerator(str(ROOT_DIR / ".generator/_html_templates"))
     # Suppress Moodle-specific sections that are irrelevant offline
     gen.env.loader = ChoiceLoader([
         DictLoader({"how_to_mark_in_moodle.html": ""}),
