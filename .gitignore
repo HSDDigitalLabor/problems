@@ -174,3 +174,5 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc"latest_test_cifar10_AECNN/" 
+
+_html_output/
