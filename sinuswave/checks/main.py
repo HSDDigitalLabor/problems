@@ -91,7 +91,6 @@ def four_points():
     remove_output_file()
     module.generateLUT(4, 15)
 
-    # sin(0)=0 -> 0000, sin(pi/2)=15 -> 000F, sin(pi)=0 -> 0000, sin(3pi/2)=-15 -> FFF1
     expected = ["0000", "000F", "0000", "FFF1"]
 
     lines = read_file(OUT_FILE)
@@ -109,9 +108,7 @@ def eight_points():
     remove_output_file()
     module.generateLUT(8, 32767)
 
-    # 32767 * sin([0, 45, 90, 135, 180, 225, 270, 315] deg)
-    # gerundet: [0, 23169, 32767, 23169, 0, -23169, -32767, -23169]
-    expected = ["0000", "5A81", "7FFF", "5A81", "0000", "A57F", "8001", "A57F"]
+    expected = ["0000", "5A82", "7FFF", "5A82", "0000", "A57E", "8001", "A57E"]
 
     lines = read_file(OUT_FILE)
     result = parse_coe_values(lines)
