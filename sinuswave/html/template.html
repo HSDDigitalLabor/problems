@@ -10,20 +10,20 @@
     verteilte Stützstellen über eine vollständige Periode der Sinusfunktion,
     also im Bereich von 0 bis \(2\pi\).
   </li>
-  <li>Skalieren Sie die berechneten Sinuswerte aus dem Bereich [-1, 1] in den
-    Bereich [0, MaxAmplitude]. Die Ergebnisse sollen als Ganzzahlen gespeichert
-    werden. <br><strong>Beispiel:</strong> Bei einer Maximalamplitude von 1023
-    entspricht der Mittelpunkt der Sinusfunktion ungefähr dem Wert 512.
+  <li>Skalieren Sie die berechneten Sinuswerte aus dem Bereich [-1, 1] ohne Gleichanteil (DC-Offset)
+    in den symmetrischen Bereich [-MaxAmplitude, MaxAmplitude]. Die Ergebnisse sollen als vorzeichenbehaftete 
+    Ganzzahlen gerundet werden. <br><strong>Beispiel:</strong> Bei einer Maximalamplitude von 32767
+    schwingt das Signal symmetrisch um den Nullpunkt zwischen -32767 und 32767.
   </li>
-  <li>Geben Sie die erzeugten Werte formatiert aus und speichern Sie sie Zeilenweise
-    in der Datei <code class="text-danger border border-dark">sinus.mem</code> 
+  <li>Schreiben Sie zu Beginn der Datei den COE-Header:
+    <pre><code>memory_initialization_radix=16;
+memory_initialization_vector=</code></pre>
+  </li>
+  <li>Stellen Sie die Werte als 16-Bit-Zweierkomplement im 4-stelligen Hexadezimalformat (z.&nbsp;B. <code>7FFF</code> bzw. <code>8001</code>) 
+    dar und speichern Sie diese im COE-Vektorformat (jede Zeile endet mit einem Komma, die letzte Zeile mit einem Semikolon)
+    in der Datei <code class="text-danger border border-dark">sinus_lut.coe</code>.
   </li>
 </ul>
-<p><img class="img-fluid"
-    style="display: block; margin-left: auto; margin-right: auto;"
-    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/593470455/sinusmem%20%281%29.png"
-    alt="sinusmem" width="530" height="301">
-</p>
 
 <p>
   {% include "file.html" %} implementieren Sie eine Funktion
@@ -37,10 +37,10 @@
   <li><code class="text-danger border border-dark">num_points</code>: Anzahl der
     Stützstellen einer vollständigen Periode</li>
   <li><code class="text-danger border border-dark">max_amplitude</code>:
-    Maximalwert der skalierten Amplitude</li>
+    Maximalwert der Amplitude (z.&nbsp;B. 32767 für 16-Bit-Signed-Werte)</li>
 </ul>
 <p>Die Funktion soll die erzeugte Look-Up-Tabelle in der Datei
-  <code class="text-danger border border-dark">sinus.mem</code> 
+  <code class="text-danger border border-dark">sinus_lut.coe</code> 
   im aktuellen Verzeichnis speichern. Die Argumente sind auf Gültigkeit zu prüfen.
   Im Fehlerfall soll eine <code class="text-danger border border-dark">ValueError</code> 
   Exception ausgelöst werden.</p>
@@ -54,6 +54,9 @@
     </li>
     <li>Denken Sie daran, dass Werte passend gerundet und anschließend als
       Ganzzahlen verarbeitet werden sollen.</li>
+    <li>Vergessen Sie nicht die beiden Headerzeilen <code>memory_initialization_radix=16;</code> und <code>memory_initialization_vector=</code> vor dem eigentlichen Datenvektor.</li>
+    <li>Negative Zahlen können im 16-Bit-Zweierkomplement über die Bitmaske <code>& 0xFFFF</code> in Python einfach als 4-stelliger Hex-Wert (z.&nbsp;B. mit <code>f"{val & 0xFFFF:04X}"</code>) formatiert werden.</li>
+    <li>Achten Sie auf das Trennzeichen am Zeilenende: Alle Einträge werden durch ein Komma <code>,</code> getrennt, der letzte Eintrag wird mit einem Semikolon <code>;</code> abgeschlossen.</li>
     <li>Prüfen Sie sorgfältig, ob die Eingabewerte sinnvoll sind, z. B. ob die
       Anzahl der Punkte größer als 0 ist und der Maximalwert der Amplitude positiv ist.
     </li>
@@ -75,17 +78,16 @@ Ihr Programm sollte neben der Funktionsdefinition
 <code class="text-danger border border-dark">generateLUT(num_points, max_amplitude)</code>
 einen Aufruf dieser Funktion enthalten, um eine Sinus-Look-Up-Tabelle 
 mit den übergebenen Parametern zu generieren und in der Datei
-<code class="text-danger border border-dark">sinus.mem</code> zu speichern.
+<code class="text-danger border border-dark">sinus_lut.coe</code> zu speichern.
 
 <br/><br/>
 
-Ereugen Sie eine Sinus-Look-Up-Tabelle (sinus.mem) mit 1024 Stützstellen und einer 
-maximalen Amplitude von 65535, indem Sie den folgenden Code in Ihre Datei 
+Erzeugen Sie eine Sinus-Look-Up-Tabelle (sinus_lut.coe) mit 1024 Stützstellen und einer 
+maximalen Amplitude von 32767, indem Sie den folgenden Code in Ihre Datei 
 <code class="text-danger border border-dark">sinuswave.py</code> einfügen:
-<pre><code class="text-danger border border-dark">generateLUT(1024, 65535)
+<pre><code class="text-danger border border-dark">generateLUT(1024, 32767)
 </code></pre>
-Diese Datei sollte sich in selben Verzeichnis befinden, Sie wird bei der automatischen Überprüfung überprüft.
-
+Diese Datei sollte sich im selben Verzeichnis befinden; sie wird bei der automatischen Überprüfung überprüft.
 
 {% include "how_to_test_auto.html" %}
 

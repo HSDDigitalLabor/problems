@@ -4,14 +4,34 @@ import check50
 import check50.py
 
 FILE_NAME = "sinuswave.py"
-OUT_FILE = "sinus.mem"
-SUBMITTED_FILE = "sinus_submitted.mem"
-REFERENCE_FILE = "sinus_reference.mem"
+OUT_FILE = "sinus_lut.coe"
+SUBMITTED_FILE = "sinus_lut_submitted.coe"
+REFERENCE_FILE = "sinus_lut_ref.coe"
 
 
 def read_file(fname):
     with open(fname, "r") as f:
         return [line.strip() for line in f.readlines()]
+
+
+def parse_coe_values(lines):
+    if len(lines) < 2:
+        raise check50.Failure("COE-Datei enthält keinen gültigen Header")
+    if lines[0] != "memory_initialization_radix=16;":
+        raise check50.Failure("Header-Zeile 1 muss 'memory_initialization_radix=16;' sein")
+    if lines[1] != "memory_initialization_vector=":
+        raise check50.Failure("Header-Zeile 2 muss 'memory_initialization_vector=' sein")
+
+    raw_values = lines[2:]
+    parsed = []
+    for i, line in enumerate(raw_values):
+        expected_delimiter = ";" if i == len(raw_values) - 1 else ","
+        if not line.endswith(expected_delimiter):
+            raise check50.Failure(
+                f"Zeile {i + 3} muss mit '{expected_delimiter}' enden, erhalten: '{line}'"
+            )
+        parsed.append(line[:-1])
+    return parsed
 
 
 def remove_output_file():
@@ -26,35 +46,35 @@ def copy_output_file():
 
 @check50.check()
 def exists():
-    """sinuswave.py exists"""
+    """Python-Datei existiert"""
     check50.exists(FILE_NAME)
 
 
 @check50.check()
 def exists_memoryfile():
-    """sinus.mem exists"""
+    """COE-Datei existiert"""
     check50.exists(OUT_FILE)
     copy_output_file()
 
 
 @check50.check(exists)
 def compiles():
-    """sinuswave.py compiles"""
+    """Python-Datei kompiliert fehlerfrei"""
     check50.py.compile(FILE_NAME)
 
 
 @check50.check(compiles)
 def has_function():
-    """generateLUT function defined"""
+    """Funktion generateLUT ist definiert"""
     module = check50.py.import_(FILE_NAME)
 
     if not hasattr(module, "generateLUT"):
-        raise check50.Failure(f"Function `generateLUT` not found in {FILE_NAME}")
+        raise check50.Failure(f"Funktion `generateLUT` wurde nicht in {FILE_NAME} gefunden")
 
 
 @check50.check(has_function)
 def creates_file():
-    """generateLUT creates sinus.mem"""
+    """generateLUT erstellt sinus_lut.coe"""
     module = check50.py.import_(FILE_NAME)
 
     remove_output_file()
@@ -65,67 +85,59 @@ def creates_file():
 
 @check50.check(creates_file)
 def four_points():
-    """4 point LUT with max amplitude 15 is correct"""
+    """4-Punkte-LUT mit Amplitude 15 ist korrekt (Zweierkomplement)"""
     module = check50.py.import_(FILE_NAME)
 
     remove_output_file()
     module.generateLUT(4, 15)
 
-    expected = [
-        "8",
-        "f",
-        "8",
-        "0",
-    ]
+    # sin(0)=0 -> 0000, sin(pi/2)=15 -> 000F, sin(pi)=0 -> 0000, sin(3pi/2)=-15 -> FFF1
+    expected = ["0000", "000F", "0000", "FFF1"]
 
-    result = read_file(OUT_FILE)
+    lines = read_file(OUT_FILE)
+    result = parse_coe_values(lines)
 
     if result != expected:
-        raise check50.Failure(f"expected {expected}, got {result}")
+        raise check50.Failure(f"Erwartet: {expected}, erhalten: {result}")
 
 
 @check50.check(creates_file)
 def eight_points():
-    """8 point LUT with max amplitude 255 is correct"""
+    """8-Punkte-LUT mit Amplitude 32767 ist korrekt (Zweierkomplement)"""
     module = check50.py.import_(FILE_NAME)
 
     remove_output_file()
-    module.generateLUT(8, 255)
+    module.generateLUT(8, 32767)
 
-    expected = [
-        "80",
-        "da",
-        "ff",
-        "da",
-        "80",
-        "25",
-        "00",
-        "25",
-    ]
+    # 32767 * sin([0, 45, 90, 135, 180, 225, 270, 315] deg)
+    # gerundet: [0, 23169, 32767, 23169, 0, -23169, -32767, -23169]
+    expected = ["0000", "5A81", "7FFF", "5A81", "0000", "A57F", "8001", "A57F"]
 
-    result = read_file(OUT_FILE)
+    lines = read_file(OUT_FILE)
+    result = parse_coe_values(lines)
 
     if result != expected:
-        raise check50.Failure(f"expected {expected}, got {result}")
+        raise check50.Failure(f"Erwartet: {expected}, erhalten: {result}")
 
 
 @check50.check(creates_file)
 def correct_number_of_lines():
-    """number of lines matches num_points"""
+    """Anzahl an Datenwerten entspricht num_points"""
     module = check50.py.import_(FILE_NAME)
 
     remove_output_file()
     module.generateLUT(64, 1023)
 
-    result = read_file(OUT_FILE)
+    lines = read_file(OUT_FILE)
+    result = parse_coe_values(lines)
 
     if len(result) != 64:
-        raise check50.Failure(f"expected 64 lines, got {len(result)}")
+        raise check50.Failure(f"Erwartet: 64 Datenzeilen, erhalten: {len(result)}")
 
 
 @check50.check(has_function)
 def invalid_num_points():
-    """invalid num_points raises ValueError"""
+    """Ungültiges num_points wirft ValueError"""
     module = check50.py.import_(FILE_NAME)
 
     try:
@@ -133,12 +145,12 @@ def invalid_num_points():
     except ValueError:
         return
 
-    raise check50.Failure("expected ValueError for num_points = 0")
+    raise check50.Failure("ValueError für num_points = 0 erwartet")
 
 
 @check50.check(has_function)
 def invalid_max_amplitude():
-    """invalid max_amplitude raises ValueError"""
+    """Ungültige max_amplitude wirft ValueError"""
     module = check50.py.import_(FILE_NAME)
 
     try:
@@ -146,12 +158,12 @@ def invalid_max_amplitude():
     except ValueError:
         return
 
-    raise check50.Failure("expected ValueError for max_amplitude = 0")
+    raise check50.Failure("ValueError für max_amplitude = 0 erwartet")
 
 
 @check50.check(has_function)
 def invalid_types():
-    """invalid argument types raise ValueError"""
+    """Ungültige Parametertypen werfen ValueError"""
     module = check50.py.import_(FILE_NAME)
 
     try:
@@ -159,71 +171,61 @@ def invalid_types():
     except ValueError:
         return
 
-    raise check50.Failure("expected ValueError for invalid argument types")
+    raise check50.Failure("ValueError für ungültige Argumenttypen erwartet")
 
 
 @check50.check(creates_file)
 def file_1024_samples():
-    """sinus.mem contains exactly 1024 samples"""
+    """COE-Datei enthält genau 1024 Samples"""
     module = check50.py.import_(FILE_NAME)
 
     remove_output_file()
-    module.generateLUT(1024, 65535)
+    module.generateLUT(1024, 32767)
 
-    result = read_file(OUT_FILE)
+    lines = read_file(OUT_FILE)
+    result = parse_coe_values(lines)
 
     if len(result) != 1024:
-        raise check50.Failure(f"expected 1024 samples, got {len(result)}")
+        raise check50.Failure(f"Erwartet: 1024 Samples, erhalten: {len(result)}")
 
 
 @check50.check(file_1024_samples)
 def valid_hex_format():
-    """all lines are valid 4-digit hex values"""
+    """Alle Werte sind gültige 4-stellige Hex-Werte"""
     lines = read_file(OUT_FILE)
+    values = parse_coe_values(lines)
 
-    for i, line in enumerate(lines):
-        if len(line) != 4:
-            raise check50.Failure(f"line {i + 1} has wrong length: '{line}'")
+    for i, val in enumerate(values):
+        if len(val) != 4:
+            raise check50.Failure(f"Wert in Zeile {i + 3} hat falsche Länge: '{val}'")
 
         try:
-            int(line, 16)
+            int(val, 16)
         except ValueError:
-            raise check50.Failure(f"line {i + 1} is not valid hex: '{line}'")
+            raise check50.Failure(f"Wert in Zeile {i + 3} ist kein gültiges Hex: '{val}'")
 
 
 @check50.check(valid_hex_format)
-def value_range():
-    """values are within 0..65535"""
+def start_value_check():
+    """Erster Wert sollte bei sin(0) = 0 liegen"""
     lines = read_file(OUT_FILE)
+    values = parse_coe_values(lines)
+    first = int(values[0], 16)
 
-    for i, line in enumerate(lines):
-        value = int(line, 16)
-
-        if value < 0 or value > 65535:
-            raise check50.Failure(f"value out of range at line {i + 1}: {value}")
-
-
-@check50.check(value_range)
-def midpoint_check():
-    """first value should be around midpoint"""
-    lines = read_file(OUT_FILE)
-    first = int(lines[0], 16)
-
-    if not (32767 <= first <= 32768):
-        raise check50.Failure(f"expected midpoint around 32768, got {first}")
+    if first != 0:
+        raise check50.Failure(f"Erwarteter Startwert '0000', erhalten: '{values[0]}'")
 
 
 @check50.check(exists_memoryfile)
 def reference_exists():
-    """reference file sinus_reference.mem exists"""
+    """Referenzdatei sinus_lut_ref.coe existiert"""
     check50.include(f"files/{REFERENCE_FILE}")
     check50.exists(REFERENCE_FILE)
 
 
 @check50.check(exists_memoryfile)
 def compare_with_reference():
-    """sinus_submitted.mem matches sinus_reference.mem line by line"""
-
+    """Eingereichte Datei stimmt mit sinus_lut_ref.coe überein"""
     check50.include(f"files/{REFERENCE_FILE}")
 
     student = read_file(SUBMITTED_FILE)
@@ -231,11 +233,11 @@ def compare_with_reference():
 
     if len(student) != len(reference):
         raise check50.Failure(
-            f"line count mismatch: expected {len(reference)}, got {len(student)}"
+            f"Zeilenanzahl stimmt nicht überein: erwartet {len(reference)}, erhalten {len(student)}"
         )
 
     for i, (s, r) in enumerate(zip(student, reference)):
         if s != r:
             raise check50.Failure(
-                f"line {i + 1} incorrect\nexpected: {r}\nfound:    {s}"
+                f"Zeile {i + 1} stimmt nicht überein:\nErwartet: {r}\nErhalten: {s}"
             )
