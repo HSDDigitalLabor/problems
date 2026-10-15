@@ -87,6 +87,24 @@ def testOnExample2():
 
 
 @check50.check(uses_package)
+def testAlias():
+    """your solution should accept aliases"""
+
+    user_input = ":smile_cat:"
+    expected = "😸"
+    actual = check50.run(f"python3 {FILE_NAME}").stdin(user_input).stdout()
+    if expected not in actual:
+        raise check50.Mismatch(
+            expected,
+            actual,
+            help=(
+                "Make sure to allow aliases. See the emoji module documentation.\n"
+                "\thttps://pypi.org/project/emoji/"
+            ),
+        )
+
+
+@check50.check(testAlias)
 def testOnExample3():
     """testing using the third example"""
 
