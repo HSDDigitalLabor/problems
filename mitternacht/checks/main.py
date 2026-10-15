@@ -1,3 +1,5 @@
+import math
+import re
 from pathlib import Path
 
 import check50
@@ -5,22 +7,48 @@ import check50
 FILE_NAME = "mitternacht.py"
 
 
-@check50.check()
-def exists():
-    """file exists"""
-    check50.exists(FILE_NAME)
+FILE_NAME = "mitternacht.py"
+
+NUMBER = r"[-+]?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?"
+ONE_SOLUTION = re.compile(rf"Eine Lösung:\s*x\s*=\s*({NUMBER})")
+TWO_SOLUTIONS = re.compile(
+    rf"Zwei Lösungen:\s*x1\s*=\s*({NUMBER})\s*,\s*x2\s*=\s*({NUMBER})"
+)
+
+FORMAT_HINT = (
+    "Erwartetes Format:\n"
+    "  Eine Lösung:   Eine Lösung: x = ...\n"
+    "  Zwei Lösungen: Zwei Lösungen: x1 = ..., x2 = ...\n"
+    "Achten Sie auf das Komma zwischen den beiden Lösungen und darauf, "
+    "dass nach dem Doppelpunkt bzw. dem Gleichheitszeichen nur die Zahl folgt."
+)
 
 
-def get_solutions(stdout):
-    """Takes the CMD output and returns the calculated solutions in a sorted list."""
-    solutions = []
+def parse_solutions(stdout):
+    """Parse the program output strictly according to the task format.
 
-    for part in stdout.replace("\n", " ").split(","):
-        if "=" in part:
-            value = part.split("=")[1].strip()
-            solutions.append(float(value))
+    Returns a sorted list of floats or raises check50.Failure with a hint.
+    """
+    text = stdout.strip()
 
-    return sorted(solutions)
+    if match := TWO_SOLUTIONS.match(text):
+        return sorted(float(g) for g in match.groups())
+
+    if match := ONE_SOLUTION.match(text):
+        return [float(match.group(1))]
+
+    hint = FORMAT_HINT
+    if text.startswith("Zwei Lösungen") and "," not in text:
+        hint = (
+            "Die beiden Lösungen müssen durch ein Komma getrennt sein: "
+            "`Zwei Lösungen: x1 = ..., x2 = ...`"
+        )
+
+    msg = f"Die Ausgabe entspricht nicht dem vorgegebenen Format. Ausgabe war: {text!r}"
+    raise check50.Failure(
+        msg,
+        help=hint,
+    )
 
 
 def run_program(a, b, c):
@@ -35,15 +63,33 @@ def run_program(a, b, c):
 
 
 def check_solutions(a, b, c, expected):
-    """Check that the program returns the expected solutions."""
+    """Check that the program returns the expected solutions in the right format."""
     actual = run_program(a, b, c)
-    actual_solutions = get_solutions(actual)
+    actual_solutions = parse_solutions(actual)
 
-    if actual_solutions != expected:
+    if len(actual_solutions) != len(expected):
+        kind = "Eine Lösung" if len(expected) == 1 else "Zwei Lösungen"
         raise check50.Mismatch(
-            str(expected),
-            actual,
+            kind,
+            actual.strip(),
+            help=f"Für a={a}, b={b}, c={c} werden {len(expected)} Lösung(en) erwartet.",
         )
+
+    if not all(
+        math.isclose(x, y, abs_tol=1e-9)
+        for x, y in zip(
+            actual_solutions,
+            expected,
+            strict=False,
+        )
+    ):
+        raise check50.Mismatch(str(expected), str(actual_solutions))
+
+
+@check50.check()
+def exists():
+    """file exists"""
+    check50.exists(FILE_NAME)
 
 
 @check50.check(exists)
