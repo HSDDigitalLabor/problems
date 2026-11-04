@@ -1,3 +1,6 @@
+import ast
+from pathlib import Path
+
 import check50
 import check50.py
 
@@ -25,132 +28,196 @@ def has_function():
         raise check50.Failure(msg)
 
 
-@check50.check(has_function)
-def test_example1():
-    """test on example 1"""
+def run_submission(eingabe: str, expected: bool):
     module = check50.py.import_(FILE_NAME)
 
-    number = 12344321
-    expected = True
+    try:
+        result = module.isPalindrome(eingabe)
+    except IndexError:
+        raise check50.Failure(
+            rationale="Your solution raised an IndexError",
+        ) from None
 
-    result = module.isPalindrome(number)
+    except Exception as e:
+        raise check50.Failure(
+            rationale="Your solution raised the following exception: "
+            f"{type(e).__name__}"
+        ) from e
+
+    if type(result) is not bool:
+        msg = "Your function must return True or False."
+        raise check50.Failure(msg)
 
     if result != expected:
         raise check50.Mismatch(str(expected), str(result))
+
+
+@check50.check(has_function)
+def test_example1():
+    """test on example 1"""
+
+    eingabe = "Hannah"
+    expected = True
+
+    run_submission(eingabe, expected)
 
 
 @check50.check(has_function)
 def test_example2():
     """test on example 2"""
-    module = check50.py.import_(FILE_NAME)
 
-    number = 12345
-    expected = False
+    eingabe = "Ein Esel lese nie."
+    expected = True
 
-    result = module.isPalindrome(number)
-
-    if result != expected:
-        raise check50.Mismatch(str(expected), str(result))
+    run_submission(eingabe, expected)
 
 
 @check50.check(has_function)
 def test_example3():
     """test on example 3"""
-    module = check50.py.import_(FILE_NAME)
 
-    number = 1221
-    expected = True
-
-    result = module.isPalindrome(number)
-
-    if result != expected:
-        raise check50.Mismatch(str(expected), str(result))
-
-
-@check50.check(has_function)
-def test_example4():
-    """test on example 4"""
-    module = check50.py.import_(FILE_NAME)
-
-    number = 1
-    expected = True
-
-    result = module.isPalindrome(number)
-
-    if result != expected:
-        raise check50.Mismatch(str(expected), str(result))
-
-
-@check50.check(has_function)
-def test_example5():
-    """test on example 5"""
-    module = check50.py.import_(FILE_NAME)
-
-    number = 9999
-    expected = True
-
-    result = module.isPalindrome(number)
-
-    if result != expected:
-        raise check50.Mismatch(str(expected), str(result))
-
-
-@check50.check(has_function)
-def test_example6():
-    """test on example 6"""
-    module = check50.py.import_(FILE_NAME)
-
-    number = 123454321
-    expected = True
-
-    result = module.isPalindrome(number)
-
-    if result != expected:
-        raise check50.Mismatch(str(expected), str(result))
-
-
-@check50.check(has_function)
-def test_example7():
-    """test on example 7"""
-    module = check50.py.import_(FILE_NAME)
-
-    number = 10
+    eingabe = "Max"
     expected = False
 
-    result = module.isPalindrome(number)
-
-    if result != expected:
-        raise check50.Mismatch(str(expected), str(result))
+    run_submission(eingabe, expected)
 
 
 @check50.check(has_function)
-def test_example8():
-    """test on example 8"""
-    module = check50.py.import_(FILE_NAME)
+def test_on_case_insensitive():
+    """Your solution should ignore upper- and lowercase differences"""
 
-    number = 1000021
+    eingabe = "Aa"
+    expected = True
+
+    run_submission(eingabe, expected)
+
+
+@check50.check(has_function)
+def test_empty_string():
+    """an empty string should return True"""
+
+    eingabe = ""
+    expected = True
+
+    run_submission(eingabe, expected)
+
+
+@check50.check(has_function)
+def test_whitespace_string():
+    """a string containing a single whitespace is considered a valid palindrom"""
+
+    eingabe = " "
+    expected = True
+
+    run_submission(eingabe, expected)
+
+
+@check50.check(has_function)
+def test_double_palindrom():
+    """the same palindrome, separated by a empty space, should return True"""
+
+    eingabe = "Anna Anna"
+    expected = True
+
+    run_submission(eingabe, expected)
+
+
+@check50.check(has_function)
+def test_whitespaces_between_characters():
+    """Test on spaces between characters"""
+
+    eingabe = "a b a"
+    expected = True
+
+    run_submission(eingabe, expected)
+
+
+@check50.check(has_function)
+def test_racecar():
+    """a string containing a single whitespace is considered a vaklid palindrom"""
+
+    eingabe = "racecar"
+    expected = True
+
+    run_submission(eingabe, expected)
+
+
+@check50.check(has_function)
+def test_on_panama():
+    """Test on a sentence"""
+
+    eingabe = "A man, a plan, a canal: Panama"
+    expected = True
+
+    run_submission(eingabe, expected)
+
+
+@check50.check(has_function)
+def test_on_numbers():
+    """Your solution also checks numbers in a string"""
+
+    eingabe = "12321"
+    expected = True
+
+    run_submission(eingabe, expected)
+
+
+@check50.check(has_function)
+def test_on_numbers_invalid():
+    """Your solution also checks numbers in a string"""
+
+    eingabe = "12345"
     expected = False
 
-    result = module.isPalindrome(number)
+    run_submission(eingabe, expected)
 
-    if result != expected:
-        raise check50.Mismatch(str(expected), str(result))
+
+@check50.check(has_function)
+def test_on_punctuation():
+    """Your solution ignores punctuation"""
+
+    eingabe = "!!!"
+    expected = True
+
+    run_submission(eingabe, expected)
+
+
+@check50.check(compiles)
+def no_slicing():
+    """solution does not use slicing"""
+
+    with Path.open(FILE_NAME, encoding="utf-8") as f:
+        tree = ast.parse(f.read())
+
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Subscript) and isinstance(node.slice, ast.Slice):
+            msg = "String slicing is not allowed."
+            raise check50.Failure(msg)
 
 
 @check50.check(has_function)
 def random_tests():
-    """randomized tests"""
+    """test randomly generated strings"""
+
     import random
+    import string
 
-    random.seed("git2025")
-    module = check50.py.import_(FILE_NAME)
+    characters = string.ascii_letters + string.digits + " .,!?-"
 
-    for _ in range(10):
-        n = random.randint(-(10**12), 10**12)
+    for _ in range(5):
+        s = "".join(random.choice(characters) for _ in range(random.randint(0, 30)))
 
-        s = str(n)
-        expected = s == s[::-1] if n >= 0 else False
-        result = module.isPalindrome(n)
+        cleaned = "".join(c.lower() for c in s if c.isalnum())
 
-        if result != expected:
-            raise check50.Mismatch(str(expected), str(result))
+        expected = cleaned == cleaned[::-1]
+
+        run_submission(s, expected)
+
+    for _ in range(5):
+        half = "".join(random.choice(characters) for _ in range(random.randint(1, 10)))
+
+        middle = random.choice(characters) if random.choice([True, False]) else ""
+
+        s = half + middle + half[::-1]
+
+        run_submission(s, True)
