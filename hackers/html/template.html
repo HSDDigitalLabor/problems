@@ -34,8 +34,12 @@
 </ol>
 <p>
   Den Algorithmus müssen Sie <strong>nicht</strong> selbst implementieren: Das Modul
-  <code class="text-danger border border-dark">luhncheck</code> kann mittels <code
-    class="text-danger border border-dark">pip install luhncheck</code> installiert werden und stellt die
+  <code class="text-danger border border-dark">luhncheck</code> kann mittels
+
+  {% set command = "pip install luhncheck" %}
+  {% include "command_box_with_cp.html" %}
+
+  installiert werden und stellt die
   Funktion <code class="text-danger border border-dark">is_luhn(number)</code> bereit. Sie erhält
   eine Kartennummer als <code class="text-danger border border-dark">String</code> (nur Ziffern)
   und gibt <code class="text-danger border border-dark">True</code> oder
@@ -108,28 +112,23 @@
 
 {% include "before_you_begin.html" %}
 
+{% set base_url = "https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/" %}
+{% set list_files = ["small.txt", "spaces.txt", "medium.txt", "large.txt"] %}
+
 <p>
   Führen Sie im Terminal folgende Befehle aus:
 </p>
-<div class="alert alert-primary">
-  <code class="text-dark font-weight-bold">
-    wget https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/small.txt<br>
-    wget https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/spaces.txt<br>
-    wget https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/medium.txt<br>
-    wget https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/large.txt
-  </code>
-</div>
+<p>
+  {% for f in list_files %}
+  {% set command = "wget " ~ base_url ~ f %}
+  {% include "command_box_with_cp.html" %}
+  {% endfor %}
+</p>
 <p>
   um die Dateien
-  <a
-    href="https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/small.txt">small.txt</a>,
-  <a
-    href="https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/spaces.txt">spaces.txt</a>,
-  <a
-    href="https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/medium.txt">medium.txt</a>
-  und
-  <a
-    href="https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/large.txt">large.txt</a>
+  {% for f in list_files %}
+  <a href="{{ base_url ~ f }}">{{ f }}</a>{% if loop.revindex > 2 %},{% elif loop.revindex == 2 %} und{% endif %}
+  {% endfor %}
   in das aktuelle Verzeichnis herunterzuladen.
 </p>
 
