@@ -1,10 +1,12 @@
 submit50:
   files: &submit50_files
     - !exclude "*"
-    - !include "*.py"
     - !require hackers.py
-  
+  dependencies: &submit50_dependencies
+    - luhncheck
+
 check50:
   files: *submit50_files
   checks: checks/main.py
+  dependencies: *submit50_dependencies
     

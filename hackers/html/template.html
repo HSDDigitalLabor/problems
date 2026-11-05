@@ -1,40 +1,77 @@
 {% include "header.html" %}
 
 <p><img class="img-fluid"
-    src="https://mdl.hs-duesseldorf.de/pluginfile.php/322277/mod_assign/intro/ChatGPT%20Image%2031.%20Okt.%202025%2C%2009_49_25.png"
-    alt="ibans" width="400" height="400">
+    src="https://mdl.hs-duesseldorf.de/pluginfile.php/371499/mod_assign/intro/ChatGPT%20Image%2031.%20Okt.%202025%2C%2009_49_25.png"
+    alt="Kreditkarten" width="400" height="400">
 </p>
 <p>
-  Bei der Bearbeitung des Problem "iban.py" haben Sie bereits die Struktur
-  und die Prüfziffernberechnung einer IBAN kennengelernt,
-  sollten Sie dieses Problem noch nicht bearbeitet haben, bearbeiten Sie dieses zuerst.
-  In dieser Aufgabe sollen Sie eine Liste von IBANs verarbeiten, die aus
-  einem kompromittierten "Hackers News Forum" stammt.
-  Ein anonymer Whistleblower hat Ihnen eine Datei mit verdächtigen
-  IBAN-Nummern zugespielt, die möglicherweise für betrügerische
-  Zwecke missbraucht werden sollten. Ihre Aufgabe ist es, diese Liste
-  zu analysieren und die Anzahl der ungültigen IBANs zu ermitteln,
-  um das Ausmaß des Datenlecks besser einschätzen zu können.
+  Eine Gruppe von Hackern behauptet, in einem kompromittierten "Hackers News Forum"
+  tausende Kreditkartennummern erbeutet zu haben, und bietet die Liste zum Verkauf an.
+  Ein anonymer Whistleblower hat Ihnen Kopien dieser Liste zugespielt.
+  Sicherheitsforscher vermuten, dass ein großer Teil davon gefälscht ist: mit zufälligen
+  Ziffern aufgefüllte Nummern, die die Beute größer erscheinen lassen sollen.
+  Ihre Aufgabe ist es, diese Liste zu analysieren und die Anzahl der ungültigen
+  Kreditkartennummern zu ermitteln, um das tatsächliche Ausmaß des Datenlecks
+  besser einschätzen zu können.
+</p>
+<p>
+  Viele Fälschungen lassen sich erkennen, ohne eine Bank zu fragen: Jede echte
+  Kreditkartennummer enthält eine Prüfziffer, die mit dem <strong>Luhn-Algorithmus</strong>
+  berechnet wird, und echte Kartennummern sind immer zwischen <strong>12 und 19 Ziffern</strong>
+  lang. Eine Nummer, die eine dieser beiden Prüfungen nicht besteht, kann keine echte Karte sein.
+</p>
+
+<h2 id="hintergrund">Hintergrund: Der Luhn-Algorithmus</h2>
+
+<ol>
+  <li>
+    Beginnend mit der vorletzten Ziffer wird jede zweite Ziffer (von rechts gezählt)
+    mit 2 multipliziert. Ist das Ergebnis größer als 9, werden dessen Ziffern addiert
+    (z.&nbsp;B. 7&nbsp;·&nbsp;2&nbsp;=&nbsp;14&nbsp;→&nbsp;1&nbsp;+&nbsp;4&nbsp;=&nbsp;5).
+  </li>
+  <li>Alle so erhaltenen Werte werden mit den nicht verdoppelten Ziffern aufsummiert.</li>
+  <li>Ist die Summe durch 10 teilbar (Summe&nbsp;%&nbsp;10&nbsp;==&nbsp;0), ist die Prüfziffer korrekt.</li>
+</ol>
+<p>
+  Den Algorithmus müssen Sie <strong>nicht</strong> selbst implementieren: Das Modul
+  <code class="text-danger border border-dark">luhncheck</code> kann mittels <code
+    class="text-danger border border-dark">pip install luhncheck</code> installiert werden und stellt die
+  Funktion <code class="text-danger border border-dark">is_luhn(number)</code> bereit. Sie erhält
+  eine Kartennummer als <code class="text-danger border border-dark">String</code> (nur Ziffern)
+  und gibt <code class="text-danger border border-dark">True</code> oder
+  <code class="text-danger border border-dark">False</code> zurück.
 </p>
 
 <h2 id="aufgabe">Aufgabe</h2>
 
 <p>{% include "file.html" %}
   implementieren Sie eine Funktion
-  <code class="text-danger border border-dark">def checkHackersList(listenname):</code>,
+  <code class="text-danger border border-dark">def checkFile(listenname):</code>,
   die als Argument einen Dateinamen (type <code class="text-danger border border-dark">String</code>)
-  übergeben bekommt und diese aus dem aktuellen Verzeichnis einliest.
-  Die Datei enthält eine Liste von IBANs, jeweils eine pro Zeile. Öffnen Sie diese
-  Datei lesend und überprüfen Sie jede IBAN auf Gültigkeit. Verwenden Sie dazu die in
-  der letzten Aufgabe implementierte Funktion
-  <code class="text-danger border border-dark">def calcCheckDigitsDE(blz, konto):</code>
-  zur IBAN-Prüfziffernberechnung.
-  Die Funktion soll die Anzahl der ungültigen IBANs in der Datei zählen und als Ganzzahl
+  übergeben bekommt und diese Datei aus dem aktuellen Verzeichnis einliest.
+  Die Datei enthält eine Liste von Kreditkartennummern, jeweils eine pro Zeile.
+  Öffnen Sie diese Datei lesend und überprüfen Sie jede Nummer auf Gültigkeit:
+</p>
+<ul>
+  <li>
+    Eine Nummer kann, wie auf einer echten Karte, durch <strong>Leerzeichen</strong> in Gruppen
+    unterteilt sein (z.&nbsp;B. <code>4003 6000 0000 0014</code>). Entfernen Sie alle Leerzeichen
+    sowie den Zeilenumbruch am Ende der Zeile, bevor Sie die Nummer prüfen.
+  </li>
+  <li>
+    Eine Nummer ist <strong>ungültig</strong>, wenn sie (ohne Leerzeichen)
+    <strong>weniger als 12 oder mehr als 19 Ziffern</strong> hat
+    <strong>oder</strong> die Prüfung mit <code class="text-danger border border-dark">is_luhn</code>
+    nicht besteht.
+  </li>
+</ul>
+<p>
+  Die Funktion soll die Anzahl der ungültigen Kreditkartennummern in der Datei zählen und als Ganzzahl
   <code class="text-danger border border-dark">int</code> zurückgeben.
   <br>
-  (Die <strong>Gültigkeit</strong> einer IBAN bezieht sich ausschließlich auf die
-  korrekte Berechnung der Prüfziffer, nicht auf die tatsächliche Existenz des Kontos.
-  Alle in diesem Problem verwendeten IBANs sind fiktiv.)
+  (Die <strong>Gültigkeit</strong> einer Kreditkartennummer bezieht sich ausschließlich auf die
+  Länge und die korrekte Prüfziffer, nicht auf die tatsächliche Existenz der Karte.
+  Alle in diesem Problem verwendeten Kartennummern sind fiktiv.)
 </p>
 
 <details>
@@ -54,10 +91,15 @@
       </a>.
     </li>
     <li>
-      Denken Sie daran, das es möglich ist auf einzelne Teile eines Strings zuzugreifen, siehe
-      <a href="https://docs.python.org/3/tutorial/introduction.html#text" target="_blank">
-        docs.python.org/3/tutorial/introduction.html#text
+      Jede gelesene Zeile endet mit <code>"\n"</code>. Die String-Methoden
+      <code>str.strip()</code> und <code>str.replace(alt, neu)</code> helfen Ihnen beim Bereinigen, siehe
+      <a href="https://docs.python.org/3/library/stdtypes.html#string-methods" target="_blank">
+        https://docs.python.org/3/library/stdtypes.html#string-methods
       </a>.
+    </li>
+    <li>
+      Mit <code>len(s)</code> erhalten Sie die Anzahl der Zeichen eines Strings.
+      Achten Sie genau auf die Grenzen: Nummern mit genau 12 und genau 19 Ziffern sind erlaubt.
     </li>
   </ul>
 </details>
@@ -67,36 +109,28 @@
 {% include "before_you_begin.html" %}
 
 <p>
-  Führen Sie im Terminal folgenden Befehl aus:
+  Führen Sie im Terminal folgende Befehle aus:
 </p>
 <div class="alert alert-primary">
   <code class="text-dark font-weight-bold">
-    wget https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2025/hackers/files/test.txt
+    wget https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/small.txt<br>
+    wget https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/spaces.txt<br>
+    wget https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/medium.txt<br>
+    wget https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/large.txt
   </code>
 </div>
 <p>
-  um die Datei
-  <a href="https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2025/hackers/files/test.txt">
-    test.txt
-  </a>
-  in das aktuelle Verzeichnis herunterzuladen
-</p>
-
-<p>
-  Führen Sie im Terminal folgenden Befehl aus:
-</p>
-<div class="alert alert-primary">
-  <code class="text-dark font-weight-bold">
-    wget https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2025/hackers/files/whistleblower.txt
-  </code>
-</div>
-<p>
-  um die Datei
+  um die Dateien
   <a
-    href="https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2025/hackers/files/whistleblower.txt">
-    whistleblower.txt
-  </a>
-  in das aktuelle Verzeichnis herunterzuladen
+    href="https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/small.txt">small.txt</a>,
+  <a
+    href="https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/spaces.txt">spaces.txt</a>,
+  <a
+    href="https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/medium.txt">medium.txt</a>
+  und
+  <a
+    href="https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/git2026/hackers/files/large.txt">large.txt</a>
+  in das aktuelle Verzeichnis herunterzuladen.
 </p>
 
 <p> Der Anfang des Programms wurde bereits erstellt, kopieren Sie diesen Code in Ihre Datei <code
@@ -106,15 +140,11 @@
 <div class="alert alert-dark">
   <pre><code>
 import sys
-import random
+
+from luhncheck import is_luhn
 
 
-def calcCheckDigitsDE(blz, konto):
-    # TODO code mit Lösung aus iban.py ersetzten
-    return random.randint(10, 99) # nur zur Simulation falls iban.py nicht gelöst wurde, bitte ersetzen!
-
-
-def checkHackersList(listenname):
+def checkFile(listenname):
     invalid_count = 0
 
     # TODO fügen Sie Ihren Code hier ein
@@ -122,8 +152,9 @@ def checkHackersList(listenname):
     return invalid_count
 
 
-name = sys.argv[1]
-print("Invalid count of IBANs:", checkHackersList(name))
+if __name__ == "__main__":
+    name = sys.argv[1]
+    print("Invalid count of credit cards:", checkFile(name))
     </code></pre>
 </div>
 
@@ -131,19 +162,33 @@ print("Invalid count of IBANs:", checkHackersList(name))
 <ul>
   <li>
     Ihr Programm sollte keine Benutzereingabe verlangen, sondern nur die Funktion definieren.
-    Sie können zum Testen Ihr Programm mit indem Sie den Dateiname der zu testenden Datei
-    als Kommandozeilenargument übergeben, z.B.
+    Sie können Ihr Programm testen, indem Sie den Dateinamen der zu testenden Datei
+    als Kommandozeilenargument übergeben, z.&nbsp;B.
     <code class="text-danger">python {{filename}} dateiname.txt</code> ausführen.
   </li>
   <li>
-    Testen Sie Ihre Funktion zuerst mit der übersichtlichen Datei
-    <code class="text-danger">python {{filename}} test.txt</code>,
-    Sie können die Datei test.txt im Editor öffnen und deren Inhalt verändern,
-    um weitere Testszenarien zu generieren.
+    Lassen Sie die Zeile <code class="text-danger">if __name__ == "__main__":</code> am Ende
+    Ihrer Datei unverändert stehen, sonst kann die automatische Überprüfung Ihre Funktion nicht aufrufen.
   </li>
   <li>
-    Anschließend testen Sie Ihre Funktion mit der umfangreichen Datei
-    <code class="text-danger">python {{filename}} whistleblower.txt</code>.
+    Testen Sie Ihre Funktion zuerst mit der übersichtlichen Datei
+    <code class="text-danger">python {{filename}} small.txt</code>.
+    Sie enthält fünf Nummern, von denen zwei ungültig sind. Öffnen Sie die Datei im Editor
+    und überlegen Sie, <em>warum</em> genau diese beiden ungültig sind. Sie können den Inhalt
+    auch verändern, um weitere Testszenarien zu erzeugen.
+  </li>
+  <li>
+    Testen Sie anschließend mit <code class="text-danger">python {{filename}} spaces.txt</code>.
+    Hier sind die Nummern durch Leerzeichen gruppiert, nur eine davon ist ungültig.
+    Erhalten Sie als Ergebnis 5, entfernen Sie die Leerzeichen vermutlich nicht.
+  </li>
+  <li>
+    Testen Sie zum Schluss mit den umfangreichen Dateien
+    <code class="text-danger">python {{filename}} medium.txt</code> und
+    <code class="text-danger">python {{filename}} large.txt</code>.
+  </li>
+  <li>
+    Denken Sie auch an Grenzfälle: Nummern mit genau 11, 12, 19 und 20 Ziffern.
   </li>
 </ul>
 
