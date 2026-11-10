@@ -3,7 +3,10 @@ name = "problems"
 version = "0.0.0"
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
-dependencies = ["check50>=3.4.0"]
+dependencies = [
+    "check50>=3.4.0",
+    "luhncheck>=2.3.0",
+]
 
 [dependency-groups]
 dev = ["ruff>=0.8.0"]
