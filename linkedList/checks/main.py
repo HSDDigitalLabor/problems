@@ -23,6 +23,7 @@ def exists():
     check50.include(TEST_FILE)
 
 
+@check50.hidden("")
 @check50.check(exists)
 def compiles():
     """file compiles"""
@@ -50,98 +51,98 @@ def run_test_case(test_case: int, valgrind: bool = False):
 @check50.hidden("")
 @check50.check(compiles)
 def empty_list():
-    """Empty list should initialize head to NULL"""
+    """Test case 0: Empty list should initialize head to NULL"""
     run_test_case(0)
 
 
 @check50.hidden("")
 @check50.check(compiles)
 def insert_one():
-    """Insert one element"""
+    """Test case 1: Insert one element"""
     run_test_case(1)
 
 
 @check50.hidden("")
 @check50.check(compiles)
 def insert_multiple():
-    """Insert multiple elements"""
+    """Test case 2: Insert multiple elements"""
     run_test_case(2)
 
 
 @check50.hidden("")
 @check50.check(compiles)
 def search_existing():
-    """Search should find an existing element"""
+    """Test case 3: Search should find an existing element"""
     run_test_case(3)
 
 
 @check50.hidden("")
 @check50.check(compiles)
 def search_missing():
-    """Search should return NULL for missing element"""
+    """Test case 4: Search should return NULL for missing element"""
     run_test_case(4)
 
 
 @check50.hidden("")
 @check50.check(compiles)
 def remove_head():
-    """Remove the head element"""
+    """Test case 5: Remove the head element"""
     run_test_case(5)
 
 
 @check50.hidden("")
 @check50.check(compiles)
 def remove_middle():
-    """Remove a middle element"""
+    """Test case 6: Remove a middle element"""
     run_test_case(6)
 
 
 @check50.hidden("")
 @check50.check(compiles)
 def remove_last():
-    """Remove the last element"""
+    """Test case 7: Remove the last element"""
     run_test_case(7)
 
 
 @check50.hidden("")
 @check50.check(compiles)
 def get_valid():
-    """Get element at valid index"""
+    """Test case 8: Get element at valid index"""
     run_test_case(8)
 
 
 @check50.hidden("")
 @check50.check(compiles)
 def get_invalid():
-    """Get element at invalid index"""
+    """Test case 9: Get element at invalid index"""
     run_test_case(9)
 
 
 @check50.hidden("")
 @check50.check(compiles)
 def remove_missing():
-    """Removing nonexistent element should fail"""
+    """Test case 10: Removing nonexistent element should fail"""
     run_test_case(10)
 
 
 @check50.hidden("")
 @check50.check(compiles)
 def destroy_empty():
-    """Destroy empty list"""
+    """Test case 11: Destroy empty list"""
     run_test_case(11)
 
 
 @check50.hidden("")
 @check50.check(compiles)
 def destroy_populated():
-    """Creating a list, inserting elements and calling destroy()"""
+    """Test case 12: Creating a list, inserting elements and calling destroy()"""
     run_test_case(12)
 
 
 @check50.hidden("")
 @check50.check(compiles)
 def null_arguments():
-    """Functions should handle NULL arguments"""
+    """Test case 13: Functions should handle NULL arguments"""
     run_test_case(13)
 
 
