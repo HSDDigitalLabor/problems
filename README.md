@@ -15,3 +15,7 @@ Python files are formatted using ```ruff```, run ```uv run ruff format .``` to f
 To update the HTML files for Moodle run 
 
 ```uv run .generator/main.py``` to update all files or ```uv run .generator/main.py problem``` to only update the specified problem
+
+## Requirements for C Tests
+
+When runnning tests locally using ````check50 --dev path``` a compiler (check50.c uses clang as default) and valgrind are required.
