@@ -1,0 +1,534 @@
+﻿<h1 id="linkedList">Linked List in C</h1>
+
+<p>
+  In dieser Aufgabe implementieren Sie eine einfach verkettete Liste
+  (Singly Linked List) in der Programmiersprache C.
+
+  Eine verkettete Liste besteht aus einzelnen Elementen, sogenannten
+  <code>Nodes</code>. Jeder Knoten speichert einen ganzzahligen Wert
+  (<code>value</code>) sowie einen Zeiger auf den nächsten Knoten
+  (<code>next</code>).
+
+  Die Liste selbst speichert einen Zeiger auf das erste Element
+  (<code>head</code>). Ist die Liste leer, zeigt dieser Zeiger auf
+  <code>NULL</code>.
+</p>
+
+<p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Singly-linked-list.svg" alt="Singly linked list"
+    class="img-fluid" style="max-width: 600px;">
+</p>
+
+<p>
+  Implementieren Sie die Funktionen, die in der vorgegebenen Datei
+  <code>linkedList.c</code> deklariert sind. Die Funktionen sollen
+  das Erstellen, Verändern, Durchsuchen und Löschen einer verketteten
+  Liste ermöglichen.
+</p>
+
+<h4>Funktionsübersicht</h4>
+
+<ul>
+  <li>
+    <code>createList()</code> – Erstellt eine neue, leere Liste.
+    Der Zeiger <code>head</code> muss initial auf <code>NULL</code> zeigen.
+  </li>
+  <li>
+    <code>create(int value)</code> – Erstellt einen neuen Knoten mit
+    dem übergebenen Wert. Der Zeiger <code>next</code> muss
+    initial auf <code>NULL</code> zeigen.
+  </li>
+  <li>
+    <code>insert(List *list, int value)</code> – Fügt einen neuen
+    Knoten am Ende der Liste ein.
+  </li>
+  <li>
+    <code>search(List *list, int value)</code> – Sucht nach einem
+    Knoten mit dem angegebenen Wert und gibt einen Zeiger auf diesen
+    zurück. Wird kein passender Knoten gefunden, wird <code>NULL</code>
+    zurückgegeben.
+  </li>
+  <li>
+    <code>removeNode(List *list, Node *element)</code> – Entfernt
+    den angegebenen Knoten aus der Liste und gibt dessen Wert zurück.
+    Kann der Knoten nicht entfernt werden, wird <code>-1</code>
+    zurückgegeben.
+  </li>
+  <li>
+    <code>length(List *list)</code> – Gibt die Anzahl der Elemente
+    in der Liste zurück.
+  </li>
+  <li>
+    <code>get(List *list, int index)</code> – Gibt einen Zeiger auf
+    den Knoten an der angegebenen Position zurück. Der Index beginnt
+    bei <code>0</code>. Bei einem ungültigen Index wird
+    <code>NULL</code> zurückgegeben.
+  </li>
+  <li>
+    <code>destroy(List *list)</code> – Gibt den Speicher aller
+    Knoten sowie der Liste selbst frei.
+  </li>
+</ul>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Verwenden Sie <code>malloc()</code>, um Speicher für neue
+      Listen und Knoten zu reservieren.
+    </li>
+    <li>
+      Überprüfen Sie nach jedem Aufruf von <code>malloc()</code>,
+      ob die Speicherreservierung erfolgreich war. Im Fehlerfall
+      gibt <code>malloc()</code> den Wert <code>NULL</code> zurück.
+    </li>
+    <li>
+      Verwenden Sie <code>free()</code>, um nicht mehr benötigten
+      Speicher freizugeben.
+    </li>
+    <li>
+      Achten Sie beim Entfernen eines Knotens darauf, die Verkettung
+      der verbleibenden Knoten korrekt wiederherzustellen.
+    </li>
+    <li>
+      Eine Liste kann leer sein. Behandeln Sie daher insbesondere
+      den Fall <code>list-&gt;head == NULL</code>.
+    </li>
+    <li>
+      Achten Sie auf gültige Zeiger und vermeiden Sie Zugriffe auf
+      bereits freigegebenen Speicher.
+    </li>
+    <li>
+      Die Funktionen sollen auch mit ungültigen Eingaben wie
+      <code>NULL</code>-Zeigern umgehen können, soweit dies in
+      ihrer jeweiligen Implementierung sinnvoll ist.
+    </li>
+  </ul>
+</details>
+
+<h4>Speicherverwaltung und Zeiger</h4>
+
+<p>
+  Bei dieser Aufgabe verwalten Sie den Speicher selbst.
+  Beachten Sie daher folgende Regeln:
+</p>
+
+<ul>
+  <li>
+    Jeder mit <code>malloc()</code> erzeugte Knoten muss
+    genau einmal mit <code>free()</code> freigegeben werden.
+  </li>
+  <li>
+    Wenn ein Knoten mit <code>removeNode()</code> aus der Liste
+    entfernt wird, muss auch dessen Speicher freigegeben werden.
+    Der zurückgegebene Wert muss daher vor dem Aufruf von
+    <code>free()</code> zwischengespeichert werden.
+  </li>
+  <li>
+    Die Funktion <code>destroy()</code> muss alle noch in der
+    Liste enthaltenen Knoten sowie die Listenstruktur selbst
+    freigeben.
+  </li>
+  <li>
+    Ein Knoten darf nach seiner Freigabe nicht mehr verwendet
+    oder dereferenziert werden.
+  </li>
+  <li>
+    Die Funktion <code>removeNode()</code> darf nur Knoten
+    entfernen, die tatsächlich zu der übergebenen Liste gehören.
+  </li>
+  <li>
+    Die Funktion <code>destroy(NULL)</code> muss ohne Fehler
+    aufgerufen werden können.
+  </li>
+</ul>
+
+<p>
+  <strong>Hinweis:</strong>
+  Der Wert <code>-1</code> ist in dieser Aufgabe als Fehlerwert
+  für <code>removeNode()</code> reserviert und darf deshalb
+  nicht als regulärer Wert eines Knotens verwendet werden.
+</p>
+
+<!-- <p></p>
+<h2 id="demo">Demo</h2>
+<p>
+  <script async="" data-autoplay="1" data-cols="80" data-loop="1" data-rows="12"
+  id="asciicast-"
+  src="https://asciinema.org/a/.js">
+  </script>
+</p> -->
+
+<h2 id="before-you-begin">Bevor Sie beginnen</h2>
+<p>Melden Sie sich bei <a href="https://cs50.dev/" target="_blank">cs50.dev</a> an, klicken Sie
+  auf Ihr Terminal und führen Sie <code
+  class="text-danger border border-dark">cd</code> ohne Parameter aus. Sie
+  sollten feststellen, dass der Prompt Ihres Terminals wie unten aussieht:</p>
+<div class="alert alert-primary"><code
+  class="text-dark font-weight-bold">$</code></div>
+<p>Als nächstes führen Sie</p>
+
+
+
+
+
+
+<div class="alert alert-primary">
+    <div class="d-flex gap-2">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="6741490">
+            <span class="nolink" style="word-break: break-all;">mkdir linkedList</span>
+        </code>
+        <button class="btn btn-secondary" id="copyCmdBtn_6741490" type="button"><i
+                class="fa-regular fa-clipboard"></i></button>
+    </div>
+    <div id="copyFeedback_6741490" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+        Fehler beim Kopieren!
+    </div>
+    <script>(window._cpQueue = window._cpQueue || []).push(['copyCmdBtn_6741490', '6741490', 'copyFeedback_6741490']);</script>
+</div>
+
+<p>aus, um einen Ordner namens <code
+  class="text-danger border border-dark">linkedList</code> in Ihrem Codespace
+  zu erstellen.</p>
+<p>Führen Sie anschließend</p>
+
+
+
+
+
+
+<div class="alert alert-primary">
+    <div class="d-flex gap-2">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="9321049">
+            <span class="nolink" style="word-break: break-all;">cd linkedList</span>
+        </code>
+        <button class="btn btn-secondary" id="copyCmdBtn_9321049" type="button"><i
+                class="fa-regular fa-clipboard"></i></button>
+    </div>
+    <div id="copyFeedback_9321049" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+        Fehler beim Kopieren!
+    </div>
+    <script>(window._cpQueue = window._cpQueue || []).push(['copyCmdBtn_9321049', '9321049', 'copyFeedback_9321049']);</script>
+</div>
+
+<p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt Ihres Terminals sollte
+  nun <code class="text-danger border border-dark">linkedList/$</code> anzeigen.
+  Jetzt können Sie</p>
+
+
+
+
+
+
+<div class="alert alert-primary">
+    <div class="d-flex gap-2">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="2828052">
+            <span class="nolink" style="word-break: break-all;">code linkedList.c</span>
+        </code>
+        <button class="btn btn-secondary" id="copyCmdBtn_2828052" type="button"><i
+                class="fa-regular fa-clipboard"></i></button>
+    </div>
+    <div id="copyFeedback_2828052" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+        Fehler beim Kopieren!
+    </div>
+    <script>(window._cpQueue = window._cpQueue || []).push(['copyCmdBtn_2828052', '2828052', 'copyFeedback_2828052']);</script>
+</div>
+
+<p>ausführen, um eine Datei namens <code
+  class="text-danger">linkedList.c</code> zu erstellen, in der Sie Ihr
+  Programm schreiben.
+</p>
+
+<h4>Ausgangscode</h4>
+
+<p>
+  Verwenden Sie den folgenden Code als Ausgangspunkt für Ihre
+  Implementierung. Ergänzen Sie die Funktionskörper an den
+  entsprechend gekennzeichneten Stellen.
+</p>
+
+<details>
+  <summary>Ausgangscode anzeigen</summary>
+
+  <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#ifndef LINKED_LIST_TYPES_DEFINED
+#define LINKED_LIST_TYPES_DEFINED
+
+typedef struct Node {
+    int value;
+    struct Node *next;
+} Node;
+
+typedef struct List {
+    Node *head;
+} List;
+
+List *createList(void);
+Node *create(int value);
+List *insert(List *list, int value);
+Node *search(List *list, int value);
+int removeNode(List *list, Node *element);
+int length(List *list);
+Node *get(List *list, int index);
+void destroy(List *list);
+
+#endif
+
+// Create an empty list
+List *createList(void)
+{
+    return NULL;
+}
+
+// Allocate a new node with the given value
+Node *create(int value)
+{
+    return NULL;
+}
+
+// Insert a value at the end of the list
+List *insert(List *list, int value)
+{
+    return list;
+}
+
+// Search for a value
+Node *search(List *list, int value)
+{
+    return NULL;
+}
+
+// Remove a node and return its value
+int removeNode(List *list, Node *element)
+{
+    return -1;
+}
+
+// Return the number of nodes
+int length(List *list)
+{
+    return 0;
+}
+
+// Get node at a specific index
+Node *get(List *list, int index)
+{
+    return NULL;
+}
+
+// Free all nodes and the list itself
+void destroy(List *list)
+{
+    return;
+}
+
+int main(void)
+{
+    return 0;
+}</code></pre>
+</details>
+
+<h2 id="how-to-test">So testen Sie Ihr Programm</h2>
+<p>So können Sie Ihr Programm manuell testen:</p>
+
+<ul>
+  <li>
+    Nutzen Sie Ihre main-Methode, um Ihre Testfälle zu implementieren.
+  </li>
+  <li>
+    Kompilieren Sie Ihr Programm mit:
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        clang -Wall -Wextra -Werror linkedList.c -o linkedList
+      </code>
+    </div>
+    Beheben Sie alle Compilerfehler und Warnungen.
+  </li>
+
+  <li>
+    Testen Sie zunächst das Erstellen einer leeren Liste.
+    Nach dem Aufruf von <code>createList()</code> muss
+    <code>head == NULL</code> gelten.
+  </li>
+
+  <li>
+    Fügen Sie mehrere Elemente ein, beispielsweise die Werte
+    <code>5</code>, <code>10</code> und <code>15</code>.
+    Die Funktion <code>length()</code> muss anschließend
+    den Wert <code>3</code> zurückgeben.
+  </li>
+
+  <li>
+    Testen Sie die Funktion <code>search()</code> mit einem
+    vorhandenen und einem nicht vorhandenen Wert.
+  </li>
+
+  <li>
+    Testen Sie <code>get()</code> mit gültigen und ungültigen
+    Indizes, beispielsweise <code>0</code>, <code>2</code>
+    und <code>-1</code>.
+  </li>
+
+  <li>
+    Testen Sie <code>removeNode()</code>, indem Sie den ersten,
+    einen mittleren und den letzten Knoten entfernen.
+    Überprüfen Sie anschließend die Länge und die Verkettung
+    der verbleibenden Elemente.
+  </li>
+
+  <li>
+    Testen Sie <code>destroy()</code> sowohl mit einer leeren
+    als auch mit einer gefüllten Liste.
+  </li>
+</ul>
+
+
+
+<p>Sie können das folgende Kommando ausführen, um Ihren Code mit <code
+  class="text-danger">check50</code> zu überprüfen, einem Programm, das bei
+  der Abgabe verwendet wird um Ihren Code zu testen. Testen Sie Ihr Programm
+  aber auch selbst!</p>
+
+
+
+
+
+
+<div class="alert alert-primary">
+    <div class="d-flex gap-2">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="6089893">
+            <span class="nolink" style="word-break: break-all;">check50 HSDDigitalLabor/problems/adg2026/linkedList</span>
+        </code>
+        <button class="btn btn-secondary" id="copyCmdBtn_6089893" type="button"><i
+                class="fa-regular fa-clipboard"></i></button>
+    </div>
+    <div id="copyFeedback_6089893" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+        Fehler beim Kopieren!
+    </div>
+    <script>(window._cpQueue = window._cpQueue || []).push(['copyCmdBtn_6089893', '6089893', 'copyFeedback_6089893']);</script>
+</div>
+
+<p>
+  Grüne Smileys <span style="font-family: monospace; color: green;">:) </span>
+  bedeuten, dass Ihr Programm einen Test bestanden hat! Rote
+  traurige Smileys <span style="font-family: monospace; color: red;">:( </span>
+  zeigen an, dass Ihr Programm etwas Unerwartetes ausgegeben
+  hat. Besuchen Sie die URL, die <code class="text-danger">check50</code>
+  ausgibt, um zu sehen, welche Eingabe <code class="text-danger">check50</code>
+  an Ihr Programm übergeben hat, welche Ausgabe erwartet wurde und welche
+  Ausgabe Ihr Programm tatsächlich geliefert hat.
+</p>
+
+<h2 id="how-to-submit">Abgabe</h2>
+<p>Führen Sie im Terminal den folgenden Befehl aus, um Ihre Arbeit einzureichen.
+</p>
+
+
+
+
+
+
+<div class="alert alert-primary">
+    <div class="d-flex gap-2">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="5877108">
+            <span class="nolink" style="word-break: break-all;">submit50 HSDDigitalLabor/problems/adg2026/linkedList</span>
+        </code>
+        <button class="btn btn-secondary" id="copyCmdBtn_5877108" type="button"><i
+                class="fa-regular fa-clipboard"></i></button>
+    </div>
+    <div id="copyFeedback_5877108" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+        Fehler beim Kopieren!
+    </div>
+    <script>(window._cpQueue = window._cpQueue || []).push(['copyCmdBtn_5877108', '5877108', 'copyFeedback_5877108']);</script>
+</div>
+
+<p>
+  Bestätigen Sie die Abfrage "course's policy on academic honesty" durch Eingabe von <code>yes</code>, um die Abgabe erfolgreich abzuschließen.
+</p>
+<p></p>
+  Führen Sie den <strong>submit50</strong>-Befehl vor dem Fälligkeitsdatum aus. Sie können Ihre Lösung
+  nach dem ersten Einsenden noch ändern und erneut einreichen. Bewertet wird
+  die zuletzt eingereichte Version vor dem Fälligkeitsdatum. Nach Ablauf der
+  Frist können Sie technisch zwar noch Abgaben tätigen, Ihre Lösung wird jedoch
+  nicht mehr gewertet. Das Ergebnis kann ausschließlich mit obigem Befehl abgegeben
+  werden, eine Abgabe in Moodle ist nicht möglich.
+</p>
+
+<h2 id="how-to-mark">Markierung der Aufgabe als erledigt</h2>
+<p>Nach dem Einreichen der Lösung mit <code class="text-danger">submit50</code>,
+  nehmen Sie eine Pseudolösung in Moodle vor, indem Sie auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_solution" disabled>
+    Aufgabenlösung hinzufügen</button>
+  weiter unten auf dieser Seite betätigen und in das sich öffnende Feld unter
+  "Texteingabe online" den folgenden Text ein:
+</p>
+<div class="alert alert-primary">
+  <code class="text-dark font-weight-bold">Mit submit50 abgegeben.</code>
+</div>
+<p>Schließen Sie die Eingabe durch Klick auf den Button
+  <button type="submit" class="btn btn-primary" id="sample_save" disabled>
+    Änderungen speichern</button> unterhalb des Textfeldes ab.
+</p>
+<p>
+  Zur besseren Übersicht markieren Sie das Problem linkedList.c in Moodle als erledigt,
+  indem Sie ganz oben auf dieser Seite den Button
+</p>
+<p>
+  <button class="btn btn-outline-secondary btn-sm text-nowrap" title="Problem: linkedList.c  als erledigt kennzeichnen"
+    aria-label="Problem: linkedList.c  als erledigt kennzeichnen" disabled>
+    Als erledigt kennzeichnen
+  </button>
+  klicken. Daraufhin erscheint der Button
+  <button class="btn btn-success btn-sm text-nowrap"
+    title="Problem: linkedList.c ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken."
+    aria-label="Problem: linkedList.c ist als erledigt gekennzeichnet. Zum Rückgängigmachen klicken." disabled>
+    <i class="fa fa-check" aria-hidden="true"></i> Erledigt
+  </button>
+</p>
+
+<script>
+(function () {
+    var q = window._cpQueue || [];
+    delete window._cpQueue;
+
+    function showError(feedbackId) {
+        var el = document.getElementById(feedbackId);
+        if (!el) return;
+        el.classList.remove('d-none');
+        setTimeout(function () { el.classList.add('d-none'); }, 2500);
+    }
+
+    function copyText(buttonId, codeId, feedbackId) {
+        var btn = document.getElementById(buttonId);
+        var codeEl = document.getElementById(codeId);
+        if (!btn || !codeEl) return;
+        var text = codeEl.textContent.trim();
+        btn.disabled = true;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).catch(function () { showError(feedbackId); });
+            setTimeout(function () { btn.disabled = false; }, 500);
+            return;
+        }
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) { showError(feedbackId); }
+        document.body.removeChild(ta);
+        setTimeout(function () { btn.disabled = false; }, 1000);
+    }
+
+    for (var i = 0; i < q.length; i++) {
+        (function (btnId, codeId, fbId) {
+            var btn = document.getElementById(btnId);
+            if (!btn) return;
+            btn.addEventListener('click', function () { copyText(btnId, codeId, fbId); });
+        })(q[i][0], q[i][1], q[i][2]);
+    }
+})();
+</script>
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2026-11-18 13:48:43</p>
