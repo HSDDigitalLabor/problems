@@ -1,0 +1,176 @@
+{% include "header.html" %}
+
+<p>
+  Bei der Entwicklung digitaler FIR-Filter (Finite Impulse Response)
+  spielen <strong>Fensterfunktionen</strong> eine wichtige Rolle.
+  Durch die Multiplikation einer idealen Impulsantwort mit einer
+  Fensterfunktion kann ein FIR-Filter endlicher Länge erzeugt werden.
+</p>
+
+<p>
+  Verschiedene Fensterfunktionen beeinflussen dabei die Eigenschaften
+  des Filters unterschiedlich. Insbesondere besteht ein Zusammenhang
+  zwischen der Breite der Hauptkeule und der Dämpfung der Nebenkeulen
+  im <strong>Frequenzbereich</strong>.
+</p>
+
+<p>
+  In dieser Aufgabe lernen Sie vier wichtige Fensterfunktionen kennen:
+</p>
+
+<ul>
+  <li><strong>Rechteckfenster</strong> (<code>boxcar</code>):
+      Alle Fensterkoeffizienten besitzen den Wert 1.</li>
+    <li><strong>Hann-Fenster</strong> (<code>hann</code>):
+      Die Koeffizienten werden zu den Rändern hin kontinuierlich auf null abgesenkt.</li>
+    <li><strong>Hamming-Fenster</strong> (<code>hamming</code>):
+      Ähnlich dem Hann-Fenster, allerdings mit stärkerer Nebenkeulenunterdrückung.</li>
+    <li><strong>Kaiser-Fenster</strong> (<code>kaiser</code>):
+      Der Parameter <code>β</code> steuert die Nebenkeulenunterdrückung: Ein größeres <code>β</code> senkt die Nebenkeulen stärker ab, verbreitert aber die Hauptkeule.</li>
+</ul>
+
+<p>
+  Die Fensterfunktionen <code>w[n]</code> können mit der 
+  Python-Bibliothek <code>scipy.signal.windows</code>
+  erzeugt werden. Ihre  Frequenzgänge <code>W[k]</code> 
+  werden mit der diskreten Fourier-Transformation berechnet.
+  Zur besseren Vergleichbarkeit werden die Frequenzgänge
+  logarithmisch in Dezibel dargestellt:
+  <code>20 * log10(|W[k]| / max(|W[k]|))</code>.
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>
+  {% include "file.html" %}
+  Schreiben Sie ein Python-Programm, das vier Fensterfunktionen
+  im <strong>Zeitbereich und Frequenzbereich</strong> darstellt.
+</p>
+
+<p>
+  Verwenden Sie folgende Parameter:
+</p>
+
+<ul>
+  <li>Gesamtlänge: <code>N = 256</code></li>
+  <li>Fensterlänge: <code>M = N // 2</code></li>
+  <li>FFT-Länge: <code>N_FFT = 8192</code></li>
+  <li>Fenstertypen: Rectangular, Hann, Hamming, Kaiser (<code>β = 8.6</code>)</li>
+  <li>Ausgabedateien: <code>plot_windows_time.png</code>, <code>plot_windows_freq.png</code></li>
+</ul>
+
+<h3>Zeitbereich</h3>
+
+<ol>
+  <li>
+    <strong>Fenster erzeugen:</strong>
+    Erstellen Sie mit <code>signal.windows</code> die vier Fensterfunktionen
+    mit jeweils <code>M</code> Koeffizienten. Verwenden Sie für das Kaiser-Fenster
+    <code>β = 8.6</code>, zum Beispiel mit <code>signal.windows.kaiser(M, beta=8.6)</code>.
+  </li>
+  <li>
+    <strong>Mittig einbetten:</strong>
+    Erzeugen Sie für jedes Fenster einen Nullvektor <code>w</code>
+    der Länge <code>N</code>. Platzieren Sie die <code>M</code>
+    Fensterkoeffizienten mittig in <code>w</code>, beginnend beim Index
+    <code>(N - M) // 2</code> (bei den angegebenen Werten also Index 64).
+  </li>
+  <li>
+    <strong>Plot erstellen:</strong>
+    Zeichnen Sie die vier zentrierten Fensterfunktionen gemeinsam.
+    Beschriften Sie die Achsen: x-Achse mit dem Koeffizientenindex 
+    <code>n</code>, y-Achse mit der Fensterfunktion<code>w[n]</code>.
+    Speichern Sie ihre Plot mit <code>savefig</code> unter 
+    <strong>plot_windows_time.png</strong>.
+  </li>
+</ol>
+
+<h3>Frequenzbereich</h3>
+
+<ol>
+  <li>
+    <strong>FFT berechnen:</strong>
+    Bestimmen Sie die Fourier-Transformierte von <code>w</code>
+    mit <code>N_FFT</code> Punkten und verschieben Sie die Nullfrequenz
+    mit <code>np.fft.fftshift</code> in die Mitte.
+  </li>
+  <li>
+    <strong>Betrag normieren:</strong>
+    Bilden Sie den Betrag, dividieren Sie durch das Maximum und
+    wandeln Sie mit <code>20 * np.log10(...)</code> in Dezibel um.
+    Verhindern Sie <code>log10(0)</code> durch eine untere Grenze
+    von <code>1e-12</code>.
+  </li>
+  <li>
+    <strong>Frequenzachse anpassen:</strong>
+    Verwenden Sie <code>np.fft.fftfreq(N_FFT, d=1.0)</code> mit
+    <code>np.fft.fftshift</code>. Die Achse gibt normierte Frequenz
+    <code>f / f_s</code> an.
+  </li>
+  <li>
+    <strong>Plot erstellen:</strong>
+    Zeichnen Sie alle vier Frequenzgänge. Setzen Sie Achsenbeschriftungen
+    auf <code>Normierte Frequenz f / f_s</code> und <code>Betrag (dB)</code>.
+    Verwenden Sie <code>plt.xlim(-0.12, 0.12)</code> und <code>plt.ylim(-120, 5)</code>.
+    Speichern Sie unter <code>plot_windows_freq.png</code>.
+  </li>
+</ol>
+
+<p>Bearbeiten Sie nun mithilfe von <code>{{filename}}</code> die folgenden Aufgaben und Fragestellungen.
+   Machen Sie sich Notizen zu Ihren Ergebnissen. 
+   Im Verlauf des Praktikums werden hierzu Verständnisfragen gestellt.</p>
+
+<ol>
+  <li>Welche Unterschiede zwischen den Fenstern sind im Zeitbereich sichtbar?</li>
+  <li>Welches Fenster besitzt den schmalsten zentralen Frequenzbereich (Hauptkeule)?</li>
+  <li>Bei welchem Fenster sind die Spektralanteile außerhalb der Hauptkeule am geringsten (Nebenkeulenunterdrückung)?</li>
+  <li>Warum ist eine schmale Hauptkeule ohne starke Nebenkeulenunterdrückung nicht optimal?
+      Erläutern Sie den Kompromiss zwischen Frequenzauflösung und Leckagedämpfung.</li>
+  <li>Warum können Sie aus dem Zeitverlauf allein die Unterschiede in der Nebenkeulenunterdrückung nicht erkennen?</li>
+</ol>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Fensterfunktionen:
+      <a href="https://docs.scipy.org/doc/scipy-1.18.0/reference/signal.windows.html" target="_blank">
+        SciPy Signal Windows
+      </a>
+    </li>
+    <li>Mit <code>np.fft.fft(w, n=N_FFT)</code> berechnen Sie eine FFT mit vorgegebener Länge.</li>
+    <li>Mit <code>np.abs(spectrum)</code> erhalten Sie den Betrag eines komplexen Spektrums.</li>
+    <li><code>np.fft.fftshift</code> muss sowohl auf FFT-Ergebnisse als auch auf die Frequenzachse angewendet werden.</li>
+    <li>Verwenden Sie <code>plt.plot</code> (nicht <code>plt.stem</code>) für die FFT-Darstellung.</li>
+  </ul>
+</details>
+
+{% include "before_you_begin.html" %}
+
+<p>
+  Kopieren Sie den folgenden Code-Rahmen in Ihre Datei
+  <code class="text-danger">{{filename}}</code>
+  und vervollständigen Sie die markierten Stellen.
+</p>
+
+{% include "code_box_with_cp.html" %}
+
+{% include "how_to_test_head.html" %}
+
+<ul>
+  <li>Führen Sie Ihr Programm mit <code>python {{filename}}</code> aus.</li>
+  <li>Nach der Ausführung sollten zwei PNG-Dateien vorhanden sein:
+      <code>plot_windows_time.png</code> und <code>plot_windows_freq.png</code>.</li>
+  <li><strong>Zeitbereich:</strong> Vier Fenster sollten kausal im Bereich 0–127 liegen.</li>
+  <li><strong>Frequenzbereich:</strong> Vier Frequenzgänge mit Maxima bei 0 dB.
+      Vergleichen Sie die Breite der Hauptkeule und die Höhe der Nebenkeulen.</li>
+  <li>Welches Fenster hat die schmalste Hauptkeule? Welches bietet die beste Nebenkeulenunterdrückung?</li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}

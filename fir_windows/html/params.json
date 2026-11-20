@@ -1,0 +1,8 @@
+{
+    "id": "fir_windows",
+    "title": "Fensterfunktionen beim FIR-Filterentwurf",
+    "foldername": "fir_windows",
+    "filename": "fir_windows.py",
+      "code_example": "fir_windows.py",
+    "asciicast_id": ""
+}

@@ -1,0 +1,9 @@
+submit50:
+  files: &submit50_files
+    - !exclude "*"
+    - !require fir_windows.py
+  
+check50:
+  files: *submit50_files
+  checks: checks/main.py
+    
