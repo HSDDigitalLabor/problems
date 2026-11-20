@@ -6,4 +6,7 @@ submit50:
 check50:
   files: *submit50_files
   checks: checks/main.py
-    
+  dependencies:
+    - matplotlib
+    - numpy
+    - scipy
