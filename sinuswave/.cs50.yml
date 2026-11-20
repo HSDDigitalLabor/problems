@@ -2,9 +2,9 @@ submit50:
   files: &submit50_files
     - !exclude "*"
     - !include "*.py"
-    - !include "*.mem"
+    - !include "*.coe"
     - !require sinuswave.py
-    - !require sinus.mem
+    - !require sinus_lut.coe
   
 check50:
   files: *submit50_files

@@ -1,0 +1,100 @@
+{% include "header.html" %}
+
+<p>Die Diskrete Fourier-Transformation (DFT) überführt ein zeitdiskretes Signal 
+  endlicher Länge in den Frequenzbereich und ermöglicht die Analyse der im Signal 
+  enthaltenen Frequenzkomponenten. In dieser Aufgabe untersuchen Sie anhand eines 
+  vorgegebenen Python-Skripts die Eigenschaften der DFT sowie zentrale Effekte der 
+  digitalen Signalverarbeitung wie Frequenzauflösung, den Leck-Effekt (Leakage) 
+  und Aliasing.</p>
+
+<p>
+  {% include "file.html" %} kopieren Sie den Ausgangscode für diese Aufgabe aus der Datei 
+  <a href="https://github.com/HSDDigitalLabor/SourceCodeExamples/blob/main/DFTexample_png_plot.py" target="_blank" rel="noopener">github.com/HSDDigitalLabor/SourceCodeExamples/blob/main/DFTexample_png_plot.py</a> 
+   in Ihre Datei <code class="text-danger border border-dark">dft.py</code>.
+</p>
+
+<p>
+  Bearbeiten Sie anschließend mithilfe von <code class="text-danger border border-dark">dft.py</code> die folgenden Aufgaben und Fragestellungen. 
+  <strong>Machen Sie sich Notizen zu Ihren Ergebnissen. Im Verlauf des Praktikums werden hierzu Verständnisfragen gestellt.</strong>
+</p>
+
+<ul>
+  <li>Identifizieren Sie die DFT-Matrix im Code und geben Sie die Matrizen für die aus der Vorlesung
+    bekannten Fälle <i>N</i>&nbsp;=&nbsp;4 und <i>N</i>&nbsp;=&nbsp;8 aus.
+  </li>
+  <li>Untersuchen Sie den Einfluss der Abtastrate auf die DFT. Verändern Sie dazu den Python-Code und
+    vergleichen Sie die Ergebnisse.
+  </li>
+  <li>Was muss geändert werden, um die spektrale Auflösung zu erhöhen?
+  </li>
+  <li>Was passiert, wenn die Signalfrequenz nicht exakt auf einen Frequenzrasterpunkt fällt? Variieren Sie
+    die Frequenz leicht und beobachten Sie die Auswirkungen auf das Spektrum.
+  </li>
+  <li>Erhöhen Sie die Signalfrequenz schrittweise über die Nyquist-Grenze und vergleichen Sie die
+    Spektren.
+  </li>
+</ul>
+
+<p><strong>Aufbau und Verwendung des Skripts <code class="text-danger border border-dark">dft.py</code>:</strong></p>
+<p>
+  Das Skript stellt Funktionen zur Signalerzeugung, zur Berechnung der DFT sowie zur grafischen Darstellung bereit. 
+  Der typische Ablauf besteht darin, zunächst mit <code class="text-danger border border-dark">dft_example()</code> ein Testsignal und dessen DFT zu berechnen und anschließend das Zeitsignal sowie das gewünschte Spektrum mit den Plot-Funktionen als PNG-Datei zu erzeugen:
+</p>
+<ul>
+  <li>
+    <code class="text-danger border border-dark">getSineSignal(amps, freqs, t)</code>: 
+    Überlagert mehrere Sinusschwingungen mit den übergebenen Amplituden <code class="text-danger border border-dark">amps</code> und Frequenzen <code class="text-danger border border-dark">freqs</code> zu den Zeitpunkten des Zeitvektors <code class="text-danger border border-dark">t</code>.
+  </li>
+  <li>
+    <code class="text-danger border border-dark">computeDFT(x)</code>: 
+    Berechnet die DFT des übergebenen Signals <code class="text-danger border border-dark">x</code> der Länge <i>N</i>. Dabei wird die komplexe DFT-Matrix als globale Variable <code class="text-danger border border-dark">MW_n</code> der Größe <i>N</i>&nbsp;&times;&nbsp;<i>N</i> erzeugt und für die Berechnung der Spektralkoeffizienten <code class="text-danger border border-dark">X_k</code> verwendet.
+  </li>
+  <li>
+    <code class="text-danger border border-dark">dft_example(sampling_rate, length=1, freq_offset=0)</code>: 
+    Führt ein vollständiges DFT-Experiment durch:
+    <ul>
+      <li>Erzeugt einen Zeitvektor <code class="text-danger border border-dark">t</code> von 0 bis <code class="text-danger border border-dark">length</code> (in Sekunden) mit dem Abtastintervall <i>T</i><sub>s</sub>&nbsp;=&nbsp;<sup>1</sup>&frasl;<sub><code>sampling_rate</code></sub>.</li>
+      <li>Generiert ein Beispielsignal <code class="text-danger border border-dark">x</code> aus drei Sinuskomponenten mit den Amplituden 9, 10 und 2,3 sowie den Frequenzen 2&nbsp;Hz, 1&nbsp;Hz und (10&nbsp;+&nbsp;<code>freq_offset</code>)&nbsp;Hz.</li>
+      <li>Berechnet über <code class="text-danger border border-dark">computeDFT(x)</code> das zweiseitige Spektrum <code class="text-danger border border-dark">X_k</code> mit dem zugehörigen Frequenzvektor <code class="text-danger border border-dark">freq</code> sowie das auf die halbe Punktzahl normierte einseitige Spektrum <code class="text-danger border border-dark">X_k_oneside</code> mit dem Frequenzvektor <code class="text-danger border border-dark">f_oneside</code> (bis zur halben Abtastrate).</li>
+      <li>Alle berechneten Größen (<code class="text-danger border border-dark">t</code>, <code class="text-danger border border-dark">x</code>, <code class="text-danger border border-dark">X_k</code>, <code class="text-danger border border-dark">freq</code>, <code class="text-danger border border-dark">X_k_oneside</code>, <code class="text-danger border border-dark">f_oneside</code>) werden als globale Variablen gespeichert, sodass Sie nach dem Aufruf direkt darauf zugreifen und diese plotten können.</li>
+    </ul>
+  </li>
+  <li>
+    <code class="text-danger border border-dark">plot_signal(t, x, numeric=True)</code>: 
+    Plottet das Zeitsignal <code class="text-danger border border-dark">x</code>. Ist <code class="text-danger border border-dark">numeric=True</code> (Standard), wird das Signal über dem Abtastindex <i>n</i> aufgetragen; bei <code class="text-danger border border-dark">numeric=False</code> über der Zeit <i>t</i> in Sekunden. Die Grafik wird direkt als PNG-Datei gespeichert und bei jedem erneuten Aufruf überschrieben.
+  </li>
+  <li>
+    <code class="text-danger border border-dark">plot_dft(X_k, freq, zoom=False)</code>: 
+    Plottet den Betrag des Spektrums <code class="text-danger border border-dark">abs(X_k)</code> über der Frequenz <code class="text-danger border border-dark">freq</code> als Linienspektrum (Stem-Plot). Mit <code class="text-danger border border-dark">zoom=True</code> wird der dargestellte Frequenzbereich auf 0 bis 12&nbsp;Hz begrenzt und die einzelnen Stützstellen werden zusätzlich markiert. Auch diese Grafik wird direkt als PNG-Datei gespeichert und bei jedem erneuten Aufruf überschrieben.
+  </li>
+</ul>
+
+<p>
+  <strong>Wichtiger Hinweis zum Plotten:</strong> Rufen Sie <code class="text-danger border border-dark">plot_signal()</code> und <code class="text-danger border border-dark">plot_dft()</code> in Ihrem Skript jeweils <strong>nicht mehrfach hintereinander</strong> auf, da ein zweiter Aufruf derselben Funktion die zuvor erzeugte PNG-Datei sofort wieder überschreibt. Entscheiden Sie sich pro Durchlauf für genau eine Darstellung (z.&nbsp;B. entweder das zweiseitige Spektrum <code>plot_dft(X_k, freq)</code> <em>oder</em> das einseitige Spektrum <code>plot_dft(X_k_oneside, f_oneside)</code> <em>oder</em> die gezoomte Ansicht <code>plot_dft(X_k_oneside, f_oneside, zoom=True)</code>).
+</p>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>Um die DFT-Matrix <code class="text-danger border border-dark">MW_n</code> für <i>N</i>&nbsp;=&nbsp;4 und <i>N</i>&nbsp;=&nbsp;8 zu untersuchen, können Sie <code class="text-danger border border-dark">computeDFT()</code> mit einem beliebigen Array der Länge 4 bzw. 8 aufrufen (z.&nbsp;B. <code>computeDFT(np.zeros(4))</code>) und anschließend <code class="text-danger border border-dark">MW_n</code> mit <code>print(np.round(MW_n, 2))</code> ausgeben.</li>
+    <li>Über den Parameter <code class="text-danger border border-dark">length</code> in <code class="text-danger border border-dark">dft_example()</code> steuern Sie die Messdauer <i>T</i> des Signals (der Abstand der Frequenzlinien beträgt &Delta;<i>f</i>&nbsp;=&nbsp;<sup>1</sup>&frasl;<sub><i>T</i></sub>&nbsp;=&nbsp;<sup><i>f</i><sub>s</sub></sup>&frasl;<sub><i>N</i></sub>).</li>
+    <li>Mit dem Parameter <code class="text-danger border border-dark">freq_offset</code> können Sie die dritte Signalfrequenz (Standard: 10&nbsp;Hz) gezielt verschieben – sowohl um Werte zwischen den Rasterpunkten zu testen (z.&nbsp;B. <code>freq_offset=0.5</code>) als auch um die Nyquist-Frequenz <sup><i>f</i><sub>s</sub></sup>&frasl;<sub>2</sub> zu überschreiten.</li>
+    <li>Achten Sie darauf, bei jedem Testlauf immer nur einen einzigen Aufruf von <code class="text-danger border border-dark">plot_signal()</code> bzw. <code class="text-danger border border-dark">plot_dft()</code> aktiv (nicht auskommentiert) zu lassen, damit die erzeugte PNG-Datei nicht direkt wieder überschrieben wird.</li>
+  </ul>
+</details>
+
+{% include "before_you_begin.html" %}
+
+{% include "how_to_test_head.html" %}
+
+indem Sie in der Kommandozeile 
+<code class="text-danger">python {{filename}}</code> eingeben. 
+Nutzen Sie den folgenden Beispielaufruf am Ende der Datei 
+<code class="text-danger border border-dark">dft.py</code> als Ausgangspunkt für Ihre Experimente (rufen Sie <code class="text-danger border border-dark">plot_signal</code> und <code class="text-danger border border-dark">plot_dft</code> jeweils nur einmal auf, da sonst die PNG-Datei überschrieben wird):
+
+<pre><code class="text-danger border border-dark">dft_example(sampling_rate=64, length=1, freq_offset=0)
+plot_signal(t, x)
+plot_dft(X_k_oneside, f_oneside, zoom=True)
+</code></pre>
+
+{% include "footer.html" %}
