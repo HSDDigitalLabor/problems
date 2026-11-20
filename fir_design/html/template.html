@@ -1,0 +1,194 @@
+{% include "header.html" %}
+
+<p>
+  Ein idealer Tiefpass besitzt eine unendlich lange Impulsantwort in Form
+  einer Si-Funktion. Für einen FIR-Filter begrenzen Sie die Impulsantwort
+  mit einem Fenster auf eine endliche Anzahl von Koeffizienten.
+</p>
+
+<p>
+  Sie vergleichen einen abrupten Abbruch durch ein Rechteckfenster mit
+  dem sanften Auslaufen eines Kaiser-Fensters. Eine Frequenzmaske legt
+  fest, wie stark der Betragsgang von den Sollwerten abweichen darf.
+</p>
+
+<h2 id="aufgabe">Aufgabe</h2>
+
+<p>
+  {% include "file.html" %}
+  schreiben Sie ein Python-Programm, das einen
+  <strong>FIR-Tiefpass nach Frequenzmaske</strong> entwirft und den
+  Rechteck- und Kaiser-Entwurf vergleicht.
+</p>
+
+<p>Verwenden Sie für alle Entwürfe folgende Parameter:</p>
+
+<ul>
+  <li>Abtastfrequenz: <code>f_s = 8000</code> Hz</li>
+  <li>Entwurfsgrenzfrequenz in der Mitte des Übergangsbereichs: <code>f_c = 1200</code> Hz</li>
+  <li>Anzahl der Koeffizienten: <code>numtaps = 81</code></li>
+  <li>Ausgabedateien: <code>0-Frequenzmaske.png</code>,
+      <code>1-Rechteck-Fenster.png</code>, <code>2-Kaiser-Fenster.png</code>,
+      <code>3-Fenstervergleich.png</code> und <code>kaiser_koeffizienten.csv</code></li>
+</ul>
+
+<table class="table">
+  <thead>
+    <tr><th>Bereich</th><th>Frequenz</th><th>Vorgabe für den Betragsgang</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Durchlassbereich</td><td>0 bis 900 Hz</td><td>−0,1 bis +0,1 dB</td></tr>
+    <tr><td>Übergangsbereich</td><td>über 900 bis unter 1500 Hz</td><td>Keine Vorgabe</td></tr>
+    <tr><td>Sperrbereich</td><td>1500 bis 4000 Hz</td><td>Höchstens −50 dB</td></tr>
+  </tbody>
+</table>
+
+<h3 id="rechteck">Teil 1: Tiefpass mit Rechteckfenster entwerfen</h3>
+
+<ol>
+  <li>
+    <strong>Rechteckentwurf berechnen:</strong>
+    Verwenden Sie die Funktion <code>firwin</code> aus
+    <code>scipy.signal</code> mit <code>numtaps=81</code>,
+    <code>cutoff=1200</code>, <code>fs=8000</code>,
+    <code>window="boxcar"</code> und <code>scale=True</code>.
+    Eine Beschreibung der Parameter finden Sie in der
+    <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.firwin.html"
+       target="_blank" rel="noopener noreferrer">SciPy-Dokumentation zu <code>firwin</code></a>.
+  </li>
+  <li>
+    <strong>Frequenzmaske prüfen:</strong>
+    Berechnen Sie den Betragsgang in dB und zeichnen Sie ihn zusammen mit der
+    Frequenzmaske in <code>1-Rechteck-Fenster.png</code>. Prüfen Sie,
+    in welchen Frequenzbereichen der Entwurf die Maske verletzt.
+  </li>
+</ol>
+
+<h3 id="firwin">Teil 2: Rechteck- und Kaiser-Fenster mit <code>firwin</code> vergleichen</h3>
+
+<ol>
+  <li>
+    <strong>Den kleinsten passenden Kaiser-Parameter β finden:</strong>
+    Beginnen Sie bei β = 0. Erhöhen Sie β schrittweise um 0,1 und
+    entwerfen Sie jedes Mal mit
+    <code>firwin(..., window=("kaiser", beta))</code> einen Filter.
+    Prüfen Sie mit demselben Frequenzraster, ob sein gesamter
+    Durchlassbereich zwischen −0,1 und +0,1 dB liegt und der höchste
+    Sperrbandpegel höchstens −50 dB beträgt. Stoppen Sie beim ersten β,
+    das beide Bedingungen erfüllt: Gesucht ist der kleinste passende β,
+    nicht der Entwurf mit dem niedrigsten Sperrbandpegel.
+  </li>
+  <li>
+    <strong>Entwürfe darstellen:</strong>
+    Zeichnen Sie den Kaiser-Betragsgang in dB mit der Frequenzmaske in
+    <code>2-Kaiser-Fenster.png</code>. Übergeben Sie anschließend die Koeffizienten,
+    Frequenzgänge, das ermittelte β und
+    die Maske an <code>plot_vergleich</code>:
+    <pre><code>plot_vergleich(n, f, h_rechteck, H_rechteck, h_kaiser, H_kaiser, beta, maske)</code></pre>
+    Die Funktion speichert den Vergleich als <code>3-Fenstervergleich.png</code>:
+    links Rechteck, rechts Kaiser. Oben sehen Sie die Impulsantworten
+    mit den zur Anzeige skalierten Fensterkurven, unten die
+    <strong>linearen</strong> Betragsgänge mit Frequenzmaske.
+    Beide Diagramme einer Zeile verwenden dieselben Achsengrenzen.
+  </li>
+  <li>
+    <strong>Koeffizienten speichern:</strong>
+    Schreiben Sie die 81 Koeffizienten des Kaiser-Filters mit dem
+    gefundenen β in <code>kaiser_koeffizienten.csv</code>. Speichern Sie
+    pro Zeile den Index <code>n</code> und den Koeffizienten <code>h[n]</code>
+    in zwei Spalten mit einer Kopfzeile. Verwenden Sie dafür das
+    Standardmodul <code>csv</code> und einen <code>csv.writer</code>.
+  </li>
+</ol>
+
+<p>Bearbeiten Sie anschließend die folgenden Fragen und notieren Sie Ihre Ergebnisse:</p>
+
+<ol>
+  <li>
+    Welches ist das kleinste β in 0,1er-Schritten, für das beide
+    Frequenzbandvorgaben erfüllt sind?
+  </li>
+  <li>
+    Vergleichen Sie den gewählten Kaiser-Entwurf mit einem Entwurf
+    für ein größeres β. Wie ändern sich die Breite des Übergangs und
+    der Pegel an der Sperrbandgrenze (1500 Hz)?
+  </li>
+  <li>
+    Öffnen Sie <code>kaiser_koeffizienten.csv</code>: Sind genau 81
+    Koeffizienten mit zugehörigem Index gespeichert? Warum ist eine
+    Kopfzeile für die Spalten hilfreich?
+  </li>
+</ol>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Erzeugen Sie zum Beispiel mit <code>np.linspace(0, 4000, 16001)</code>
+      ein Raster, das alle Bandgrenzen enthält. Übergeben Sie es mit
+      <code>worN=f</code> und <code>fs=8000</code> an
+      <code>scipy.signal.freqz</code>, damit die Frequenzen in Hz ausgewertet werden.
+    </li>
+    <li>
+      Rechnen Sie den Betrag für die Prüfung der Maske mit
+      <code>20 * np.log10(np.maximum(np.abs(H), 1e-12))</code> in
+      Dezibel um. Die untere Zeile des Vergleichsdiagramms bleibt linear.
+      Normieren Sie die Betragsgänge nicht erneut auf ihr Maximum:
+      Sonst würden Überhöhungen gegenüber 0 dB verschoben.
+    </li>
+    <li>
+      Verwenden Sie die Hilfsfunktion <code>plot_frequenzgang</code> aus
+      dem Code-Rahmen. Übergeben Sie das Frequenzraster in Hz, ein
+      Dictionary aus Kurvenname und berechneten dB-Werten sowie das
+      Dictionary <code>maske</code> mit den Bandgrenzen und Pegelvorgaben:
+      <code>plot_frequenzgang(f, {"Rechteck": H_db}, maske, dateiname="1-Rechteck-Fenster.png")</code>.
+      Die Hilfsfunktion zeichnet die Maskengrenzen nur in den zugehörigen
+      Bändern; der Übergangsbereich geht nicht in die Bewertung ein.
+    </li>
+  </ul>
+</details>
+
+{% include "before_you_begin.html" %}
+
+
+{% set command="wget https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/diginfo2026/fir_design/fir_tools.py" %}
+{% include "command_box_with_cp.html" %}
+
+<p>
+  Kopieren Sie den folgenden Code-Rahmen in Ihre Datei
+  <code class="text-danger">{{ filename }}</code>
+  und vervollständigen Sie die markierten Stellen.
+</p>
+
+{% include "code_box_with_cp.html" %}
+
+{% include "how_to_test_head.html" %}
+
+<ul>
+  <li>Führen Sie Ihr Programm mit <code>python {{ filename }}</code> aus.</li>
+  <li>
+    Der erste Aufruf erzeugt <code>0-Frequenzmaske.png</code> ohne Filterkurve.
+    Das Toleranzbandschema zeigt Durchlass-, Übergangs- und Sperrband
+    mit den jeweiligen Pegelvorgaben.
+  </li>
+  <li>
+    Öffnen Sie <code>1-Rechteck-Fenster.png</code> und <code>2-Kaiser-Fenster.png</code>.
+    Prüfen Sie, ob die Betragsgänge und die Frequenzmaske sichtbar sind.
+  </li>
+  <li>
+    Öffnen Sie <code>3-Fenstervergleich.png</code>. Prüfen Sie, ob oben
+    die Impulsantworten mit den Fensterkurven und unten die linearen
+    Betragsgänge mit vergleichbaren Achsengrenzen dargestellt sind.
+  </li>
+  <li>
+    Vergleichen Sie die berechneten Pegel mit den Grenzwerten der
+    Frequenzmaske für Durchlass- und Sperrband. Kontrollieren Sie, ob Sie
+    das kleinste passende β gefunden und die Koeffizienten-CSV erstellt haben.
+  </li>
+</ul>
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}

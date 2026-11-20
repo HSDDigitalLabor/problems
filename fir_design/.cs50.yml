@@ -1,0 +1,14 @@
+submit50:
+  files: &submit50_files
+    - !exclude "*"
+    - !require fir_tools.py
+    - !require fir_design.py
+  
+check50:
+  files: *submit50_files
+  checks: checks/main.py
+  dependencies:
+    - matplotlib
+    - numpy
+    - scipy
+    
