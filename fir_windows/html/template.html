@@ -10,8 +10,14 @@
 <p>
   Verschiedene Fensterfunktionen beeinflussen dabei die Eigenschaften
   des Filters unterschiedlich. Insbesondere besteht ein Zusammenhang
-  zwischen der Breite der Hauptkeule und der Dämpfung der Nebenkeulen
+  zwischen der Breite des Hauptmaximums und der Dämpfung der Seitenmaxima
   im <strong>Frequenzbereich</strong>.
+</p>
+
+<p style="text-align: center;">
+  <img class="img-fluid"
+    src="https://mdl.hs-duesseldorf.de/draftfile.php/241936/user/draft/865098892/spectrum_of_window.png"
+    alt="spectrum_of_window" width="450" height="300">
 </p>
 
 <p>
@@ -24,9 +30,9 @@
     <li><strong>Hann-Fenster</strong> (<code>hann</code>):
       Die Koeffizienten werden zu den Rändern hin kontinuierlich auf null abgesenkt.</li>
     <li><strong>Hamming-Fenster</strong> (<code>hamming</code>):
-      Ähnlich dem Hann-Fenster, allerdings mit stärkerer Nebenkeulenunterdrückung.</li>
+      Ähnlich dem Hann-Fenster, allerdings mit stärkerer Dämpfung der Seitenmaxima.</li>
     <li><strong>Kaiser-Fenster</strong> (<code>kaiser</code>):
-      Der Parameter <code>β</code> steuert die Nebenkeulenunterdrückung: Ein größeres <code>β</code> senkt die Nebenkeulen stärker ab, verbreitert aber die Hauptkeule.</li>
+      Der Parameter <code>β</code> steuert die Dämpfung der Seitenmaxima: Ein größeres <code>β</code> senkt die Seitenmaxima stärker ab, verbreitert jedoch den Bereich des Hauptmaximums.</li>
 </ul>
 
 <p>
@@ -43,8 +49,8 @@
 
 <p>
   {% include "file.html" %}
-  Schreiben Sie ein Python-Programm, das vier Fensterfunktionen
-  im <strong>Zeitbereich und Frequenzbereich</strong> darstellt.
+  Bearbeiten Sie den unten angegeben Startcode, sodass vier Fensterfunktionen
+  im <strong>Zeitbereich und Frequenzbereich</strong> darstellt werden.
 </p>
 
 <p>
@@ -55,7 +61,7 @@
   <li>Gesamtlänge: <code>N = 256</code></li>
   <li>Fensterlänge: <code>M = N // 2</code></li>
   <li>FFT-Länge: <code>N_FFT = 8192</code></li>
-  <li>Fenstertypen: Rectangular, Hann, Hamming, Kaiser (<code>β = 8.6</code>)</li>
+  <li>Fenstertypen: Rechteck, Hann, Hamming, Kaiser (<code>β = 8.6</code>)</li>
   <li>Ausgabedateien: <code>plot_windows_time.png</code>, <code>plot_windows_freq.png</code></li>
 </ul>
 
@@ -90,9 +96,11 @@
 <ol>
   <li>
     <strong>FFT berechnen:</strong>
-    Bestimmen Sie die Fourier-Transformierte von <code>w</code>
-    mit <code>N_FFT</code> Punkten und verschieben Sie die Nullfrequenz
+    Bestimmen Sie die Fourier-Transformierte der Fensterkoeffizienten
+    <code>window</code> mit <code>N_FFT</code> Punkten und verschieben Sie die Nullfrequenz
     mit <code>np.fft.fftshift</code> in die Mitte.
+    Das Einbetten der Koeffizienten an anderer Position ändert nur die Phase,
+    nicht den dargestellten Betrag.
   </li>
   <li>
     <strong>Betrag normieren:</strong>
@@ -111,7 +119,7 @@
     <strong>Plot erstellen:</strong>
     Zeichnen Sie alle vier Frequenzgänge. Setzen Sie Achsenbeschriftungen
     auf <code>Normierte Frequenz f / f_s</code> und <code>Betrag (dB)</code>.
-    Verwenden Sie <code>plt.xlim(-0.12, 0.12)</code> und <code>plt.ylim(-120, 5)</code>.
+    Verwenden Sie <code>plt.xlim(0.0, 0.12)</code> und <code>plt.ylim(-100, 5)</code>.
     Speichern Sie unter <code>plot_windows_freq.png</code>.
   </li>
 </ol>
@@ -122,11 +130,9 @@
 
 <ol>
   <li>Welche Unterschiede zwischen den Fenstern sind im Zeitbereich sichtbar?</li>
-  <li>Welches Fenster besitzt den schmalsten zentralen Frequenzbereich (Hauptkeule)?</li>
-  <li>Bei welchem Fenster sind die Spektralanteile außerhalb der Hauptkeule am geringsten (Nebenkeulenunterdrückung)?</li>
-  <li>Warum ist eine schmale Hauptkeule ohne starke Nebenkeulenunterdrückung nicht optimal?
-      Erläutern Sie den Kompromiss zwischen Frequenzauflösung und Leckagedämpfung.</li>
-  <li>Warum können Sie aus dem Zeitverlauf allein die Unterschiede in der Nebenkeulenunterdrückung nicht erkennen?</li>
+  <li>Welches Fenster besitzt den schmalsten Bereich des Hauptmaximums?</li>
+  <li>Bei welchem Fenster sind die Seitenmaxima im Verhältnis zum Hauptmaximum am stärksten gedämpft?</li>
+  <li>Warum können Sie aus dem Zeitverlauf allein die Unterschiede in der Dämpfung der Seitenmaxima nicht erkennen?</li>
 </ol>
 
 <details>
@@ -148,7 +154,7 @@
 {% include "before_you_begin.html" %}
 
 <p>
-  Kopieren Sie den folgenden Code-Rahmen in Ihre Datei
+  Kopieren Sie den folgenden Startcode in Ihre Datei
   <code class="text-danger">{{filename}}</code>
   und vervollständigen Sie die markierten Stellen.
 </p>
@@ -161,10 +167,10 @@
   <li>Führen Sie Ihr Programm mit <code>python {{filename}}</code> aus.</li>
   <li>Nach der Ausführung sollten zwei PNG-Dateien vorhanden sein:
       <code>plot_windows_time.png</code> und <code>plot_windows_freq.png</code>.</li>
-  <li><strong>Zeitbereich:</strong> Vier Fenster sollten kausal im Bereich 0–127 liegen.</li>
+  <li><strong>Zeitbereich:</strong> Die zentrierten Fenster sollten im Bereich der Indizes 64–191 liegen.</li>
   <li><strong>Frequenzbereich:</strong> Vier Frequenzgänge mit Maxima bei 0 dB.
-      Vergleichen Sie die Breite der Hauptkeule und die Höhe der Nebenkeulen.</li>
-  <li>Welches Fenster hat die schmalste Hauptkeule? Welches bietet die beste Nebenkeulenunterdrückung?</li>
+      Vergleichen Sie die Breite des Hauptmaximums und die Dämpfung der Seitenmaxima.</li>
+  <li>Welches Fenster hat den schmalsten Bereich des Hauptmaximums? Bei welchem sind die Seitenmaxima am stärksten gedämpft?</li>
 </ul>
 
 {% include "how_to_test_auto.html" %}
