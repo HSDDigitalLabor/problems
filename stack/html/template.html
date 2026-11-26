@@ -1,0 +1,298 @@
+﻿{% include "header.html" %}
+
+<p>
+  In dieser Aufgabe implementieren Sie einen Stack (Stapel)
+  in der Programmiersprache C.
+
+  Ein Stack ist eine Datenstruktur, die nach dem LIFO-Prinzip
+  funktioniert (<em>Last In, First Out</em>). Das bedeutet:
+  Das Element, das zuletzt eingefügt wurde, wird auch zuerst
+  wieder entfernt.
+</p>
+
+<p>
+  Ein Stack besteht aus einzelnen Elementen, sogenannten
+  <code>Nodes</code>. Jeder Knoten speichert einen ganzzahligen Wert
+  (<code>value</code>) sowie einen Zeiger auf den nächsten Knoten
+  (<code>next</code>).
+
+  Der Stack selbst verwaltet einen Zeiger:
+  <code>top</code> zeigt auf das oberste Element des Stacks.
+  Neue Elemente werden immer an dieser Position eingefügt und
+  auch von dort wieder entfernt.
+</p>
+
+<p>
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/2/29/Data_stack.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original"
+    alt="Stack data structure" class="img-fluid" style="max-width: 400px;">
+</p>
+
+<p>
+  Ist der Stack leer, zeigt <code>top</code> auf <code>NULL</code>.
+</p>
+
+<p>
+  Implementieren Sie die Funktionen, die in der vorgegebenen Datei
+  <code>{{ filename }}</code> deklariert sind. Die Funktionen sollen
+  das Erstellen, Einfügen, Entfernen und Auslesen von Elementen
+  eines Stacks ermöglichen.
+</p>
+
+<h4>Funktionsübersicht</h4>
+
+<ul>
+  <li>
+    <code>createStack()</code> - Erstellt einen neuen, leeren Stack.
+    Der Zeiger <code>top</code> muss initial auf <code>NULL</code> zeigen.
+  </li>
+  <li>
+    <code>create(int value)</code> - Erstellt einen neuen Knoten mit
+    dem übergebenen Wert. Der Zeiger <code>next</code> muss
+    initial auf <code>NULL</code> zeigen.
+  </li>
+  <li>
+    <code>push(Stack *stack, int value)</code> - Fügt einen neuen
+    Knoten oben auf dem Stack ein. Die Funktion gibt den Stack zurück.
+    Bei einem ungültigen Stack wird <code>NULL</code> zurückgegeben.
+    Schlägt die Speicherreservierung fehl, bleibt der Stack unverändert.
+  </li>
+  <li>
+    <code>pop(Stack *stack)</code> - Entfernt das oberste Element
+    des Stacks und gibt dessen Wert zurück. Ist der Stack leer oder
+    ungültig, wird <code>-1</code> zurückgegeben.
+  </li>
+  <li>
+    <code>peek(Stack *stack)</code> - Gibt den Wert des obersten
+    Elements zurück, ohne es zu entfernen. Ist der Stack leer oder
+    ungültig, wird <code>-1</code> zurückgegeben.
+  </li>
+  <li>
+    <code>length(Stack *stack)</code> - Gibt die Anzahl der Elemente
+    im Stack zurück. Bei einem ungültigen Stack wird
+    <code>0</code> zurückgegeben.
+  </li>
+  <li>
+    <code>destroy(Stack *stack)</code> - Gibt den Speicher aller
+    Knoten sowie des Stacks selbst frei.
+  </li>
+</ul>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Verwenden Sie <code>malloc()</code>, um Speicher für neue
+      Stacks und Knoten zu reservieren.
+    </li>
+    <li>
+      Überprüfen Sie nach jedem Aufruf von <code>malloc()</code>,
+      ob die Speicherreservierung erfolgreich war. Im Fehlerfall
+      gibt <code>malloc()</code> den Wert <code>NULL</code> zurück.
+    </li>
+    <li>
+      Verwenden Sie <code>free()</code>, um nicht mehr benötigten
+      Speicher freizugeben.
+    </li>
+    <li>
+      Neue Elemente werden immer oben auf dem Stack eingefügt.
+      Verwenden Sie dafür den Zeiger <code>top</code>.
+    </li>
+    <li>
+      Beim Einfügen eines neuen Knotens muss dessen <code>next</code>-Zeiger
+      auf das bisherige oberste Element zeigen. Anschließend wird
+      <code>top</code> auf den neuen Knoten gesetzt.
+    </li>
+    <li>
+      Elemente werden immer oben vom Stack entfernt.
+      Aktualisieren Sie dafür den Zeiger <code>top</code> auf den
+      nächsten Knoten.
+    </li>
+    <li>
+      Wird das letzte Element entfernt, muss <code>top</code>
+      wieder auf <code>NULL</code> zeigen.
+    </li>
+    <li>
+      Achten Sie auf gültige Zeiger und vermeiden Sie Zugriffe auf
+      bereits freigegebenen Speicher.
+    </li>
+    <li>
+      Die Funktionen sollen auch mit ungültigen Eingaben wie
+      <code>NULL</code>-Zeigern umgehen können.
+    </li>
+  </ul>
+</details>
+
+<h4>Speicherverwaltung und Zeiger</h4>
+
+<p>
+  Bei dieser Aufgabe verwalten Sie den Speicher selbst.
+  Beachten Sie daher folgende Regeln:
+</p>
+
+<ul>
+  <li>
+    Jeder mit <code>malloc()</code> erzeugte Knoten muss
+    genau einmal mit <code>free()</code> freigegeben werden.
+  </li>
+  <li>
+    Wenn ein Knoten mit <code>pop()</code> aus dem Stack
+    entfernt wird, muss auch dessen Speicher freigegeben werden.
+    Der gespeicherte Wert muss daher vor dem Aufruf von
+    <code>free()</code> zwischengespeichert werden.
+  </li>
+  <li>
+    Die Funktion <code>destroy()</code> muss alle noch im
+    Stack enthaltenen Knoten sowie die Stack-Struktur selbst
+    freigeben.
+  </li>
+  <li>
+    Ein Knoten darf nach seiner Freigabe nicht mehr verwendet
+    oder dereferenziert werden.
+  </li>
+  <li>
+    Die Funktion <code>destroy(NULL)</code> muss ohne Fehler
+    aufgerufen werden können.
+  </li>
+  <li>
+    Wenn beim Einfügen eines neuen Knotens die Speicherreservierung
+    fehlschlägt, darf der bestehende Stack nicht verändert werden.
+  </li>
+</ul>
+
+<p>
+  <strong>Hinweis:</strong>
+  Der Wert <code>-1</code> ist in dieser Aufgabe als Fehlerwert
+  für <code>pop()</code> und <code>peek()</code> reserviert
+  und darf deshalb nicht als regulärer Wert eines Knotens
+  verwendet werden.
+</p>
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+<h4>Ausgangscode</h4>
+
+<p>
+  Verwenden Sie den folgenden Code als Ausgangspunkt für Ihre
+  Implementierung. Ergänzen Sie die Funktionskörper an den
+  entsprechend gekennzeichneten Stellen.
+</p>
+
+<details>
+  <summary>Ausgangscode anzeigen</summary>
+
+  <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#ifndef STACK_TYPES_DEFINED
+#define STACK_TYPES_DEFINED
+
+typedef struct Node {
+  int value;
+  struct Node *next;
+} Node;
+
+typedef struct Stack {
+  Node *top;
+} Stack;
+
+Stack *createStack(void);
+Node *create(int value);
+Stack *push(Stack *stack, int value);
+int pop(Stack *stack);
+int peek(Stack *stack);
+int length(Stack *stack);
+void destroy(Stack *stack);
+
+#endif
+
+Stack *createStack(void) {}
+
+Node *create(int value) {}
+
+Stack *push(Stack *stack, int value) {}
+
+int pop(Stack *stack) {}
+
+int peek(Stack *stack) {}
+
+int length(Stack *stack) {}
+
+void destroy(Stack *stack) {}
+
+int main(void) {}
+</code></pre>
+</details>
+
+{% include "how_to_test_head.html" %}
+
+<ul>
+  <li>
+    Nutzen Sie Ihre main-Methode, um Ihre Testfälle zu implementieren.
+  </li>
+  <li>
+    Kompilieren Sie Ihr Programm mit:
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        clang -Wall -Wextra -Werror stack.c -o stack
+      </code>
+    </div>
+    Beheben Sie alle Compilerfehler und Warnungen.
+  </li>
+  <li>
+    Testen Sie zunächst das Erstellen eines leeren Stacks.
+    Nach dem Aufruf von <code>createStack()</code> muss
+    <code>top == NULL</code> gelten.
+  </li>
+  <li>
+    Fügen Sie mehrere Elemente ein, beispielsweise die Werte
+    <code>5</code>, <code>10</code> und <code>15</code>.
+    Überprüfen Sie anschließend, ob <code>top</code> auf
+    <code>15</code> zeigt und die folgenden Knoten die Werte
+    <code>10</code> und <code>5</code> enthalten.
+  </li>
+  <li>
+    Testen Sie <code>peek()</code>. Die Funktion soll den Wert
+    des obersten Elements zurückgeben, ohne den Stack zu verändern.
+  </li>
+  <li>
+    Testen Sie <code>pop()</code>, indem Sie mehrere Elemente
+    entfernen. Die Werte müssen in umgekehrter Reihenfolge ihrer
+    Einfügung zurückgegeben werden (LIFO-Prinzip).
+    Bei den eingefügten Werten <code>5</code>, <code>10</code>
+    und <code>15</code> muss die Reihenfolge also
+    <code>15</code>, <code>10</code>, <code>5</code> sein.
+  </li>
+  <li>
+    Entfernen Sie alle Elemente und überprüfen Sie, ob anschließend
+    <code>top</code> auf <code>NULL</code> zeigt.
+  </li>
+  <li>
+    Fügen Sie nach dem vollständigen Leeren des Stacks erneut
+    ein Element ein. Überprüfen Sie, ob <code>top</code> korrekt
+    aktualisiert wird.
+  </li>
+  <li>
+    Testen Sie <code>length()</code> mit einem leeren und einem
+    gefüllten Stack.
+  </li>
+  <li>
+    Testen Sie <code>pop()</code> und <code>peek()</code>
+    mit einem leeren Stack. Beide Funktionen sollen
+    <code>-1</code> zurückgeben.
+  </li>
+  <li>
+    Testen Sie <code>destroy()</code> sowohl mit einem leeren
+    als auch mit einem gefüllten Stack.
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
