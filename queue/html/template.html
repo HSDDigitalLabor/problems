@@ -1,0 +1,326 @@
+﻿{% include "header.html" %}
+
+<p>
+  In dieser Aufgabe implementieren Sie eine Queue (Warteschlange)
+  in der Programmiersprache C.
+
+  Eine Queue ist eine Datenstruktur, die nach dem FIFO-Prinzip
+  funktioniert (<em>First In, First Out</em>). Das bedeutet:
+  Das Element, das zuerst eingefügt wurde, wird auch zuerst
+  wieder entfernt.
+</p>
+
+<p>
+  Eine Queue besteht aus einzelnen Elementen, sogenannten
+  <code>Nodes</code>. Jeder Knoten speichert einen ganzzahligen Wert
+  (<code>value</code>) sowie einen Zeiger auf den nächsten Knoten
+  (<code>next</code>).
+
+  Die Queue selbst verwaltet zwei Zeiger:
+  <code>head</code> zeigt auf das erste Element, das als Nächstes
+  entfernt wird. <code>tail</code> zeigt auf das letzte Element,
+  an dem neue Elemente eingefügt werden.
+</p>
+
+<p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Data_Queue.svg" alt="Queue data structure"
+    class="img-fluid" style="max-width: 600px;">
+</p>
+
+<p>
+  Ist die Queue leer, zeigen sowohl <code>head</code> als auch
+  <code>tail</code> auf <code>NULL</code>.
+</p>
+
+<p>
+  Implementieren Sie die Funktionen, die in der vorgegebenen Datei
+  <code>{{ filename }}</code> deklariert sind. Die Funktionen sollen
+  das Erstellen, Einfügen, Entfernen und Auslesen von Elementen
+  einer Queue ermöglichen.
+</p>
+
+<h4>Funktionsübersicht</h4>
+
+<ul>
+  <li>
+    <code>createQueue()</code> - Erstellt eine neue, leere Queue.
+    Die Zeiger <code>head</code> und <code>tail</code> müssen
+    initial auf <code>NULL</code> zeigen.
+  </li>
+  <li>
+    <code>create(int value)</code> - Erstellt einen neuen Knoten mit
+    dem übergebenen Wert. Der Zeiger <code>next</code> muss
+    initial auf <code>NULL</code> zeigen.
+  </li>
+  <li>
+    <code>enqueue(Queue *queue, int value)</code> - Fügt einen neuen
+    Knoten am Ende der Queue ein. Die Funktion gibt die Queue zurück.
+    Bei einer ungültigen Queue wird <code>NULL</code> zurückgegeben.
+  </li>
+  <li>
+    <code>dequeue(Queue *queue)</code> - Entfernt das erste Element
+    der Queue und gibt dessen Wert zurück. Ist die Queue leer oder
+    ungültig, wird <code>-1</code> zurückgegeben.
+  </li>
+  <li>
+    <code>peek(Queue *queue)</code> - Gibt den Wert des ersten
+    Elements zurück, ohne es zu entfernen. Ist die Queue leer oder
+    ungültig, wird <code>-1</code> zurückgegeben.
+  </li>
+  <li>
+    <code>length(Queue *queue)</code> - Gibt die Anzahl der Elemente
+    in der Queue zurück. Bei einer ungültigen Queue wird
+    <code>0</code> zurückgegeben.
+  </li>
+  <li>
+    <code>destroy(Queue *queue)</code> - Gibt den Speicher aller
+    Knoten sowie der Queue selbst frei.
+  </li>
+</ul>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Verwenden Sie <code>malloc()</code>, um Speicher für neue
+      Queues und Knoten zu reservieren.
+    </li>
+    <li>
+      Überprüfen Sie nach jedem Aufruf von <code>malloc()</code>,
+      ob die Speicherreservierung erfolgreich war. Im Fehlerfall
+      gibt <code>malloc()</code> den Wert <code>NULL</code> zurück.
+    </li>
+    <li>
+      Verwenden Sie <code>free()</code>, um nicht mehr benötigten
+      Speicher freizugeben.
+    </li>
+    <li>
+      Neue Elemente werden immer am Ende der Queue eingefügt.
+      Verwenden Sie dafür den Zeiger <code>tail</code>.
+    </li>
+    <li>
+      Elemente werden immer am Anfang der Queue entfernt.
+      Verwenden Sie dafür den Zeiger <code>head</code>.
+    </li>
+    <li>
+      Achten Sie darauf, dass beim Einfügen in eine leere Queue
+      sowohl <code>head</code> als auch <code>tail</code> auf den
+      neuen Knoten zeigen.
+    </li>
+    <li>
+      Wird das letzte Element entfernt, müssen sowohl
+      <code>head</code> als auch <code>tail</code> wieder auf
+      <code>NULL</code> zeigen.
+    </li>
+    <li>
+      Achten Sie auf gültige Zeiger und vermeiden Sie Zugriffe auf
+      bereits freigegebenen Speicher.
+    </li>
+    <li>
+      Die Funktionen sollen auch mit ungültigen Eingaben wie
+      <code>NULL</code>-Zeigern umgehen können.
+    </li>
+  </ul>
+</details>
+
+<h4>Speicherverwaltung und Zeiger</h4>
+
+<p>
+  Bei dieser Aufgabe verwalten Sie den Speicher selbst.
+  Beachten Sie daher folgende Regeln:
+</p>
+
+<ul>
+  <li>
+    Jeder mit <code>malloc()</code> erzeugte Knoten muss
+    genau einmal mit <code>free()</code> freigegeben werden.
+  </li>
+  <li>
+    Wenn ein Knoten mit <code>dequeue()</code> aus der Queue
+    entfernt wird, muss auch dessen Speicher freigegeben werden.
+    Der gespeicherte Wert muss daher vor dem Aufruf von
+    <code>free()</code> zwischengespeichert werden.
+  </li>
+  <li>
+    Die Funktion <code>destroy()</code> muss alle noch in der
+    Queue enthaltenen Knoten sowie die Queue-Struktur selbst
+    freigeben.
+  </li>
+  <li>
+    Ein Knoten darf nach seiner Freigabe nicht mehr verwendet
+    oder dereferenziert werden.
+  </li>
+  <li>
+    Die Funktion <code>destroy(NULL)</code> muss ohne Fehler
+    aufgerufen werden können.
+  </li>
+  <li>
+    Wenn beim Einfügen eines neuen Knotens die Speicherreservierung
+    fehlschlägt, darf die bestehende Queue nicht verändert werden.
+  </li>
+</ul>
+
+<p>
+  <strong>Hinweis:</strong>
+  Der Wert <code>-1</code> ist in dieser Aufgabe als Fehlerwert
+  für <code>dequeue()</code> und <code>peek()</code> reserviert
+  und darf deshalb nicht als regulärer Wert eines Knotens
+  verwendet werden.
+</p>
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+<h4>Ausgangscode</h4>
+
+<p>
+  Verwenden Sie den folgenden Code als Ausgangspunkt für Ihre
+  Implementierung. Ergänzen Sie die Funktionskörper an den
+  entsprechend gekennzeichneten Stellen.
+</p>
+
+<details>
+  <summary>Ausgangscode anzeigen</summary>
+
+  <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#ifndef QUEUE_TYPES_DEFINED
+#define QUEUE_TYPES_DEFINED
+
+typedef struct Node {
+    int value;
+    struct Node *next;
+} Node;
+
+typedef struct Queue {
+    Node *head;
+    Node *tail;
+} Queue;
+
+Queue *createQueue(void);
+Node *create(int value);
+Queue *enqueue(Queue *queue, int value);
+int dequeue(Queue *queue);
+int peek(Queue *queue);
+int length(Queue *queue);
+void destroy(Queue *queue);
+
+#endif
+
+// Create an empty queue
+Queue *createQueue(void)
+{
+    return NULL;
+}
+
+// Allocate a new node with the given value
+Node *create(int value)
+{
+    return NULL;
+}
+
+// Insert a value at the end of the queue
+Queue *enqueue(Queue *queue, int value)
+{
+    return queue;
+}
+
+// Remove and return the first element
+int dequeue(Queue *queue)
+{
+    return -1;
+}
+
+// Return the value of the first element without removing it
+int peek(Queue *queue)
+{
+    return -1;
+}
+
+// Return the number of elements
+int length(Queue *queue)
+{
+    return 0;
+}
+
+// Free all nodes and the queue itself
+void destroy(Queue *queue)
+{
+    return;
+}
+
+int main(void)
+{
+    return 0;
+}</code></pre>
+</details>
+
+{% include "how_to_test_head.html" %}
+
+<ul>
+  <li>
+    Nutzen Sie Ihre main-Methode, um Ihre Testfälle zu implementieren.
+  </li>
+  <li>
+    Kompilieren Sie Ihr Programm mit:
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        clang -Wall -Wextra -Werror queue.c -o queue
+      </code>
+    </div>
+    Beheben Sie alle Compilerfehler und Warnungen.
+  </li>
+  <li>
+    Testen Sie zunächst das Erstellen einer leeren Queue.
+    Nach dem Aufruf von <code>createQueue()</code> müssen
+    <code>head == NULL</code> und <code>tail == NULL</code> gelten.
+  </li>
+  <li>
+    Fügen Sie mehrere Elemente ein, beispielsweise die Werte
+    <code>5</code>, <code>10</code> und <code>15</code>.
+    Überprüfen Sie anschließend, ob <code>head</code> auf
+    <code>5</code> und <code>tail</code> auf <code>15</code> zeigt.
+  </li>
+  <li>
+    Testen Sie <code>peek()</code>. Die Funktion soll den Wert
+    des ersten Elements zurückgeben, ohne die Queue zu verändern.
+  </li>
+  <li>
+    Testen Sie <code>dequeue()</code>, indem Sie mehrere Elemente
+    entfernen. Die Werte müssen in der Reihenfolge ihrer Einfügung
+    zurückgegeben werden (FIFO-Prinzip).
+  </li>
+  <li>
+    Entfernen Sie alle Elemente und überprüfen Sie, ob anschließend
+    sowohl <code>head</code> als auch <code>tail</code> auf
+    <code>NULL</code> zeigen.
+  </li>
+  <li>
+    Fügen Sie nach dem vollständigen Leeren der Queue erneut ein
+    Element ein. Überprüfen Sie, ob <code>head</code> und
+    <code>tail</code> korrekt aktualisiert werden.
+  </li>
+  <li>
+    Testen Sie <code>length()</code> mit einer leeren und einer
+    gefüllten Queue.
+  </li>
+  <li>
+    Testen Sie <code>dequeue()</code> und <code>peek()</code>
+    mit einer leeren Queue. Beide Funktionen sollen
+    <code>-1</code> zurückgeben.
+  </li>
+  <li>
+    Testen Sie <code>destroy()</code> sowohl mit einer leeren
+    als auch mit einer gefüllten Queue.
+  </li>
+</ul>
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
