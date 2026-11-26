@@ -1,0 +1,308 @@
+﻿{% include "header.html" %}
+
+<p>
+  In dieser Aufgabe implementieren Sie eine einfach verkettete Liste
+  (Singly Linked List) in der Programmiersprache C.
+
+  Eine verkettete Liste besteht aus einzelnen Elementen, sogenannten
+  <code>Nodes</code>. Jeder Knoten speichert einen ganzzahligen Wert
+  (<code>value</code>) sowie einen Zeiger auf den nächsten Knoten
+  (<code>next</code>).
+
+  Die Liste selbst speichert einen Zeiger auf das erste Element
+  (<code>head</code>). Ist die Liste leer, zeigt dieser Zeiger auf
+  <code>NULL</code>.
+</p>
+
+<p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Singly-linked-list.svg" alt="Singly linked list"
+    class="img-fluid" style="max-width: 600px;">
+</p>
+
+<p>
+  Implementieren Sie die Funktionen, die in der vorgegebenen Datei
+  <code>{{ filename }}</code> deklariert sind. Die Funktionen sollen
+  das Erstellen, Verändern, Durchsuchen und Löschen einer verketteten
+  Liste ermöglichen.
+</p>
+
+<h4>Funktionsübersicht</h4>
+
+<ul>
+  <li>
+    <code>createList()</code> – Erstellt eine neue, leere Liste.
+    Der Zeiger <code>head</code> muss initial auf <code>NULL</code> zeigen.
+  </li>
+  <li>
+    <code>create(int value)</code> – Erstellt einen neuen Knoten mit
+    dem übergebenen Wert. Der Zeiger <code>next</code> muss
+    initial auf <code>NULL</code> zeigen.
+  </li>
+  <li>
+    <code>insert(List *list, int value)</code> – Fügt einen neuen
+    Knoten am Ende der Liste ein.
+  </li>
+  <li>
+    <code>search(List *list, int value)</code> – Sucht nach einem
+    Knoten mit dem angegebenen Wert und gibt einen Zeiger auf diesen
+    zurück. Wird kein passender Knoten gefunden, wird <code>NULL</code>
+    zurückgegeben.
+  </li>
+  <li>
+    <code>removeNode(List *list, Node *element)</code> – Entfernt
+    den angegebenen Knoten aus der Liste und gibt dessen Wert zurück.
+    Kann der Knoten nicht entfernt werden, wird <code>-1</code>
+    zurückgegeben.
+  </li>
+  <li>
+    <code>length(List *list)</code> – Gibt die Anzahl der Elemente
+    in der Liste zurück.
+  </li>
+  <li>
+    <code>get(List *list, int index)</code> – Gibt einen Zeiger auf
+    den Knoten an der angegebenen Position zurück. Der Index beginnt
+    bei <code>0</code>. Bei einem ungültigen Index wird
+    <code>NULL</code> zurückgegeben.
+  </li>
+  <li>
+    <code>destroy(List *list)</code> – Gibt den Speicher aller
+    Knoten sowie der Liste selbst frei.
+  </li>
+</ul>
+
+<details>
+  <summary>Hinweise</summary>
+  <ul>
+    <li>
+      Verwenden Sie <code>malloc()</code>, um Speicher für neue
+      Listen und Knoten zu reservieren.
+    </li>
+    <li>
+      Überprüfen Sie nach jedem Aufruf von <code>malloc()</code>,
+      ob die Speicherreservierung erfolgreich war. Im Fehlerfall
+      gibt <code>malloc()</code> den Wert <code>NULL</code> zurück.
+    </li>
+    <li>
+      Verwenden Sie <code>free()</code>, um nicht mehr benötigten
+      Speicher freizugeben.
+    </li>
+    <li>
+      Achten Sie beim Entfernen eines Knotens darauf, die Verkettung
+      der verbleibenden Knoten korrekt wiederherzustellen.
+    </li>
+    <li>
+      Eine Liste kann leer sein. Behandeln Sie daher insbesondere
+      den Fall <code>list-&gt;head == NULL</code>.
+    </li>
+    <li>
+      Achten Sie auf gültige Zeiger und vermeiden Sie Zugriffe auf
+      bereits freigegebenen Speicher.
+    </li>
+    <li>
+      Die Funktionen sollen auch mit ungültigen Eingaben wie
+      <code>NULL</code>-Zeigern umgehen können, soweit dies in
+      ihrer jeweiligen Implementierung sinnvoll ist.
+    </li>
+  </ul>
+</details>
+
+<h4>Speicherverwaltung und Zeiger</h4>
+
+<p>
+  Bei dieser Aufgabe verwalten Sie den Speicher selbst.
+  Beachten Sie daher folgende Regeln:
+</p>
+
+<ul>
+  <li>
+    Jeder mit <code>malloc()</code> erzeugte Knoten muss
+    genau einmal mit <code>free()</code> freigegeben werden.
+  </li>
+  <li>
+    Wenn ein Knoten mit <code>removeNode()</code> aus der Liste
+    entfernt wird, muss auch dessen Speicher freigegeben werden.
+    Der zurückgegebene Wert muss daher vor dem Aufruf von
+    <code>free()</code> zwischengespeichert werden.
+  </li>
+  <li>
+    Die Funktion <code>destroy()</code> muss alle noch in der
+    Liste enthaltenen Knoten sowie die Listenstruktur selbst
+    freigeben.
+  </li>
+  <li>
+    Ein Knoten darf nach seiner Freigabe nicht mehr verwendet
+    oder dereferenziert werden.
+  </li>
+  <li>
+    Die Funktion <code>removeNode()</code> darf nur Knoten
+    entfernen, die tatsächlich zu der übergebenen Liste gehören.
+  </li>
+  <li>
+    Die Funktion <code>destroy(NULL)</code> muss ohne Fehler
+    aufgerufen werden können.
+  </li>
+</ul>
+
+<p>
+  <strong>Hinweis:</strong>
+  Der Wert <code>-1</code> ist in dieser Aufgabe als Fehlerwert
+  für <code>removeNode()</code> reserviert und darf deshalb
+  nicht als regulärer Wert eines Knotens verwendet werden.
+</p>
+
+<!-- {% include "demo.html" %} -->
+
+{% include "before_you_begin.html" %}
+
+<h4>Ausgangscode</h4>
+
+<p>
+  Verwenden Sie den folgenden Code als Ausgangspunkt für Ihre
+  Implementierung. Ergänzen Sie die Funktionskörper an den
+  entsprechend gekennzeichneten Stellen.
+</p>
+
+<details>
+  <summary>Ausgangscode anzeigen</summary>
+
+  <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#ifndef LINKED_LIST_TYPES_DEFINED
+#define LINKED_LIST_TYPES_DEFINED
+
+typedef struct Node {
+    int value;
+    struct Node *next;
+} Node;
+
+typedef struct List {
+    Node *head;
+} List;
+
+List *createList(void);
+Node *create(int value);
+List *insert(List *list, int value);
+Node *search(List *list, int value);
+int removeNode(List *list, Node *element);
+int length(List *list);
+Node *get(List *list, int index);
+void destroy(List *list);
+
+#endif
+
+// Create an empty list
+List *createList(void)
+{
+    return NULL;
+}
+
+// Allocate a new node with the given value
+Node *create(int value)
+{
+    return NULL;
+}
+
+// Insert a value at the end of the list
+List *insert(List *list, int value)
+{
+    return list;
+}
+
+// Search for a value
+Node *search(List *list, int value)
+{
+    return NULL;
+}
+
+// Remove a node and return its value
+int removeNode(List *list, Node *element)
+{
+    return -1;
+}
+
+// Return the number of nodes
+int length(List *list)
+{
+    return 0;
+}
+
+// Get node at a specific index
+Node *get(List *list, int index)
+{
+    return NULL;
+}
+
+// Free all nodes and the list itself
+void destroy(List *list)
+{
+    return;
+}
+
+int main(void)
+{
+    return 0;
+}</code></pre>
+</details>
+
+{% include "how_to_test_head.html" %}
+
+<ul>
+  <li>
+    Nutzen Sie Ihre main-Methode, um Ihre Testfälle zu implementieren.
+  </li>
+  <li>
+    Kompilieren Sie Ihr Programm mit:
+    <div class="alert alert-primary">
+      <code class="text-dark font-weight-bold">
+        clang -Wall -Wextra -Werror linkedList.c -o linkedList
+      </code>
+    </div>
+    Beheben Sie alle Compilerfehler und Warnungen.
+  </li>
+
+  <li>
+    Testen Sie zunächst das Erstellen einer leeren Liste.
+    Nach dem Aufruf von <code>createList()</code> muss
+    <code>head == NULL</code> gelten.
+  </li>
+
+  <li>
+    Fügen Sie mehrere Elemente ein, beispielsweise die Werte
+    <code>5</code>, <code>10</code> und <code>15</code>.
+    Die Funktion <code>length()</code> muss anschließend
+    den Wert <code>3</code> zurückgeben.
+  </li>
+
+  <li>
+    Testen Sie die Funktion <code>search()</code> mit einem
+    vorhandenen und einem nicht vorhandenen Wert.
+  </li>
+
+  <li>
+    Testen Sie <code>get()</code> mit gültigen und ungültigen
+    Indizes, beispielsweise <code>0</code>, <code>2</code>
+    und <code>-1</code>.
+  </li>
+
+  <li>
+    Testen Sie <code>removeNode()</code>, indem Sie den ersten,
+    einen mittleren und den letzten Knoten entfernen.
+    Überprüfen Sie anschließend die Länge und die Verkettung
+    der verbleibenden Elemente.
+  </li>
+
+  <li>
+    Testen Sie <code>destroy()</code> sowohl mit einer leeren
+    als auch mit einer gefüllten Liste.
+  </li>
+</ul>
+
+
+
+{% include "how_to_test_auto.html" %}
+
+{% include "how_to_submit.html" %}
+
+{% include "how_to_mark_in_moodle.html" %}
+
+{% include "footer.html" %}
