@@ -55,8 +55,8 @@ def run_submission():
         check50.py.import_(FILE_NAME)
     except Exception as exc:
         msg = f"Error executing {FILE_NAME}"
-        rationale = f"{type(exc).__name__}: {exc}"
-        raise check50.Failure(msg, rationale=rationale) from exc
+        explanation = f"{type(exc).__name__}: {exc}"
+        raise check50.Failure(msg, help=explanation) from exc
 
     return [
         axis
@@ -112,8 +112,8 @@ def check_time_window(name):
     if not np.allclose(actual_y, expected_y, rtol=1e-7, atol=1e-10):
         difference = np.max(np.abs(actual_y - expected_y))
         msg = f"{name}: Time-domain window is incorrect."
-        rationale = f"Maximum absolute difference: {difference:.6g}"
-        raise check50.Failure(msg, rationale=rationale)
+        explanation = f"Maximum absolute difference: {difference:.6g}"
+        raise check50.Failure(msg, help=explanation)
 
 
 def check_frequency_response(name):
@@ -131,8 +131,8 @@ def check_frequency_response(name):
     if not np.allclose(actual_y, expected_y, rtol=1e-6, atol=1e-4):
         difference = np.max(np.abs(actual_y - expected_y))
         msg = f"{name}: Frequency response is incorrect."
-        rationale = f"Maximum absolute difference: {difference:.6g} dB"
-        raise check50.Failure(msg, rationale=rationale)
+        explanation = f"Maximum absolute difference: {difference:.6g} dB"
+        raise check50.Failure(msg, help=explanation)
 
 
 def check_grid(axis):
