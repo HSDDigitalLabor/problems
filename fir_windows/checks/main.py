@@ -17,6 +17,7 @@ FREQ_PLOT_NAME = "plot_windows_freq.png"
 N = 256
 M = N // 2
 N_FFT = 8192
+MIN_CHECK_DB = -100
 
 WINDOW_FUNCTIONS = {
     "Rectangular": signal.windows.boxcar,
@@ -128,6 +129,9 @@ def check_frequency_response(name):
     if not np.allclose(actual_x, expected_x, rtol=0, atol=1e-12):
         raise check50.Failure(f"{name}: Frequency axis is incorrect.")
 
+    # Ignore differences below the visible dB floor, but still detect crossings.
+    actual_y = np.maximum(actual_y, MIN_CHECK_DB)
+    expected_y = np.maximum(expected_y, MIN_CHECK_DB)
     if not np.allclose(actual_y, expected_y, rtol=1e-6, atol=1e-4):
         difference = np.max(np.abs(actual_y - expected_y))
         msg = f"{name}: Frequency response is incorrect."
