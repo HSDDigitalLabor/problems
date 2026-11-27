@@ -111,9 +111,8 @@
     Frequenzbandvorgaben erfüllt sind?
   </li>
   <li>
-    Vergleichen Sie den gewählten Kaiser-Entwurf mit einem Entwurf
-    für ein größeres β. Wie ändern sich die Breite des Übergangs und
-    der Pegel an der Sperrbandgrenze (1500 Hz)?
+    Welchen Einfluss hat eine Vergrößerung des Parameters \(\beta\)
+    auf den Betragsfrequenzgang des Kaiser-Fensters?
   </li>
   <li>
     Öffnen Sie <code>kaiser_koeffizienten.csv</code>: Sind genau 81
@@ -166,15 +165,15 @@
 
     <div class="alert alert-primary">
     <div class="d-flex gap-2">
-        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="6846065">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="1557075">
             mkdir fir_design
         </code>
-        <button class="btn btn-secondary" id="copyCmdBtn_6846065" type="button"><i class="fa-regular fa-clipboard"></i></button>
+        <button class="btn btn-secondary" id="copyCmdBtn_1557075" type="button"><i class="fa-regular fa-clipboard"></i></button>
     </div>
-    <div id="copyFeedback_6846065" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+    <div id="copyFeedback_1557075" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
         Fehler beim Kopieren!
     </div>
-    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_6846065','6846065','copyFeedback_6846065']);</script>
+    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_1557075','1557075','copyFeedback_1557075']);</script>
 </div>
 
 <p>aus, um einen Ordner namens <code
@@ -189,15 +188,15 @@
 
     <div class="alert alert-primary">
     <div class="d-flex gap-2">
-        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="5877928">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="4473280">
             cd fir_design
         </code>
-        <button class="btn btn-secondary" id="copyCmdBtn_5877928" type="button"><i class="fa-regular fa-clipboard"></i></button>
+        <button class="btn btn-secondary" id="copyCmdBtn_4473280" type="button"><i class="fa-regular fa-clipboard"></i></button>
     </div>
-    <div id="copyFeedback_5877928" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+    <div id="copyFeedback_4473280" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
         Fehler beim Kopieren!
     </div>
-    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_5877928','5877928','copyFeedback_5877928']);</script>
+    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_4473280','4473280','copyFeedback_4473280']);</script>
 </div>
 
 <p>aus, um in dieses Verzeichnis zu wechseln. Der Prompt Ihres Terminals sollte
@@ -211,15 +210,15 @@
 
     <div class="alert alert-primary">
     <div class="d-flex gap-2">
-        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="3796456">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="5637459">
             code fir_design.py
         </code>
-        <button class="btn btn-secondary" id="copyCmdBtn_3796456" type="button"><i class="fa-regular fa-clipboard"></i></button>
+        <button class="btn btn-secondary" id="copyCmdBtn_5637459" type="button"><i class="fa-regular fa-clipboard"></i></button>
     </div>
-    <div id="copyFeedback_3796456" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+    <div id="copyFeedback_5637459" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
         Fehler beim Kopieren!
     </div>
-    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_3796456','3796456','copyFeedback_3796456']);</script>
+    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_5637459','5637459','copyFeedback_5637459']);</script>
 </div>
 
 <p>ausführen, um eine Datei namens <code
@@ -235,15 +234,15 @@
 
     <div class="alert alert-primary">
     <div class="d-flex gap-2">
-        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="9360422">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="5676508">
             wget https://raw.githubusercontent.com/HSDDigitalLabor/problems/refs/heads/diginfo2026/fir_design/fir_tools.py
         </code>
-        <button class="btn btn-secondary" id="copyCmdBtn_9360422" type="button"><i class="fa-regular fa-clipboard"></i></button>
+        <button class="btn btn-secondary" id="copyCmdBtn_5676508" type="button"><i class="fa-regular fa-clipboard"></i></button>
     </div>
-    <div id="copyFeedback_9360422" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+    <div id="copyFeedback_5676508" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
         Fehler beim Kopieren!
     </div>
-    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_9360422','9360422','copyFeedback_9360422']);</script>
+    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_5676508','5676508','copyFeedback_5676508']);</script>
 </div>
 
 <p>
@@ -267,7 +266,7 @@
 
         <button
             class="btn btn-dark btn-sm"
-            id="copyCodeBtn_7829058"
+            id="copyCodeBtn_3715967"
             type="button"
             title="Python-Code kopieren">
             <i class="fa-regular fa-clipboard"></i>
@@ -275,7 +274,7 @@
     </div>
 
     <pre class="m-0 p-3 bg-secondary"
-         style="overflow-x: auto;"><code id="7829058" class="language-python">import csv
+         style="overflow-x: auto;"><code id="3715967" class="language-python">import csv
 
 import numpy as np
 from scipy import signal
@@ -326,7 +325,7 @@ plot_vergleich(n, f, h_rechteck, H_rechteck, h_kaiser, H_kaiser, beta, maske)
 # TODO 4: Speichern Sie n und h_kaiser mit csv.writer in einer CSV-Datei.
 </code></pre>
 
-    <div id="copyCodeFeedback_7829058"
+    <div id="copyCodeFeedback_3715967"
          class="alert alert-danger m-2 d-none"
          role="alert">
         Fehler beim Kopieren!
@@ -334,9 +333,9 @@ plot_vergleich(n, f, h_rechteck, H_rechteck, h_kaiser, H_kaiser, beta, maske)
 
     <script>
         (window._cpQueue = window._cpQueue || []).push([
-            'copyCodeBtn_7829058',
-            '7829058',
-            'copyCodeFeedback_7829058'
+            'copyCodeBtn_3715967',
+            '3715967',
+            'copyCodeFeedback_3715967'
         ]);
     </script>
 
@@ -379,15 +378,15 @@ plot_vergleich(n, f, h_rechteck, H_rechteck, h_kaiser, H_kaiser, beta, maske)
 
     <div class="alert alert-primary">
     <div class="d-flex gap-2">
-        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="6121710">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="7270750">
             submit50 HSDDigitalLabor/problems/diginfo2026/fir_design
         </code>
-        <button class="btn btn-secondary" id="copyCmdBtn_6121710" type="button"><i class="fa-regular fa-clipboard"></i></button>
+        <button class="btn btn-secondary" id="copyCmdBtn_7270750" type="button"><i class="fa-regular fa-clipboard"></i></button>
     </div>
-    <div id="copyFeedback_6121710" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+    <div id="copyFeedback_7270750" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
         Fehler beim Kopieren!
     </div>
-    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_6121710','6121710','copyFeedback_6121710']);</script>
+    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_7270750','7270750','copyFeedback_7270750']);</script>
 </div>
 
 <p>
@@ -418,15 +417,15 @@ plot_vergleich(n, f, h_rechteck, H_rechteck, h_kaiser, H_kaiser, beta, maske)
 
     <div class="alert alert-primary">
     <div class="d-flex gap-2">
-        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="9325553">
+        <code class="text-dark font-weight-bold flex-grow-1 d-flex align-items-center" id="1116106">
             Mit submit50 abgegeben.
         </code>
-        <button class="btn btn-secondary" id="copyCmdBtn_9325553" type="button"><i class="fa-regular fa-clipboard"></i></button>
+        <button class="btn btn-secondary" id="copyCmdBtn_1116106" type="button"><i class="fa-regular fa-clipboard"></i></button>
     </div>
-    <div id="copyFeedback_9325553" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
+    <div id="copyFeedback_1116106" class="alert alert-danger mt-2 mb-0 d-none" role="alert">
         Fehler beim Kopieren!
     </div>
-    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_9325553','9325553','copyFeedback_9325553']);</script>
+    <script>(window._cpQueue=window._cpQueue||[]).push(['copyCmdBtn_1116106','1116106','copyFeedback_1116106']);</script>
 </div>
 
 <p>Schließen Sie die Eingabe durch Klick auf den Button
@@ -494,4 +493,4 @@ plot_vergleich(n, f, h_rechteck, H_rechteck, h_kaiser, H_kaiser, beta, maske)
     }
 })();
 </script>
-<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2026-11-20 16:39:20</p>
+<p class="text-muted text-right text-nowrap" style="font-size: 0.6em;">generated 2026-11-27 10:57:50</p>
